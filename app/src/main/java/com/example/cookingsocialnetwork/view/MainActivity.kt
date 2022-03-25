@@ -19,11 +19,14 @@ class MainActivity : AppCompatActivity() {
         if (FirebaseAuth.getInstance().currentUser == null)
         {
             val splashPage = Intent(this, SplashPage::class.java)
+            // set the new task and clear flags
+            splashPage.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(splashPage)
         }
         else
         {
             val homePage = Intent(this, HomePage::class.java)
+            homePage.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(homePage)
         }
     }

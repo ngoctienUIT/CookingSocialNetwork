@@ -31,6 +31,7 @@ Xây dựng mạng xã hội nấu ăn
 
 ### Công nghệ sử dụng <a name="use"></a>
 
+- IDE: Android Studio
 - Ngôn ngữ: Kotlin
 
 [Lên đầu trang](#top)

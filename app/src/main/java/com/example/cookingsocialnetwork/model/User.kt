@@ -10,7 +10,11 @@ data class User(
     var username: String,
     var gender: String,
     var birthday: DateTime,
-    var description: String): BaseObservable()
+    var description: String,
+    var followers: MutableList<String>,
+    var following: MutableList<String>,
+    var favourites: MutableList<String>,
+    var post: MutableList<String>): BaseObservable()
 {
         fun getData(documentSnapshot: DocumentSnapshot)
         {
