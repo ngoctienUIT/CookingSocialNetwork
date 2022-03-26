@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookingSocialNetwork">
         <activity
-            android:name=".view.SettingPage"
+            android:name=".setting.SettingPage"
             android:exported="false" />
         <activity
-            android:name=".view.AccountPage"
+            android:name=".account.AccountPage"
             android:exported="false" />
         <activity
-            android:name=".view.PostPage"
+            android:name=".post.PostPage"
             android:exported="false" />
         <activity
-            android:name=".view.HomePage"
+            android:name=".home.HomePage"
             android:exported="false" />
         <activity
-            android:name=".view.SplashPage"
+            android:name=".splash.SplashPage"
             android:exported="false" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".mainActivity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
