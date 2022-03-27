@@ -11,6 +11,7 @@ class AccountViewModel: ViewModel() {
     private var user: User = User()
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var _user: MutableLiveData<User> = MutableLiveData()
+
     var getUser:MutableLiveData<User>
         get() {
             return _user

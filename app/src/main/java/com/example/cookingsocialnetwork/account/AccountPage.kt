@@ -2,19 +2,26 @@ package com.example.cookingsocialnetwork.account
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.cookingsocialnetwork.R
-import kotlinx.android.synthetic.main.activity_account_page.*
+import com.example.cookingsocialnetwork.databinding.ActivityAccountPageBinding
 
 class AccountPage : AppCompatActivity() {
+    private lateinit var viewModel: AccountViewModel
+    private lateinit var databinding: ActivityAccountPageBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_page)
 
-        val mViewModel = ViewModelProviders.of(this).get(AccountViewModel::class.java)
-        mViewModel.getUser.observe(this, Observer {
-            text1.text=it.name
-        })
+        databinding = DataBindingUtil.setContentView(this, R.layout.activity_account_page)
+        val factory = AccountViewModelFactory()
+
+        viewModel = ViewModelProvider(this,factory).get(AccountViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this,factory).get(AccountViewModel::class.java)
+        databinding.viewModel = viewModel
+        databinding.lifecycleOwner = this
     }
 }

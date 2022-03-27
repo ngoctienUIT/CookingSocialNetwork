@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookingSocialNetwork">
         <activity
+            android:name=".setting.changeProfile.SettingChangeProfile"
+            android:exported="false" />
+        <activity
             android:name=".setting.SettingPage"
             android:exported="false" />
         <activity

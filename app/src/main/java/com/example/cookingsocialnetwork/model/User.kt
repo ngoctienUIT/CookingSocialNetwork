@@ -1,9 +1,7 @@
 package com.example.cookingsocialnetwork.model
 
 import android.annotation.SuppressLint
-import androidx.databinding.BaseObservable
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
 import java.text.SimpleDateFormat
 
 data class User(
@@ -16,7 +14,7 @@ data class User(
     var followers: MutableList<String>,
     var following: MutableList<String>,
     var favourites: MutableList<String>,
-    var post: MutableList<String>): BaseObservable()
+    var post: MutableList<String>)
 {
     constructor(): this("Name", "Avatar", "@username", "None", "None", "None",
         mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf()) {

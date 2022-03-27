@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingsocialnetwork.home.HomePage
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_splash_page.*
+import kotlin.system.exitProcess
 
 class SplashPage : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -52,19 +54,25 @@ class SplashPage : AppCompatActivity() {
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             finish()
-            System.exit(0)
+            exitProcess(0)
         }
 
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
 
-        Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
         updateUI(currentUser)
+    }
+
+    //hàm sign in google
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -74,35 +82,36 @@ class SplashPage : AppCompatActivity() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
+                Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
+                Log.e(TAG, e.toString())
             }
         }
     }
 
+    //thêm tài khoản google vừa đăng nhập vào firebaseauth
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
+                    Log.d(TAG, "signInWithCredential:success")
                     updateUI(user)
                 } else {
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
                     updateUI(null)
                 }
             }
     }
 
-    private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
+    //khởi tạo infor của user
     private fun initInforUser()
     {
         val acct = GoogleSignIn.getLastSignedInAccount(this)
 
-        val infor = hashMapOf<String, Any>(
+        val infor = hashMapOf(
             "name" to acct!!.displayName.toString(),
             "avatar" to acct.photoUrl.toString(),
             "gender" to "Nam",
@@ -117,6 +126,7 @@ class SplashPage : AppCompatActivity() {
             .set(infor)
     }
 
+    //khởi tạo favourites của user
     private fun initFavouritesUser()
     {
         val favourites = hashMapOf(
@@ -129,6 +139,7 @@ class SplashPage : AppCompatActivity() {
             .set(favourites)
     }
 
+    //khởi tạo follower của user
     private fun initFollowersUser()
     {
         val followers = hashMapOf(
@@ -141,6 +152,7 @@ class SplashPage : AppCompatActivity() {
             .set(followers)
     }
 
+    //khởi tạo following của user
     private fun initFollowingUser()
     {
         val following = hashMapOf(
@@ -153,6 +165,7 @@ class SplashPage : AppCompatActivity() {
             .set(following)
     }
 
+    //khởi tạo post của user
     private fun initPostUser()
     {
         val post = hashMapOf(
@@ -165,6 +178,7 @@ class SplashPage : AppCompatActivity() {
             .set(post)
     }
 
+    //tạo tất cả dữ liệu cần có ủa user
     private fun initUser()
     {
         initInforUser()
@@ -194,5 +208,6 @@ class SplashPage : AppCompatActivity() {
         //Sau khi đăng nhập xog sẽ chuyển đến màn hình home
         val homePage = Intent(this, HomePage::class.java)
         startActivity(homePage)
+        finish()
     }
 }

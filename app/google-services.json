@@ -1,24 +1,41 @@
 {
   "project_info": {
     "project_number": "462610362675",
+    "firebase_url": "https://cooking-social-network-c5f28-default-rtdb.firebaseio.com",
     "project_id": "cooking-social-network-c5f28",
     "storage_bucket": "cooking-social-network-c5f28.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:462610362675:android:d6d2db959fc73f766c0e46",
+        "mobilesdk_app_id": "1:462610362675:android:a62a6309c4574f3d6c0e46",
         "android_client_info": {
           "package_name": "com.example.cookingsocialnetwork"
         }
       },
       "oauth_client": [
         {
-          "client_id": "462610362675-mrj09274tjdhj0lu0hpretrqd1gf9vv4.apps.googleusercontent.com",
+          "client_id": "462610362675-4v9p8aiuv9kndmquffrg2s7dkp5n0dgj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cookingsocialnetwork",
+            "certificate_hash": "29eae61d956f0be8dc89761e47428e229f7e2ac6"
+          }
+        },
+        {
+          "client_id": "462610362675-94jcui4oep0bodtov4ols5j9vjqjmimv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.cookingsocialnetwork",
             "certificate_hash": "70dd73f0551eaf9237676467f332f605535d9a10"
+          }
+        },
+        {
+          "client_id": "462610362675-k88ad8g95j0vln4hsdrvu66h55t5j9gn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cookingsocialnetwork",
+            "certificate_hash": "a7f3da0cc8a451b6c9df3daefa46214606697645"
           }
         },
         {
