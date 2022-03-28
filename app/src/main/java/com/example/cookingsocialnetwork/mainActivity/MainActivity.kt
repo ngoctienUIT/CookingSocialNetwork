@@ -5,10 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.core.content.ContextCompat
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.home.HomePage
 import com.example.cookingsocialnetwork.splash.SplashPage
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,18 +15,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+        window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
     }
 
     override fun onStart() {
         super.onStart()
         Handler(Looper.getMainLooper()).postDelayed({
-            if (FirebaseAuth.getInstance().currentUser == null) {
-                val splashPage = Intent(this, SplashPage::class.java)
-                startActivity(splashPage)
-            } else {
-                val homePage = Intent(this, HomePage::class.java)
-                startActivity(homePage)
-            }
+            val splashPage = Intent(this, SplashPage::class.java)
+            startActivity(splashPage)
             finish()
         },3000)
     }

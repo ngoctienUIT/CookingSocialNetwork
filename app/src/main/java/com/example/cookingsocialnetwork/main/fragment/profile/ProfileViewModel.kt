@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.account
+package com.example.cookingsocialnetwork.main.fragment.profile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,12 +7,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
-class AccountViewModel: ViewModel() {
+class ProfileViewModel: ViewModel() {
     private var user: User = User()
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var _user: MutableLiveData<User> = MutableLiveData()
 
-    var getUser:MutableLiveData<User>
+    var getUser: MutableLiveData<User>
         get() {
             return _user
         }
@@ -30,7 +30,7 @@ class AccountViewModel: ViewModel() {
         firestore.collection(FirebaseAuth.getInstance().currentUser?.email.toString())
             .addSnapshotListener()
             {
-                snapshot,e ->
+                    snapshot,e ->
                 if (e!=null)
                 {
                     return@addSnapshotListener

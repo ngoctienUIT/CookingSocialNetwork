@@ -10,19 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookingSocialNetwork">
         <activity
+            android:name=".main.MainPage"
+            android:exported="false" />
+        <activity
             android:name=".setting.changeProfile.SettingChangeProfile"
             android:exported="false" />
         <activity
             android:name=".setting.SettingPage"
             android:exported="false" />
         <activity
-            android:name=".account.AccountPage"
-            android:exported="false" />
-        <activity
             android:name=".post.PostPage"
-            android:exported="false" />
-        <activity
-            android:name=".home.HomePage"
             android:exported="false" />
         <activity
             android:name=".splash.SplashPage"

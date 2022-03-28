@@ -7,8 +7,8 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cookingsocialnetwork.home.HomePage
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.main.MainPage
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -35,6 +35,7 @@ class SplashPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_page)
+        supportActionBar?.hide()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -206,8 +207,8 @@ class SplashPage : AppCompatActivity() {
             }
 
         //Sau khi đăng nhập xog sẽ chuyển đến màn hình home
-        val homePage = Intent(this, HomePage::class.java)
-        startActivity(homePage)
+        val main = Intent(this, MainPage::class.java)
+        startActivity(main)
         finish()
     }
 }
