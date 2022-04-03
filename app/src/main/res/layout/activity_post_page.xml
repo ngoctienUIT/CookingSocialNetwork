@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,16 +26,18 @@
                 android:padding="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/food_picker"
+                android:onClick="setImage"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp"></ImageButton>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Bấm để chọn hình ảnh">
-            </TextView>
+                android:text="Bấm để chọn hình ảnh"></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,6 +47,7 @@
             android:maxLines="1"
             android:drawablePadding="10dp"
             android:hint="Tên món: (ví dụ: pannacotta, tiramisu)"></EditText>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,146 +61,159 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:text="Khẩu phần"></TextView>
+
             <EditText
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:hint="1 người, 4 người,..."></EditText>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:text="Thời gian nấu">
-            </TextView>
+                android:text="Thời gian nấu"></TextView>
+
             <EditText
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:hint="30 phút, 1 tiếng,...">
-            </EditText>
+                android:hint="30 phút, 1 tiếng,..."></EditText>
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:background="#c0c0c0"></View>
+
         <LinearLayout
             android:id="@+id/ingredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nguyên liệu"
-                android:textSize="30dp">
-            </TextView>
+                android:textSize="30dp"></TextView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="200g bột">
-                </EditText>
+                    android:hint="200g bột"></EditText>
+
                 <Button
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></Button>
+                    android:layout_height="wrap_content"
+                    android:onClick="deleteIngredient"></Button>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="100ml nước">
-                </EditText>
+                    android:hint="100ml nước"></EditText>
+
                 <Button
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></Button>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:text="+ Nguyên liệu">
-                </Button>
+                    android:layout_height="wrap_content"
+                    android:onClick="deleteIngredient"></Button>
             </LinearLayout>
         </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="+ Nguyên liệu"
+            android:onClick="addIngredient"></Button>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:background="#c0c0c0"></View>
+
         <LinearLayout
             android:id="@+id/step"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cách làm"
-                android:textSize="30dp">
-            </TextView>
+                android:textSize="30dp"></TextView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Trộn bột với nước...">
-                </EditText>
+                    android:hint="Trộn bột với nước..."></EditText>
+
                 <Button
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Button>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Ủ bột ở nhiệt độ phòng trong 10 tiếng">
-                </EditText>
+                    android:hint="Ủ bột ở nhiệt độ phòng trong 10 tiếng"></EditText>
+
                 <Button
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Button>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="+ Cách làm">
-                </Button>
+                    android:text="+ Cách làm"></Button>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
