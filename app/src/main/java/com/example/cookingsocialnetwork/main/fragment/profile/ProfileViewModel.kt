@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class ProfileViewModel: ViewModel() {
+
     private var user: User = User()
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var _user: MutableLiveData<User> = MutableLiveData()

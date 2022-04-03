@@ -39,6 +39,14 @@
           }
         },
         {
+          "client_id": "462610362675-rc27mf0ne76u4bvb698b65ofpvdv5rr2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cookingsocialnetwork",
+            "certificate_hash": "29eae61d956f0be8dc89761e47428e229f7e2ac6"
+          }
+        },
+        {
           "client_id": "462610362675-9gnsd8jt6dl57tacg92l5gc6tpih6q23.apps.googleusercontent.com",
           "client_type": 3
         }

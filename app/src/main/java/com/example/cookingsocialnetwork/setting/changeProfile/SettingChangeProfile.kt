@@ -25,6 +25,7 @@ class SettingChangeProfile : AppCompatActivity() {
     private lateinit var viewModel: SettingChangeProfileViewModel
     private lateinit var databinding: ActivitySettingChangeProfileBinding
 
+
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent())
     {
         val inputUri = it

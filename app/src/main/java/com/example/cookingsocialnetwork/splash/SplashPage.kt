@@ -34,7 +34,7 @@ class SplashPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_page)
+        this.setContentView(R.layout.activity_splash_page)
         supportActionBar?.hide()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
