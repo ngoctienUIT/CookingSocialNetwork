@@ -64,7 +64,7 @@ class SettingChangeProfile : AppCompatActivity() {
         }
     }
 
-    private fun selectImage()
+    private fun selectGallery()
     {
         getContent.launch("image/*")
     }
@@ -81,7 +81,7 @@ class SettingChangeProfile : AppCompatActivity() {
         databinding.lifecycleOwner = this
         databinding.avatarBtn.setOnClickListener()
         {
-            selectImage()
+            selectGallery()
         }
     }
 

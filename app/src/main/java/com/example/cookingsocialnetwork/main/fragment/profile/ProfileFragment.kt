@@ -15,13 +15,14 @@ import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfi
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
     ): View {
-        val binding: FragmentProfileBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container,false)
         val factory = ProfileViewModelFactory()
         viewModel = ViewModelProvider(this,factory).get(ProfileViewModel::class.java)
         binding.viewmodel = viewModel
