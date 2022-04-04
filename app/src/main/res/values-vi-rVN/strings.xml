@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mạng xã hội nấu ăn</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--activity_post_page-->
+    <string name="image_request">Đăng hình ảnh món ăn</string>
+    <string name="recipe_name_hint">Tên món(ví dụ: Panna cotta, Tiramisu,…)</string>
+    <string name="recipe_description_hint">Mô tả món ăn</string>
+    <string name="serves">Khẩu phần</string>
+    <string name="serves_hint">2 người</string>
+    <string name="cook_time">Thời gian nấu</string>
+    <string name="cook_time_hint">30 phút</string>
+    <string name="ingredients_title">Nguyên liệu</string>
+    <string name="ingredients_hint">4 lòng đỏ trứng</string>
+    <string name="add_ingredient">+ Nguyên liệu</string>
+    <string name="method_title">Cách làm</string>
+    <string name="method_step_hint">Đánh lòng đỏ trứng đến khi bọt mịn</string>
+    <string name="add_method_step">+ Các bước</string>
+    <string name="account">Tài khoản</string>
+    <string name="notification">Thông báo</string>
+    <string name="report">Báo cáo</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="information">Thông tin</string>
+    <string name="log_out">Đăng xuất</string>
+    <!---->
+</resources>

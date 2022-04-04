@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="Tài khoản"
+            android:text="@string/account"
             android:textAlignment="textStart"
             android:textColor="@color/black"></Button>
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="Thông báo"
+            android:text="@string/notification"
             android:textAlignment="textStart"
             android:textColor="@color/black"></Button>
 
@@ -39,16 +39,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="Báo cáo"
+            android:text="@string/report"
             android:textAlignment="textStart"
             android:textColor="@color/black"></Button>
 
         <Button
+            android:id="@+id/changelanguage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="Ngôn ngữ"
+            android:text="@string/language"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
 
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="Thông tin"
+            android:text="@string/information"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
         <View
@@ -68,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Đăng xuất"
+            android:text="@string/log_out"
             android:layout_gravity="center"></Button>
     </LinearLayout>
 

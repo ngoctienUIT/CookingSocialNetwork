@@ -1,5 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cooking Social Network</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_request">Upload recipe image</string>
+    <string name="recipe_name_hint">Recipe name(e.g. Panna cotta, Tiramisu, etc.)</string>
+    <string name="recipe_description_hint">Recipe description</string>
+    <string name="serves">Serves</string>
+    <string name="serves_hint">2 people</string>
+    <string name="cook_time">Cook time</string>
+    <string name="cook_time_hint">30 minutes</string>
+    <string name="ingredients_title">Ingredients</string>
+    <string name="ingredients_hint">4 egg yolk</string>
+    <string name="add_ingredient">+ Ingredient</string>
+    <string name="method_title">Method</string>
+    <string name="method_step_hint">Beat egg yolks until fluffy</string>
+    <string name="add_method_step">+ Step</string>
+    <string name="account">Account</string>
+    <string name="notification">Notification</string>
+    <string name="report">Report</string>
+    <string name="language">Language</string>
+    <string name="information">Information</string>
+    <string name="log_out">Log out</string>
+
 </resources>

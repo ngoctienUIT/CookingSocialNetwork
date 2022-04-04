@@ -14,6 +14,7 @@ import com.example.cookingsocialnetwork.main.fragment.notify.NotificationsFragme
 import com.example.cookingsocialnetwork.main.fragment.profile.ProfileFragment
 import com.example.cookingsocialnetwork.main.fragment.search.SearchFragment
 import com.example.cookingsocialnetwork.post.PostPage
+import com.example.cookingsocialnetwork.setting.SettingPage
 import kotlinx.android.synthetic.main.activity_main_page.*
 import kotlin.system.exitProcess
 
@@ -47,6 +48,10 @@ class MainPage : AppCompatActivity() {
         {
             val post = Intent(this, PostPage::class.java)
             startActivity(post)
+        }
+        setting.setOnClickListener{
+            val settingPage = Intent(this, SettingPage::class.java)
+            startActivity(settingPage)
         }
     }
 

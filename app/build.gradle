@@ -68,7 +68,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
 
     //UCrop
-    implementation 'com.github.krokyze:ucropnedit:2.2.6-2'
+    implementation 'com.github.krokyze:ucropnedit:2.2.8'
 
 
 }
