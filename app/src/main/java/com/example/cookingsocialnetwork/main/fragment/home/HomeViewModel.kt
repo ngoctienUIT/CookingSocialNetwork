@@ -13,7 +13,7 @@ class HomeViewModel: ViewModel() {
 
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
-        listenToDataPost()
+       // listenToDataPost()
     }
 
     var getPost: MutableLiveData<MutableList<Post>>
