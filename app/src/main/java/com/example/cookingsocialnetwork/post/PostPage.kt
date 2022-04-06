@@ -26,7 +26,7 @@ class PostPage : AppCompatActivity() {
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
 
-    val SELECT_PICTURE = 200
+    private val SELECT_PICTURE = 200
     private lateinit var uriSelectedImageFood:Uri
     private lateinit var urlImageUpdate: Uri
 
@@ -48,7 +48,6 @@ class PostPage : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
-
             // compare the resultCode with the
             // SELECT_PICTURE constant
             if (requestCode == SELECT_PICTURE) {
@@ -57,6 +56,7 @@ class PostPage : AppCompatActivity() {
                 if (null != selectedImageUri) {
                     uriSelectedImageFood = selectedImageUri
                     // update the preview image in the layout
+                    IVPreviewImage = findViewById(R.id.food_image)
                     IVPreviewImage?.setImageURI(selectedImageUri)
 
                 }
@@ -64,7 +64,7 @@ class PostPage : AppCompatActivity() {
         }
     }
 
-    //pick picture
+//   pick picture
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
 //        if (resultCode == RESULT_OK && requestCode == 100) {
