@@ -24,7 +24,13 @@ class PostPage : AppCompatActivity() {
 
     private val SELECT_PICTURE = 200
     private lateinit var uriSelectedImageFood:Uri
-    private lateinit var urlImageUpdate: Uri
+
+
+    private lateinit var arrEditTextIngredient:MutableList<String>
+
+    fun getIngredientText(){
+            Toast.makeText(this, ingredient.childCount.toString(),Toast.LENGTH_LONG).show()
+    }
 
     fun imageChooser() {
 
@@ -39,7 +45,6 @@ class PostPage : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
     }
 
-    private var IVPreviewImage: ImageView? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -52,7 +57,6 @@ class PostPage : AppCompatActivity() {
                 if (null != selectedImageUri) {
                     uriSelectedImageFood = selectedImageUri
                     // update the preview image in the layout
-                   // IVPreviewImage = findViewById(R.id.food_image)
                    databinding.foodImage.setImageURI(selectedImageUri)
 
                 }
@@ -76,44 +80,47 @@ class PostPage : AppCompatActivity() {
         }
 
         databinding.btnPost.setOnClickListener{
-            // upLoadImageToFirebase(uriSelectedImageFood)
-            initPost()
+            upLoadImageToFirebase(uriSelectedImageFood!!)
             finish()
-
         }
 
         add_ingredient.setOnClickListener {
             ingredient.addView(drawUserTextInput())
+            getIngredientText()
         }
+      //  add_ingredient.setOnClickListener()
         add_making_method.setOnClickListener {
             method.addView(drawUserTextInput())
         }
 
     }
 
-
-    private fun initPost(){
+    private fun initPost(urlImageUpdated : String){
+        Log.d("PostPagegg", "Succesfully upadated image with: $urlImageUpdated")
         val newPostData = FirebaseFirestore.getInstance().collection("post").document();
         val postData = hashMapOf(
             "id" to "${newPostData.id}",
             "owner" to FirebaseAuth.getInstance().currentUser?.email.toString(),
-            "images" to "Chua co",
-           "nameFood" to databinding.nameFood.text.toString(),
+            "images" to urlImageUpdated,
+            "nameFood" to databinding.nameFood.text.toString(),
+            "Level" to "Chua biet",
             "description" to databinding.txtDec.text.toString(),
             "ration" to databinding.txtMethod.text.toString(),
             "ingredients" to mutableListOf<String>(),
             "cookingTime" to databinding.cookingTime.text.toString(),
             "making" to mutableListOf<String>(),
-            "share" to "0",
             "favourites" to "0",
         )
         newPostData.set(postData);
     }
-    private fun upLoadImageToFirebase(uri: Uri) {
+    private fun upLoadImageToFirebase(uri: Uri)  {
 
         val storageRef = FirebaseStorage.getInstance().reference
         val ref = storageRef.child("post/${uri.lastPathSegment}")
-        var uploadTask = ref.putFile(uri)
+        var uploadTask = ref.putFile(uri!!)
+//            .addOnSuccessListener {
+//                Log.d("cc", "dowload successfull with: ${it.metadata?.path}")
+//            }
 // Register observers to listen for when the download is done or if it fails
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
@@ -121,6 +128,7 @@ class PostPage : AppCompatActivity() {
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
             // ...
         }
+
 
         //getUrl
         val urlTask = uploadTask.continueWithTask { task ->
@@ -132,18 +140,23 @@ class PostPage : AppCompatActivity() {
             ref.downloadUrl
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val downloadUri = task.result
+
+                Log.d("PostPage", "Succesfully upadated image with: ${task.result}")
+                // push profile bài post lên firebase, cái này sẽ luôn được thực hiện sau cùng
+                // dù có để initpost() lên trước nên phải initpost ở đây luôn :v
+                initPost(task.result.toString())
             } else {
                 // Handle failures
                 // ...
             }
         }
-        urlImageUpdate = urlTask.result;
+
     }
 
     fun deleteIngredient(view: View){
         ingredient.removeView(view.parent as View)
     }
+
     private fun drawUserTextInput() : LinearLayout {
         // layout
         val newLayout = LinearLayout(this)
@@ -171,6 +184,7 @@ class PostPage : AppCompatActivity() {
         newCloseButton.setOnClickListener {
             (newLayout.parent as LinearLayout).removeView(newLayout)
         }
+
         return newLayout
     }
 }
