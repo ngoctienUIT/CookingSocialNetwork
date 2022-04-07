@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.setting
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -9,8 +10,8 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingsocialnetwork.LanguageManager
 import com.example.cookingsocialnetwork.R
@@ -20,8 +21,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_setting_page.*
+import kotlinx.android.synthetic.main.layout_dialog_choose_language.*
 
 class SettingPage : AppCompatActivity() {
+    private var imageChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // Get the url of the image from data
+            val selectedImageUri: Uri? = result.data?.data
+            if (null != selectedImageUri) {
+                // update the preview image in the layout
+                IVPreviewImage?.setImageURI(selectedImageUri)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,18 +61,17 @@ class SettingPage : AppCompatActivity() {
         windowAttributes.gravity = gravity
         window.attributes = windowAttributes
 
-
-        val btnsetLanguageVietnamese = dialog.findViewById(R.id.setLanguageVietnamese) as Button
-        val btnsetLanguageEnglish = dialog.findViewById(R.id.setLanguageEnglish) as Button
-
-        btnsetLanguageEnglish.setOnClickListener{
+        dialog.setLanguageEnglish.setOnClickListener()
+        {
             val lang = LanguageManager(this)
             lang.updateResource("en-US")
             val reopen = Intent(this, MainActivity::class.java)
             startActivity(reopen)
             finish()
         }
-        btnsetLanguageVietnamese.setOnClickListener {
+
+        dialog.setLanguageVietnamese.setOnClickListener()
+        {
             val lang = LanguageManager(this)
             lang.updateResource("vi")
             val reopen = Intent(this, MainActivity::class.java)
@@ -70,10 +81,9 @@ class SettingPage : AppCompatActivity() {
         dialog.show()
     }
 
-    var SELECT_PICTURE = 200
+//    private var SELECT_PICTURE = 200
 
     fun imageChooser() {
-
         // create an instance of the
         // intent of the type image
         val i = Intent()
@@ -82,29 +92,32 @@ class SettingPage : AppCompatActivity() {
 
         // pass the constant to compare it
         // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
+        imageChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
+//startActivityForResult không được sử dụng nữa
+//        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
     }
 
     private var IVPreviewImage: ImageView? = null
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
+// onActivityResult không còn được sử dụng nữa
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == RESULT_OK) {
+//
+//            // compare the resultCode with the
+//            // SELECT_PICTURE constant
+//            if (requestCode == SELECT_PICTURE) {
+//                // Get the url of the image from data
+//                val selectedImageUri: Uri? = data?.data
+//                if (null != selectedImageUri) {
+//                    // update the preview image in the layout
+//                    IVPreviewImage?.setImageURI(selectedImageUri)
+//                }
+//            }
+//        }
+//    }
 
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
-            if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
-                val selectedImageUri: Uri? = data?.data
-                if (null != selectedImageUri) {
-                    // update the preview image in the layout
-                    IVPreviewImage?.setImageURI(selectedImageUri)
-                }
-            }
-        }
-    }
-
-    fun logOut()
+    private fun logOut()
     {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
 
