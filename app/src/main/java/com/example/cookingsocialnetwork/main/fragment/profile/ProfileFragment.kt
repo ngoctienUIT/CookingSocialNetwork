@@ -27,7 +27,6 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this,factory).get(ProfileViewModel::class.java)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
-
         return binding.root
 
     }

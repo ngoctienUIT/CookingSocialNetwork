@@ -11,7 +11,6 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingsocialnetwork.LanguageManager
 import com.example.cookingsocialnetwork.R
@@ -21,7 +20,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_setting_page.*
-
 
 class SettingPage : AppCompatActivity() {
 
@@ -33,7 +31,10 @@ class SettingPage : AppCompatActivity() {
             openChooseLanguageDialog(Gravity.CENTER)
         }
 
-
+        logout.setOnClickListener()
+        {
+            logOut()
+        }
     }
 
     private fun openChooseLanguageDialog(gravity: Int) {
@@ -41,8 +42,7 @@ class SettingPage : AppCompatActivity() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE )
         dialog.setContentView(R.layout.layout_dialog_choose_language)
         dialog.setCancelable(false)
-        val window = dialog.window
-        if(window == null) return
+        val window = dialog.window ?: return
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val windowAttributes = window.attributes
