@@ -1,12 +1,17 @@
 package com.example.cookingsocialnetwork.post
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
@@ -17,20 +22,39 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_post_page.*
+import kotlin.math.E
 
 class PostPage : AppCompatActivity() {
-    private var imageUri: Uri? = null                // imageUrl
 
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
 
-    private val SELECT_PICTURE = 200
-    private lateinit var uriSelectedImageFood:Uri
-
-
     private var arrEditTextIngredient:MutableList<String> = mutableListOf() // mảng lưu Text của thành phần món ăn
     private var arrEditTextMethod:MutableList<String> = mutableListOf() // mảng lưu Text của phương thức nấu
 
+
+    private var listImageUri: MutableList<Uri> = mutableListOf()            // imageUrl
+
+    private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            if (result.data?.clipData !=null) {
+                //chọn nhiều ảnh
+                val count: Int = result.data!!.clipData!!.itemCount
+                for (i in 0 until count)
+                {
+                    val imageUri = result.data!!.clipData!!.getItemAt(i).uri
+                    listImageUri.add(imageUri)
+                }
+            }
+            else
+            {
+                //chọn 1 ảnh
+                val imageUri = result.data?.data
+                listImageUri.add(imageUri!!)
+                databinding.foodImage.setImageURI(imageUri)
+            }
+        }
+    }
 
     private fun getIngredientText(){
         for (item in ingredient.children) {   // với mỗi LinearLayout con của LinearLayout ingredient
@@ -41,7 +65,7 @@ class PostPage : AppCompatActivity() {
         }
     }
     private fun getMethodText(){ // tương tự getIngredientText
-        Toast.makeText(this, ingredient.childCount.toString(),Toast.LENGTH_LONG).show()
+
         for (item in ingredient.children) {
             var x : LinearLayout = item as LinearLayout;
             var etx:EditText = x[0] as EditText
@@ -50,41 +74,8 @@ class PostPage : AppCompatActivity() {
         }
     }
 
-    private fun imageChooser() {
-
-        // create an instance of the
-        // intent of the type image
-        val i = Intent()
-        i.type = "image/*"
-        i.action = Intent.ACTION_GET_CONTENT
-
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
-            if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
-                val selectedImageUri: Uri? = data?.data
-                if (null != selectedImageUri) {
-                    uriSelectedImageFood = selectedImageUri
-                    // update the preview image in the layout
-                   databinding.foodImage.setImageURI(selectedImageUri)
-
-                }
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // Inflate view and obtain an instance of the binding class
         databinding= DataBindingUtil.setContentView(this, R.layout.activity_post_page)
         Log.i("GameFragment", "Called ViewModelProvider.get")
@@ -98,7 +89,7 @@ class PostPage : AppCompatActivity() {
         }
 
         databinding.btnPost.setOnClickListener{
-            upLoadImageToFirebase(uriSelectedImageFood!!)
+            upLoadImageToFirebase()
             finish()
         }
 
@@ -112,67 +103,97 @@ class PostPage : AppCompatActivity() {
 
     }
 
-    private fun initPost(urlImageUpdated : String){
+    private fun imageChooser() {
+
+        // create an instance of the
+        // intent of the type image
+        val i = Intent()
+        i.type = "image/*"
+        i.action = Intent.ACTION_GET_CONTENT
+        i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
+
+        // pass the constant to compare it
+        // with the returned requestCode
+        imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
+//        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE) // không còn được sử dụng
+    }
+
+    private fun initPost(listUri: MutableList<String>){
         getIngredientText()
         getMethodText()
-        Log.d("PostPagegg", "Succesfully upadated image with: $urlImageUpdated")
+
         val newPostData = FirebaseFirestore.getInstance().collection("post").document();
         val postData = hashMapOf(
-            "id" to "${newPostData.id}",
+            "id" to newPostData.id,
             "owner" to FirebaseAuth.getInstance().currentUser?.email.toString(),
-            "images" to urlImageUpdated,
+            "images" to listUri,
             "nameFood" to databinding.nameFood.text.toString(),
             "description" to arrEditTextIngredient,
             "cookingTime" to databinding.cookingTime.text.toString(),
             "servers" to databinding.txtServes.text.toString(),
             "Level" to "Chua biet",
             "methods" to arrEditTextMethod,
-            "favourites" to "0",
+            "favourites" to mutableListOf<String>(),
         )
         newPostData.set(postData);
     }
-    private fun upLoadImageToFirebase(uri: Uri)  {
+    private fun upLoadImageToFirebase() {
+
+        val listUri: MutableList<String> = mutableListOf()
 
         val storageRef = FirebaseStorage.getInstance().reference
-        val ref = storageRef.child("post/${uri.lastPathSegment}")
-        var uploadTask = ref.putFile(uri!!)
-//            .addOnSuccessListener {
-//                Log.d("cc", "dowload successfull with: ${it.metadata?.path}")
-//            }
-// Register observers to listen for when the download is done or if it fails
-        uploadTask.addOnFailureListener {
-            // Handle unsuccessful uploads
-        }.addOnSuccessListener { taskSnapshot ->
-            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            // ...
-        }
 
+        for (i in 0 until listImageUri.count()) {
 
-        //getUrl
-        val urlTask = uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it
-                }
-            }
-            ref.downloadUrl
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
+            val ref = storageRef.child("post/${listImageUri[i].lastPathSegment}")
+            val uploadTask = ref.putFile(listImageUri[i])
 
-                Log.d("PostPage", "Succesfully upadated image with: ${task.result}")
-                // push profile bài post lên firebase, cái này sẽ luôn được thực hiện sau cùng
-                // dù có để initpost() lên trước nên phải initpost ở đây luôn :v
-                initPost(task.result.toString())
-            } else {
-                // Handle failures
+            // Register observers to listen for when the download is done or if it fails
+            uploadTask.addOnFailureListener {
+                // Handle unsuccessful uploads
+            }.addOnSuccessListener { taskSnapshot ->
+                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
                 // ...
             }
-        }
+            //getUrl
+            val urlTask = uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+               ref.downloadUrl
+            }.addOnCompleteListener { task ->
 
+                if (task.isSuccessful) {
+                   // uploadTask.pause()
+                    listUri.add(task.result.toString())
+                   // Log.d("PostPage", "Succesfully upadated an image with: ${task.result}")
+
+                    //nếu đã get đủ url ảnh
+                    if(listUri.count() == listImageUri.count()){
+                        initPost(listUri)
+                        Log.d("PostPage", "Succesfully upadated an image with: $listUri")
+                    }
+                   // uploadTask.resume()
+
+                } else {
+                    // Handle failures
+                    // ...
+                }
+            }
+
+        }
     }
 
     fun deleteIngredient(view: View){
-        ingredient.removeView(view.parent as View)
+        // edit text
+        val newText = EditText(this)
+        newText.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            1F
+        )
     }
 
     private fun drawUserTextInput() : LinearLayout {
