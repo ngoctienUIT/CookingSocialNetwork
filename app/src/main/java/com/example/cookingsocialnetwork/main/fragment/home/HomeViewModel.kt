@@ -94,7 +94,9 @@ class HomeViewModel: ViewModel() {
 
         FirebaseFirestore.getInstance()
             .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .document("favourites").get().addOnSuccessListener {
+            .document("favourites")
+            .get()
+            .addOnSuccessListener {
                 if (it != null) {
                     favouritesUser = it.get("favourites") as MutableList<String>
                     if (!check) favouritesUser.add(post.value!!.id)

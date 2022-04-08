@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingsocialnetwork.LanguageManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.mainActivity.MainActivity
+import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
@@ -46,6 +47,12 @@ class SettingPage : AppCompatActivity() {
         logout.setOnClickListener()
         {
             logOut()
+        }
+
+        btn_account.setOnClickListener()
+        {
+            val settingChangeProfile = Intent(this, SettingChangeProfile::class.java)
+            startActivity(settingChangeProfile)
         }
     }
 
