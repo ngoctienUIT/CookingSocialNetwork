@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-            <import type="com.example.cookingsocialnetwork.post.PostViewModel"/>
+        <import type="com.example.cookingsocialnetwork.post.PostViewModel"/>
         <variable
             name="postPageViewModel"
             type="PostViewModel" />
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            android:padding="16dp">
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/back_post"
@@ -142,19 +142,19 @@
                         android:layout_weight="1"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/cook_time_hint"></EditText>
+                        android:hint="@string/cook_time_hint" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:background="#c0c0c0"></View>
+                    android:background="#c0c0c0" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ingredients_title"
-                    android:textSize="30dp"></TextView>
+                    android:textSize="30sp" />
 
                 <LinearLayout
                     android:id="@+id/ingredient"
@@ -174,13 +174,13 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:hint="@string/ingredients_hint"></EditText>
+                            android:hint="@string/ingredients_hint" />
 
                         <Button
                             android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:onClick="deleteIngredient"></Button>
+                            android:onClick="deleteIngredient" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -190,18 +190,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="@string/add_ingredient"></Button>
+                    android:text="@string/add_ingredient" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:background="#c0c0c0"></View>
+                    android:background="#c0c0c0" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/method_title"
-                    android:textSize="30dp"></TextView>
+                    android:textSize="30sp" />
 
                 <LinearLayout
                     android:id="@+id/method"
@@ -219,7 +219,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:hint="@string/method_step_hint"></EditText>
+                            android:hint="@string/method_step_hint" />
 
                         <Button
                             android:layout_weight="1"
