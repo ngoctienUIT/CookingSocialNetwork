@@ -5,7 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -101,11 +103,19 @@ class PostPage : AppCompatActivity() {
         }
 
         add_ingredient.setOnClickListener {
-            ingredient.addView(drawUserTextInput())
+            val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_ingredient_child, null)
+            ingredient.addView(newLayout)
+            newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
+                (newLayout.parent as LinearLayout).removeView(newLayout)
+            }
         }
       //  add_ingredient.setOnClickListener()
         add_making_method.setOnClickListener {
-            method.addView(drawUserTextInput())
+            val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_ingredient_child, null)
+            method.addView(newLayout)
+            newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
+                (newLayout.parent as LinearLayout).removeView(newLayout)
+            }
         }
 
     }
