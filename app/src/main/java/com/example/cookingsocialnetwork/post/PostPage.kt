@@ -76,8 +76,7 @@ class PostPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.post_title)
+        supportActionBar?.hide()
 
         // Inflate view and obtain an instance of the binding class
         databinding= DataBindingUtil.setContentView(this, R.layout.activity_post_page)
@@ -91,8 +90,13 @@ class PostPage : AppCompatActivity() {
             imageChooser()
         }
 
-        databinding.btnPost.setOnClickListener{
+        databinding.post.setOnClickListener(){
             upLoadImageToFirebase()
+            finish()
+        }
+
+        databinding.backPost.setOnClickListener()
+        {
             finish()
         }
 

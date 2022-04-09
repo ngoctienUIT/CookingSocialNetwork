@@ -29,6 +29,7 @@
     <string name="setting_title">Cài đặt</string>
     <string name="setting_profile_title">Tài Khoản</string>
     <string name="post_title">Đăng bài</string>
+    <string name="post">Đăng</string>
 
     <!---->
 </resources>

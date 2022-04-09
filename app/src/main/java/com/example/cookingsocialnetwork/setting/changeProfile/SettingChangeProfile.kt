@@ -72,8 +72,7 @@ class SettingChangeProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_change_profile)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.setting_profile_title)
+        supportActionBar?.hide()
 
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_setting_change_profile)
         val factory = SettingChangeProfileViewModelFactory()
@@ -81,6 +80,12 @@ class SettingChangeProfile : AppCompatActivity() {
         viewModel = ViewModelProvider(this,factory).get(SettingChangeProfileViewModel::class.java)
         databinding.viewModel = viewModel
         databinding.lifecycleOwner = this
+
+        databinding.backSettingProfile.setOnClickListener()
+        {
+            finish()
+        }
+
         databinding.avatarBtn.setOnClickListener()
         {
             selectGallery()

@@ -39,8 +39,12 @@ class SettingPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_page)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.setting_title)
+
+        supportActionBar?.hide()
+        back_setting.setOnClickListener()
+        {
+            finish()
+        }
 
         changelanguage.setOnClickListener{
             openChooseLanguageDialog(Gravity.CENTER)

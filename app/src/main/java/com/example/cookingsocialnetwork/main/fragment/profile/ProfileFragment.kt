@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
-        binding.setting.setOnClickListener{
+        binding.openSetting.setOnClickListener{
             val settingPage = Intent(activity, SettingPage::class.java)
             startActivity(settingPage)
         }

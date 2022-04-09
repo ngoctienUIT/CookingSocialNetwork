@@ -16,16 +16,13 @@
             android:exported="false" />
         <activity
             android:name=".setting.changeProfile.SettingChangeProfile"
-            android:exported="false"
-            android:parentActivityName=".setting.SettingPage"/>
+            android:exported="false"/>
         <activity
             android:name=".setting.SettingPage"
-            android:exported="false"
-            android:parentActivityName=".main.MainPage"/>
+            android:exported="false"/>
         <activity
             android:name=".post.PostPage"
-            android:exported="false"
-            android:parentActivityName=".main.MainPage"/>
+            android:exported="false"/>
         <activity
             android:name=".splash.SplashPage"
             android:exported="false" />
