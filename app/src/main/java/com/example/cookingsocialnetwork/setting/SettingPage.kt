@@ -159,7 +159,7 @@ class SettingPage : AppCompatActivity() {
             lang.updateResource("vi")
             val reopen = Intent(this, MainActivity::class.java)
             startActivity(reopen)
-            finish()
+//            finish()
         }
 
         dialog.english.setOnClickListener() {
@@ -167,7 +167,7 @@ class SettingPage : AppCompatActivity() {
             lang.updateResource("en-US")
             val reopen = Intent(this, MainActivity::class.java)
             startActivity(reopen)
-            finish()
+//            finish()
         }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
