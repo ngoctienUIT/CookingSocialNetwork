@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.MainPage">
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
     
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
-        app:fabCradleMargin="15dp"
+        app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +31,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:itemRippleColor="@android:color/transparent"
             app:menu="@menu/menu"
             android:background="#9db847"
             app:itemIconTint="#9db847"
@@ -45,6 +47,6 @@
         android:backgroundTint="#ffa500"
         app:tint="@color/white"
         app:layout_anchor="@id/bottomAppBar"
-        android:contentDescription="Post" />
+        android:contentDescription="@string/post" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

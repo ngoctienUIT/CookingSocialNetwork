@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
@@ -22,6 +23,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_setting_page.*
+import kotlinx.android.synthetic.main.layout_bottomsheet.*
 import kotlinx.android.synthetic.main.layout_dialog_choose_language.*
 
 class SettingPage : AppCompatActivity() {
@@ -47,7 +49,8 @@ class SettingPage : AppCompatActivity() {
         }
 
         changelanguage.setOnClickListener{
-            openChooseLanguageDialog(Gravity.CENTER)
+//            openChooseLanguageDialog(Gravity.CENTER)
+            showDialog()
         }
 
         logout.setOnClickListener()
@@ -62,7 +65,7 @@ class SettingPage : AppCompatActivity() {
         }
     }
 
-    private fun openChooseLanguageDialog(gravity: Int) {
+    /*private fun openChooseLanguageDialog(gravity: Int) {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE )
         dialog.setContentView(R.layout.layout_dialog_choose_language)
@@ -92,7 +95,7 @@ class SettingPage : AppCompatActivity() {
             finish()
         }
         dialog.show()
-    }
+    }*/
 
 //    private var SELECT_PICTURE = 200
 
@@ -142,5 +145,35 @@ class SettingPage : AppCompatActivity() {
         // set the new task and clear flags
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(i)
+    }
+
+    private fun showDialog()
+    {
+        var dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.layout_bottomsheet)
+
+        dialog.vietnam.setOnClickListener()
+        {
+            val lang = LanguageManager(this)
+            lang.updateResource("vi")
+            val reopen = Intent(this, MainActivity::class.java)
+            startActivity(reopen)
+            finish()
+        }
+
+        dialog.english.setOnClickListener() {
+            val lang = LanguageManager(this)
+            lang.updateResource("en-US")
+            val reopen = Intent(this, MainActivity::class.java)
+            startActivity(reopen)
+            finish()
+        }
+
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.show()
     }
 }

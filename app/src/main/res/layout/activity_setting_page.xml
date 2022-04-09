@@ -12,14 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="10dp"
-        android:padding="16dp">
+        android:padding="10dp">
+
         <ImageView
             android:id="@+id/back_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="0dp"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/black" />
+            app:tint="@color/black"
+            android:contentDescription="@string/back_button" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +50,7 @@
             android:background="@android:color/transparent"
             android:text="@string/account"
             android:textAlignment="textStart"
-            android:textColor="@color/black"></Button>
+            android:textColor="@color/black" />
 
         <Button
             android:layout_width="match_parent"
@@ -56,7 +59,7 @@
             android:background="@android:color/transparent"
             android:text="@string/notification"
             android:textAlignment="textStart"
-            android:textColor="@color/black"></Button>
+            android:textColor="@color/black" />
 
         <Button
             android:layout_width="match_parent"
@@ -65,7 +68,7 @@
             android:background="@android:color/transparent"
             android:text="@string/report"
             android:textAlignment="textStart"
-            android:textColor="@color/black"></Button>
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/changelanguage"
@@ -85,19 +88,19 @@
             android:text="@string/information"
             android:textAlignment="textStart"
             android:textColor="@color/black" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"></View>
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:text="@string/log_out"
-            android:layout_gravity="center"></Button>
+            android:layout_gravity="center" />
     </LinearLayout>
-
-
 
 </LinearLayout>

@@ -30,6 +30,7 @@
     <string name="setting_profile_title">Tài Khoản</string>
     <string name="post_title">Đăng bài</string>
     <string name="post">Đăng</string>
+    <string name="back_button">Thoát</string>
 
     <!---->
 </resources>

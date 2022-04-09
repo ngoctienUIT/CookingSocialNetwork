@@ -29,5 +29,6 @@
     <string name="setting_profile_title">Setting Profile</string>
     <string name="post_title">Post</string>
     <string name="post">Post</string>
+    <string name="back_button">Back</string>
 
 </resources>
