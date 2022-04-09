@@ -72,6 +72,8 @@ class SettingChangeProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_change_profile)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.setting_profile_title)
 
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_setting_change_profile)
         val factory = SettingChangeProfileViewModelFactory()

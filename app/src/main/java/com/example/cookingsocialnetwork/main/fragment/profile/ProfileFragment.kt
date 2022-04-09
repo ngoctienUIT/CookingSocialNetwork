@@ -2,16 +2,17 @@ package com.example.cookingsocialnetwork.main.fragment.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentProfileBinding
+import com.example.cookingsocialnetwork.setting.SettingPage
 import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
+
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
@@ -27,10 +28,14 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this,factory).get(ProfileViewModel::class.java)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
+
+        binding.setting.setOnClickListener{
+            val settingPage = Intent(activity, SettingPage::class.java)
+            startActivity(settingPage)
+        }
+
         return binding.root
-
     }
-
 
     fun startSettingChangeProfile()
     {

@@ -17,5 +17,12 @@
             android:layout_height="match_parent"
             android:text="@{viewmodel.getUser.name}"/>
 
+        <Button
+            android:id="@+id/setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Để nhờ nút setting ở đây nhá :D"
+            />
+
     </FrameLayout>
 </layout>

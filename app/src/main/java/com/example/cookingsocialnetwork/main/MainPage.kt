@@ -49,10 +49,6 @@ class MainPage : AppCompatActivity() {
             val post = Intent(this, PostPage::class.java)
             startActivity(post)
         }
-        setting.setOnClickListener{
-            val settingPage = Intent(this, SettingPage::class.java)
-            startActivity(settingPage)
-        }
     }
 
     private fun replaceFragment(fragment: Fragment)

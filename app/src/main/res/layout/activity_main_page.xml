@@ -36,12 +36,6 @@
             app:itemTextColor="#ffa500"/>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
-    <Button
-        android:id="@+id/setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Để nhờ nút setting ở đây nhá :D"
-        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingButton"

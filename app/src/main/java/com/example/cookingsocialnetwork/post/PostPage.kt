@@ -76,6 +76,9 @@ class PostPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.post_title)
+
         // Inflate view and obtain an instance of the binding class
         databinding= DataBindingUtil.setContentView(this, R.layout.activity_post_page)
         Log.i("GameFragment", "Called ViewModelProvider.get")

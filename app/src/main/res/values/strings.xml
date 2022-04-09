@@ -21,5 +21,12 @@
     <string name="language">Language</string>
     <string name="information">Information</string>
     <string name="log_out">Log out</string>
+    <string name="home_tab">Home</string>
+    <string name="search_tab">Search</string>
+    <string name="notify_tab">Notify</string>
+    <string name="profile_tab">Profile</string>
+    <string name="setting_title">Setting</string>
+    <string name="setting_profile_title">Setting Profile</string>
+    <string name="post_title">Post</string>
 
 </resources>
