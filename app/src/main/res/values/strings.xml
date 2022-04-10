@@ -31,5 +31,6 @@
     <string name="post_title">Post</string>
     <string name="post">Post</string>
     <string name="back_button">Back</string>
+    <string name="difficulty">Difficulty</string>
 
 </resources>

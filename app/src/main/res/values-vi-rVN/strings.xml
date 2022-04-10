@@ -32,6 +32,7 @@
     <string name="post_title">Đăng bài</string>
     <string name="post">Đăng</string>
     <string name="back_button">Thoát</string>
+    <string name="difficulty">Độ khó</string>
 
     <!---->
 </resources>

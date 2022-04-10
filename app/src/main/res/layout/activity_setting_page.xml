@@ -71,8 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                app:tint="@color/black"
-                android:src="@drawable/ic_forward_ios"/>
+                android:src="@drawable/ic_forward_ios"
+                app:tint="@color/black" />
 
         </RelativeLayout>
 
@@ -220,13 +220,13 @@
                 android:src="@drawable/ic_info"/>
 
             <TextView
-                android:paddingStart="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:textSize="18sp"
+                android:paddingStart="40dp"
+                android:text="@string/information"
                 android:textColor="@color/black"
-                android:text="@string/information"/>
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
