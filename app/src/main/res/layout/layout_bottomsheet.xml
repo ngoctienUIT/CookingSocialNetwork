@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,50 +16,66 @@
         android:textSize="25sp"
         android:textStyle="bold"/>
 
-    <RelativeLayout
-        android:id="@+id/vietnam"
-        android:orientation="horizontal"
+    <RadioGroup
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_group_language"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp">
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/vietnam"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            android:text="Tiếng Việt"/>
+            android:layout_height="70dp">
 
-        <ImageView
-            android:layout_alignParentEnd="true"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/vietnam"/>
+            <RadioButton
+                android:id="@+id/radio_vietnam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/black"
+                android:layout_marginTop="25dp"
+                android:textSize="20sp"
+                android:text="Tiếng Việt"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/vietnam"/>
 
-    <RelativeLayout
-        android:id="@+id/english"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
+        </RelativeLayout>
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/english"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_marginTop="25dp"
-            android:textSize="20sp"
-            android:text="English"/>
+            android:layout_height="70dp">
 
-        <ImageView
-            android:layout_alignParentEnd="true"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/english"/>
+            <RadioButton
+                android:id="@+id/radio_english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/black"
+                android:layout_marginTop="25dp"
+                android:textSize="20sp"
+                android:text="English"/>
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/english"/>
+
+        </RelativeLayout>
+
+    </RadioGroup>
 
 </LinearLayout>

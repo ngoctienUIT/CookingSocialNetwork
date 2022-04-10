@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import com.example.cookingsocialnetwork.model.LanguageManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.splash.SplashPage
 
@@ -21,6 +21,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        var sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
+        val check = sharePref.getString("language", "vi")
+        val lang = LanguageManager(this)
+        when (check)
+        {
+            "vi" -> lang.updateResource("vi")
+            "en" -> lang.updateResource("en-US")
+        }
         Handler(Looper.getMainLooper()).postDelayed({
             val splashPage = Intent(this, SplashPage::class.java)
             startActivity(splashPage)

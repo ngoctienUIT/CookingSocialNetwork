@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork
+package com.example.cookingsocialnetwork.model
 
 import android.content.Context
 import java.util.*
