@@ -128,7 +128,7 @@ class SettingPage : AppCompatActivity() {
         var dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.layout_bottomsheet)
-        
+
         var sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
         val check = sharePref.getString("language", "vi")
 
