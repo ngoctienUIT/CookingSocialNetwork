@@ -7,13 +7,15 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.Switch
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.cookingsocialnetwork.LanguageManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.mainActivity.MainActivity
@@ -24,7 +26,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_setting_page.*
 import kotlinx.android.synthetic.main.layout_bottomsheet.*
-import kotlinx.android.synthetic.main.layout_dialog_choose_language.*
+
 
 class SettingPage : AppCompatActivity() {
     private var imageChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -41,15 +43,18 @@ class SettingPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_page)
-
         supportActionBar?.hide()
+
+        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        val check = sharePref.getInt("darkMode", 2)
+        switch_dark_mode.isChecked = check != 1
+
         back_setting.setOnClickListener()
         {
             finish()
         }
 
         changelanguage.setOnClickListener{
-//            openChooseLanguageDialog(Gravity.CENTER)
             showDialog()
         }
 
@@ -63,41 +68,42 @@ class SettingPage : AppCompatActivity() {
             val settingChangeProfile = Intent(this, SettingChangeProfile::class.java)
             startActivity(settingChangeProfile)
         }
+
+        dark_mode.setOnClickListener()
+        {
+            if (!switch_dark_mode.isChecked) startDarkMode()
+            else offDarkMode()
+            switch_dark_mode.isChecked = !switch_dark_mode.isChecked
+        }
+
+        switch_dark_mode.setOnClickListener()
+        {
+            if (switch_dark_mode.isChecked) startDarkMode()
+            else offDarkMode()
+        }
     }
 
-    /*private fun openChooseLanguageDialog(gravity: Int) {
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE )
-        dialog.setContentView(R.layout.layout_dialog_choose_language)
-        dialog.setCancelable(false)
-        val window = dialog.window ?: return
-        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val windowAttributes = window.attributes
-        windowAttributes.gravity = gravity
-        window.attributes = windowAttributes
-
-        dialog.setLanguageEnglish.setOnClickListener()
+    private fun startDarkMode()
+    {
+        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        with(sharePref.edit())
         {
-            val lang = LanguageManager(this)
-            lang.updateResource("en-US")
-            val reopen = Intent(this, MainActivity::class.java)
-            startActivity(reopen)
-            finish()
+            putInt("darkMode", androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES)
+            commit()
         }
+    }
 
-        dialog.setLanguageVietnamese.setOnClickListener()
+    fun offDarkMode()
+    {
+        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        with(sharePref.edit())
         {
-            val lang = LanguageManager(this)
-            lang.updateResource("vi")
-            val reopen = Intent(this, MainActivity::class.java)
-            startActivity(reopen)
-            finish()
+            putInt("darkMode", androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO)
+            commit()
         }
-        dialog.show()
-    }*/
-
-//    private var SELECT_PICTURE = 200
+    }
 
     fun imageChooser() {
         // create an instance of the
@@ -106,32 +112,10 @@ class SettingPage : AppCompatActivity() {
         i.type = "image/*"
         i.action = Intent.ACTION_GET_CONTENT
 
-        // pass the constant to compare it
-        // with the returned requestCode
         imageChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
-//startActivityForResult không được sử dụng nữa
-//        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
     }
 
     private var IVPreviewImage: ImageView? = null
-
-// onActivityResult không còn được sử dụng nữa
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (resultCode == RESULT_OK) {
-//
-//            // compare the resultCode with the
-//            // SELECT_PICTURE constant
-//            if (requestCode == SELECT_PICTURE) {
-//                // Get the url of the image from data
-//                val selectedImageUri: Uri? = data?.data
-//                if (null != selectedImageUri) {
-//                    // update the preview image in the layout
-//                    IVPreviewImage?.setImageURI(selectedImageUri)
-//                }
-//            }
-//        }
-//    }
 
     private fun logOut()
     {
@@ -158,16 +142,16 @@ class SettingPage : AppCompatActivity() {
             val lang = LanguageManager(this)
             lang.updateResource("vi")
             val reopen = Intent(this, MainActivity::class.java)
+            reopen.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(reopen)
-//            finish()
         }
 
         dialog.english.setOnClickListener() {
             val lang = LanguageManager(this)
             lang.updateResource("en-US")
             val reopen = Intent(this, MainActivity::class.java)
+            reopen.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(reopen)
-//            finish()
         }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)

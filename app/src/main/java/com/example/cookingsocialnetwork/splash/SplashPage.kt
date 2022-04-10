@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.MainPage
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -51,6 +52,10 @@ class SplashPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.activity_splash_page)
         supportActionBar?.hide()
+
+        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        val check = sharePref.getInt("darkMode", 2)
+        AppCompatDelegate.setDefaultNightMode(check)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
