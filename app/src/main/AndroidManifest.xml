@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cookingsocialnetwork" >
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <application
+    package="com.example.cookingsocialnetwork">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CookingSocialNetwork" >
+        android:theme="@style/Theme.CookingSocialNetwork">
+        <activity
+            android:name=".setting.about.AboutPage"
+            android:exported="false" />
         <activity
             android:name=".main.MainPage"
             android:exported="false" />
         <activity
             android:name=".setting.changeProfile.SettingChangeProfile"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".setting.SettingPage"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".post.PostPage"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".splash.SplashPage"
             android:exported="false" />
         <activity
             android:name=".mainActivity.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

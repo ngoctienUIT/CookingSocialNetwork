@@ -32,5 +32,7 @@
     <string name="post">Post</string>
     <string name="back_button">Back</string>
     <string name="difficulty">Difficulty</string>
+    <string name="version">Version</string>
+    <string name="developed">Developed by</string>
 
 </resources>

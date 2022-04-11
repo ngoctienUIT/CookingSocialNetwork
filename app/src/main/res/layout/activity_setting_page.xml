@@ -29,12 +29,11 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
-            android:textColor="@color/black"
             android:text="@string/setting_title"/>
+
     </RelativeLayout>
 
     <LinearLayout
-
         android:id="@+id/setting_page_main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +63,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
-                android:textColor="@color/black"
                 android:text="@string/account"/>
 
             <ImageView
@@ -98,7 +96,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
-                android:textColor="@color/black"
                 android:text="@string/dark_mode"/>
 
             <Switch
@@ -107,6 +104,7 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/icon_gradient"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </RelativeLayout>
@@ -131,7 +129,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
-                android:textColor="@color/black"
                 android:text="@string/notification"/>
 
             <ImageView
@@ -164,7 +161,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
-                android:textColor="@color/black"
                 android:text="@string/report"/>
 
             <ImageView
@@ -198,7 +194,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
-                android:textColor="@color/black"
                 android:text="@string/language"/>
 
             <ImageView
@@ -212,6 +207,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/info"
             android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="60dp">
@@ -231,7 +227,6 @@
                 android:layout_centerVertical="true"
                 android:paddingStart="40dp"
                 android:text="@string/information"
-                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <ImageView

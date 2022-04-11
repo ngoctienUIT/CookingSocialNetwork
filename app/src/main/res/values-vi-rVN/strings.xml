@@ -33,6 +33,8 @@
     <string name="post">Đăng</string>
     <string name="back_button">Thoát</string>
     <string name="difficulty">Độ khó</string>
+    <string name="version">Phiên bản</string>
+    <string name="developed">Được phát triển bởi</string>
 
     <!---->
 </resources>

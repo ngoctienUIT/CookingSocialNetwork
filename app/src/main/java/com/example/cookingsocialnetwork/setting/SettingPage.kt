@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.cookingsocialnetwork.model.LanguageManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.mainActivity.MainActivity
+import com.example.cookingsocialnetwork.setting.about.AboutPage
 import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -66,36 +67,32 @@ class SettingPage : AppCompatActivity() {
 
         dark_mode.setOnClickListener()
         {
-            if (!switch_dark_mode.isChecked) onDarkMode()
-            else offDarkMode()
+            if (!switch_dark_mode.isChecked) darkMode(2)
+            else darkMode(1)
             switch_dark_mode.isChecked = !switch_dark_mode.isChecked
         }
 
         switch_dark_mode.setOnClickListener()
         {
-            if (switch_dark_mode.isChecked) onDarkMode()
-            else offDarkMode()
+            if (switch_dark_mode.isChecked) darkMode(2)
+            else darkMode(1)
+        }
+
+        info.setOnClickListener()
+        {
+            val aboutPage = Intent(this, AboutPage::class.java)
+            startActivity(aboutPage)
         }
     }
 
-    private fun onDarkMode()
+    private fun darkMode(mode: Int)
     {
         var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        if (mode == 2) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else if (mode == 1) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         with(sharePref.edit())
         {
-            putInt("darkMode", androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES)
-            commit()
-        }
-    }
-
-    private fun offDarkMode()
-    {
-        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        with(sharePref.edit())
-        {
-            putInt("darkMode", androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO)
+            putInt("darkMode", mode)
             commit()
         }
     }
@@ -137,21 +134,21 @@ class SettingPage : AppCompatActivity() {
 
         dialog.radio_english.setOnClickListener()
         {
-            if (check != "en") chooseEnglish()
+            if (check != "en") changeLanguage("en")
         }
 
         dialog.radio_vietnam.setOnClickListener()
         {
-            if (check != "vi") chooseVietNam()
+            if (check != "vi") changeLanguage("vi")
         }
 
         dialog.vietnam.setOnClickListener()
         {
-            if (check != "vi") chooseVietNam()
+            if (check != "vi") changeLanguage("vi")
         }
 
         dialog.english.setOnClickListener() {
-            if (check != "en") chooseEnglish()
+            if (check != "en") changeLanguage("en")
         }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -161,28 +158,18 @@ class SettingPage : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun chooseVietNam()
+    private fun changeLanguage(language: String)
     {
         var sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
         val lang = LanguageManager(this)
-        lang.updateResource("vi")
-        with(sharePref.edit())
+        when (language)
         {
-            putString("language", "vi")
-            commit()
+            "vi" -> lang.updateResource("vi")
+            "en" -> lang.updateResource("en-US")
         }
-        val reopen = Intent(this, MainActivity::class.java)
-        startActivity(reopen)
-    }
-
-    private fun chooseEnglish()
-    {
-        var sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
-        val lang = LanguageManager(this)
-        lang.updateResource("en-US")
         with(sharePref.edit())
         {
-            putString("language", "en")
+            putString("language", language)
             commit()
         }
         val reopen = Intent(this, MainActivity::class.java)

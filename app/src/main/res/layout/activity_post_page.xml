@@ -35,7 +35,6 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="20sp"
-                android:textColor="@color/black"
                 android:text="@string/post_title"/>
 
             <TextView
@@ -45,7 +44,6 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="16sp"
-                android:textColor="@color/black"
                 android:layout_alignParentEnd="true"
                 android:text="@string/post"/>
         </RelativeLayout>
@@ -83,6 +81,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:text="@string/image_request" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
@@ -160,10 +159,12 @@
                         android:padding="10dp"
                         android:hint="@string/cook_time_hint" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal" >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
@@ -172,12 +173,14 @@
                         android:gravity="center_vertical"
                         android:text="@string/difficulty"
                         android:layout_weight="1"/>
+
                     <RatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:numStars="5"
                         android:rating="1"
                         android:stepSize="1"/>
+
                 </LinearLayout>
 
                 <View
@@ -209,6 +212,7 @@
                         <include layout="@layout/postpage_ingredient_child" />
 
                     </RelativeLayout>
+
                 </LinearLayout>
 
                 <Button
@@ -218,7 +222,6 @@
                     android:layout_margin="10dp"
                     android:layout_gravity="center"
                     android:background="#00FFFFFF"
-                    android:textColor="@color/black"
                     android:text="@string/add_ingredient" />
 
                 <View
@@ -245,6 +248,7 @@
                         android:orientation="horizontal">
 
                         <include layout="@layout/postpage_ingredient_child"/>
+
                     </LinearLayout>
 
 
@@ -257,10 +261,11 @@
                     android:layout_gravity="center"
                     android:background="#00FFFFFF"
                     android:layout_margin="10dp"
-                    android:textColor="@color/black"
                     android:text="@string/add_method_step" />
             </LinearLayout>
+
         </ScrollView>
 
     </LinearLayout>
+
 </layout>

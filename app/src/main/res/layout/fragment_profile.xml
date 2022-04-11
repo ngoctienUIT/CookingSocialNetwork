@@ -29,7 +29,6 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
                     android:text="@{viewmodel.getUser.name}"/>
 
                 <ImageView
