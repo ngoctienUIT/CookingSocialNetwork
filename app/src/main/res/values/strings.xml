@@ -34,5 +34,7 @@
     <string name="difficulty">Difficulty</string>
     <string name="version">Version</string>
     <string name="developed">Developed by</string>
+    <string name="user">User</string>
+    <string name="double_back">Click BACK again to exit</string>
 
 </resources>

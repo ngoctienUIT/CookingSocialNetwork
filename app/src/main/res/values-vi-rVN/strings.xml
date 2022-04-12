@@ -35,6 +35,8 @@
     <string name="difficulty">Độ khó</string>
     <string name="version">Phiên bản</string>
     <string name="developed">Được phát triển bởi</string>
+    <string name="user">Người dùng</string>
+    <string name="double_back">Nhấn trở về lần nữa để thoát</string>
 
     <!---->
 </resources>

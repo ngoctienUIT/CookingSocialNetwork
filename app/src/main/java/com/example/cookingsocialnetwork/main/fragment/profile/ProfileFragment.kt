@@ -13,7 +13,6 @@ import com.example.cookingsocialnetwork.databinding.FragmentProfileBinding
 import com.example.cookingsocialnetwork.setting.SettingPage
 import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
 
-
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var binding: FragmentProfileBinding
@@ -36,11 +35,4 @@ class ProfileFragment : Fragment() {
 
         return binding.root
     }
-
-    fun startSettingChangeProfile()
-    {
-        val intent = Intent (activity, SettingChangeProfile::class.java)
-        activity?.startActivity(intent)
-    }
-
 }

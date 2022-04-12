@@ -15,7 +15,7 @@ class HomeViewModel: ViewModel() {
 
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
-       // listenToDataPost()
+//        listenToDataPost()
     }
 
     var getPosts: MutableLiveData<MutableList<Post>>
