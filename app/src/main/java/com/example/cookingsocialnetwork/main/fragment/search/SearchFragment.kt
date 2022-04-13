@@ -29,7 +29,9 @@ class SearchFragment : Fragment() {
         binding.viewSearchPage.visibility = View.GONE
         binding.tabSearch.visibility = View.GONE
 
-        binding.viewSearchPage.adapter = SearchPageAdapter(this)
+        var searchPageAdapter = SearchPageAdapter(this)
+        searchPageAdapter.query = ""
+        binding.viewSearchPage.adapter = searchPageAdapter
         binding.viewSearchPage.isSaveEnabled = false
         TabLayoutMediator(binding.tabSearch, binding.viewSearchPage)
         {
@@ -51,6 +53,8 @@ class SearchFragment : Fragment() {
                 override fun onQueryTextSubmit(query: String): Boolean {
                     binding.viewSearchPage.visibility = View.VISIBLE
                     binding.tabSearch.visibility = View.VISIBLE
+                    searchPageAdapter.query = query
+                    binding.viewSearchPage.adapter = searchPageAdapter
                     return false
                 }
             }

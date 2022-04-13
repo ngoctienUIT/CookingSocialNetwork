@@ -1,8 +1,6 @@
 package com.example.cookingsocialnetwork.model
 
-import android.annotation.SuppressLint
 import com.google.firebase.firestore.DocumentSnapshot
-import java.text.SimpleDateFormat
 
 data class User(
     var name: String,
@@ -17,35 +15,20 @@ data class User(
     var post: MutableList<String>)
 {
     constructor(): this("Name", "Avatar", "@username", "None", "None", "None",
-        mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf()) {
+        mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf()) {}
 
+    fun getData(document: DocumentSnapshot) {
+        val data = document.data
+        val info = data?.get("info") as Map<String, Any>
+        name = info["name"].toString()
+        avatar = info["avatar"].toString()
+        gender = info["gender"].toString()
+        username = info["username"].toString()
+        description = info["description"].toString()
+        birthday = info["birthday"].toString()
+        favourites = data["favourites"] as MutableList<String>
+        followers = data["followers"] as MutableList<String>
+        following = data["following"] as MutableList<String>
+        post = data["post"] as MutableList<String>
     }
-
-    fun getData(document: DocumentSnapshot)
-    {
-        if (document.id.toString() == "infor") {
-            getInfor(document)
-        } else if (document.id.toString() == "favourites") {
-            favourites = document.data?.get("favourites") as MutableList<String>
-        } else if (document.id.toString() == "followers") {
-            followers = document.data?.get("followers") as MutableList<String>
-        } else if (document.id.toString() == "following") {
-            following = document.data?.get("following") as MutableList<String>
-        } else if (document.id.toString() == "post") {
-            post = document.data?.get("post") as MutableList<String>
-        }
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    fun getInfor(document : DocumentSnapshot) {
-            val data = document.data
-            name = data?.get("name").toString()
-            avatar = data?.get("avatar").toString()
-            gender = data?.get("gender").toString()
-            username = data?.get("username").toString()
-            description = data?.get("description").toString()
-            val time = document.getDate("birthday")
-            val sdf = SimpleDateFormat("dd/MM/yyyy")
-            birthday = sdf.format(time)
-        }
 }

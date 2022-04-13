@@ -28,22 +28,18 @@ class ProfileViewModel: ViewModel() {
 
     private fun listenToData()
     {
-        firestore.collection(FirebaseAuth.getInstance().currentUser?.email.toString())
+        firestore.collection("user")
+            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .addSnapshotListener()
-            {
-                    snapshot,e ->
+            { snapshot,e ->
                 if (e!=null)
                 {
                     return@addSnapshotListener
                 }
 
-                if (snapshot!= null)
+                if (snapshot!= null && snapshot.exists())
                 {
-                    val documents = snapshot.documents
-                    documents.forEach()
-                    {
-                        user.getData(it)
-                    }
+                    user.getData(snapshot)
                     _user.value = user
                 }
             }

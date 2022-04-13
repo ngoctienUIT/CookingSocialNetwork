@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -20,10 +19,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_splash_page.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
 
 class SplashPage : AppCompatActivity() {
@@ -36,16 +36,9 @@ class SplashPage : AppCompatActivity() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                Log.e(TAG, e.toString())
-            }
+            } catch (e: ApiException) {}
         }
-    }
-
-    companion object {
-        private const val TAG = "GoogleActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,95 +92,40 @@ class SplashPage : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    Log.d(TAG, "signInWithCredential:success")
                     updateUI(user)
-                } else {
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    updateUI(null)
-                }
+                } else updateUI(null)
             }
-    }
-
-    //khởi tạo infor của user
-    private fun initInforUser()
-    {
-        val acct = GoogleSignIn.getLastSignedInAccount(this)
-
-        val infor = hashMapOf(
-            "name" to acct!!.displayName.toString(),
-            "avatar" to acct.photoUrl.toString(),
-            "gender" to "Nam",
-            "username" to FirebaseAuth.getInstance().currentUser?.email.toString(),
-            "description" to "",
-            "birthday" to FieldValue.serverTimestamp()
-        )
-
-        FirebaseFirestore.getInstance()
-            .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .document("infor")
-            .set(infor)
-    }
-
-    //khởi tạo favourites của user
-    private fun initFavouritesUser()
-    {
-        val favourites = hashMapOf(
-            "favourites" to mutableListOf<String>()
-        )
-
-        FirebaseFirestore.getInstance()
-            .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .document("favourites")
-            .set(favourites)
-    }
-
-    //khởi tạo follower của user
-    private fun initFollowersUser()
-    {
-        val followers = hashMapOf(
-            "followers" to mutableListOf<String>()
-        )
-
-        FirebaseFirestore.getInstance()
-            .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .document("followers")
-            .set(followers)
-    }
-
-    //khởi tạo following của user
-    private fun initFollowingUser()
-    {
-        val following = hashMapOf(
-            "following" to mutableListOf<String>()
-        )
-
-        FirebaseFirestore.getInstance()
-            .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .document("following")
-            .set(following)
-    }
-
-    //khởi tạo post của user
-    private fun initPostUser()
-    {
-        val post = hashMapOf(
-            "post" to mutableListOf<String>()
-        )
-
-        FirebaseFirestore.getInstance()
-            .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .document("post")
-            .set(post)
     }
 
     //tạo tất cả dữ liệu cần có ủa user
     private fun initUser()
     {
-        initInforUser()
-        initFavouritesUser()
-        initFollowersUser()
-        initFollowingUser()
-        initPostUser()
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatted = current.format(formatter)
+
+        val info = hashMapOf(
+            "name" to acct!!.displayName.toString(),
+            "avatar" to acct.photoUrl.toString(),
+            "gender" to "Nam",
+            "username" to FirebaseAuth.getInstance().currentUser?.email.toString(),
+            "description" to "",
+            "birthday" to formatted
+        )
+
+        val post = hashMapOf(
+            "post" to mutableListOf<String>(),
+            "following" to mutableListOf<String>(),
+            "followers" to mutableListOf<String>(),
+            "favourites" to mutableListOf<String>(),
+            "info" to info
+        )
+
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
+            .set(post)
     }
 
     private fun updateUI(user: FirebaseUser?) {
@@ -196,15 +134,12 @@ class SplashPage : AppCompatActivity() {
         //Nếu user khác null thì kiểm tra đã có trường infor hay chưa
         //Nếu chưa có thì là new user nên thêm trường infor vào
         FirebaseFirestore.getInstance()
-            .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
+            .collection("user")
+            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .get()
             .addOnSuccessListener {
                     documents ->
-                if (documents.size() == 0)
-                {
-                    //khởi tạo các trường document user
-                    initUser()
-                }
+                if (documents.data == null) initUser() //khởi tạo các trường document của user
             }
 
         //Sau khi đăng nhập xog sẽ chuyển đến màn hình home
