@@ -1,15 +1,16 @@
 package com.example.cookingsocialnetwork.main.fragment.search.view.userSearch
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentUserSearchBinding
+import com.example.cookingsocialnetwork.model.MyAdapter
 
 class UserSearchFragment : Fragment() {
     lateinit var query: String
@@ -29,13 +30,14 @@ class UserSearchFragment : Fragment() {
 
         activity?.let {
             viewModel._users.observe(it) { list ->
-                var listName = mutableListOf<String>()
-                list.forEach()
-                { user ->
-                    listName.add(user.name)
-                }
-                val adapter = ArrayAdapter(it, android.R.layout.simple_list_item_1, listName)
+                Log.w("myData", viewModel.myData.value.toString())
+                val adapter = MyAdapter(it, list, viewModel.myData.value!!)
+                binding.listUser.isClickable = true
                 binding.listUser.adapter = adapter
+                binding.listUser.setOnItemClickListener{
+                    parent, view, positon, id ->
+                        Log.w("Username", list[positon].username)
+                }
             }
         }
 

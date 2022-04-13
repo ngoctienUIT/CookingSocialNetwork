@@ -5,8 +5,13 @@
       <map>
         <entry key="..\:/CookingSocialNetwork/app/src/main/res/layout/activity_account_page.xml" value="0.22826086956521738" />
         <entry key="..\:/CookingSocialNetwork/app/src/main/res/layout/activity_setting_page.xml" value="0.22826086956521738" />
+        <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/activity_about_page.xml" value="0.22826086956521738" />
+        <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/activity_setting_change_profile.xml" value="0.22826086956521738" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/fragment_post_search.xml" value="0.22826086956521738" />
+        <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/fragment_user_search.xml" value="0.22826086956521738" />
+        <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/list_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/list_item_user.xml" value="0.264" />
         <entry key="..\:/Kotlin/DanDd/CookingSocialNetwork/app/src/main/res/layout/activity_main.xml" value="0.15172101449275363" />
         <entry key="..\:/Kotlin/DanDd/CookingSocialNetwork/app/src/main/res/layout/activity_main_page.xml" value="0.3" />
         <entry key="..\:/Kotlin/DanDd/CookingSocialNetwork/app/src/main/res/layout/activity_post_page.xml" value="0.16799999999999998" />
