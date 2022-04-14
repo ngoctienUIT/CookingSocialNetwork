@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.databinding.ActivitySplashPageBinding
 import com.example.cookingsocialnetwork.main.MainPage
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -21,7 +22,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_splash_page.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
@@ -29,6 +29,7 @@ import kotlin.system.exitProcess
 class SplashPage : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    lateinit var binding: ActivitySplashPageBinding
 
     //chọn tài khoản google để đăng nhập
     private var signInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -43,7 +44,8 @@ class SplashPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.setContentView(R.layout.activity_splash_page)
+        binding = ActivitySplashPageBinding.inflate(layoutInflater)
+        this.setContentView(binding.root)
         supportActionBar?.hide()
 
         var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
@@ -58,7 +60,7 @@ class SplashPage : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = Firebase.auth
 
-        button.setOnClickListener()
+        binding.button.setOnClickListener()
         {
             val signInIntent = googleSignInClient.signInIntent
             signInLauncher.launch(signInIntent)

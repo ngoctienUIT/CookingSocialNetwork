@@ -7,11 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
@@ -23,8 +21,6 @@ import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_post_page.*
-import kotlin.math.E
 
 class PostPage : AppCompatActivity() {
 
@@ -59,8 +55,8 @@ class PostPage : AppCompatActivity() {
     }
 
     private fun getIngredientText(){
-        for (item in ingredient.children) {   // với mỗi LinearLayout con của LinearLayout ingredient
-            var x : LinearLayout = item as LinearLayout;
+        for (item in databinding.ingredient.children) {   // với mỗi LinearLayout con của LinearLayout ingredient
+            var x : LinearLayout = item as LinearLayout
             var etx:EditText = x[0] as EditText // với mỗi editText nằm ở vị trí 0 của LinearLayout con
             arrEditTextIngredient.add(etx.text.toString())
             // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextIngredient")
@@ -68,8 +64,8 @@ class PostPage : AppCompatActivity() {
     }
     private fun getMethodText(){ // tương tự getIngredientText
 
-        for (item in ingredient.children) {
-            var x : LinearLayout = item as LinearLayout;
+        for (item in databinding.ingredient.children) {
+            var x : LinearLayout = item as LinearLayout
             var etx:EditText = x[0] as EditText
             arrEditTextMethod.add(etx.text.toString())
             // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextMethod")
@@ -102,17 +98,17 @@ class PostPage : AppCompatActivity() {
             finish()
         }
 
-        add_ingredient.setOnClickListener {
+        databinding.addIngredient.setOnClickListener {
             val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_ingredient_child, null)
-            ingredient.addView(newLayout)
+            databinding.ingredient.addView(newLayout)
             newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
                 (newLayout.parent as LinearLayout).removeView(newLayout)
             }
         }
       //  add_ingredient.setOnClickListener()
-        add_making_method.setOnClickListener {
+        databinding.addIngredient.setOnClickListener {
             val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_ingredient_child, null)
-            method.addView(newLayout)
+            databinding.method.addView(newLayout)
             newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
                 (newLayout.parent as LinearLayout).removeView(newLayout)
             }
@@ -139,7 +135,7 @@ class PostPage : AppCompatActivity() {
         getIngredientText()
         getMethodText()
 
-        val newPostData = FirebaseFirestore.getInstance().collection("post").document();
+        val newPostData = FirebaseFirestore.getInstance().collection("post").document()
         val postData = hashMapOf(
             "id" to newPostData.id,
             "owner" to FirebaseAuth.getInstance().currentUser?.email.toString(),
@@ -152,7 +148,7 @@ class PostPage : AppCompatActivity() {
             "methods" to arrEditTextMethod,
             "favourites" to mutableListOf<String>(),
         )
-        newPostData.set(postData);
+        newPostData.set(postData)
     }
     private fun upLoadImageToFirebase() {
 
@@ -224,7 +220,7 @@ class PostPage : AppCompatActivity() {
         // edit text
         val newText = EditText(this)
         newText.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.FILL_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT,
             1F
         )

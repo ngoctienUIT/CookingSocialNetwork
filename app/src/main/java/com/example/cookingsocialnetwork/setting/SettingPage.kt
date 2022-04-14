@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.cookingsocialnetwork.model.LanguageManager
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.databinding.ActivitySettingPageBinding
+import com.example.cookingsocialnetwork.databinding.LayoutBottomsheetBinding
 import com.example.cookingsocialnetwork.mainActivity.MainActivity
 import com.example.cookingsocialnetwork.setting.about.AboutPage
 import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
@@ -23,10 +25,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_setting_page.*
-import kotlinx.android.synthetic.main.layout_bottomsheet.*
 
 class SettingPage : AppCompatActivity() {
+    private lateinit var binding: ActivitySettingPageBinding
+
     private var imageChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val selectedImageUri: Uri? = result.data?.data
@@ -38,47 +40,48 @@ class SettingPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting_page)
+        binding = ActivitySettingPageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
 
         var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
         val check = sharePref.getInt("darkMode", 2)
-        switch_dark_mode.isChecked = check != 1
+        binding.switchDarkMode.isChecked = check != 1
 
-        back_setting.setOnClickListener()
+        binding.backSetting.setOnClickListener()
         {
             finish()
         }
 
-        changelanguage.setOnClickListener{
+        binding.changelanguage.setOnClickListener{
             showDialog()
         }
 
-        logout.setOnClickListener()
+        binding.logout.setOnClickListener()
         {
             logOut()
         }
 
-        btn_account.setOnClickListener()
+        binding.btnAccount.setOnClickListener()
         {
             val settingChangeProfile = Intent(this, SettingChangeProfile::class.java)
             startActivity(settingChangeProfile)
         }
 
-        dark_mode.setOnClickListener()
+        binding.darkMode.setOnClickListener()
         {
-            if (!switch_dark_mode.isChecked) darkMode(2)
+            if (!binding.switchDarkMode.isChecked) darkMode(2)
             else darkMode(1)
-            switch_dark_mode.isChecked = !switch_dark_mode.isChecked
+            binding.switchDarkMode.isChecked = !binding.switchDarkMode.isChecked
         }
 
-        switch_dark_mode.setOnClickListener()
+        binding.switchDarkMode.setOnClickListener()
         {
-            if (switch_dark_mode.isChecked) darkMode(2)
+            if (binding.switchDarkMode.isChecked) darkMode(2)
             else darkMode(1)
         }
 
-        info.setOnClickListener()
+        binding.info.setOnClickListener()
         {
             val aboutPage = Intent(this, AboutPage::class.java)
             startActivity(aboutPage)
@@ -123,31 +126,32 @@ class SettingPage : AppCompatActivity() {
     private fun showDialog()
     {
         var dialog = Dialog(this)
+        val dialogBinding: LayoutBottomsheetBinding = LayoutBottomsheetBinding.inflate(layoutInflater)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.layout_bottomsheet)
+        dialog.setContentView(dialogBinding.root)
 
         var sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
         val check = sharePref.getString("language", "vi")
 
-        if (check == "vi") dialog.radio_group_language.check(R.id.radio_vietnam)
-        else if (check == "en") dialog.radio_group_language.check(R.id.radio_english)
+        if (check == "vi") dialogBinding.radioGroupLanguage.check(R.id.radio_vietnam)
+        else if (check == "en") dialogBinding.radioGroupLanguage.check(R.id.radio_english)
 
-        dialog.radio_english.setOnClickListener()
+        dialogBinding.radioEnglish.setOnClickListener()
         {
             if (check != "en") changeLanguage("en")
         }
 
-        dialog.radio_vietnam.setOnClickListener()
+        dialogBinding.radioVietnam.setOnClickListener()
         {
             if (check != "vi") changeLanguage("vi")
         }
 
-        dialog.vietnam.setOnClickListener()
+        dialogBinding.vietnam.setOnClickListener()
         {
             if (check != "vi") changeLanguage("vi")
         }
 
-        dialog.english.setOnClickListener() {
+        dialogBinding.english.setOnClickListener() {
             if (check != "en") changeLanguage("en")
         }
 

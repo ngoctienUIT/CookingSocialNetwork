@@ -8,28 +8,31 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.databinding.ActivityMainPageBinding
 import com.example.cookingsocialnetwork.main.fragment.home.HomeFragment
 import com.example.cookingsocialnetwork.main.fragment.notify.NotificationsFragment
 import com.example.cookingsocialnetwork.main.fragment.profile.ProfileFragment
 import com.example.cookingsocialnetwork.main.fragment.search.SearchFragment
 import com.example.cookingsocialnetwork.post.PostPage
-import kotlinx.android.synthetic.main.activity_main_page.*
 import kotlin.system.exitProcess
 
 class MainPage : AppCompatActivity() {
     private val home = HomeFragment()
     private val profile = ProfileFragment()
     private val notify = NotificationsFragment()
+    private lateinit var binding: ActivityMainPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_page)
+        binding = ActivityMainPageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
-        bottom_navigation.background = null
-        bottom_navigation.menu.getItem(2).isEnabled = false
+
+        binding.bottomNavigation.background = null
+        binding.bottomNavigation.menu.getItem(2).isEnabled = false
 
         replaceFragment(home)
-        bottom_navigation.setOnItemSelectedListener {
+        binding.bottomNavigation.setOnItemSelectedListener {
             item ->
             when (item.itemId)
             {
@@ -41,7 +44,7 @@ class MainPage : AppCompatActivity() {
             true
         }
 
-        floatingButton.setOnClickListener()
+        binding.floatingButton.setOnClickListener()
         {
             val post = Intent(this, PostPage::class.java)
             startActivity(post)
