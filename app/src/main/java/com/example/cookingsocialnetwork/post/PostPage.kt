@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.post
 
+import android.app.ActionBar
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -131,6 +133,31 @@ class PostPage : AppCompatActivity() {
 //        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE) // không còn được sử dụng
     }
 
+    private fun addListUri(){
+
+        for (i in 0 until listImageUri.count()){
+            val newlinearLayout  =  LinearLayout(this);
+            newlinearLayout.orientation = LinearLayout.VERTICAL;
+            newlinearLayout.layoutParams = ActionBar.LayoutParams(
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT,
+            );
+            //ImageView Setup
+            val imageView = ImageView(this);
+            //setting image resource
+            imageView.setImageURI(listImageUri[i]);
+            //setting image position
+            imageView.layoutParams = ActionBar.LayoutParams(
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.WRAP_CONTENT
+
+            );
+            //adding view to layout
+            newlinearLayout.addView(imageView);
+        }
+//            //make visible to program
+//       // setContentView(newlinearLayout);
+    }
     private fun initPost(listUri: MutableList<String>){
         getIngredientText()
         getMethodText()
