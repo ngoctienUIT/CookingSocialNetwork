@@ -3,32 +3,32 @@ package com.example.cookingsocialnetwork.model
 import com.google.firebase.firestore.DocumentSnapshot
 
 data class Post(
-    var id: String,
-    var description: String,
-    var duration: String,
-    var favourites: MutableList<String>,
-    var images: MutableList<String>,
-    var comments: MutableList<Map<String, Any>>,
-    var ingredients: MutableList<Map<String, Any>>,
-    var making: String,
-    var name: String,
-    var owner: String,
-    var rate: Map<String, MutableList<String>>,
-    var share: Int
+    var id: String, //id bài viết
+    var level: String, // độ khó
+    var cookingTime: String, // thời gian nấu
+    var description: MutableList<String>, // mô tả
+    var favourites: MutableList<String>, // danh sách username đã thích bài viết
+    var images: MutableList<String>, // danh sách ảnh
+    var comments: MutableList<Map<String, Any>>, // danh sách commment
+    var ingredients: MutableList<Map<String, Any>>, // danh sách nguyên liệu
+    var servers: String, // số người ăn
+    var nameFood: String, // tên món ăn
+    var owner: String, // username chủ bài viết
+    var rate: Map<String, MutableList<String>>, // các lượt đánh giá
+    var share: Int // số lượt share
 ) {
     constructor() : this(
         "", "", "", mutableListOf(), mutableListOf(),
-        mutableListOf(), mutableListOf(), "", "", "", mapOf(), 0
+        mutableListOf(), mutableListOf(), mutableListOf(), "", "", "", mapOf(), 0
     ) {
 
     }
 
     fun getData(document: DocumentSnapshot) {
         if (document.id.toString() != "count") {
-            description = document.data?.get("description") as String
-            duration = document.data?.get("duration") as String
-            making = document.data?.get("making") as String
-            name = document.data?.get("name") as String
+            description = document.data?.get("description") as MutableList<String>
+            cookingTime = document.data?.get("cookingTime") as String
+            nameFood = document.data?.get("nameFood") as String
             owner = document.data?.get("owner") as String
             share = document.data?.get("share") as Int
             favourites = document.data?.get("favourites") as MutableList<String>

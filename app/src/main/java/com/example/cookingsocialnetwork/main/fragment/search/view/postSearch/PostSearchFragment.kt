@@ -9,6 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentPostSearchBinding
+import com.example.cookingsocialnetwork.model.GridAdapterPost
+import com.example.cookingsocialnetwork.model.Post
 
 class PostSearchFragment : Fragment() {
     lateinit var query: String
@@ -25,6 +27,9 @@ class PostSearchFragment : Fragment() {
         viewModel.query = query
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
+
+        var adapter = activity?.let { GridAdapterPost(it, mutableListOf(Post(), Post(), Post(), Post())) }
+        binding.gridViewPost.adapter = adapter
 
         return binding.root
     }

@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.AsyncTask
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +14,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
+import com.google.firebase.firestore.FirebaseFirestore
 
-class MyAdapter(context: Activity, private var userArrayList: MutableList<User>, var myData: User):
+class ListAdapterUser(context: Activity, private var userArrayList: MutableList<User>, var myData: User):
     ArrayAdapter<User>(context, R.layout.list_item_user , userArrayList) {
     @SuppressLint("ViewHolder", "SetTextI18n", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -29,9 +29,35 @@ class MyAdapter(context: Activity, private var userArrayList: MutableList<User>,
         val follow: Button = view.findViewById(R.id.follow)
 
         if (myData.username.compareTo(userArrayList[position].username)==0) follow.visibility = View.GONE
-        else follow.setOnClickListener()
-        {
-            Log.w("follow", "click")
+        else {
+            var following = myData.following
+            var follower = userArrayList[position].followers
+
+            val checkFollow = myData.following.indexOf(userArrayList[position].username) != -1
+
+            if (checkFollow) follow.text = "Unfollow"
+
+            follow.setOnClickListener()
+            {
+
+                if (!checkFollow) {
+                    following.add(userArrayList[position].username)
+                    follower.add(myData.username)
+                } else {
+                    following.remove(userArrayList[position].username)
+                    follower.remove(myData.username)
+                }
+
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(myData.username)
+                    .update("following", following)
+
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(userArrayList[position].username)
+                    .update("followers", follower)
+            }
         }
 
         DownloadImageFromInternet(view.findViewById(R.id.avatarUser)).execute(userArrayList[position].avatar)

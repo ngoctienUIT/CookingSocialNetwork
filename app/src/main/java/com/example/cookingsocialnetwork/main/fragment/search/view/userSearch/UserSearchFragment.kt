@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentUserSearchBinding
-import com.example.cookingsocialnetwork.model.MyAdapter
+import com.example.cookingsocialnetwork.model.ListAdapterUser
 
 class UserSearchFragment : Fragment() {
     lateinit var query: String
@@ -30,8 +30,7 @@ class UserSearchFragment : Fragment() {
 
         activity?.let {
             viewModel._users.observe(it) { list ->
-                Log.w("myData", viewModel.myData.value.toString())
-                val adapter = MyAdapter(it, list, viewModel.myData.value!!)
+                val adapter = ListAdapterUser(it, list, viewModel.myData.value!!)
                 binding.listUser.isClickable = true
                 binding.listUser.adapter = adapter
                 binding.listUser.setOnItemClickListener{
