@@ -115,6 +115,10 @@ class PostPage : AppCompatActivity() {
                 (newLayout.parent as LinearLayout).removeView(newLayout)
             }
         }
+        databinding.viewPost.setOnClickListener{
+            val viewPost = Intent(this, ViewPostPage::class.java)
+            startActivity(viewPost)
+        }
 
     }
 

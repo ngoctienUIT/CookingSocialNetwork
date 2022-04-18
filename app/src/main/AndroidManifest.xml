@@ -28,6 +28,9 @@
             android:name=".post.PostPage"
             android:exported="false" />
         <activity
+            android:name=".post.ViewPostPage"
+            android:exported="false"/>
+        <activity
             android:name=".splash.SplashPage"
             android:exported="false" />
         <activity
