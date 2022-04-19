@@ -1,27 +1,52 @@
 package com.example.cookingsocialnetwork.intro
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.splash.SplashPage
-import com.google.android.material.button.MaterialButton
+import com.example.cookingsocialnetwork.databinding.ActivityIntroPageBinding
+import com.example.cookingsocialnetwork.main.MainPage
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import kotlin.system.exitProcess
 
 class IntroPage: AppCompatActivity() {
-    private val indicatorsContainerVal: LinearLayout
-        get() = findViewById(R.id.indicatorsContainer)
-    private val introSliderViewPagerVal: ViewPager2
-        get() = findViewById(R.id.introSliderViewPager)
-    private val buttonNext: MaterialButton
-        get() = findViewById(R.id.buttonNext)
-    private val textSkipIntro: TextView
-        get() = findViewById(R.id.textSkipIntro)
+    lateinit var binding: ActivityIntroPageBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+    //chọn tài khoản google để đăng nhập
+    private var signInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            try {
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {}
+        }
+    }
+
     private val introSliderAdapter
         get() = IntroSliderAdapter(
             listOf(
@@ -45,31 +70,56 @@ class IntroPage: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_intro_page)
-        introSliderViewPagerVal.adapter = introSliderAdapter
+        binding = ActivityIntroPageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.hide()
+
+        binding.textSkipIntro
+        binding.introSliderViewPager.adapter = introSliderAdapter
         setupIndicators()
         setCurrentIndicator(0)
-        introSliderViewPagerVal.registerOnPageChangeCallback(object :
+
+        binding.introSliderViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 setCurrentIndicator(position)
             }
         })
-        buttonNext.setOnClickListener{
-            if(introSliderViewPagerVal.currentItem + 1< introSliderAdapter.itemCount){
-                introSliderViewPagerVal.currentItem +=1
-            }else{
-                    Intent(applicationContext,SplashPage::class.java).also{
-                        startActivity(it)
-                    }
+
+        binding.introSliderViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                if (position == introSliderAdapter.itemCount -1) binding.buttonNext.text = "Login"
+                else binding.buttonNext.text = "Next"
+                super.onPageSelected(position)
+            }
+        })
+
+        binding.buttonNext.setOnClickListener {
+            if (binding.introSliderViewPager.currentItem + 1 < introSliderAdapter.itemCount) {
+                binding.introSliderViewPager.currentItem += 1
+            } else {
+                val signInIntent = googleSignInClient.signInIntent
+                signInLauncher.launch(signInIntent)
             }
         }
-        textSkipIntro.setOnClickListener {
-            Intent(applicationContext,SplashPage::class.java).also{
-                startActivity(it)
-            }
+
+        binding.textSkipIntro.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            signInLauncher.launch(signInIntent)
         }
+
+        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        val check = sharePref.getInt("darkMode", 2)
+        AppCompatDelegate.setDefaultNightMode(check)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        auth = Firebase.auth
     }
 
     private fun setupIndicators() {
@@ -91,14 +141,14 @@ class IntroPage: AppCompatActivity() {
                 )
                 this?.layoutParams = layoutParams
             }
-            indicatorsContainerVal.addView(indicators[i])
+            binding.indicatorsContainer.addView(indicators[i])
         }
     }
 
     private fun setCurrentIndicator(index: Int) {
-        val childCount = indicatorsContainerVal.childCount
+        val childCount = binding.indicatorsContainer.childCount
         for (i in 0 until childCount) {
-            val imageView = indicatorsContainerVal.getChildAt(i) as ImageView
+            val imageView = binding.indicatorsContainer.getChildAt(i) as ImageView
             if (i == index) {
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
@@ -115,5 +165,88 @@ class IntroPage: AppCompatActivity() {
                 )
             }
         }
+    }
+
+    //nhấn back 2 lần mới cho thoát khỏi ứng dụng
+    private var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finish()
+            exitProcess(0)
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, getString(R.string.double_back), Toast.LENGTH_SHORT).show()
+
+        Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        updateUI(currentUser)
+    }
+
+    //thêm tài khoản google vừa đăng nhập vào firebaseauth
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else updateUI(null)
+            }
+    }
+
+    //tạo tất cả dữ liệu cần có ủa user
+    private fun initUser()
+    {
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatted = current.format(formatter)
+
+        val info = hashMapOf(
+            "name" to acct!!.displayName.toString(),
+            "avatar" to acct.photoUrl.toString(),
+            "gender" to "Nam",
+            "username" to FirebaseAuth.getInstance().currentUser?.email.toString(),
+            "description" to "",
+            "birthday" to formatted
+        )
+
+        val post = hashMapOf(
+            "post" to mutableListOf<String>(),
+            "following" to mutableListOf<String>(),
+            "followers" to mutableListOf<String>(),
+            "favourites" to mutableListOf<String>(),
+            "info" to info
+        )
+
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
+            .set(post)
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        //Nếu user null thì thoát
+        if (user == null) return
+        //Nếu user khác null thì kiểm tra đã có trường infor hay chưa
+        //Nếu chưa có thì là new user nên thêm trường infor vào
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
+            .get()
+            .addOnSuccessListener {
+                    documents ->
+                if (documents.data == null) initUser() //khởi tạo các trường document của user
+            }
+
+        //Sau khi đăng nhập xog sẽ chuyển đến màn hình home
+        val main = Intent(this, MainPage::class.java)
+        startActivity(main)
+        finish()
     }
 }
