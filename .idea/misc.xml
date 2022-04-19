@@ -5,6 +5,31 @@
       <map>
         <entry key="..\:/CookingSocialNetwork/app/src/main/res/layout/activity_account_page.xml" value="0.22826086956521738" />
         <entry key="..\:/CookingSocialNetwork/app/src/main/res/layout/activity_setting_page.xml" value="0.22826086956521738" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/circle_background.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/dash_separator_horizontal.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/dash_separator_vertical.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/dialog_bg.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/ic_account_circle.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/ic_add.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/ic_arrow_back.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/ic_back_ios.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/ic_forward_ios.xml" value="0.127" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/indicator_active.xml" value="0.1535" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/drawable/indicator_inactive.xml" value="0.1535" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_about_page.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_intro_page.xml" value="0.25" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_main_page.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_post_page.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_setting_change_profile.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_setting_page.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_splash_page.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/activity_view_post_page.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/fragment_notifications.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/list_item_user.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/postpage_ingredient_child.xml" value="0.17074275362318841" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/layout/slide_item_container.xml" value="0.11614583333333334" />
+        <entry key="..\:/HLam/AndroidProject/CookingSocialNetwork/app/src/main/res/menu/menu.xml" value="0.209375" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/drawable/custom_border.xml" value="0.1395" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/drawable/dialog_bg.xml" value="0.1395" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/drawable/search_bg.xml" value="0.1395" />

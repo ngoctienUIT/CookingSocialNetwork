@@ -71,4 +71,6 @@ dependencies {
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'com.github.krokyze:ucropnedit:2.2.8'
+    //ViewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
 }
