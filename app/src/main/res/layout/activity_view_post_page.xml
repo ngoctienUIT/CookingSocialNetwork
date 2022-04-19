@@ -31,12 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/food_picker"
-                    android:scaleType="centerCrop"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -44,7 +39,7 @@
                     android:textSize="26sp"
                     android:layout_margin="10dp"
                     android:text="Đây không phải là tên của món ăn"/>
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -76,7 +71,7 @@
                             android:textSize="14sp"
                             android:text="Cũng không phải thông tin người sở hữu"/>
                     </LinearLayout>
-                </LinearLayout>
+                </LinearLayout>-->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,10 +101,10 @@
                             android:textSize="14sp"
                             android:text="20 phút"/>
                     </LinearLayout>
-                    <View
+                    <!--<View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:background= "@drawable/dash_separator_vertical"/>
+                        android:background= "@drawable/dash_separator_vertical"/>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -129,10 +124,10 @@
                             android:textSize="14sp"
                             android:text="4 người"/>
                     </LinearLayout>
-                    <View
+                    <!--<View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
-                        android:background= "@drawable/dash_separator_vertical"/>
+                        android:background= "@drawable/dash_separator_vertical"/>-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -152,134 +147,193 @@
                             android:text="3/5"/>
                     </LinearLayout>
                 </LinearLayout>
-                <View
-                    android:layout_marginTop="5dp"
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black"
-                    android:layout_marginHorizontal="10dp"/>
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/food_picker"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="Đống này không phải nguyên liệu"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="10dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginVertical="5dp"
-                        android:textSize="14sp"
-                        android:padding="5dp"
-                        android:text="Không phải 4 quả trứng"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@drawable/dash_separator_horizontal"
-                        android:layout_marginHorizontal="10dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="Không phải là 500ml sữa nguyên kem"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginHorizontal="10dp"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@drawable/dash_separator_horizontal"
-                        android:layout_marginHorizontal="10dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="Không phải là 90g đường"
-                        android:layout_marginVertical="5dp"
-                        android:layout_marginHorizontal="10dp"/>
-                </LinearLayout>
-                <View
-                    android:layout_marginVertical="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black"
-                    android:layout_marginHorizontal="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:text="Dưới này không phải cách làm"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginHorizontal="10dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/circle_background"
-                            android:backgroundTint="#08090D"
-                            android:text="1"
-                            android:textColor="#f7f6f2"
-                            android:gravity="center"/>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:layout_marginVertical="5dp"
-                                android:text="Không phải là tách lòng trắng trắng trứng, đánh đến khi bông xốp"/>
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:background="@drawable/round_view"
-                                android:src="@drawable/food_picker"/>
-                        </LinearLayout>
+                        android:layout_height="wrap_content">
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/circle_background"
-                            android:backgroundTint="#08090D"
-                            android:text="2"
-                            android:textColor="#f7f6f2"
-                            android:gravity="center"/>
-                        <LinearLayout
+                            android:layout_alignParentStart="true"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:maxWidth="280dp"
+                            android:padding="5dp"
+                            android:text="Không phải trứng"
+                            android:textSize="14sp" />
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginVertical="5dp"
+                            android:padding="5dp"
+                            android:textStyle="bold"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="4 quả"/>
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_height="3dp"
+                        android:background="#f4f4f4" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="280dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:textSize="14sp"
+                            android:padding="5dp"
+                            android:text="Không phải sữa"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginVertical="5dp"
+                            android:padding="5dp"
+                            android:textStyle="bold"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="200ml"/>
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_height="3dp"
+                        android:background="#f4f4f4" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="280dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:textSize="14sp"
+                            android:padding="5dp"
+                            android:text="Không phải trứng"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginVertical="5dp"
+                            android:padding="5dp"
+                            android:textStyle="bold"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="4 quả"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#f4f4f4">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:text="Dưới này không phải cách làm"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginHorizontal="10dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:orientation="horizontal"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/round_view_less"
+                            android:backgroundTint="#ffffff">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:layout_marginVertical="5dp"
-                                android:text="Không phải là cho từ từ từ đường và sữa nguyên kem vào, đánh chậm đến khi đường tan hoàn toàn"/>
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:background="@drawable/round_view"
-                                android:src="@drawable/food_picker"/>
+                                android:layout_margin="10dp"
+                                android:background="@drawable/circle_background"
+                                android:backgroundTint="#08090D"
+                                android:text="1"
+                                android:textColor="#f7f6f2"
+                                android:gravity="center"/>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:layout_marginVertical="5dp"
+                                    android:text="Không phải là tách lòng trắng trắng trứng, đánh đến khi bông xốp"/>
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:background="@drawable/round_view"
+                                    android:src="@drawable/food_picker"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:orientation="horizontal"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/round_view_less"
+                            android:backgroundTint="#ffffff">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/circle_background"
+                                android:backgroundTint="#08090D"
+                                android:text="2"
+                                android:textColor="#f7f6f2"
+                                android:gravity="center"/>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:layout_marginVertical="5dp"
+                                    android:text="Không phải là cho từ từ từ đường và sữa nguyên kem vào, đánh chậm đến khi đường tan hoàn toàn"/>
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:background="@drawable/round_view"
+                                    android:src="@drawable/food_picker"/>
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

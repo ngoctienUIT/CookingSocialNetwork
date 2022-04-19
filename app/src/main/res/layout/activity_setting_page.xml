@@ -40,7 +40,8 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/black">
 
         <RelativeLayout
             android:id="@+id/btn_account"
@@ -58,12 +59,13 @@
                 android:src="@drawable/ic_account_circle"/>
 
             <TextView
-                android:paddingStart="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:textSize="18sp"
-                android:text="@string/account"/>
+                android:paddingStart="40dp"
+                android:text="@string/account"
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
