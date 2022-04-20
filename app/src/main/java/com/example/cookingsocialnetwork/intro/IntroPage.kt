@@ -221,6 +221,7 @@ class IntroPage: AppCompatActivity() {
             "following" to mutableListOf<String>(),
             "followers" to mutableListOf<String>(),
             "favourites" to mutableListOf<String>(),
+            "searchHistory" to mutableListOf<String>(),
             "info" to info
         )
 
