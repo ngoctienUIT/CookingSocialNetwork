@@ -18,13 +18,19 @@ import androidx.core.view.children
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
+import com.example.cookingsocialnetwork.post.chooseImage.RecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
 class PostPage : AppCompatActivity() {
+
+    private lateinit var gridLayoutManager: GridLayoutManager
+    private lateinit var adapter: RecyclerAdapter
 
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
@@ -36,7 +42,7 @@ class PostPage : AppCompatActivity() {
     private var listImageUri: MutableList<Uri> = mutableListOf()            // imageUrl
 
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             if (result.data?.clipData !=null) {
                 //chọn nhiều ảnh
                 val count: Int = result.data!!.clipData!!.itemCount
@@ -44,6 +50,7 @@ class PostPage : AppCompatActivity() {
                 {
                     val imageUri = result.data!!.clipData!!.getItemAt(i).uri
                     listImageUri.add(imageUri)
+                    addListUri()
                 }
             }
             else
@@ -51,7 +58,8 @@ class PostPage : AppCompatActivity() {
                 //chọn 1 ảnh
                 val imageUri = result.data?.data
                 listImageUri.add(imageUri!!)
-                databinding.foodImage.setImageURI(imageUri)
+                addListUri()
+                //databinding.foodImage.setImageURI(imageUri)
             }
         }
     }
@@ -81,6 +89,11 @@ class PostPage : AppCompatActivity() {
         // Inflate view and obtain an instance of the binding class
         databinding= DataBindingUtil.setContentView(this, R.layout.activity_post_page)
         Log.i("GameFragment", "Called ViewModelProvider.get")
+
+        //set RecycleView
+        gridLayoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
+        databinding.recyclerViewImage.layoutManager = gridLayoutManager
+
 
         // Get the viewModel
         viewModel = ViewModelProvider(this).get(PostViewModel::class.java)
@@ -138,29 +151,10 @@ class PostPage : AppCompatActivity() {
     }
 
     private fun addListUri(){
+        adapter = RecyclerAdapter(listImageUri)
+        adapter = RecyclerAdapter(listImageUri)
+        databinding.recyclerViewImage.adapter = adapter
 
-        for (i in 0 until listImageUri.count()){
-            val newlinearLayout  =  LinearLayout(this);
-            newlinearLayout.orientation = LinearLayout.VERTICAL;
-            newlinearLayout.layoutParams = ActionBar.LayoutParams(
-                ActionBar.LayoutParams.MATCH_PARENT,
-                ActionBar.LayoutParams.MATCH_PARENT,
-            );
-            //ImageView Setup
-            val imageView = ImageView(this);
-            //setting image resource
-            imageView.setImageURI(listImageUri[i]);
-            //setting image position
-            imageView.layoutParams = ActionBar.LayoutParams(
-                ActionBar.LayoutParams.MATCH_PARENT,
-                ActionBar.LayoutParams.WRAP_CONTENT
-
-            );
-            //adding view to layout
-            newlinearLayout.addView(imageView);
-        }
-//            //make visible to program
-//       // setContentView(newlinearLayout);
     }
     private fun initPost(listUri: MutableList<String>){
         getIngredientText()

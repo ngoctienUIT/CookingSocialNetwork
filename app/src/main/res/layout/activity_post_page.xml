@@ -73,27 +73,39 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     android:padding="0dp">
-
-                    <ImageButton
-                        android:id="@+id/food_image"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewImage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/food_picker"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteX="0dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:text="@string/image_request" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="10dp">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <ImageButton
+                    android:id="@+id/food_image"
+                    android:layout_width="126dp"
+                    android:layout_height="104dp"
+                    android:adjustViewBounds="true"
+                    android:padding="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/food_picker"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/image_request" />
                 <EditText
                     android:id="@+id/name_Food"
                     android:layout_width="match_parent"
