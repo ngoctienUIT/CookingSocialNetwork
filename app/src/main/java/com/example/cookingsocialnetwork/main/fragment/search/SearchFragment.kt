@@ -1,21 +1,27 @@
 package com.example.cookingsocialnetwork.main.fragment.search
 
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentSearchBinding
+import com.example.cookingsocialnetwork.databinding.LayoutDialogSearchableBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SearchFragment : Fragment() {
     lateinit var viewModel: SearchViewModel
     lateinit var binding: FragmentSearchBinding
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,9 +34,9 @@ class SearchFragment : Fragment() {
 
         binding.viewSearchPage.visibility = View.GONE
         binding.tabSearch.visibility = View.GONE
-
         var searchPageAdapter = SearchPageAdapter(this)
         searchPageAdapter.query = ""
+
         binding.viewSearchPage.adapter = searchPageAdapter
         binding.viewSearchPage.isSaveEnabled = false
         TabLayoutMediator(binding.tabSearch, binding.viewSearchPage)
@@ -60,6 +66,37 @@ class SearchFragment : Fragment() {
             }
         )
 
+        binding.search.setOnQueryTextFocusChangeListener()
+        {
+            _, hasFocus ->
+            if (hasFocus)
+            {
+                activity?.let { screen ->
+                    binding.search.clearFocus()
+                    showDialogSearch(screen)
+                }
+            }
+        }
+
         return binding.root
+    }
+
+    private fun showDialogSearch(context: FragmentActivity)
+    {
+        val dialogBinding: LayoutDialogSearchableBinding = LayoutDialogSearchableBinding.inflate(layoutInflater)
+        var dialog = Dialog(context)
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+//        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.CENTER)
+
+        dialogBinding.back.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.search.requestFocus()
+
+        dialog.show()
     }
 }
