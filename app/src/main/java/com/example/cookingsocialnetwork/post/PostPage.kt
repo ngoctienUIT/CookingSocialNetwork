@@ -1,7 +1,4 @@
 package com.example.cookingsocialnetwork.post
-
-import android.app.ActionBar
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +31,7 @@ class PostPage : AppCompatActivity() {
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
 
+
     private var arrEditTextIngredient:MutableList<String> = mutableListOf() // mảng lưu Text của thành phần món ăn
     private var arrEditTextMethod:MutableList<String> = mutableListOf() // mảng lưu Text của phương thức nấu
 
@@ -49,7 +46,9 @@ class PostPage : AppCompatActivity() {
                 for (i in 0 until count)
                 {
                     val imageUri = result.data!!.clipData!!.getItemAt(i).uri
-                    listImageUri.add(imageUri)
+
+                    //listImageUri.add(imageUri)
+                    viewModel.addUriIntoListUris(imageUri)
                 }
                 addListUri()
             }
@@ -57,7 +56,8 @@ class PostPage : AppCompatActivity() {
             {
                 //chọn 1 ảnh
                 val imageUri = result.data?.data
-                listImageUri.add(imageUri!!)
+                //listImageUri.add(imageUri!!)
+                viewModel.addUriIntoListUris(imageUri!!)
                 addListUri()
 //                databinding.foodImage.setImageURI(imageUri)
             }
@@ -75,7 +75,7 @@ class PostPage : AppCompatActivity() {
     private fun getMethodText(){ // tương tự getIngredientText
 
         for (item in databinding.ingredient.children) {
-            var x : LinearLayout = item as LinearLayout
+            val x : LinearLayout = item as LinearLayout
             var etx:EditText = x[0] as EditText
             arrEditTextMethod.add(etx.text.toString())
             // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextMethod")
@@ -152,8 +152,10 @@ class PostPage : AppCompatActivity() {
     }
 
     private fun addListUri(){
-        adapter = RecyclerAdapter(listImageUri)
+        //Log.i("checklistUriLiveData", "${viewModel.mListUriLiveData.value!!}")
+        adapter = RecyclerAdapter(viewModel.mListUriLiveData)
         databinding.recyclerViewImage.adapter = adapter
+        databinding.recyclerViewImage.setHasFixedSize(true)
     }
     private fun initPost(listUri: MutableList<String>){
         getIngredientText()

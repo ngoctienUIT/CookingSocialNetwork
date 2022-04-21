@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".post.chooseImage.FragmentClickedImageChoosed">
+    <data>
+        <import type="com.example.cookingsocialnetwork.post.chooseImage.FragmentClickedImageChoosedViewModel"/>
+        <variable
+            name="viewModelClickedImage"
+            type="FragmentClickedImageChoosedViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="#30000000"
+            android:scrollbars="vertical"
+            android:id="@+id/recyclerClickView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
