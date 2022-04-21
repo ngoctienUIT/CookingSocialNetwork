@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+
 
 class RecyclerAdapter(private val photosUri: MutableList<Uri>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
        val view = LayoutInflater.from(parent.context).inflate(com.example.cookingsocialnetwork.R.layout.recyclerview_item_formimage, parent, false)
         return ViewHolder(view)
     }
@@ -36,7 +39,8 @@ class RecyclerAdapter(private val photosUri: MutableList<Uri>) : RecyclerView.Ad
         }
 
         fun bindImage(uri: Uri){
-            this.itemImage.setImageURI(uri)
+            //.itemImage.setImageURI(uri)
+            Picasso.get().load(uri).into(this.itemImage)
         }
 //        //4
         override fun onClick(v: View) {

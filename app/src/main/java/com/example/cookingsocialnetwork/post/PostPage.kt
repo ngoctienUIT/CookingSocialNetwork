@@ -50,8 +50,8 @@ class PostPage : AppCompatActivity() {
                 {
                     val imageUri = result.data!!.clipData!!.getItemAt(i).uri
                     listImageUri.add(imageUri)
-                    addListUri()
                 }
+                addListUri()
             }
             else
             {
@@ -59,7 +59,7 @@ class PostPage : AppCompatActivity() {
                 val imageUri = result.data?.data
                 listImageUri.add(imageUri!!)
                 addListUri()
-                //databinding.foodImage.setImageURI(imageUri)
+//                databinding.foodImage.setImageURI(imageUri)
             }
         }
     }
@@ -92,6 +92,7 @@ class PostPage : AppCompatActivity() {
 
         //set RecycleView
         gridLayoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
+        gridLayoutManager.scrollToPositionWithOffset(2, 20)
         databinding.recyclerViewImage.layoutManager = gridLayoutManager
 
 
@@ -152,9 +153,7 @@ class PostPage : AppCompatActivity() {
 
     private fun addListUri(){
         adapter = RecyclerAdapter(listImageUri)
-        adapter = RecyclerAdapter(listImageUri)
         databinding.recyclerViewImage.adapter = adapter
-
     }
     private fun initPost(listUri: MutableList<String>){
         getIngredientText()
