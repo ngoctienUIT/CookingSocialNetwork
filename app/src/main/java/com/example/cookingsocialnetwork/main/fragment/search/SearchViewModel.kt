@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
 class SearchViewModel: ViewModel() {
+    var query: String = ""
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var history: MutableList<String>
     var searchHistory: MutableLiveData<MutableList<String>> = MutableLiveData()
@@ -16,18 +17,24 @@ class SearchViewModel: ViewModel() {
         listenToDataSearchHistory()
     }
 
-    private fun listenToDataSearchHistory()
+    fun listenToDataSearchHistory()
     {
         firestore.collection("user")
-            .document(FirebaseAuth.getInstance().currentUser.toString())
+            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .addSnapshotListener()
-            { snapshot, e ->
-                if (e != null) return@addSnapshotListener
+            { snapshot,e ->
+                if (e!=null)
+                {
+                    return@addSnapshotListener
+                }
 
-                if (snapshot != null) {
-                    history = mutableListOf()
-//                    history = snapshot.data?.get("searchHistory") as MutableList<String>
-                    searchHistory.value = history
+                if (snapshot!= null && snapshot.exists())
+                {
+                    history = snapshot.data?.get("searchHistory") as MutableList<String>
+                    val listQueryHistory = mutableListOf<String>()
+                    for (search in history)
+                        if (search.uppercase().contains(query.uppercase())) listQueryHistory.add(search)
+                    searchHistory.value = listQueryHistory
                 }
             }
     }
