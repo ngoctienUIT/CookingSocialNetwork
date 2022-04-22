@@ -60,6 +60,8 @@ class SearchFragment : Fragment() {
         binding.search.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
+                    viewModel.query = newText
+                    viewModel.listenToDataSearchHistory()
                     return false
                 }
 
@@ -112,7 +114,7 @@ class SearchFragment : Fragment() {
                     viewModel.searchHistory.value?.let {
                         ListAdapterSearchHistory(
                             dialog,
-                            it
+                            it.asReversed()
                         )
                     }
                 dialogBinding.listView.adapter = adapter
@@ -122,7 +124,10 @@ class SearchFragment : Fragment() {
         dialogBinding.listView.isClickable = true
         dialogBinding.listView.setOnItemClickListener()
         { _, _, position, _ ->
-            binding.search.setQuery(viewModel.searchHistory.value?.get(position), true)
+            binding.search.setQuery(
+                viewModel.searchHistory.value?.get(viewModel.searchHistory.value!!.size - position - 1),
+                true
+            )
             dialog.dismiss()
         }
 
@@ -147,9 +152,9 @@ class SearchFragment : Fragment() {
 
     fun updateSearchHistory(search: String)
     {
-        val history = viewModel.searchHistory.value
-        history?.remove(search)
-        history?.add(search)
+        val history = viewModel.history
+        history.remove(search)
+        history.add(search)
         FirebaseFirestore.getInstance()
             .collection("user")
             .document(FirebaseAuth.getInstance().currentUser?.email.toString())

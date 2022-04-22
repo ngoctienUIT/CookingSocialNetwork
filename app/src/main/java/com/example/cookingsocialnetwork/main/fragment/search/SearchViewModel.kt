@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 class SearchViewModel: ViewModel() {
     var query: String = ""
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private lateinit var history: MutableList<String>
+    lateinit var history: MutableList<String>
     var searchHistory: MutableLiveData<MutableList<String>> = MutableLiveData()
 
     init {
