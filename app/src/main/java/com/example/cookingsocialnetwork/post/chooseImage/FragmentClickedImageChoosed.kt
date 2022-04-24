@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentClickedImageChoosedBinding
@@ -24,9 +25,8 @@ class FragmentClickedImageChoosed : Fragment() {
         val factoryViewModel = FragmentClickedImageChoosedViewModelFactory()
         viewModel = ViewModelProvider(this, factoryViewModel).get(FragmentClickedImageChoosedViewModel::class.java)
         dataBiding.viewModelClickedImage = viewModel
-        dataBiding.lifecycleOwner = this
-
-        // Inflate the layout for this fragment
+            dataBiding.lifecycleOwner = this
         return dataBiding.root
+
     }
 }

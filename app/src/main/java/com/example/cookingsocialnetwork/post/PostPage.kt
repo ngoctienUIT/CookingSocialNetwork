@@ -1,10 +1,13 @@
 package com.example.cookingsocialnetwork.post
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
+import com.example.cookingsocialnetwork.post.chooseImage.FragmentClickedImageChoosed
 import com.example.cookingsocialnetwork.post.chooseImage.RecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,6 +34,8 @@ class PostPage : AppCompatActivity() {
 
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
+
+
 
 
     private var arrEditTextIngredient:MutableList<String> = mutableListOf() // mảng lưu Text của thành phần món ăn
@@ -102,6 +108,7 @@ class PostPage : AppCompatActivity() {
         databinding.lifecycleOwner = this
         databinding.foodImage.setOnClickListener{
             imageChooser()
+
         }
 
         databinding.post.setOnClickListener(){
@@ -148,15 +155,24 @@ class PostPage : AppCompatActivity() {
         // pass the constant to compare it
         // with the returned requestCode
         imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
+
 //        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE) // không còn được sử dụng
     }
 
+    @SuppressLint("ResourceType")
     private fun addListUri(){
         //Log.i("checklistUriLiveData", "${viewModel.mListUriLiveData.value!!}")
         adapter = RecyclerAdapter(viewModel.mListUriLiveData)
+            {
+                //val editGridClickedImageFragment = FragmentClickedImageChoosed()
+                 supportFragmentManager.beginTransaction()
+                    .replace(R.id.testfragment,BlankFragment() )
+                    .commit()
+            }
         databinding.recyclerViewImage.adapter = adapter
         databinding.recyclerViewImage.setHasFixedSize(true)
     }
+
     private fun initPost(listUri: MutableList<String>){
         getIngredientText()
         getMethodText()

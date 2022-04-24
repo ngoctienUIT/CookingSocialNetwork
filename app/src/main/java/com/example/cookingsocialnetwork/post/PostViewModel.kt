@@ -1,14 +1,8 @@
 package com.example.cookingsocialnetwork.post
 
-
-
-
-import android.content.ClipData.Item
 import android.net.Uri
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
 
 
 class PostViewModel() :ViewModel() {
@@ -22,6 +16,11 @@ class PostViewModel() :ViewModel() {
     fun addUriIntoListUris(uri: Uri ) {
         mListUriLiveData.value?.add(uri)
         mListUriLiveData.value = mListUriLiveData.value
+    }
+    fun removeUriListUris(uri: Uri){
+       if(mListUriLiveData.value?.contains(uri) == true){
+           mListUriLiveData.value?.remove(uri)
+       }
     }
 
 

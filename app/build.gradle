@@ -72,4 +72,5 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'com.github.krokyze:ucropnedit:2.2.8'
     implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
