@@ -1,13 +1,11 @@
 package com.example.cookingsocialnetwork.post
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -16,13 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
 import com.example.cookingsocialnetwork.post.chooseImage.FragmentClickedImageChoosed
-import com.example.cookingsocialnetwork.post.chooseImage.RecyclerAdapter
+import com.example.cookingsocialnetwork.post.chooseImage.RecyclerAdapterImageChoosed
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -30,7 +30,7 @@ import com.google.firebase.storage.FirebaseStorage
 class PostPage : AppCompatActivity() {
 
     private lateinit var gridLayoutManager: GridLayoutManager
-    private lateinit var adapter: RecyclerAdapter
+    private lateinit var adapterImageChoosed: RecyclerAdapterImageChoosed
 
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
@@ -98,7 +98,6 @@ class PostPage : AppCompatActivity() {
 
         //set RecycleView
         gridLayoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
-        gridLayoutManager.scrollToPositionWithOffset(2, 20)
         databinding.recyclerViewImage.layoutManager = gridLayoutManager
 
 
@@ -159,17 +158,16 @@ class PostPage : AppCompatActivity() {
 //        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE) // không còn được sử dụng
     }
 
-    @SuppressLint("ResourceType")
     private fun addListUri(){
-        //Log.i("checklistUriLiveData", "${viewModel.mListUriLiveData.value!!}")
-        adapter = RecyclerAdapter(viewModel.mListUriLiveData)
+        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUriLiveData)
             {
-                //val editGridClickedImageFragment = FragmentClickedImageChoosed()
-                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.testfragment,BlankFragment() )
-                    .commit()
+                val editGridClickedImageFragment = FragmentClickedImageChoosed()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.container_fragmentGridClickedItem, editGridClickedImageFragment)
+
+                transaction.commit()
             }
-        databinding.recyclerViewImage.adapter = adapter
+        databinding.recyclerViewImage.adapter = adapterImageChoosed
         databinding.recyclerViewImage.setHasFixedSize(true)
     }
 
@@ -282,3 +280,5 @@ class PostPage : AppCompatActivity() {
         return newLayout
     }
 }
+
+

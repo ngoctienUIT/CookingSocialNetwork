@@ -4,22 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.post.PostPage
 import com.squareup.picasso.Picasso
-import java.text.FieldPosition
 
 
-class RecyclerAdapter(
+class RecyclerAdapterImageChoosed(
     private var mphotosUriLiveData: MutableLiveData<MutableList<Uri>>,
     private val clickListener: () -> Unit ) :
 
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
+    RecyclerView.Adapter<RecyclerAdapterImageChoosed.ViewHolder>(){
 
     inner class ViewHolder(itemView: View, clickAtPosition: (Int) -> Unit) : RecyclerView.ViewHolder(itemView){
 
@@ -50,17 +46,6 @@ class RecyclerAdapter(
 
         val itemImage = mphotosUriLiveData.value?.get(position)!!
         holder.bindImage(itemImage)
-
-//        holder.itemView.setOnClickListener { v ->
-//            //val activity = x.context as AppCompatActivity
-//            val editFragmentClickedImageChoosed = FragmentClickedImageChoosed()
-//            mainActivity.supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.hello, editFragmentClickedImageChoosed)
-//                .addToBackStack(null)
-//                .commit()
-//        }
-
     }
 
     override fun getItemCount(): Int {
