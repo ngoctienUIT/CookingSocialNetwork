@@ -158,13 +158,16 @@ class PostPage : AppCompatActivity() {
 //        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE) // không còn được sử dụng
     }
 
+    internal fun noticeDataChangeToRecyclerAdapterImageChoosed(){
+        adapterImageChoosed.notifyDataSetChanged()
+    }
     private fun addListUri(){
         adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUriLiveData)
             {
                 val editGridClickedImageFragment = FragmentClickedImageChoosed()
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.container_fragmentGridClickedItem, editGridClickedImageFragment)
-
+                transaction.addToBackStack(null)
                 transaction.commit()
             }
         databinding.recyclerViewImage.adapter = adapterImageChoosed

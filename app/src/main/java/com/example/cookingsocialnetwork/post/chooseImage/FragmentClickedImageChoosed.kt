@@ -1,5 +1,7 @@
 package com.example.cookingsocialnetwork.post.chooseImage
 
+import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentClickedImageChoosedBinding
+import com.example.cookingsocialnetwork.mainActivity.MainActivity
+import com.example.cookingsocialnetwork.post.PostPage
 import com.example.cookingsocialnetwork.post.PostViewModel
 
 class FragmentClickedImageChoosed : Fragment() {
@@ -41,11 +45,25 @@ class FragmentClickedImageChoosed : Fragment() {
 
         staggeredGridLayoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         dataBiding.recyclerClickView.layoutManager = staggeredGridLayoutManager
-        adapterImageClicked = RecyclerAdapterImageClicked(viewModel.mListUriLiveData)
+        adapterImageClicked = RecyclerAdapterImageClicked(viewModel.mListUriLiveData,
+            object : ItemClickListener {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onItemRemoveClick(uri: Uri) {
+                    viewModel.removeUriListUris(uri)
+                    adapterImageClicked.notifyDataSetChanged()
+                    (activity as PostPage).noticeDataChangeToRecyclerAdapterImageChoosed()
+                }
+            })
         dataBiding.recyclerClickView.adapter = adapterImageClicked
 
-        dataBiding.lifecycleOwner = this.viewLifecycleOwner
+        dataBiding.lifecycleOwner = this
+
+        dataBiding.closeGrid.setOnClickListener{
+            val manager = requireActivity().supportFragmentManager
+            manager.beginTransaction().remove(this).commit()
+        }
         return dataBiding.root
+
 
     }
 

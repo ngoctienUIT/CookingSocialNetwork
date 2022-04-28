@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 
 
 class RecyclerAdapterImageChoosed(
-    private var mphotosUriLiveData: MutableLiveData<MutableList<Uri>>,
+    private var mPhotosUriLiveData: MutableLiveData<MutableList<Uri>>,
     private val clickListener: () -> Unit ) :
 
     RecyclerView.Adapter<RecyclerAdapterImageChoosed.ViewHolder>(){
@@ -21,12 +21,14 @@ class RecyclerAdapterImageChoosed(
 
         private var itemImage: ImageView = itemView.findViewById(R.id.item_ImageChoose)
 
+
         init {
             itemView.setOnClickListener{
                 clickAtPosition(adapterPosition)
             }
         }
         fun bindImage(uri: Uri) {
+
             Picasso.get().load(uri).into(this.itemImage)
         }
     }
@@ -44,12 +46,12 @@ class RecyclerAdapterImageChoosed(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
-        val itemImage = mphotosUriLiveData.value?.get(position)!!
+        val itemImage = mPhotosUriLiveData.value?.get(position)!!
         holder.bindImage(itemImage)
     }
 
     override fun getItemCount(): Int {
-        return mphotosUriLiveData.value?.size!!
+        return mPhotosUriLiveData.value?.size!!
     }
 
 

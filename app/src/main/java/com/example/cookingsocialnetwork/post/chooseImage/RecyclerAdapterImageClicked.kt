@@ -1,7 +1,5 @@
 package com.example.cookingsocialnetwork.post.chooseImage
 
-import android.bluetooth.BluetoothClass
-import android.icu.text.DateTimePatternGenerator
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.squareup.picasso.Picasso
 
 
-class RecyclerAdapterImageClicked(private var mphotosUriLiveData: MutableLiveData<MutableList<Uri>>) :
+class RecyclerAdapterImageClicked(private var mPhotosUriLiveData: MutableLiveData<MutableList<Uri>>,
+private var itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<RecyclerAdapterImageClicked.ViewHolder>(){
-
 
 
     override fun onCreateViewHolder(
@@ -34,21 +30,27 @@ class RecyclerAdapterImageClicked(private var mphotosUriLiveData: MutableLiveDat
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapterImageClicked.ViewHolder, position: Int) {
-        val itemImage = mphotosUriLiveData.value?.get(position)!!
+        val itemImage = mPhotosUriLiveData.value?.get(position)!!
         holder.bindImage(itemImage)
+        holder.butDelete.setOnClickListener {
+            itemClickListener.onItemRemoveClick(itemImage)
+        }
+
     }
 
     override fun getItemCount(): Int {
-        return mphotosUriLiveData.value?.size!!
+        return mPhotosUriLiveData.value?.size!!
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var itemImage: ImageView = itemView.findViewById(R.id.image_clicked_view)
-        private var butDelete: Button = itemView.findViewById(R.id.btn_deleteImageChoosed)
+        var butDelete: Button = itemView.findViewById(R.id.btn_deleteImageChoosed)
 
         fun bindImage(uri: Uri) {
             Picasso.get().load(uri).into(this.itemImage)
 
         }
+
     }
+
 }
