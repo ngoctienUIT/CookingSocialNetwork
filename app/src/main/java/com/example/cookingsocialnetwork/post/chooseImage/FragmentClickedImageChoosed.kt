@@ -52,6 +52,9 @@ class FragmentClickedImageChoosed : Fragment() {
                     viewModel.removeUriListUris(uri)
                     adapterImageClicked.notifyDataSetChanged()
                     (activity as PostPage).noticeDataChangeToRecyclerAdapterImageChoosed()
+                    if(viewModel.mListUriLiveData.value!!.isEmpty()){
+                       closedFragment()
+                    }
                 }
             })
         dataBiding.recyclerClickView.adapter = adapterImageClicked
@@ -59,12 +62,16 @@ class FragmentClickedImageChoosed : Fragment() {
         dataBiding.lifecycleOwner = this
 
         dataBiding.closeGrid.setOnClickListener{
-            val manager = requireActivity().supportFragmentManager
-            manager.beginTransaction().remove(this).commit()
+            closedFragment()
         }
         return dataBiding.root
 
 
+    }
+
+    private fun closedFragment(){
+        val manager = requireActivity().supportFragmentManager
+        manager.beginTransaction().remove(this).commit()
     }
 
     override fun onDestroyView() {

@@ -28,7 +28,8 @@
             android:exported="false" />
         <activity
             android:name=".post.PostPage"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".post.ViewPostPage"
             android:exported="false"/>
