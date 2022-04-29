@@ -14,17 +14,17 @@ class SearchPageAdapter(fragmentActivity: SearchFragment): FragmentStateAdapter(
         when (position)
         {
             0 -> {
-                var frag= UserSearchFragment()
+                val frag= UserSearchFragment()
                 frag.query = query
                 return frag
             }
             1 -> {
-                var frag= PostSearchFragment()
+                val frag= PostSearchFragment()
                 frag.query = query
                 return frag
             }
             else -> {
-                var frag= UserSearchFragment()
+                val frag= UserSearchFragment()
                 frag.query = query
                 return frag
             }

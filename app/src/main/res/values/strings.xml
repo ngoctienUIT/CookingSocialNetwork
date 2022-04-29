@@ -36,6 +36,8 @@
     <string name="developed">Developed by</string>
     <string name="user">User</string>
     <string name="double_back">Click BACK again to exit</string>
-
+    <string name="favorite">Favorite</string>
+    <string name="comment">Comment</string>
+    <string name="follow">Follow</string>
 
 </resources>

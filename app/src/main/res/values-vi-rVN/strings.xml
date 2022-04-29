@@ -37,6 +37,8 @@
     <string name="developed">Được phát triển bởi</string>
     <string name="user">Người dùng</string>
     <string name="double_back">Nhấn trở về lần nữa để thoát</string>
-
+    <string name="favorite">Yêu thích</string>
+    <string name="comment">Bình luận</string>
+    <string name="follow">Theo dõi</string>
     <!---->
 </resources>
