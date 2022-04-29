@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
@@ -71,8 +72,8 @@ class PostPage : AppCompatActivity() {
     }
 
     private fun getIngredientText(){
-        for (item in databinding.ingredient.children) {   // với mỗi LinearLayout con của LinearLayout ingredient
-            var x : LinearLayout = item as LinearLayout
+        for (item in databinding.ingredients.children) {   // với mỗi RelativeLayout con của RelativeLayout ingredient
+            var x : RelativeLayout = item as RelativeLayout
             var etx:EditText = x[0] as EditText // với mỗi editText nằm ở vị trí 0 của LinearLayout con
             arrEditTextIngredient.add(etx.text.toString())
             // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextIngredient")
@@ -80,8 +81,8 @@ class PostPage : AppCompatActivity() {
     }
     private fun getMethodText(){ // tương tự getIngredientText
 
-        for (item in databinding.ingredient.children) {
-            val x : LinearLayout = item as LinearLayout
+        for (item in databinding.ingredients.children) {
+            val x : RelativeLayout = item as RelativeLayout
             var etx:EditText = x[0] as EditText
             arrEditTextMethod.add(etx.text.toString())
             // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextMethod")
