@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.Window
@@ -32,9 +33,16 @@ class SettingPage : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
-        val check = sharePref.getInt("darkMode", 2)
-        binding.switchDarkMode.isChecked = check != 1
+        val shareDarkMode = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        val checkDarkMode = shareDarkMode.getInt("darkMode", 2)
+        binding.switchDarkMode.isChecked = checkDarkMode != 1
+
+        val shareNotify = getSharedPreferences("ChangeNotify", MODE_PRIVATE)
+        val checkNotify = shareNotify.getInt("notify", 1)
+        binding.switchNotify.isChecked = checkNotify != 2
+
+        Log.w("notify", checkNotify.toString())
+        Log.w("dark", checkDarkMode.toString())
 
         binding.backSetting.setOnClickListener()
         {
@@ -75,10 +83,33 @@ class SettingPage : AppCompatActivity() {
             else darkMode(1)
         }
 
+        binding.notify.setOnClickListener()
+        {
+            if (binding.switchNotify.isChecked) notify(2)
+            else notify(1)
+            binding.switchNotify.isChecked = !binding.switchNotify.isChecked
+        }
+
+        binding.switchNotify.setOnClickListener()
+        {
+            if (binding.switchNotify.isChecked) notify(1)
+            else notify(2)
+        }
+
         binding.info.setOnClickListener()
         {
             val aboutPage = Intent(this, AboutPage::class.java)
             startActivity(aboutPage)
+        }
+    }
+
+    private fun notify(status: Int)
+    {
+        val sharePref = getSharedPreferences("ChangeNotify", MODE_PRIVATE)
+        with(sharePref.edit())
+        {
+            putInt("notify", status)
+            commit()
         }
     }
 

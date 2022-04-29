@@ -20,7 +20,7 @@ class NotificationsFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_notifications, container, false)
 
-        var notifyPageAdapter: NotifyPageAdapter = NotifyPageAdapter(this)
+        val notifyPageAdapter = NotifyPageAdapter(this)
         binding.viewNotifyPage.adapter = notifyPageAdapter
         binding.viewNotifyPage.isSaveEnabled = false
 

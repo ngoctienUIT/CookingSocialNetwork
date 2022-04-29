@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setting.report.material.AddMaterialActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/back_add_material"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:src="@drawable/ic_back_ios"
+            app:tint="@drawable/icon_back_gradient"
+            android:contentDescription="@string/back_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Đề nghị thêm nguyên liệu"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/material"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:background="@drawable/round_view"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:drawablePadding="10dp"
+        android:gravity="left"
+        android:minLines="4"
+        android:hint="Add material"
+        tools:ignore="InvalidId" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gửi"
+        android:background="@drawable/logout_gradient" />
+
+</LinearLayout>

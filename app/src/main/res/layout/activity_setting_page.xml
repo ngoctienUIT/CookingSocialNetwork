@@ -112,6 +112,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/notify"
             android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="60dp">
@@ -126,12 +127,46 @@
                 android:src="@drawable/ic_notifications"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingStart="40dp"
+                android:text="@string/notification"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/switch_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/icon_gradient"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/changelanguage"
+            android:paddingHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                app:tint="@color/white"
+                android:background="@drawable/icon_gradient"
+                android:src="@drawable/ic_translate"/>
+
+            <TextView
                 android:paddingStart="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
-                android:text="@string/notification"/>
+                android:text="@string/language"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -165,39 +200,6 @@
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
                 android:text="@string/report"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                app:tint="@drawable/icon_back_gradient"
-                android:src="@drawable/ic_forward_ios"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/changelanguage"
-            android:paddingHorizontal="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                app:tint="@color/white"
-                android:background="@drawable/icon_gradient"
-                android:src="@drawable/ic_translate"/>
-
-            <TextView
-                android:paddingStart="40dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:textSize="18sp"
-                android:text="@string/language"/>
 
             <ImageView
                 android:layout_width="wrap_content"

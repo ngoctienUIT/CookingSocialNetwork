@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookingSocialNetwork">
         <activity
+            android:name=".setting.report.material.AddMaterialActivity"
+            android:exported="false" />
+        <activity
+            android:name=".setting.report.function.AddFunctionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".setting.report.error.ReportErrorActivity"
+            android:exported="false" />
+        <activity
             android:name=".setting.report.ReportActivity"
             android:exported="false" />
         <activity

@@ -15,9 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
@@ -73,8 +71,8 @@ class PostPage : AppCompatActivity() {
 
     private fun getIngredientText(){
         for (item in databinding.ingredients.children) {   // với mỗi RelativeLayout con của RelativeLayout ingredient
-            var x : RelativeLayout = item as RelativeLayout
-            var etx:EditText = x[0] as EditText // với mỗi editText nằm ở vị trí 0 của LinearLayout con
+            val x : RelativeLayout = item as RelativeLayout
+            val etx:EditText = x[0] as EditText // với mỗi editText nằm ở vị trí 0 của LinearLayout con
             arrEditTextIngredient.add(etx.text.toString())
             // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextIngredient")
         }
@@ -83,12 +81,13 @@ class PostPage : AppCompatActivity() {
 
         for (item in databinding.ingredients.children) {
             val x : RelativeLayout = item as RelativeLayout
-            var etx:EditText = x[0] as EditText
+            val etx:EditText = x[0] as EditText
             arrEditTextMethod.add(etx.text.toString())
             // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextMethod")
         }
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -111,7 +110,7 @@ class PostPage : AppCompatActivity() {
 
         }
 
-        databinding.post.setOnClickListener(){
+        databinding.post.setOnClickListener {
             upLoadImageToFirebase()
             finish()
         }
@@ -123,7 +122,7 @@ class PostPage : AppCompatActivity() {
 
         databinding.addIngredient.setOnClickListener {
             val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_ingredient_child, null)
-            databinding.ingredient.addView(newLayout)
+            databinding.ingredients.addView(newLayout)
             newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
                 (newLayout.parent as LinearLayout).removeView(newLayout)
             }
@@ -159,6 +158,7 @@ class PostPage : AppCompatActivity() {
 //        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE) // không còn được sử dụng
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     internal fun noticeDataChangeToRecyclerAdapterImageChoosed(){
         adapterImageChoosed.notifyDataSetChanged()
     }
@@ -208,7 +208,7 @@ class PostPage : AppCompatActivity() {
             // Register observers to listen for when the download is done or if it fails
             uploadTask.addOnFailureListener {
                 // Handle unsuccessful uploads
-            }.addOnSuccessListener { taskSnapshot ->
+            }.addOnSuccessListener {
                 // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
                 // ...
             }
