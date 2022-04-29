@@ -1,17 +1,13 @@
 package com.example.cookingsocialnetwork.setting
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.ImageView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.cookingsocialnetwork.model.LanguageManager
@@ -21,6 +17,7 @@ import com.example.cookingsocialnetwork.databinding.LayoutBottomsheetBinding
 import com.example.cookingsocialnetwork.mainActivity.MainActivity
 import com.example.cookingsocialnetwork.setting.about.AboutPage
 import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
+import com.example.cookingsocialnetwork.setting.report.ReportActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
@@ -29,28 +26,25 @@ import com.google.firebase.ktx.Firebase
 class SettingPage : AppCompatActivity() {
     private lateinit var binding: ActivitySettingPageBinding
 
-    private var imageChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val selectedImageUri: Uri? = result.data?.data
-            if (null != selectedImageUri) {
-                IVPreviewImage?.setImageURI(selectedImageUri)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        val sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
         val check = sharePref.getInt("darkMode", 2)
         binding.switchDarkMode.isChecked = check != 1
 
         binding.backSetting.setOnClickListener()
         {
             finish()
+        }
+
+        binding.btnReport.setOnClickListener()
+        {
+            val reportActivity = Intent(this, ReportActivity::class.java)
+            startActivity(reportActivity)
         }
 
         binding.changelanguage.setOnClickListener{
@@ -90,7 +84,7 @@ class SettingPage : AppCompatActivity() {
 
     private fun darkMode(mode: Int)
     {
-        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        val sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
         if (mode == 2) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         else if (mode == 1) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         with(sharePref.edit())
@@ -99,15 +93,6 @@ class SettingPage : AppCompatActivity() {
             commit()
         }
     }
-
-    fun imageChooser() {
-        val i = Intent()
-        i.type = "image/*"
-        i.action = Intent.ACTION_GET_CONTENT
-        imageChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
-    }
-
-    private var IVPreviewImage: ImageView? = null
 
     private fun logOut()
     {
@@ -125,12 +110,12 @@ class SettingPage : AppCompatActivity() {
 
     private fun showDialog()
     {
-        var dialog = Dialog(this)
+        val dialog = Dialog(this)
         val dialogBinding: LayoutBottomsheetBinding = LayoutBottomsheetBinding.inflate(layoutInflater)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(dialogBinding.root)
 
-        var sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
+        val sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
         val check = sharePref.getString("language", "vi")
 
         if (check == "vi") dialogBinding.radioGroupLanguage.check(R.id.radio_vietnam)
@@ -151,7 +136,7 @@ class SettingPage : AppCompatActivity() {
             if (check != "vi") changeLanguage("vi")
         }
 
-        dialogBinding.english.setOnClickListener() {
+        dialogBinding.english.setOnClickListener {
             if (check != "en") changeLanguage("en")
         }
 
@@ -164,7 +149,7 @@ class SettingPage : AppCompatActivity() {
 
     private fun changeLanguage(language: String)
     {
-        var sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
+        val sharePref = getSharedPreferences("ChangeLanguage", MODE_PRIVATE)
         val lang = LanguageManager(this)
         when (language)
         {

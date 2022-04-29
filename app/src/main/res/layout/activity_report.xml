@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setting.report.ReportActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/back_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:src="@drawable/ic_back_ios"
+            app:tint="@drawable/icon_back_gradient"
+            android:contentDescription="@string/back_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:text="Báo cáo"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_report_error"
+        android:paddingHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:tint="@color/white"
+            android:background="@drawable/icon_gradient"
+            android:src="@drawable/ic_error"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingStart="40dp"
+            android:text="Báo cáo lỗi"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_forward_ios"
+            app:tint="@drawable/icon_back_gradient" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_add_material"
+        android:paddingHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:tint="@color/white"
+            android:background="@drawable/icon_gradient"
+            android:src="@drawable/ic_eco"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingStart="40dp"
+            android:text="Đề nghị thêm nguyên liệu"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_forward_ios"
+            app:tint="@drawable/icon_back_gradient" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_add_function"
+        android:paddingHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:tint="@color/white"
+            android:background="@drawable/icon_gradient"
+            android:src="@drawable/ic_electric"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingStart="40dp"
+            android:text="Đề nghị thêm chức năng"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_forward_ios"
+            app:tint="@drawable/icon_back_gradient" />
+
+    </RelativeLayout>
+
+</LinearLayout>

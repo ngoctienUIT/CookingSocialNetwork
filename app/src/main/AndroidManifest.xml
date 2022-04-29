@@ -12,8 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CookingSocialNetwork">
-        <activity android:name=".intro.IntroPage"
-            android:exported="false"/>
+        <activity
+            android:name=".setting.report.ReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".intro.IntroPage"
+            android:exported="false" />
         <activity
             android:name=".setting.about.AboutPage"
             android:exported="false" />
@@ -29,10 +33,10 @@
         <activity
             android:name=".post.PostPage"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".post.ViewPostPage"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".splash.SplashPage"
             android:exported="false" />

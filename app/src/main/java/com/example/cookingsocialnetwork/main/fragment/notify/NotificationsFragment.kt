@@ -22,6 +22,7 @@ class NotificationsFragment : Fragment() {
 
         var notifyPageAdapter: NotifyPageAdapter = NotifyPageAdapter(this)
         binding.viewNotifyPage.adapter = notifyPageAdapter
+        binding.viewNotifyPage.isSaveEnabled = false
 
         TabLayoutMediator(binding.tabNotify, binding.viewNotifyPage)
         { tab, index ->

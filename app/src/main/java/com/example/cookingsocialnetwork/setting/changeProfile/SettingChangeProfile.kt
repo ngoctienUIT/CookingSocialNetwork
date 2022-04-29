@@ -23,7 +23,7 @@ import java.io.File
 
 class SettingChangeProfile : AppCompatActivity() {
     private lateinit var viewModel: SettingChangeProfileViewModel
-    private lateinit var databinding: ActivitySettingChangeProfileBinding
+    private lateinit var dataBinding: ActivitySettingChangeProfileBinding
 
 
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent())
@@ -59,7 +59,7 @@ class SettingChangeProfile : AppCompatActivity() {
     private val cropImage = registerForActivityResult(uCropContract)
     {
         if (it!=null) {
-            databinding.ivAvatar.setImageURI(it)
+            dataBinding.ivAvatar.setImageURI(it)
             uploadAvatar(it)
         }
     }
@@ -74,19 +74,19 @@ class SettingChangeProfile : AppCompatActivity() {
         setContentView(R.layout.activity_setting_change_profile)
         supportActionBar?.hide()
 
-        databinding = DataBindingUtil.setContentView(this, R.layout.activity_setting_change_profile)
+        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_setting_change_profile)
         val factory = SettingChangeProfileViewModelFactory()
 
         viewModel = ViewModelProvider(this,factory).get(SettingChangeProfileViewModel::class.java)
-        databinding.viewModel = viewModel
-        databinding.lifecycleOwner = this
+        dataBinding.viewModel = viewModel
+        dataBinding.lifecycleOwner = this
 
-        databinding.backSettingProfile.setOnClickListener()
+        dataBinding.backSettingProfile.setOnClickListener()
         {
             finish()
         }
 
-        databinding.avatarBtn.setOnClickListener()
+        dataBinding.avatarBtn.setOnClickListener()
         {
             selectGallery()
         }
@@ -101,7 +101,7 @@ class SettingChangeProfile : AppCompatActivity() {
                     .downloadUrl.addOnSuccessListener {
                     FirebaseFirestore.getInstance()
                         .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-                        .document("infor")
+                        .document("info")
                         .update(
                             "avatar", it.toString()
                         )
