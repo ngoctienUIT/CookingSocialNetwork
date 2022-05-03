@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model
+package com.example.cookingsocialnetwork.model.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.model.data.User
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ListAdapterUser(context: Activity, private var userArrayList: MutableList<User>, var myData: User):

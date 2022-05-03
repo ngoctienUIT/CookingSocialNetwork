@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model
+package com.example.cookingsocialnetwork.model.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.model.data.Post
 
 class GridAdapterPost(var context: Context, var listPost: MutableList<Post>): BaseAdapter() {
     override fun getCount(): Int = listPost.size

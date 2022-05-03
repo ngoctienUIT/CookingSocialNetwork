@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model
+package com.example.cookingsocialnetwork.model.data
 
 import com.google.firebase.firestore.DocumentSnapshot
 

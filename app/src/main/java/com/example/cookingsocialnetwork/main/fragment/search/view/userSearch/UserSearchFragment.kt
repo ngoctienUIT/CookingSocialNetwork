@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentUserSearchBinding
-import com.example.cookingsocialnetwork.model.ListAdapterUser
+import com.example.cookingsocialnetwork.model.adapter.ListAdapterUser
 
 class UserSearchFragment : Fragment() {
     lateinit var query: String

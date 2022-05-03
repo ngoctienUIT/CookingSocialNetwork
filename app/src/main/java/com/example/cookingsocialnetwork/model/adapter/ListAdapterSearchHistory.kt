@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model
+package com.example.cookingsocialnetwork.model.adapter
 
 import android.annotation.SuppressLint
 import android.app.Dialog

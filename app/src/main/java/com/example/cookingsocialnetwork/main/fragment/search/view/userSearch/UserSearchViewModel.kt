@@ -2,7 +2,7 @@ package com.example.cookingsocialnetwork.main.fragment.search.view.userSearch
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cookingsocialnetwork.model.User
+import com.example.cookingsocialnetwork.model.data.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
