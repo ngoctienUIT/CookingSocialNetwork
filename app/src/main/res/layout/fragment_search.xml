@@ -37,7 +37,12 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:id="@+id/tab_search"
-                app:tabRippleColor="@android:color/transparent"/>
+                app:tabRippleColor="@android:color/transparent"
+                app:tabGravity="center"
+                app:tabIndicatorGravity="stretch"
+                app:tabSelectedTextColor="@color/white"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicator="@drawable/tab_indicator"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_search_page"

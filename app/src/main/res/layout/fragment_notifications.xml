@@ -15,10 +15,16 @@
             android:padding="12dp">
 
             <com.google.android.material.tabs.TabLayout
+                app:tabTextAppearance="@style/MineCustomTabText"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:id="@+id/tab_notify"
-                app:tabRippleColor="@android:color/transparent"/>
+                app:tabRippleColor="@android:color/transparent"
+                app:tabGravity="center"
+                app:tabIndicatorGravity="stretch"
+                app:tabSelectedTextColor="@color/white"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicator="@drawable/tab_indicator"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_notify_page"

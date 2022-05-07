@@ -50,6 +50,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_error.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_notifications.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/icon_gradient.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/tab_indicator.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_about_page.xml" value="0.25407608695652173" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_account_page.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_add_function.xml" value="0.22826086956521738" />
@@ -69,6 +70,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/comment_notify_item.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/favorite_notify_item.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/follow_notify_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_all_notify.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_comment_notify.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_favorite_notify.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_follow_notify.xml" value="0.22826086956521738" />

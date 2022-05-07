@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.main.fragment.notify.view.comment
+package com.example.cookingsocialnetwork.main.fragment.notify.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,29 +8,29 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.FragmentCommentNotifyBinding
+import com.example.cookingsocialnetwork.databinding.FragmentFollowNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
-import com.example.cookingsocialnetwork.model.adapter.ListAdapterNotifyComment
+import com.example.cookingsocialnetwork.model.adapter.ListAdapterNotifyFollow
 
-class CommentNotifyFragment : Fragment() {
-    lateinit var binding: FragmentCommentNotifyBinding
+class FollowNotifyFragment : Fragment() {
+    lateinit var binding: FragmentFollowNotifyBinding
     lateinit var viewModel: NotifyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_comment_notify, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_follow_notify, container, false)
         val factory = NotifyViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(NotifyViewModel::class.java)
 
         activity?.let {
-            viewModel.comments.observe(it) { list ->
-                val adapter = ListAdapterNotifyComment(it, list)
-                binding.listComment.isClickable = true
-                binding.listComment.adapter = adapter
-                binding.listComment.setOnItemClickListener { _, _, _, _ ->
+            viewModel.notifys.observe(it) { list ->
+                val adapter = ListAdapterNotifyFollow(it, list)
+                binding.listFollow.isClickable = true
+                binding.listFollow.adapter = adapter
+                binding.listFollow.setOnItemClickListener { _, _, _, _ ->
 
                 }
             }

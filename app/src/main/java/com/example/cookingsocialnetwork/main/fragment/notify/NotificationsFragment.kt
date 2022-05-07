@@ -28,9 +28,12 @@ class NotificationsFragment : Fragment() {
         { tab, index ->
             tab.text = when (index) {
                 0 -> {
-                    getString(R.string.favorite)
+                    "All"
                 }
                 1 -> {
+                    getString(R.string.favorite)
+                }
+                2 -> {
                     getString(R.string.comment)
                 }
                 else -> {
