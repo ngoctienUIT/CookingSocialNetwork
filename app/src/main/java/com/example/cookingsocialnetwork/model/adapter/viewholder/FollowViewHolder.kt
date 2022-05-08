@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.model.data.Notify
 import java.lang.ref.WeakReference
 
 class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -14,8 +15,8 @@ class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var contentView: TextView? = null
     private var timeView: TextView? = null
     private var avatarView: ImageView? = null
-    private var follow: Button? = null
-    var content = ""
+    private var followBtn: Button? = null
+    var follow: Notify? = null
     var onClickItem: ((String) -> Unit)? = null
 
     init {
@@ -28,17 +29,17 @@ class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         contentView = view.get()?.findViewById(R.id.content)
         timeView = view.get()?.findViewById(R.id.time)
         avatarView = view.get()?.findViewById(R.id.avatar)
-        follow = view.get()?.findViewById(R.id.follow)
+        followBtn = view.get()?.findViewById(R.id.follow)
     }
 
     private fun setListener() {
         view.get()?.setOnClickListener()
         {
-            onClickItem?.let { it(content) }
+            onClickItem?.let { follow?.let { it1 -> it(it1.name) } }
         }
     }
 
     fun updateView() {
-        nameView?.text = content
+        nameView?.text = follow?.name
     }
 }

@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.model.data.Notify
 import java.lang.ref.WeakReference
 
 class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
@@ -13,7 +14,7 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
     private var contentView: TextView? = null
     private var timeView: TextView? = null
     private var avatarView: ImageView? = null
-    var content = ""
+    var comment: Notify? = null
     var onClickItem : ((String)->Unit)? = null
 
     init {
@@ -32,12 +33,13 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
     {
         view.get()?.setOnClickListener()
         {
-            onClickItem?.let { it(content) }
+            onClickItem?.let { comment?.let { it1 -> it(it1.name) } }
         }
     }
 
     fun updateView()
     {
-        nameView?.text = content
+        nameView?.text = comment?.name
+        timeView?.text = comment?.time.toString()
     }
 }

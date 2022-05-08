@@ -121,7 +121,9 @@ class SplashPage : AppCompatActivity() {
             "following" to mutableListOf<String>(),
             "followers" to mutableListOf<String>(),
             "favourites" to mutableListOf<String>(),
-            "info" to info
+            "info" to info,
+            "notify" to mutableListOf<Map<String,Any>>(),
+            "searchHistory" to mutableListOf<String>()
         )
 
         FirebaseFirestore.getInstance()

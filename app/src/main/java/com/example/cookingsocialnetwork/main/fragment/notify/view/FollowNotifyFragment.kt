@@ -27,7 +27,7 @@ class FollowNotifyFragment : Fragment() {
 
         activity?.let {
             viewModel.follows.observe(it) { list ->
-                val adapter = ListAdapterNotifyFollow(it, list)
+                val adapter = ListAdapterNotifyFollow(it, list.asReversed())
                 binding.listFollow.isClickable = true
                 binding.listFollow.adapter = adapter
                 binding.listFollow.setOnItemClickListener { _, _, _, _ ->

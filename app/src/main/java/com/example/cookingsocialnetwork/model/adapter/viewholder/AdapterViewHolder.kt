@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.model.data.Notify
 
-class AdapterViewHolder:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     enum class ViewHolderType {
         COMMENT, FOLLOW, FAVORITE
     }
 
-    private var list: MutableList<String> = mutableListOf()
     var onLoadMore: (() -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -37,45 +37,33 @@ class AdapterViewHolder:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is CommentViewHolder -> {
-                holder.content = list[position]
+                holder.comment = listNotify[position]
                 holder.updateView()
             }
 
             is FollowViewHolder -> {
-                holder.content = list[position]
+                holder.follow = listNotify[position]
                 holder.updateView()
             }
 
             is FavoriteViewHolder -> {
-                holder.content = list[position]
+                holder.favorite = listNotify[position]
                 holder.updateView()
             }
         }
 
-        if (position == list.size - 1) {
+        if (position == listNotify.size) {
             onLoadMore?.let { it() }
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = listNotify.size
 
     override fun getItemViewType(position: Int): Int {
-        return when (list[position]) {
+        return when (listNotify[position].type) {
             "comment" -> ViewHolderType.COMMENT.ordinal
             "follow" -> ViewHolderType.FOLLOW.ordinal
             else -> ViewHolderType.FAVORITE.ordinal
         }
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun reload(list: MutableList<String>) {
-        this.list.clear()
-        this.list.addAll(list)
-        notifyDataSetChanged()
-    }
-
-    fun loadMore(list: MutableList<String>) {
-        this.list.addAll(list)
-        notifyItemRangeChanged(this.list.size - list.size + 1, list.size)
     }
 }

@@ -58,28 +58,6 @@ class NotifyViewModel: ViewModel() {
                     comments.value = _comments
                     favorites.value = _favorites
                     follows.value = _follows
-
-                    /*val favorite = notifyData["favorite"] as MutableList<Map<String, Any>>
-                    for (i in favorite) {
-                        val notify = Notify(i["name"].toString(), LocalDateTime.now())
-                        _notifys.add(notify)
-                    }
-                    notifys.value = _notifys
-
-                    _comments = mutableListOf()
-                    val comment = notifyData["comment"] as MutableList<Map<String, Any>>
-                    for (i in comment) {
-                        val notify = Notify(i["name"].toString(), LocalDateTime.now())
-                        _comments.add(notify)
-                    }
-                    comments.value = _comments
-
-                    val follow = notifyData["follow"] as MutableList<Map<String, Any>>
-                    for (i in comment) {
-                        val notify = Notify(i["name"].toString(), LocalDateTime.now())
-                        _notifys.add(notify)
-                    }
-                    notifys.value = _notifys*/
                 }
             }
     }

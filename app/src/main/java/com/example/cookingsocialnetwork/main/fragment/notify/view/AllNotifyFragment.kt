@@ -29,33 +29,19 @@ class AllNotifyFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(NotifyViewModel::class.java)
 
         layoutManager = LinearLayoutManager(activity)
-        adapter = AdapterViewHolder()
+        activity?.let {
+            viewModel.notifys.observe(it)
+            { list ->
+                adapter = AdapterViewHolder(list.asReversed())
+                binding.swipeRefreshLayout.setOnRefreshListener {
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
 
-        adapter.onLoadMore
-        run {
-            loadMore()
+                binding.recyclerView.layoutManager = layoutManager
+                binding.recyclerView.adapter = adapter
+            }
         }
-
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            reload()
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
-
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = adapter
 
         return binding.root
-    }
-
-    private fun reload() {
-        binding.recyclerView.post {
-            adapter.reload(mutableListOf())
-        }
-    }
-
-    private fun loadMore() {
-        binding.recyclerView.post {
-            adapter.loadMore(mutableListOf())
-        }
     }
 }

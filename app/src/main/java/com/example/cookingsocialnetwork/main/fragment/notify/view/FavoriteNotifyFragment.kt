@@ -27,7 +27,7 @@ class FavoriteNotifyFragment : Fragment() {
 
         activity?.let {
             viewModel.favorites.observe(it) { list ->
-                val adapter = ListAdapterNotifyFavorite(it, list)
+                val adapter = ListAdapterNotifyFavorite(it, list.asReversed())
                 binding.listFavorite.isClickable = true
                 binding.listFavorite.adapter = adapter
                 binding.listFavorite.setOnItemClickListener { _, _, _, _ ->

@@ -27,7 +27,7 @@ class CommentNotifyFragment : Fragment() {
 
         activity?.let {
             viewModel.comments.observe(it) { list ->
-                val adapter = ListAdapterNotifyComment(it, list)
+                val adapter = ListAdapterNotifyComment(it, list.asReversed())
                 binding.listComment.isClickable = true
                 binding.listComment.adapter = adapter
                 binding.listComment.setOnItemClickListener { _, _, _, _ ->
