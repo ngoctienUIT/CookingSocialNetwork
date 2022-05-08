@@ -1,17 +1,20 @@
 package com.example.cookingsocialnetwork.main.fragment.notify
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentNotificationsBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
+
 class NotificationsFragment : Fragment() {
     lateinit var binding: FragmentNotificationsBinding
+    lateinit var viewModel: NotifyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,6 +22,8 @@ class NotificationsFragment : Fragment() {
     ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_notifications, container, false)
+        val factory = NotifyViewModelFactory()
+        viewModel = ViewModelProvider(this, factory).get(NotifyViewModel::class.java)
 
         val notifyPageAdapter = NotifyPageAdapter(this)
         binding.viewNotifyPage.adapter = notifyPageAdapter

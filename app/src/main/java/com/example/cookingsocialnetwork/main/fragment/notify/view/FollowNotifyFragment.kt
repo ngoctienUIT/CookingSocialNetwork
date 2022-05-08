@@ -26,7 +26,7 @@ class FollowNotifyFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(NotifyViewModel::class.java)
 
         activity?.let {
-            viewModel.notifys.observe(it) { list ->
+            viewModel.follows.observe(it) { list ->
                 val adapter = ListAdapterNotifyFollow(it, list)
                 binding.listFollow.isClickable = true
                 binding.listFollow.adapter = adapter

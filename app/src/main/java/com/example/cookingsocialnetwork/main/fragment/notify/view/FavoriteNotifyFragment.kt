@@ -26,7 +26,7 @@ class FavoriteNotifyFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(NotifyViewModel::class.java)
 
         activity?.let {
-            viewModel.notifys.observe(it) { list ->
+            viewModel.favorites.observe(it) { list ->
                 val adapter = ListAdapterNotifyFavorite(it, list)
                 binding.listFavorite.isClickable = true
                 binding.listFavorite.adapter = adapter
