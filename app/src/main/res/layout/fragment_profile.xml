@@ -44,33 +44,45 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:contentDescription="profile scroll view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" >
+                app:layout_constraintVertical_bias="0.0">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        app:cardCornerRadius="180dp">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="233dp">
 
                         <ImageView
-                            android:id="@+id/userAvatar"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            app:srcCompat="@drawable/profile_cir" />
+                            android:id="@+id/imageProfileBackground"
+                            android:layout_width="wrap_content"
+                            android:layout_height="181dp"
+                            android:scaleType="center"
+                            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-                    </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            app:cardCornerRadius="180dp">
+
+                            <ImageView
+                                android:id="@+id/userAvatar"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                app:srcCompat="@drawable/profile_cir" />
+
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/textUserid"
@@ -89,34 +101,10 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_marginEnd="30dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/post"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Post"
-                                android:gravity="center"
-                                android:textStyle="bold"
-                                android:textSize="16sp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
                             android:layout_marginEnd="30dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
                             android:orientation="vertical">
 
                             <TextView
@@ -129,10 +117,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Following"
                                 android:gravity="center"
-                                android:textStyle="bold"
-                                android:textSize="16sp"/>
+                                android:text="Following"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -152,14 +140,76 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Follower"
                                 android:gravity="center"
-                                android:textStyle="bold"
-                                android:textSize="16sp"/>
+                                android:text="Follower"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/quote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="50dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center"
+                        android:text="Quote"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Description:"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/Description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="17sp"
+                        tools:text="I am..." />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="Post created:"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textPostNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <GridView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
