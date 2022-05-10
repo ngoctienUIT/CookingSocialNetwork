@@ -40,5 +40,11 @@
     <string name="favorite">Yêu thích</string>
     <string name="comment">Bình luận</string>
     <string name="follow">Theo dõi</string>
+
+    <string-array name="gender">
+        <item>Nam</item>
+        <item>Nữ</item>
+        <item>Khác</item>
+    </string-array>
     <!---->
 </resources>
