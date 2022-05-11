@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -18,10 +17,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivitySettingChangeProfileBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.util.*
@@ -29,6 +25,7 @@ import java.util.*
 class SettingChangeProfile : AppCompatActivity() {
     private lateinit var viewModel: SettingChangeProfileViewModel
     private lateinit var dataBinding: ActivitySettingChangeProfileBinding
+    private var uri: Uri? =null
 
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent())
     {
@@ -63,7 +60,7 @@ class SettingChangeProfile : AppCompatActivity() {
     {
         if (it!=null) {
             dataBinding.ivAvatar.setImageURI(it)
-            uploadAvatar(it)
+            uri = it
         }
     }
 
@@ -84,6 +81,11 @@ class SettingChangeProfile : AppCompatActivity() {
         viewModel = ViewModelProvider(this,factory).get(SettingChangeProfileViewModel::class.java)
         dataBinding.viewModel = viewModel
         dataBinding.lifecycleOwner = this
+
+        viewModel.user.observe(this)
+        {
+            Picasso.get().load(it.avatar).into(dataBinding.ivAvatar)
+        }
 
         dataBinding.backSettingProfile.setOnClickListener()
         {
@@ -115,27 +117,16 @@ class SettingChangeProfile : AppCompatActivity() {
         dataBinding.gender.onItemSelectedListener = object :AdapterView.OnItemSelectedListener
         {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                var gender: String = p0?.getItemAtPosition(p2).toString();
+                viewModel.user.value!!.gender = p0?.getItemAtPosition(p2).toString()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
-    }
 
-    private fun uploadAvatar(uri: Uri) {
-        val storage: StorageReference = FirebaseStorage.getInstance().reference
-        storage.child("avatar/${FirebaseAuth.getInstance().currentUser?.email}.png")
-            .putFile(uri)
-            .addOnSuccessListener {
-                storage.child("avatar/${FirebaseAuth.getInstance().currentUser?.email}.png")
-                    .downloadUrl.addOnSuccessListener {
-                    FirebaseFirestore.getInstance()
-                        .collection(FirebaseAuth.getInstance().currentUser?.email.toString())
-                        .document("info")
-                        .update(
-                            "avatar", it.toString()
-                        )
-                }
-            }
+        dataBinding.update.setOnClickListener()
+        {
+            viewModel.updateInfo(uri)
+            finish()
+        }
     }
 }

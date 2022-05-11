@@ -1,6 +1,5 @@
 package com.example.cookingsocialnetwork.model.adapter.viewholder
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

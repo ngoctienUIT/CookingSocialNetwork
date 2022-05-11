@@ -2,9 +2,6 @@ package com.example.cookingsocialnetwork.model.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,25 +25,5 @@ class ListAdapterNotifyComment(context: Activity, private var commentNotify: Mut
         name.text = commentNotify[position].name
 
         return view
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class DownloadImageFromInternet(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>() {
-        @Deprecated("Deprecated in Java")
-        override fun doInBackground(vararg urls: String): Bitmap? {
-            val imageURL = urls[0]
-            var image: Bitmap? = null
-            try {
-                val `in` = java.net.URL(imageURL).openStream()
-                image = BitmapFactory.decodeStream(`in`)
-            }
-            catch (e: Exception) {
-            }
-            return image
-        }
-        @Deprecated("Deprecated in Java", ReplaceWith("imageView.setImageBitmap(result)"))
-        override fun onPostExecute(result: Bitmap?) {
-            imageView.setImageBitmap(result)
-        }
     }
 }

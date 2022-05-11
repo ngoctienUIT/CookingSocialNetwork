@@ -2,10 +2,7 @@ package com.example.cookingsocialnetwork.model.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +13,7 @@ import android.widget.TextView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.User
 import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 
 class ListAdapterUser(context: Activity, private var userArrayList: MutableList<User>, var myData: User):
     ArrayAdapter<User>(context, R.layout.list_item_user , userArrayList) {
@@ -31,8 +29,8 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
 
         if (myData.username.compareTo(userArrayList[position].username)==0) follow.visibility = View.GONE
         else {
-            var following = myData.following
-            var follower = userArrayList[position].followers
+            val following = myData.following
+            val follower = userArrayList[position].followers
 
             val checkFollow = myData.following.indexOf(userArrayList[position].username) != -1
 
@@ -61,31 +59,11 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
             }
         }
 
-        DownloadImageFromInternet(view.findViewById(R.id.avatarUser)).execute(userArrayList[position].avatar)
+        Picasso.get().load(userArrayList[position].avatar).into(imageView)
         imageView.setImageURI(Uri.parse(userArrayList[position].avatar))
         name.text = userArrayList[position].name
         info.text = "${userArrayList[position].followers.size} follower · ${userArrayList[position].post.size} bài viết"
 
         return view
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private inner class DownloadImageFromInternet(var imageView: ImageView) : AsyncTask<String, Void, Bitmap?>() {
-        @Deprecated("Deprecated in Java")
-        override fun doInBackground(vararg urls: String): Bitmap? {
-            val imageURL = urls[0]
-            var image: Bitmap? = null
-            try {
-                val `in` = java.net.URL(imageURL).openStream()
-                image = BitmapFactory.decodeStream(`in`)
-            }
-            catch (e: Exception) {
-            }
-            return image
-        }
-        @Deprecated("Deprecated in Java", ReplaceWith("imageView.setImageBitmap(result)"))
-        override fun onPostExecute(result: Bitmap?) {
-            imageView.setImageBitmap(result)
-        }
     }
 }
