@@ -23,8 +23,11 @@ import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
 import com.example.cookingsocialnetwork.post.chooseImage.FragmentClickedImageChoosed
 import com.example.cookingsocialnetwork.post.chooseImage.RecyclerAdapterImageChoosed
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class PostPage : AppCompatActivity() {
 
@@ -34,7 +37,8 @@ class PostPage : AppCompatActivity() {
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
 
-
+    @SuppressLint("SimpleDateFormat")
+    private val formatTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
 
 
     private var arrEditTextIngredient:MutableList<String> = mutableListOf() // mảng lưu Text của thành phần món ăn
@@ -70,11 +74,12 @@ class PostPage : AppCompatActivity() {
     }
 
     private fun getIngredientText(){
-        for (item in databinding.ingredients.children) {   // với mỗi RelativeLayout con của RelativeLayout ingredient
+        for (item in databinding.ingredients.children) { // với mỗi layout kiểu relativeLayout trong ingredients
             val x : RelativeLayout = item as RelativeLayout
-            val etx:EditText = x[0] as EditText // với mỗi editText nằm ở vị trí 0 của LinearLayout con
-            arrEditTextIngredient.add(etx.text.toString())
-            // Log.d("Check getIngredientText", "The text of getIngredientText is: $arrEditTextIngredient")
+            val etx:EditText = x[0] as EditText // với mỗi editText nằm ở vị trí 0 của RelativeLayout con
+             arrEditTextIngredient.add(etx.text.toString())
+           //  Log.d("Check getIngredientText", "${etx.text}")
+
         }
     }
     private fun getMethodText(){ // tương tự getIngredientText
@@ -107,11 +112,10 @@ class PostPage : AppCompatActivity() {
         databinding.lifecycleOwner = this
         databinding.foodImage.setOnClickListener{
             imageChooser()
-
         }
 
         databinding.post.setOnClickListener {
-            upLoadImageToFirebase()
+            upLoadDataToFirebase()
             finish()
         }
 
@@ -128,7 +132,7 @@ class PostPage : AppCompatActivity() {
             }
         }
       //  add_ingredient.setOnClickListener()
-        databinding.addIngredient.setOnClickListener {
+        databinding.addMakingMethod.setOnClickListener {
             val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_ingredient_child, null)
             databinding.method.addView(newLayout)
             newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
@@ -162,6 +166,7 @@ class PostPage : AppCompatActivity() {
     internal fun noticeDataChangeToRecyclerAdapterImageChoosed(){
         adapterImageChoosed.notifyDataSetChanged()
     }
+
     private fun addListUri(){
         adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUriLiveData)
             {
@@ -176,6 +181,7 @@ class PostPage : AppCompatActivity() {
     }
 
     private fun initPost(listUri: MutableList<String>){
+        Log.d("PostPage", "initPost")
         getIngredientText()
         getMethodText()
 
@@ -188,17 +194,34 @@ class PostPage : AppCompatActivity() {
             "description" to arrEditTextIngredient,
             "cookingTime" to databinding.cookingTime.text.toString(),
             "servers" to databinding.txtServes.text.toString(),
-            "Level" to "Chua biet",
+            "level" to databinding.ratingLevel.numStars.toString(),
             "methods" to arrEditTextMethod,
             "favourites" to mutableListOf<String>(),
+            "timePost" to LocalDateTime.now()
         )
         newPostData.set(postData)
+        addIDPostToUser(newPostData.id)
+
     }
-    private fun upLoadImageToFirebase() {
+
+    private fun addIDPostToUser(IDNewPost: String){
+        val updater = FirebaseFirestore.getInstance()
+        updater.collection("user")
+            .document("${FirebaseAuth.getInstance().currentUser?.email}")
+            .update("post", FieldValue.arrayUnion(IDNewPost))
+
+        Log.d("PostPage", "add ID successful")
+
+    }
+    private fun upLoadDataToFirebase() {
+
+        Log.d("PostPage", "Loading...")
 
         val listUri: MutableList<String> = mutableListOf()
 
         val storageRef = FirebaseStorage.getInstance().reference
+
+        listImageUri = viewModel.takeListUris()!! // take list Uris from PostpageViewModel
 
         for (i in 0 until listImageUri.count()) {
 

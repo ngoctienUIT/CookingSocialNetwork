@@ -1,12 +1,14 @@
 package com.example.cookingsocialnetwork.post.chooseImage
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModel
@@ -37,6 +39,7 @@ class FragmentClickedImageChoosed : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         //set dataBiding
         dataBiding =DataBindingUtil.inflate(inflater, R.layout.fragment_clicked_image_choosed, container, false)
         val factoryViewModel = FragmentClickedImageChoosedViewModelFactory()
@@ -45,6 +48,9 @@ class FragmentClickedImageChoosed : Fragment() {
 
         staggeredGridLayoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         dataBiding.recyclerClickView.layoutManager = staggeredGridLayoutManager
+
+        dataBiding.recyclerClickView.setHasFixedSize(true);
+
         adapterImageClicked = RecyclerAdapterImageClicked(viewModel.mListUriLiveData,
             object : ItemClickListener {
                 @SuppressLint("NotifyDataSetChanged")
@@ -68,6 +74,7 @@ class FragmentClickedImageChoosed : Fragment() {
 
 
     }
+
 
     private fun closedFragment(){
         val manager = requireActivity().supportFragmentManager

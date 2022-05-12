@@ -22,6 +22,10 @@ class PostViewModel() :ViewModel() {
            mListUriLiveData.value?.remove(uri)
        }
     }
+    fun takeListUris(): MutableList<Uri>? {
+        return mListUriLiveData.value
+
+    }
 
 
 }
