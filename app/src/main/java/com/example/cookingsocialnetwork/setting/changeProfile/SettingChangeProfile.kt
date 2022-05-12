@@ -29,10 +29,12 @@ class SettingChangeProfile : AppCompatActivity() {
 
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent())
     {
-        val inputUri = it
-        val outputUri = File(filesDir,"croppedImage.jpg").toUri()
-        val listUri = listOf<Uri>(inputUri, outputUri)
-        cropImage.launch(listUri)
+        if (it != null) {
+            val inputUri = it
+            val outputUri = File(filesDir, "croppedImage.jpg").toUri()
+            val listUri = listOf<Uri>(inputUri, outputUri)
+            cropImage.launch(listUri)
+        }
     }
 
     private val uCropContract = object: ActivityResultContract<List<Uri>, Uri>() {
@@ -85,6 +87,11 @@ class SettingChangeProfile : AppCompatActivity() {
         viewModel.user.observe(this)
         {
             Picasso.get().load(it.avatar).into(dataBinding.ivAvatar)
+            if (viewModel.user.value!!.gender.compareTo(resources.getStringArray(R.array.gender)[0]) == 0)
+                dataBinding.gender.setSelection(0)
+            else if (viewModel.user.value!!.gender.compareTo(resources.getStringArray(R.array.gender)[1]) == 0)
+                dataBinding.gender.setSelection(1)
+            else dataBinding.gender.setSelection(2)
         }
 
         dataBinding.backSettingProfile.setOnClickListener()
@@ -100,14 +107,30 @@ class SettingChangeProfile : AppCompatActivity() {
         dataBinding.birthday.setOnClickListener()
         {
             val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
+            var year = c.get(Calendar.YEAR)
+            var month = c.get(Calendar.MONTH)
+            var day = c.get(Calendar.DAY_OF_MONTH)
+            if (viewModel.user.value!!.birthday.compareTo("None") != 0) {
+                day = Integer.parseInt(viewModel.user.value!!.birthday.substring(0, 2))
+                month = Integer.parseInt(viewModel.user.value!!.birthday.substring(5, 7)) - 1
+                year = Integer.parseInt(
+                    viewModel.user.value!!.birthday.substring(
+                        10,
+                        viewModel.user.value!!.birthday.length
+                    )
+                )
+            }
             val datePickerDialog = DatePickerDialog(this,
                 { _, newYear, monthOfYear, dayOfMonth ->
-                    dataBinding.birthday.text = "$dayOfMonth/${monthOfYear + 1}/$newYear"
+                    if (dayOfMonth < 10 && monthOfYear + 1 < 10)
+                        dataBinding.birthday.text = "0$dayOfMonth - 0${monthOfYear + 1} - $newYear"
+                    else if (dayOfMonth < 10) dataBinding.birthday.text = "0$dayOfMonth - ${monthOfYear + 1} - $newYear"
+                    else if (monthOfYear + 1 < 10) dataBinding.birthday.text = "$dayOfMonth - 0${monthOfYear + 1} - $newYear"
+                    else dataBinding.birthday.text = "$dayOfMonth - ${monthOfYear + 1} - $newYear"
+                    viewModel.user.value!!.birthday = dataBinding.birthday.text as String
                 }, year, month, day
             )
+            datePickerDialog.datePicker.maxDate = Date().time
             datePickerDialog.show()
         }
 

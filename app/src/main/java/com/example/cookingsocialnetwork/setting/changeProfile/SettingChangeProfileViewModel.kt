@@ -16,6 +16,7 @@ class SettingChangeProfileViewModel: ViewModel() {
     var user: MutableLiveData<User> = MutableLiveData()
 
     init {
+        user.value = _user
         getData()
     }
 
