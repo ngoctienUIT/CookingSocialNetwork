@@ -2,6 +2,7 @@ package com.example.cookingsocialnetwork.post
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.core.view.get
@@ -101,11 +103,6 @@ class PostPage : AppCompatActivity() {
         databinding= DataBindingUtil.setContentView(this, R.layout.activity_post_page)
         Log.i("GameFragment", "Called ViewModelProvider.get")
 
-        //set RecycleView
-        gridLayoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
-        databinding.recyclerViewImage.layoutManager = gridLayoutManager
-
-
         // Get the viewModel
         viewModel = ViewModelProvider(this).get(PostViewModel::class.java)
         databinding.postPageViewModel = viewModel
@@ -162,13 +159,14 @@ class PostPage : AppCompatActivity() {
 //        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE) // không còn được sử dụng
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    internal fun noticeDataChangeToRecyclerAdapterImageChoosed(){
-        adapterImageChoosed.notifyDataSetChanged()
-    }
-
     private fun addListUri(){
-        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUriLiveData)
+
+        //set RecycleView
+        gridLayoutManager = GridLayoutManager(this, 3, RecyclerView.VERTICAL, false)
+        // gridLayoutManager.scrollToPosition(0)
+        databinding.recyclerViewImage.layoutManager = gridLayoutManager
+
+        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri)
             {
                 val editGridClickedImageFragment = FragmentClickedImageChoosed()
                 val transaction = supportFragmentManager.beginTransaction()
@@ -178,6 +176,11 @@ class PostPage : AppCompatActivity() {
             }
         databinding.recyclerViewImage.adapter = adapterImageChoosed
         databinding.recyclerViewImage.setHasFixedSize(true)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    internal fun noticeDataChangeToRecyclerAdapterImageChoosed(){
+        adapterImageChoosed.notifyDataSetChanged()
     }
 
     private fun initPost(listUri: MutableList<String>){

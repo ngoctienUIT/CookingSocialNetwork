@@ -8,11 +8,16 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
+
+import com.bumptech.glide.Glide
 import com.example.cookingsocialnetwork.R
+import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
 
-class RecyclerAdapterImageClicked(private var mPhotosUriLiveData: MutableLiveData<MutableList<Uri>>,
+
+class RecyclerAdapterImageClicked(private var mPhotoUris: MutableList<Uri>,
 private var itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<RecyclerAdapterImageClicked.ViewHolder>(){
 
@@ -30,25 +35,30 @@ private var itemClickListener: ItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapterImageClicked.ViewHolder, position: Int) {
-        val itemImage = mPhotosUriLiveData.value?.get(position)!!
+        val itemImage = mPhotoUris[position]
         holder.bindImage(itemImage)
+
         holder.butDelete.setOnClickListener {
-            itemClickListener.onItemRemoveClick(itemImage)
+            itemClickListener.onItemRemoveClick(itemImage, holder.absoluteAdapterPosition)
         }
 
     }
 
     override fun getItemCount(): Int {
-        return mPhotosUriLiveData.value?.size!!
+        return mPhotoUris.size
     }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var itemImage: ImageView = itemView.findViewById(R.id.image_clicked_view)
         var butDelete: Button = itemView.findViewById(R.id.btn_deleteImageChoosed)
 
         fun bindImage(uri: Uri) {
+            /*
             Picasso.get().load(uri).into(this.itemImage)
-
+            Glide.with(itemView).load(uri).into(itemImage)
+            */
+            itemImage.load(uri)
         }
 
     }

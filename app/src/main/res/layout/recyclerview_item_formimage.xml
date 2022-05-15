@@ -4,13 +4,12 @@
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
     android:id="@+id/card_view">
+
         <ImageView
             android:id="@+id/item_ImageChoose"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:src="@drawable/food_picker"
-            android:textAlignment="center"
-            />
+            android:src="@drawable/food_picker" />
 
 </androidx.cardview.widget.CardView>

@@ -51,14 +51,14 @@ class FragmentClickedImageChoosed : Fragment() {
 
         dataBiding.recyclerClickView.setHasFixedSize(true);
 
-        adapterImageClicked = RecyclerAdapterImageClicked(viewModel.mListUriLiveData,
+        adapterImageClicked = RecyclerAdapterImageClicked(viewModel.mListUri,
             object : ItemClickListener {
                 @SuppressLint("NotifyDataSetChanged")
-                override fun onItemRemoveClick(uri: Uri) {
+                override fun onItemRemoveClick(uri: Uri, int: Int) {
                     viewModel.removeUriListUris(uri)
-                    adapterImageClicked.notifyDataSetChanged()
+                    adapterImageClicked.notifyItemRemoved(int)
                     (activity as PostPage).noticeDataChangeToRecyclerAdapterImageChoosed()
-                    if(viewModel.mListUriLiveData.value!!.isEmpty()){
+                    if(viewModel.mListUri.isEmpty()){
                        closedFragment()
                     }
                 }

@@ -7,23 +7,19 @@ import androidx.lifecycle.ViewModel
 
 class PostViewModel() :ViewModel() {
 
-    var mListUriLiveData = MutableLiveData<MutableList<Uri>>()
+    var  mListUri : MutableList<Uri> = mutableListOf()
 
-    init {
-        mListUriLiveData.value  = mutableListOf()
-    }
 
     fun addUriIntoListUris(uri: Uri ) {
-        mListUriLiveData.value?.add(uri)
-        mListUriLiveData.value = mListUriLiveData.value
+        mListUri.add(uri)
     }
     fun removeUriListUris(uri: Uri){
-       if(mListUriLiveData.value?.contains(uri) == true){
-           mListUriLiveData.value?.remove(uri)
+       if(mListUri.contains(uri)){
+           mListUri.remove(uri)
        }
     }
     fun takeListUris(): MutableList<Uri>? {
-        return mListUriLiveData.value
+        return mListUri
 
     }
 
