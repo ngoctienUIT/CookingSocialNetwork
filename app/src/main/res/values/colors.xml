@@ -10,4 +10,5 @@
     <color name="statusBar">#db5a6b</color>
     <color name="textColorDarker">#313130</color>
     <color name="textColor">#626260</color>
+    <color name="green">#008000</color>
 </resources>

@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cookingsocialnetwork.databinding.ActivityReportBinding
-import com.example.cookingsocialnetwork.setting.report.error.ReportErrorActivity
-import com.example.cookingsocialnetwork.setting.report.function.AddFunctionActivity
-import com.example.cookingsocialnetwork.setting.report.material.AddMaterialActivity
+import com.example.cookingsocialnetwork.setting.report.view.ReportErrorActivity
+import com.example.cookingsocialnetwork.setting.report.view.AddFunctionActivity
+import com.example.cookingsocialnetwork.setting.report.view.AddMaterialActivity
 
 class ReportActivity : AppCompatActivity() {
     lateinit var binding: ActivityReportBinding
