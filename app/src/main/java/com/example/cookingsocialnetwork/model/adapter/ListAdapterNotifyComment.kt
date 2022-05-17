@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 
 class ListAdapterNotifyComment(context: Activity, private var commentNotify: MutableList<Notify>):
     ArrayAdapter<Notify>(context, R.layout.comment_notify_item , commentNotify) {
@@ -21,8 +23,21 @@ class ListAdapterNotifyComment(context: Activity, private var commentNotify: Mut
         val imageView: ImageView = view.findViewById(R.id.avatarUser)
         val name: TextView = view.findViewById(R.id.name)
         val time: TextView = view.findViewById(R.id.time)
+        val content:TextView = view.findViewById(R.id.content)
 
-        name.text = commentNotify[position].name
+        time.text = commentNotify[position].time
+        content.text = "Đã bình luận: " + commentNotify[position].content
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(commentNotify[position].name)
+            .get()
+            .addOnSuccessListener {
+                val data = it.data
+                val info = data?.get("info") as Map<String, Any>
+                name.text = info["name"].toString()
+                val avatar = info["avatar"].toString()
+                Picasso.get().load(avatar).into(imageView)
+            }
 
         return view
     }

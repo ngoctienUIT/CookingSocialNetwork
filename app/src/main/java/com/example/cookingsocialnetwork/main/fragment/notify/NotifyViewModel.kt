@@ -6,7 +6,6 @@ import com.example.cookingsocialnetwork.model.data.Notify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-import java.time.LocalDateTime
 
 class NotifyViewModel: ViewModel() {
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -40,12 +39,8 @@ class NotifyViewModel: ViewModel() {
                     val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
 
                     for (item in notifyData) {
-                        val notify = Notify(
-                            item["name"].toString(),
-                            item["type"].toString(),
-                            item["status"] as Long,
-                            LocalDateTime.now()
-                        )
+                        val notify = Notify()
+                        notify.getData(item)
                         _notifys.add(notify)
                         when (notify.type) {
                             "follow" -> _follows.add(notify)

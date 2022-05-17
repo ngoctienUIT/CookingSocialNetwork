@@ -14,7 +14,7 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
     var onLoadMore: (() -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
+         when (viewType) {
             ViewHolderType.COMMENT.ordinal -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.comment_notify_item, parent, false)

@@ -49,10 +49,10 @@ class SearchFragment : Fragment() {
                     getString(R.string.user)
                 }
                 1 -> {
-                    getString(R.string.post_title)
+                    getString(R.string.user)
                 }
                 else -> {
-                    getString(R.string.user)
+                    getString(R.string.post_title)
                 }
             }
         }.attach()
@@ -66,8 +66,6 @@ class SearchFragment : Fragment() {
                 }
 
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    binding.viewSearchPage.visibility = View.VISIBLE
-                    binding.tabSearch.visibility = View.VISIBLE
                     searchPageAdapter.query = query
                     binding.viewSearchPage.adapter = searchPageAdapter
                     return false
@@ -102,6 +100,7 @@ class SearchFragment : Fragment() {
         dialog.window?.setGravity(Gravity.CENTER)
 
         dialogBinding.back.setOnClickListener {
+            binding.search.setQuery(dialogBinding.search.query, false)
             dialog.dismiss()
         }
 
@@ -124,6 +123,8 @@ class SearchFragment : Fragment() {
         dialogBinding.listView.isClickable = true
         dialogBinding.listView.setOnItemClickListener()
         { _, _, position, _ ->
+            binding.viewSearchPage.visibility = View.VISIBLE
+            binding.tabSearch.visibility = View.VISIBLE
             binding.search.setQuery(
                 viewModel.searchHistory.value?.get(viewModel.searchHistory.value!!.size - position - 1),
                 true
@@ -133,6 +134,8 @@ class SearchFragment : Fragment() {
 
         dialogBinding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.viewSearchPage.visibility = View.VISIBLE
+                binding.tabSearch.visibility = View.VISIBLE
                 binding.search.setQuery(query, true)
                 query?.let { updateSearchHistory(it) }
                 checkShowDialog = false

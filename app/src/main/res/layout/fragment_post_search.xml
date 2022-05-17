@@ -2,12 +2,12 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".main.fragment.search.view.postSearch.PostSearchFragment" >
+    tools:context=".main.fragment.search.view.PostSearchFragment" >
 
     <data>
         <variable
             name="viewmodel"
-            type="com.example.cookingsocialnetwork.main.fragment.search.view.postSearch.PostSearchViewModel" />
+            type="com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel" />
     </data>
 
     <FrameLayout

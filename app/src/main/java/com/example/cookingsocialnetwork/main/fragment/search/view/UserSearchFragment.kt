@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.main.fragment.search.view.userSearch
+package com.example.cookingsocialnetwork.main.fragment.search.view
 
 import android.os.Bundle
 import android.util.Log
@@ -10,11 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentUserSearchBinding
+import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel
+import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModelFactory
 import com.example.cookingsocialnetwork.model.adapter.ListAdapterUser
 
 class UserSearchFragment : Fragment() {
     lateinit var query: String
-    lateinit var viewModel: UserSearchViewModel
+    lateinit var viewModel: SearchViewModel
     lateinit var binding: FragmentUserSearchBinding
 
     override fun onCreateView(
@@ -22,8 +24,8 @@ class UserSearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_search, container, false)
-        val factory = UserSearchFactory()
-        viewModel = ViewModelProvider(this, factory).get(UserSearchViewModel::class.java)
+        val factory = SearchViewModelFactory()
+        viewModel = ViewModelProvider(this, factory).get(SearchViewModel::class.java)
         viewModel.query = query
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this

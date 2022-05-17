@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 
 class ListAdapterNotifyFavorite(context: Activity, private var favoriteNotify: MutableList<Notify>):
     ArrayAdapter<Notify>(context, R.layout.favorite_notify_item , favoriteNotify) {
@@ -22,7 +24,18 @@ class ListAdapterNotifyFavorite(context: Activity, private var favoriteNotify: M
         val name: TextView = view.findViewById(R.id.name)
         val time: TextView = view.findViewById(R.id.time)
 
-        name.text = favoriteNotify[position].name
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(favoriteNotify[position].name)
+            .get()
+            .addOnSuccessListener {
+                val data = it.data
+                val info = data?.get("info") as Map<String, Any>
+                name.text = info["name"].toString()
+                val avatar = info["avatar"].toString()
+                Picasso.get().load(avatar).into(imageView)
+            }
+        time.text = favoriteNotify[position].time
 
         return view
     }
