@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -7,17 +7,26 @@
             type="com.example.cookingsocialnetwork.main.fragment.home.HomeViewModel" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".main.fragment.home.HomeFragment">
-
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:id="@+id/recycler_view_post"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Home" />
+            android:padding="4dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/recyclerview_item_form"
+            app:spanCount="1">
 
-    </FrameLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+
+    </RelativeLayout>
 </layout>
 
