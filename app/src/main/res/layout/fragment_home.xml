@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -8,23 +10,21 @@
     </data>
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".main.fragment.home.HomeFragment">
+
         <androidx.recyclerview.widget.RecyclerView
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             android:id="@+id/recycler_view_post"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="4dp"
             android:clipToPadding="false"
-            tools:listitem="@layout/recyclerview_item_form"
-            app:spanCount="1">
+            android:padding="4dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="1"
+            tools:listitem="@layout/recyclerview_item_form">
 
         </androidx.recyclerview.widget.RecyclerView>
-
 
 
     </RelativeLayout>
