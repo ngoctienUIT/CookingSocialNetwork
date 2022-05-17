@@ -13,18 +13,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".main.fragment.home.HomeFragment">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_post"
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recycler_view_post"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:clipToPadding="false"-->
+<!--            android:padding="4dp"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--            app:spanCount="1"-->
+<!--            tools:listitem="@layout/recyclerview_item_form">-->
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swp_records"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:padding="4dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="1"
-            tools:listitem="@layout/recyclerview_item_form">
+            tools:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_posts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cast_expanded_controller_actionbar_bg_gradient_light"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_view_post" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 
     </RelativeLayout>

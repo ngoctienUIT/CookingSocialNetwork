@@ -49,6 +49,7 @@ class MainPage : AppCompatActivity() {
             val post = Intent(this, PostPage::class.java)
             startActivity(post)
         }
+
     }
 
     private fun replaceFragment(fragment: Fragment)

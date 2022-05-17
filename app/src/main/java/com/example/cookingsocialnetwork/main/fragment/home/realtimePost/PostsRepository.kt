@@ -1,7 +1,9 @@
 package com.example.cookingsocialnetwork.main.fragment.home.realtimePost
 
 import com.example.cookingsocialnetwork.model.data.Post
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.logging.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.Observable
 import kotlinx.coroutines.android.awaitFrame
 import kotlinx.coroutines.awaitAll
@@ -16,7 +18,7 @@ class PostsRepository @Inject constructor() {
         loadBefore: String? = null,
         loadAfter: String? = null
     ): List<RealtimePost> {
-        var query = db.collection("posts").orderBy("timePost").limit(pageSize.toLong())
+        var query = db.collection("posts").limit(pageSize.toLong())
 
 
         loadBefore?.let {
@@ -36,17 +38,31 @@ class PostsRepository @Inject constructor() {
             query = query.startAfter(item)
         }
 
+//        android.util.Log.i("hehehe", "${
+//            query.get()
+//                .await()
+//                .map {
+//                    RealtimePost(
+//                        it.id,
+//                        getPost(it.id)
+//                    )
+//                }
+//                .count()
+//        }")
         return query.get()
             .await()
             .map {
                 RealtimePost(
                     it.id,
-                    getRecord(it.id)
+                    getPost(it.id)
                 )
             }
+
+
     }
 
-    private fun getRecord(itemId: String): Observable<Post> =
+    private fun getPost(itemId: String): Observable<Post> =
+
         Observable.create<Post> { emitter ->
             db.collection("posts")
                 .document(itemId)
@@ -57,10 +73,14 @@ class PostsRepository @Inject constructor() {
                         emitter.onNext(
                             snapshot.toObject(Post::class.java)
                                 ?: throw IllegalArgumentException()
+
                         )
+
                     } else {
                         emitter.onError(Throwable("Post does not exist"))
+
                     }
+
                 }
         }
 }

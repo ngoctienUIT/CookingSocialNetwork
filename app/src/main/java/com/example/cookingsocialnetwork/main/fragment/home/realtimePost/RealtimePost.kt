@@ -6,5 +6,5 @@ import io.reactivex.Observable
 
 data class RealtimePost(
     val id: String,
-    val record: Observable<Post>
+    val post: Observable<Post>
 )

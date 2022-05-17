@@ -1,17 +1,49 @@
 package com.example.cookingsocialnetwork.main.fragment.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsDataSource
+import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsRepository
+import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.supervisorScope
+import javax.inject.Inject
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel @Inject constructor(postsRepository : PostsRepository): ViewModel() {
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var posts:MutableList<Post> = mutableListOf()
     private var _posts: MutableLiveData<MutableList<Post>> = MutableLiveData()
     private var post: MutableLiveData<Post> = MutableLiveData()
+
+    private val viewModelJob =  SupervisorJob()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val config = PagedList.Config.Builder()
+        .setEnablePlaceholders(false)
+        .setPrefetchDistance(10)
+        .setPageSize(20)
+        .build()
+
+
+    val listPosts: LiveData<PagedList<RealtimePost>> =
+        LivePagedListBuilder<String, RealtimePost>(
+            PostsDataSource.Factory(postsRepository, uiScope),
+            config
+        ).build()
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()

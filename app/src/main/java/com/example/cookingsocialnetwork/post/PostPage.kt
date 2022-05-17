@@ -278,37 +278,6 @@ class PostPage : AppCompatActivity() {
             1F
         )
     }
-
-    private fun drawUserTextInput() : LinearLayout {
-        // layout
-        val newLayout = LinearLayout(this)
-        newLayout.orientation = LinearLayout.HORIZONTAL
-        newLayout.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        // edit text
-        val newText = EditText(this)
-        newText.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            1F
-        )
-        newLayout.addView(newText)
-        // button delete
-        val newCloseButton = Button(this)
-        newCloseButton.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            1F
-        )
-        newLayout.addView(newCloseButton)
-        newCloseButton.setOnClickListener {
-            (newLayout.parent as LinearLayout).removeView(newLayout)
-        }
-
-        return newLayout
-    }
 }
 
 

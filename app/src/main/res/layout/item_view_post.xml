@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/nameFoodPost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -41,10 +42,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="không phải bởi "
+                        android:text="Tác giả: "
                         android:layout_marginLeft="10dp"
                         android:textSize="16sp"/>
                     <TextView
+                        android:id="@+id/nameAuthor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
@@ -62,6 +64,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_timer"/>
                     <TextView
+                        android:id="@+id/timeCooking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
@@ -77,6 +80,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_serves"/>
                     <TextView
+                        android:id="@+id/servesInPost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
@@ -92,12 +96,14 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_star"/>
                     <TextView
+                        android:id="@+id/difficultyInPost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="3/5"/>
                 </LinearLayout>
                 <ImageView
+                    android:id="@+id/imageFoodInPost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/food_picker"
