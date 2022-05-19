@@ -1,15 +1,16 @@
 package com.example.cookingsocialnetwork.mainActivity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import com.example.cookingsocialnetwork.model.LanguageManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.intro.IntroPage
-import com.example.cookingsocialnetwork.splash.SplashPage
+import com.example.cookingsocialnetwork.model.LanguageManager
+import com.example.cookingsocialnetwork.model.service.MyService
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+        val intent = Intent(this, MyService::class.java)
+        startService(intent)
         window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
     }
 
