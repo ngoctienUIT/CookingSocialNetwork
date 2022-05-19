@@ -26,20 +26,19 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swp_records"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="320dp"
+            android:layout_marginHorizontal="20dp"
             tools:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_posts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/cast_expanded_controller_actionbar_bg_gradient_light"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_view_post" />
+                tools:listitem="@layout/recyclerview_item_form" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 
 

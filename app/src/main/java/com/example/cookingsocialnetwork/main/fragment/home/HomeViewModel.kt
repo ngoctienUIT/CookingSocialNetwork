@@ -1,10 +1,12 @@
 package com.example.cookingsocialnetwork.main.fragment.home
 
+import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.MiniPost
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsDataSource
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsRepository
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
