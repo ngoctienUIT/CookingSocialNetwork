@@ -7,10 +7,8 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.MainPage
 import com.example.cookingsocialnetwork.model.data.Notify
@@ -32,13 +30,6 @@ class MyService: Service() {
         createNotificationChannel()
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
         getNotify()
-        val notificationBuilder: NotificationCompat.Builder =
-            NotificationCompat.Builder(this, NotificationCompat.EXTRA_NOTIFICATION_ID)
-        val notification: Notification = notificationBuilder.setOngoing(true)
-            .setPriority(NotificationManager.IMPORTANCE_MIN)
-            .setCategory(Notification.CATEGORY_SERVICE)
-            .build()
-        startForeground(1102, notification)
         return START_NOT_STICKY
     }
 
@@ -55,7 +46,7 @@ class MyService: Service() {
                     notifyList = mutableListOf()
                     val data = snapshot.data
                     val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-                    Log.w("error", notifyData.toString())
+
                     for (item in notifyData) {
                         val notify = Notify()
                         notify.getData(item)
@@ -125,7 +116,7 @@ class MyService: Service() {
         val context = this
         Picasso.get().load(url).into(object : com.squareup.picasso.Target {
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                val mBuilder: NotificationCompat.Builder =
+                val mBuilder =
                     NotificationCompat.Builder(
                         context,
                         NotificationManager.EXTRA_NOTIFICATION_CHANNEL_ID
@@ -140,8 +131,9 @@ class MyService: Service() {
                         .setAutoCancel(true)
                 val random = Random()
                 val m: Int = random.nextInt(9999 - 1000) + 1000
-                val notificationManager = NotificationManagerCompat.from(context)
-                notificationManager.notify(m, mBuilder.build())
+//                val notificationManager = NotificationManagerCompat.from(context)
+//                notificationManager.notify(m, mBuilder.build())
+                startForeground(m, mBuilder.build())
             }
 
             override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
