@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityIntroPageBinding
 import com.example.cookingsocialnetwork.main.MainPage
+import com.example.cookingsocialnetwork.model.service.MyService
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -109,7 +110,7 @@ class IntroPage: AppCompatActivity() {
             signInLauncher.launch(signInIntent)
         }
 
-        var sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
+        val sharePref = getSharedPreferences("ChangeDarkMode", MODE_PRIVATE)
         val check = sharePref.getInt("darkMode", 2)
         AppCompatDelegate.setDefaultNightMode(check)
 
@@ -200,8 +201,7 @@ class IntroPage: AppCompatActivity() {
     }
 
     //tạo tất cả dữ liệu cần có ủa user
-    private fun initUser()
-    {
+    private fun initUser() {
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
@@ -222,27 +222,35 @@ class IntroPage: AppCompatActivity() {
             "followers" to mutableListOf<String>(),
             "favourites" to mutableListOf<String>(),
             "searchHistory" to mutableListOf<String>(),
-            "info" to info
+            "info" to info,
+            "notify" to mutableListOf<Map<String, Any>>()
         )
 
         FirebaseFirestore.getInstance()
             .collection("user")
             .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .set(post)
+            .addOnSuccessListener {
+                val intent = Intent(this, MyService::class.java)
+                startService(intent)
+            }
     }
 
     private fun updateUI(user: FirebaseUser?) {
         //Nếu user null thì thoát
         if (user == null) return
-        //Nếu user khác null thì kiểm tra đã có trường infor hay chưa
-        //Nếu chưa có thì là new user nên thêm trường infor vào
+        //Nếu user khác null thì kiểm tra đã có trường info hay chưa
+        //Nếu chưa có thì là new user nên thêm trường info vào
         FirebaseFirestore.getInstance()
             .collection("user")
             .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .get()
-            .addOnSuccessListener {
-                    documents ->
-                if (documents.data == null) initUser() //khởi tạo các trường document của user
+            .addOnSuccessListener { documents ->
+                if (documents.data == null) initUser() // khởi tạo các trường document của user
+                else {
+                    val intent = Intent(this, MyService::class.java)
+                    startService(intent)
+                }
             }
 
         //Sau khi đăng nhập xog sẽ chuyển đến màn hình home

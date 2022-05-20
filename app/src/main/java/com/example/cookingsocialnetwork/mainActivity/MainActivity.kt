@@ -18,9 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        val intent = Intent(this, MyService::class.java)
-        startService(intent)
-
         window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
     }
 

@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -31,8 +32,13 @@ class MyService: Service() {
         createNotificationChannel()
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
         getNotify()
-        val notify = Notification()
-        startForeground(1102, notify)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, NotificationCompat.EXTRA_NOTIFICATION_ID)
+        val notification: Notification = notificationBuilder.setOngoing(true)
+            .setPriority(NotificationManager.IMPORTANCE_MIN)
+            .setCategory(Notification.CATEGORY_SERVICE)
+            .build()
+        startForeground(1102, notification)
         return START_NOT_STICKY
     }
 
@@ -49,7 +55,7 @@ class MyService: Service() {
                     notifyList = mutableListOf()
                     val data = snapshot.data
                     val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-
+                    Log.w("error", notifyData.toString())
                     for (item in notifyData) {
                         val notify = Notify()
                         notify.getData(item)
