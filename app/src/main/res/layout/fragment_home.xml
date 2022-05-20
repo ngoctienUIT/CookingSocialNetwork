@@ -14,20 +14,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".main.fragment.home.HomeFragment">
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_view_post"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:clipToPadding="false"-->
-<!--            android:padding="4dp"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--            app:spanCount="1"-->
-<!--            tools:listitem="@layout/recyclerview_item_form">-->
-<!--    </androidx.recyclerview.widget.RecyclerView>-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="150dp">
-<!--            decor something-->
         </RelativeLayout>
         <ScrollView
             android:layout_width="match_parent"

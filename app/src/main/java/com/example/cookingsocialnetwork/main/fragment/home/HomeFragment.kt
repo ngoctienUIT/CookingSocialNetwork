@@ -41,16 +41,17 @@ class HomeFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
-//        binding.recPosts.adapter = postsAdapter
-//        viewModel.listPosts.observe(viewLifecycleOwner) {
-//            binding.swpRecords.isRefreshing = false;
-//            postsAdapter.submitList(it)
-//        }
+        binding.recPosts.adapter = postsAdapter
+        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        viewModel.listPosts.observe(viewLifecycleOwner) {
+            binding.swpRecords.isRefreshing = false;
+            postsAdapter.submitList(it)
+        }
 
          //Test cái recyclerView
-        binding.recPosts.adapter = MiniPostAdapter(generate(10))
-        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.recPosts.setHasFixedSize(true)
+//        binding.recPosts.adapter = MiniPostAdapter(generate(10))
+//        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//        binding.recPosts.setHasFixedSize(true)
 
         return binding.root
 

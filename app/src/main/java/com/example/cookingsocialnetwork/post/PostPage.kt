@@ -194,17 +194,17 @@ class PostPage : AppCompatActivity() {
             "owner" to FirebaseAuth.getInstance().currentUser?.email.toString(),
             "images" to listUri,
             "nameFood" to databinding.nameFood.text.toString(),
-            "description" to arrEditTextIngredient,
+            "description" to databinding.txtDec.text.toString()  ,
             "cookingTime" to databinding.cookingTime.text.toString(),
             "servers" to databinding.txtServes.text.toString(),
             "level" to databinding.ratingLevel.numStars.toString(),
+            "ingredients" to arrEditTextIngredient,
             "methods" to arrEditTextMethod,
             "favourites" to mutableListOf<String>(),
             "timePost" to LocalDateTime.now()
         )
         newPostData.set(postData)
         addIDPostToUser(newPostData.id)
-
     }
 
     private fun addIDPostToUser(IDNewPost: String){
