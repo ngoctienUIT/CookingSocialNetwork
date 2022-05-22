@@ -1,6 +1,8 @@
 package com.example.cookingsocialnetwork.intro
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.IntegerRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
@@ -232,7 +235,7 @@ class IntroPage: AppCompatActivity() {
             .set(post)
             .addOnSuccessListener {
                 val intent = Intent(this, MyService::class.java)
-                startService(intent)
+                startForegroundService(intent)
             }
     }
 
@@ -247,9 +250,10 @@ class IntroPage: AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.data == null) initUser() // khởi tạo các trường document của user
-                else {
+                else if (!foregroundServiceRunning())
+                {
                     val intent = Intent(this, MyService::class.java)
-                    startService(intent)
+                    startForegroundService(intent)
                 }
             }
 
@@ -257,5 +261,13 @@ class IntroPage: AppCompatActivity() {
         val main = Intent(this, MainPage::class.java)
         startActivity(main)
         finish()
+    }
+
+    private fun foregroundServiceRunning(): Boolean
+    {
+        val activityManager: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in activityManager.getRunningServices(Integer.MAX_VALUE))
+            if (MyService::class.java.name.equals(service.service.className)) return true
+        return false
     }
 }

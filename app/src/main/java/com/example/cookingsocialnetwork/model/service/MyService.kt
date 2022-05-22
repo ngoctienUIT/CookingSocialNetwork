@@ -9,8 +9,10 @@ import android.os.Build
 import android.os.IBinder
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.MainPage
+import com.example.cookingsocialnetwork.mainActivity.MainActivity
 import com.example.cookingsocialnetwork.model.data.Notify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,6 +32,20 @@ class MyService: Service() {
         createNotificationChannel()
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
         getNotify()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent,0)
+        val mBuilder =
+            NotificationCompat.Builder(
+                this,
+                NotificationManager.EXTRA_NOTIFICATION_CHANNEL_ID
+            )
+                .setSmallIcon(R.drawable.ic_cooking)
+                .setContentText(getString(R.string.app_name))
+                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+        startForeground(1102, mBuilder.build())
         return START_NOT_STICKY
     }
 
@@ -131,9 +147,8 @@ class MyService: Service() {
                         .setAutoCancel(true)
                 val random = Random()
                 val m: Int = random.nextInt(9999 - 1000) + 1000
-//                val notificationManager = NotificationManagerCompat.from(context)
-//                notificationManager.notify(m, mBuilder.build())
-                startForeground(m, mBuilder.build())
+                val notificationManager = NotificationManagerCompat.from(context)
+                notificationManager.notify(m, mBuilder.build())
             }
 
             override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}

@@ -19,22 +19,22 @@
         android:contentDescription="Avatar" />
 
     <TextView
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:paddingStart="50dp"
         android:id="@+id/search_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:paddingStart="50dp"
         android:text="@string/user"
         android:textSize="16sp"
         tools:ignore="RtlSymmetry" />
 
     <Button
-        android:background="@drawable/ic_north_west"
         android:id="@+id/search_btn"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_north_west" />
 
 </RelativeLayout>

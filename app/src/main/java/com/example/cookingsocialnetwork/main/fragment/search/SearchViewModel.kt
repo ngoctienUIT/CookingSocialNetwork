@@ -54,7 +54,7 @@ class SearchViewModel: ViewModel() {
             }
     }
 
-    private fun listenToDataUser()
+    fun listenToDataUser()
     {
         firestore.collection("user")
             .addSnapshotListener()
@@ -72,7 +72,8 @@ class SearchViewModel: ViewModel() {
                             user.getData(it)
                             myData.value = user
                         }
-                        if (data["name"].toString().uppercase().contains(query.uppercase())) {
+                        if (data["name"].toString().uppercase().contains(query.uppercase())
+                            || data["username"].toString().uppercase().contains(query.uppercase())) {
                             val user = User()
                             user.getData(it)
                             users.add(user)

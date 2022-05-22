@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
@@ -15,6 +16,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentSearchBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDialogSearchableBinding
 import com.example.cookingsocialnetwork.model.adapter.ListAdapterSearchHistory
+import com.example.cookingsocialnetwork.model.adapter.ListAdapterSearchUser
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -100,7 +102,7 @@ class SearchFragment : Fragment() {
         dialog.window?.setGravity(Gravity.CENTER)
 
         dialogBinding.back.setOnClickListener {
-            binding.search.setQuery(dialogBinding.search.query, false)
+//            binding.search.setQuery(dialogBinding.search.query, false)
             dialog.dismiss()
         }
 
@@ -145,7 +147,52 @@ class SearchFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 viewModel.query = newText.toString()
-                viewModel.listenToDataSearchHistory()
+                if (newText.toString() != "") {
+                    viewModel.listenToDataUser()
+                    activity?.let {
+                        viewModel._users.observe(context) {
+                            val adapter =
+                                viewModel._users.value?.let {
+                                    ListAdapterSearchUser(dialog, it)
+                                }
+                            dialogBinding.listView.adapter = adapter
+                        }
+                    }
+
+                    dialogBinding.listView.isClickable = true
+                    dialogBinding.listView.setOnItemClickListener()
+                    { _, _, position, _ ->
+                        Log.w("ok", "abc")
+                        dialog.dismiss()
+                    }
+                }
+                else {
+                    viewModel.listenToDataSearchHistory()
+                    activity?.let {
+                        viewModel.searchHistory.observe(context) {
+                            val adapter =
+                                viewModel.searchHistory.value?.let {
+                                    ListAdapterSearchHistory(
+                                        dialog,
+                                        it.asReversed()
+                                    )
+                                }
+                            dialogBinding.listView.adapter = adapter
+                        }
+                    }
+
+                    dialogBinding.listView.isClickable = true
+                    dialogBinding.listView.setOnItemClickListener()
+                    { _, _, position, _ ->
+                        binding.viewSearchPage.visibility = View.VISIBLE
+                        binding.tabSearch.visibility = View.VISIBLE
+                        binding.search.setQuery(
+                            viewModel.searchHistory.value?.get(viewModel.searchHistory.value!!.size - position - 1),
+                            true
+                        )
+                        dialog.dismiss()
+                    }
+                }
                 return false
             }
         })

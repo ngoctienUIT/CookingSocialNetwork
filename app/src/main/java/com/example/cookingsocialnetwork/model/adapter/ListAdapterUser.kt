@@ -24,6 +24,7 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
 
         val imageView: ImageView = view.findViewById(R.id.avatarUser)
         val name: TextView = view.findViewById(R.id.name)
+        val username: TextView = view.findViewById(R.id.username)
         val info: TextView = view.findViewById(R.id.info)
         val follow: Button = view.findViewById(R.id.follow)
 
@@ -62,6 +63,7 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
         Picasso.get().load(userArrayList[position].avatar).into(imageView)
         imageView.setImageURI(Uri.parse(userArrayList[position].avatar))
         name.text = userArrayList[position].name
+        username.text = userArrayList[position].username
         info.text = "${userArrayList[position].followers.size} follower · ${userArrayList[position].post.size} bài viết"
 
         return view
