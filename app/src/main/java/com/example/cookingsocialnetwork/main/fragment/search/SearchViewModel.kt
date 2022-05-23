@@ -29,7 +29,7 @@ class SearchViewModel: ViewModel() {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
         listenToDataSearchHistory()
         listenToDataUser()
-//        listenToDataPost()
+        listenToDataPost()
     }
 
     fun listenToDataSearchHistory()
@@ -96,8 +96,8 @@ class SearchViewModel: ViewModel() {
                     posts = mutableListOf()
                     documents.forEach()
                     {
-                        val data = it.data?.get("info") as Map<String, Any>
-                        if (data["name"].toString().uppercase().contains(query.uppercase())) {
+                        val data = it.data?.get("nameFood") as String
+                        if (data.uppercase().contains(query.uppercase())) {
                             val post = Post()
                             post.getData(it)
                             posts.add(post)

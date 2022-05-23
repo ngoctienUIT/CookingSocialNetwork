@@ -201,7 +201,9 @@ class PostPage : AppCompatActivity() {
             "ingredients" to arrEditTextIngredient,
             "methods" to arrEditTextMethod,
             "favourites" to mutableListOf<String>(),
-            "timePost" to LocalDateTime.now()
+            "timePost" to LocalDateTime.now(),
+            "share" to 0,
+            "comments" to mutableListOf<Map<String, Any>>()
         )
         newPostData.set(postData)
         addIDPostToUser(newPostData.id)

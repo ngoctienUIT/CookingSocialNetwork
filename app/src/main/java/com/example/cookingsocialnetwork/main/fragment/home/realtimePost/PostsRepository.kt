@@ -67,7 +67,7 @@ class PostsRepository @Inject constructor() {
                   //        android.util.Log.i("onNext", "ahihi")
                           val post = Post();
                           post.getData(snapshot)
-                           emitter.onNext(post)
+//                           emitter.onNext(post)
 //                          emitter.onNext(
 //                              snapshot.toObject (Post::class.java)
 //                                  ?: throw IllegalArgumentException()

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingVertical="20dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_marginHorizontal="10dp"
@@ -19,6 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:text="Tên bài đăng"/>
 
     <RelativeLayout
@@ -27,20 +30,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:src="@drawable/vietnam"
-            android:id="@+id/avatar"
-            android:layout_alignParentStart="true"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            app:cardCornerRadius="180dp">
+
+            <ImageView
+                android:src="@drawable/vietnam"
+                android:id="@+id/avatar"
+                android:layout_alignParentStart="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
-            android:layout_marginStart="30dp"
             android:id="@+id/name"
-            android:text="name"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="40dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="name"
+            android:textColor="#009999"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginEnd="3dp"
+                android:src="@drawable/ic_favorite_border"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                app:tint="#009999" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/favorite"
+                android:textStyle="bold"
+                android:textColor="#009999"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

@@ -65,6 +65,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service android:name=".model.service.MyService" />
+
         <receiver android:name=".model.service.MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
