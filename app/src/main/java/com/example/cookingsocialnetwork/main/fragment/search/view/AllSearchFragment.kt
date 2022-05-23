@@ -12,7 +12,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentAllSearchBinding
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModelFactory
-import com.example.cookingsocialnetwork.model.adapter.viewholder.AllSearchAdapter
+import com.example.cookingsocialnetwork.model.adapter.viewholdersearch.AllSearchAdapter
 
 class AllSearchFragment : Fragment() {
     lateinit var query: String
@@ -37,7 +37,7 @@ class AllSearchFragment : Fragment() {
                 else 1
             }
         }
-        
+
         binding.recyclerView.layoutManager = layoutManager
         activity?.let {
             viewModel._posts.observe(it)

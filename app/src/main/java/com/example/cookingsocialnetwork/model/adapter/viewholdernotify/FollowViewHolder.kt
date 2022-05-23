@@ -1,23 +1,24 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholder
+package com.example.cookingsocialnetwork.model.adapter.viewholdernotify
 
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.model.data.Post
+import com.example.cookingsocialnetwork.model.data.Notify
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.lang.ref.WeakReference
 
-class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var view: WeakReference<View> = WeakReference(itemView)
     private var nameView: TextView? = null
-    private var nameFoodView: TextView? = null
-    private var favoriteView: TextView? = null
+    private var contentView: TextView? = null
+    private var timeView: TextView? = null
     private var avatarView: ImageView? = null
-    private var imagePostView: ImageView? = null
-    var post: Post? = null
+    private var followBtn: Button? = null
+    var follow: Notify? = null
     var onClickItem: ((String) -> Unit)? = null
 
     init {
@@ -27,24 +28,25 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private fun findView() {
         nameView = view.get()?.findViewById(R.id.name)
-        nameFoodView = view.get()?.findViewById(R.id.name_post)
-        avatarView = view.get()?.findViewById(R.id.avatar)
-        imagePostView = view.get()?.findViewById(R.id.image_post)
-        favoriteView = view.get()?.findViewById(R.id.favorite)
+        contentView = view.get()?.findViewById(R.id.content)
+        timeView = view.get()?.findViewById(R.id.time)
+        avatarView = view.get()?.findViewById(R.id.avatarUser)
+        followBtn = view.get()?.findViewById(R.id.follow)
     }
 
     private fun setListener() {
-
+        view.get()?.setOnClickListener()
+        {
+            onClickItem?.let { follow?.let { it1 -> it(it1.name) } }
+        }
     }
 
     fun updateView() {
         findView()
-        nameFoodView?.text = post?.nameFood
-        favoriteView?.text = post?.favourites?.size.toString()
-        Picasso.get().load(post!!.images[0]).into(imagePostView)
+        timeView?.text = follow?.time
         FirebaseFirestore.getInstance()
             .collection("user")
-            .document(post!!.owner)
+            .document(follow!!.name)
             .get()
             .addOnSuccessListener {
                 val data = it.data

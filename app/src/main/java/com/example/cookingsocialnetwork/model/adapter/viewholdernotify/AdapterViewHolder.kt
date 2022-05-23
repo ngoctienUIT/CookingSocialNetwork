@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholder
+package com.example.cookingsocialnetwork.model.adapter.viewholdernotify
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
