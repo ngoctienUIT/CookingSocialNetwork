@@ -19,13 +19,11 @@ data class Post(
     var servers: String, // số người ăn
     var timePost : HashMap<String, Any>,
 
-   // var comments: MutableList<Map<String, Any>>, // danh sách commment
+    var comments: MutableList<Map<String, Any>>, // danh sách commment
   //  var ingredients: MutableList<Map<String, Any>>, // danh sách nguyên liệu
 
    // var rate: Map<String, MutableList<String>>, // các lượt đánh giá
-   // var share: Int // số lượt share
-
-
+    var share: Long // số lượt share
 ) {
     //    constructor() : this(
 //        "", 0, "", mutableListOf(), mutableListOf(),
@@ -33,7 +31,7 @@ data class Post(
 //    )
     constructor() : this(
         "",   "", mutableListOf(), "", mutableListOf(),
-        mutableListOf(),"", mutableListOf(), "", "", "", hashMapOf()
+        mutableListOf(),"", mutableListOf(), "", "", "", hashMapOf(), mutableListOf(), 0
     )
 
     fun getData(document: DocumentSnapshot) {
@@ -50,6 +48,8 @@ data class Post(
             owner = document.data?.get("owner") as String
             servers = document.data?.get("nameFood") as String
             timePost = document.data?.get("timePost") as HashMap<String, Any>
+            share = document.data?.get("share") as Long
+            comments = document.data?.get("methods") as MutableList<Map<String, Any>>
         }
 
             //  comments = document.data?.get("comments") as MutableList<Map<String, Any>>

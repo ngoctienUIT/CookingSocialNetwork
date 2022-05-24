@@ -1,25 +1,25 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholder
+package com.example.cookingsocialnetwork.model.adapter.viewholdernotify
 
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.lang.ref.WeakReference
 
-class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
     private var view: WeakReference<View> = WeakReference(itemView)
     private var nameView: TextView? = null
     private var contentView: TextView? = null
     private var timeView: TextView? = null
     private var avatarView: ImageView? = null
-    private var followBtn: Button? = null
-    var follow: Notify? = null
-    var onClickItem: ((String) -> Unit)? = null
+    private var postView: ImageView? = null
+    var comment: Notify? = null
+    var onClickItem : ((String)->Unit)? = null
 
     init {
         findView()
@@ -31,22 +31,24 @@ class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         contentView = view.get()?.findViewById(R.id.content)
         timeView = view.get()?.findViewById(R.id.time)
         avatarView = view.get()?.findViewById(R.id.avatarUser)
-        followBtn = view.get()?.findViewById(R.id.follow)
+        postView = view.get()?.findViewById(R.id.post)
     }
 
-    private fun setListener() {
+    private fun setListener()
+    {
         view.get()?.setOnClickListener()
         {
-            onClickItem?.let { follow?.let { it1 -> it(it1.name) } }
+            onClickItem?.let { comment?.let { it1 -> it(it1.name) } }
         }
     }
 
-    fun updateView() {
+    fun updateView()
+    {
         findView()
-        timeView?.text = follow?.time
+        timeView?.text = comment?.time
         FirebaseFirestore.getInstance()
             .collection("user")
-            .document(follow!!.name)
+            .document(comment!!.name)
             .get()
             .addOnSuccessListener {
                 val data = it.data
@@ -57,5 +59,16 @@ class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     Picasso.get().load(avatar).into(image)
                 }
             }
+
+        FirebaseFirestore.getInstance()
+            .collection("post")
+            .document(comment!!.id)
+            .get()
+            .addOnSuccessListener {
+                val post = Post()
+                post.getData(it)
+                Picasso.get().load(post.images[0]).into(postView)
+            }
+        contentView?.text = "Đã bình luận: " + comment?.content
     }
 }

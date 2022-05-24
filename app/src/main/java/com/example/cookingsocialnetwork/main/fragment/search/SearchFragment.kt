@@ -48,7 +48,7 @@ class SearchFragment : Fragment() {
         { tab, index ->
             tab.text = when (index) {
                 0 -> {
-                    getString(R.string.user)
+                    getString(R.string.all)
                 }
                 1 -> {
                     getString(R.string.user)

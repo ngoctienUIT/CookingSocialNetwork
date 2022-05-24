@@ -2,6 +2,7 @@ package com.example.cookingsocialnetwork.main.fragment.search
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.cookingsocialnetwork.main.fragment.search.view.AllSearchFragment
 import com.example.cookingsocialnetwork.main.fragment.search.view.PostSearchFragment
 import com.example.cookingsocialnetwork.main.fragment.search.view.UserSearchFragment
 
@@ -14,7 +15,7 @@ class SearchPageAdapter(fragmentActivity: SearchFragment): FragmentStateAdapter(
         when (position)
         {
             0 -> {
-                val frag= UserSearchFragment()
+                val frag= AllSearchFragment()
                 frag.query = query
                 return frag
             }
