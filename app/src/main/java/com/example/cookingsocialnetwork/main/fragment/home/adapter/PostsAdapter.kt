@@ -16,6 +16,7 @@ import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.Realtime
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.android.material.card.MaterialCardView
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposables
 
 class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>(
     object : DiffUtil.ItemCallback<RealtimePost>() {
@@ -42,9 +43,10 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
 
     override fun onViewRecycled(holder: PostViewHolder) {
         super.onViewRecycled(holder)
-       /* holder.apply {
-            txtRecordName.text = ""
-            crdRecord.isEnabled = true
+        holder.apply {
+            foodName.text = ""
+            author.text = ""
+            rating.numStars = 0;
             crdRecord.setCardBackgroundColor(
                 ContextCompat.getColor(
                     view.context,
@@ -52,7 +54,7 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
                 )
             )
             viewHolderDisposables.clear()
-        }*/
+        }
     }
 
     inner class PostViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -72,10 +74,12 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
                     .subscribe { post ->
                         foodName.text = post.nameFood
                         author.text = post.owner
-                       // timeCooking.text = post.cookingTime
-                         rating.numStars =  post.level.toInt()
+                        // timeCooking.text = post.cookingTime
+                        rating.numStars =  post.level.toInt()
                         foodImage.load(post.images[0])
-                    }
+                    } to viewHolderDisposables
+               // viewHolderDisposables.add();
+
             }
         }
     }
