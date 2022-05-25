@@ -6,17 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
-import com.example.cookingsocialnetwork.model.data.Post
-import com.google.android.material.card.MaterialCardView
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposables
 
 class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>(
     object : DiffUtil.ItemCallback<RealtimePost>() {
@@ -47,12 +44,12 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
             foodName.text = ""
             author.text = ""
             rating.numStars = 0;
-            crdRecord.setCardBackgroundColor(
-                ContextCompat.getColor(
-                    view.context,
-                    android.R.color.white
-                )
-            )
+//            crdRecord.setCardBackgroundColor(
+//                ContextCompat.getColor(
+//                    view.context,
+//                    android.R.color.white
+//                )
+//            )
             viewHolderDisposables.clear()
         }
     }
@@ -82,5 +79,8 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
 
             }
         }
+    }
+    interface OnClickListener{
+        fun onCommentClick(view: View, position : Int)
     }
 }

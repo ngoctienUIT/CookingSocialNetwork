@@ -13,17 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="#f7f6f2"
         tools:context=".main.fragment.home.HomeFragment">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp">
-        </RelativeLayout>
+            android:layout_height="84dp"></RelativeLayout>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
@@ -31,6 +32,13 @@
                     android:text="#TRENDING"
                     android:textSize="20sp"
                     android:layout_marginStart="20dp"/>
+
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/trending"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,7 +75,7 @@
                 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:id="@+id/swp_records"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="240dp"
                     android:layout_marginHorizontal="20dp"
                     tools:layout_behavior="@string/appbar_scrolling_view_behavior">
 

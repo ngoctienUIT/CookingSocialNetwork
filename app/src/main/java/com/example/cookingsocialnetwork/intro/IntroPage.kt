@@ -234,8 +234,8 @@ class IntroPage: AppCompatActivity() {
             .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .set(post)
             .addOnSuccessListener {
-                val intent = Intent(this, MyService::class.java)
-                startForegroundService(intent)
+//                val intent = Intent(this, MyService::class.java)
+//                startForegroundService(intent)
             }
     }
 
