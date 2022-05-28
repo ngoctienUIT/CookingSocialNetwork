@@ -45,7 +45,6 @@
     <string-array name="gender">
         <item>Nam</item>
         <item>Nữ</item>
-        <item>Khác</item>
     </string-array>
     <!---->
 </resources>

@@ -20,7 +20,6 @@ Thành viên:
 |  2   |  Vũ Xuân Hoàng Lâm |  20520609 |             |
 |  3   |  Trần Trọng Hoàng  |  20520521 |             |
 |  4   |  Bùi Lê Hoài An    |  20520985 |             |
-|  5   |  Nguyễn Chí Cường  |  20520420 |             |
 
 [Lên đầu trang](#top)
 ## Đề tài <a name="topic"></a>

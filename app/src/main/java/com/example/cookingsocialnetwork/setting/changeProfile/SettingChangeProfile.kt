@@ -6,9 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -25,14 +22,14 @@ import java.util.*
 class SettingChangeProfile : AppCompatActivity() {
     private lateinit var viewModel: SettingChangeProfileViewModel
     private lateinit var dataBinding: ActivitySettingChangeProfileBinding
-    private var uri: Uri? =null
+    private var uri: Uri? = null
 
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent())
     {
         if (it != null) {
             val inputUri = it
             val outputUri = File(filesDir, "croppedImage.jpg").toUri()
-            val listUri = listOf<Uri>(inputUri, outputUri)
+            val listUri = listOf(inputUri, outputUri)
             cropImage.launch(listUri)
         }
     }
@@ -83,15 +80,28 @@ class SettingChangeProfile : AppCompatActivity() {
         viewModel = ViewModelProvider(this,factory).get(SettingChangeProfileViewModel::class.java)
         dataBinding.viewModel = viewModel
         dataBinding.lifecycleOwner = this
+        dataBinding.male.text = resources.getStringArray(R.array.gender)[0]
+        dataBinding.female.text = resources.getStringArray(R.array.gender)[1]
 
         viewModel.user.observe(this)
         {
             Picasso.get().load(it.avatar).into(dataBinding.ivAvatar)
-            if (viewModel.user.value!!.gender.compareTo(resources.getStringArray(R.array.gender)[0]) == 0)
-                dataBinding.gender.setSelection(0)
-            else if (viewModel.user.value!!.gender.compareTo(resources.getStringArray(R.array.gender)[1]) == 0)
-                dataBinding.gender.setSelection(1)
-            else dataBinding.gender.setSelection(2)
+            if (viewModel.user.value!!.gender.compareTo("0") == 0)
+                dataBinding.gender.check(R.id.male)
+            else if (viewModel.user.value!!.gender.compareTo("1") == 0)
+                dataBinding.gender.check(R.id.female)
+        }
+
+        dataBinding.female.setOnClickListener()
+        {
+            dataBinding.gender.check(R.id.female)
+            viewModel.user.value!!.gender = "1"
+        }
+
+        dataBinding.male.setOnClickListener()
+        {
+            dataBinding.gender.check(R.id.male)
+            viewModel.user.value!!.gender = "0"
         }
 
         dataBinding.backSettingProfile.setOnClickListener()
@@ -132,18 +142,6 @@ class SettingChangeProfile : AppCompatActivity() {
             )
             datePickerDialog.datePicker.maxDate = Date().time
             datePickerDialog.show()
-        }
-
-        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        dataBinding.gender.adapter = adapter
-        dataBinding.gender.onItemSelectedListener = object :AdapterView.OnItemSelectedListener
-        {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.user.value!!.gender = p0?.getItemAtPosition(p2).toString()
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
         dataBinding.update.setOnClickListener()

@@ -213,7 +213,7 @@ class IntroPage: AppCompatActivity() {
         val info = hashMapOf(
             "name" to acct!!.displayName.toString(),
             "avatar" to acct.photoUrl.toString(),
-            "gender" to "Nam",
+            "gender" to "0",
             "username" to FirebaseAuth.getInstance().currentUser?.email.toString(),
             "description" to "",
             "birthday" to formatted
