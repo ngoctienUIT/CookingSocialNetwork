@@ -1,6 +1,13 @@
 package com.example.cookingsocialnetwork.model.data
 
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import java.lang.Exception
 import java.time.LocalDateTime
 
 data class Post(
@@ -11,51 +18,84 @@ data class Post(
     var id: String, //id bài viết
     var images: MutableList<String>, // danh sách ảnh
     var ingredients: MutableList<String>,
-    var level: String, // độ khó
-    var methods: MutableList<String>,
-    //var methods: MutableList<Map<String, String>>, //danh sách các bước làm món ăn
+    var level: Long, // độ khó
+    var methods: MutableList<String>,//danh sách các bước làm món ăn
     var nameFood: String, // tên món ăn
     var owner: String, // username chủ bài viết
     var servers: String, // số người ăn
     var timePost : HashMap<String, Any>,
-
     var comments: MutableList<Map<String, Any>>, // danh sách commment
-  //  var ingredients: MutableList<Map<String, Any>>, // danh sách nguyên liệu
-
-   // var rate: Map<String, MutableList<String>>, // các lượt đánh giá
-    var share: Long // số lượt share
+    var share: Long,
+    var nameEmail: String,
+    var avatarUser:String,
 ) {
-    //    constructor() : this(
-//        "", 0, "", mutableListOf(), mutableListOf(),
-//        mutableListOf(), mutableListOf(), mutableListOf(), mutableListOf(), "", "", "", mapOf(), 0
-//    )
+
     constructor() : this(
         "",   "", mutableListOf(), "", mutableListOf(),
-        mutableListOf(),"", mutableListOf(), "", "", "", hashMapOf(), mutableListOf(), 0
+        mutableListOf(),0, mutableListOf(), "", "", "",
+        hashMapOf(), mutableListOf(), 0, "",""
     )
 
-    fun getData(document: DocumentSnapshot) {
-        if (document.id != "count") {
+    fun  getData(document: DocumentSnapshot) {
+        try {
+            comments = document.data?.get("comments") as MutableList<Map<String, Any>>
             cookingTime = document.data?.get("cookingTime") as String
             description = document.data?.get("description") as String
             favourites = document.data?.get("favourites") as MutableList<String>
             id = document.data?.get("id") as String
             images = document.data?.get("images") as MutableList<String>
             ingredients = document.data?.get("ingredients") as MutableList<String>
-            level = document.data?.get("nameFood") as String
+            level =  document.data?.get("level") as Long
             methods = document.data?.get("methods") as MutableList<String>
             nameFood = document.data?.get("nameFood") as String
             owner = document.data?.get("owner") as String
             servers = document.data?.get("nameFood") as String
-            timePost = document.data?.get("timePost") as HashMap<String, Any>
             share = document.data?.get("share") as Long
-            comments = document.data?.get("methods") as MutableList<Map<String, Any>>
+            timePost = document.data?.get("timePost") as HashMap<String, Any>
+        }catch (e : Exception){
+            throw e
         }
 
-            //  comments = document.data?.get("comments") as MutableList<Map<String, Any>>
-          //  ingredients = document.data?.get("ingredients") as MutableList<Map<String, Any>>
-          //  methods = document.data?.get("methods") as MutableList<Map<String, String>>
-            //rate = document.data?.get("rate") as Map<String, MutableList<String>>
-            // share = document.data?.get("share") as Int
     }
+
+    suspend fun  takeDataToHome(document: DocumentSnapshot) = coroutineScope {
+        try {
+            val job = async {
+                owner = document.data?.get("owner") as String
+                var info:Map<String, Any> = mapOf();
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(owner)
+                    .addSnapshotListener { snapshot, e ->
+                        if (e != null) {
+                            return@addSnapshotListener
+                        }
+                        if (snapshot != null && snapshot.exists()) {
+                            info = snapshot.data?.get("info") as Map<String, Any>
+                            comments = document.data?.get("comments") as MutableList<Map<String, Any>>
+                            cookingTime = document.data?.get("cookingTime") as String
+                            description = document.data?.get("description") as String
+                            favourites = document.data?.get("favourites") as MutableList<String>
+                            id = document.data?.get("id") as String
+                            images = document.data?.get("images") as MutableList<String>
+                            ingredients = document.data?.get("ingredients") as MutableList<String>
+                            level =  document.data?.get("level") as Long
+                            methods = document.data?.get("methods") as MutableList<String>
+                            nameFood = document.data?.get("nameFood") as String
+                            servers = document.data?.get("nameFood") as String
+                            share = document.data?.get("share") as Long
+                            timePost = document.data?.get("timePost") as HashMap<String, Any>
+                            avatarUser = info["avatar"].toString()
+                            nameEmail = info["name"].toString();
+                            Log.i("getInfo", info.size.toString())
+                        }
+                    }
+            }
+            job.await()
+        }catch (e : Exception){
+            throw e
+        }
+
+    }
+
 }

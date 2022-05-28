@@ -7,6 +7,7 @@ import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.Observable
 import kotlinx.coroutines.android.awaitFrame
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.util.*
 import javax.inject.Inject
@@ -20,9 +21,7 @@ class PostsRepository @Inject constructor() {
         loadAfter: String? = null
     ): List<RealtimePost> {
         var query = db.collection("post").limit(pageSize.toLong())
-       // android.util.Log.i("getPosts", "${db.collection("posts")}")
         loadBefore?.let {
-
             val item = db.collection("post").document(it)
                 .get()
                 .await()
@@ -38,8 +37,6 @@ class PostsRepository @Inject constructor() {
             query = query.startAfter(item)
         }
 
-
-       // android.util.Log.i("countPosts", "$")
         return query.get()
             .await()
             .map {
@@ -54,9 +51,7 @@ class PostsRepository @Inject constructor() {
 
     private fun getPost(itemId: String): Observable<Post> {
 
-       //  android.util.Log.i("idPosts", itemId + "\n")
         return  Observable.create<Post> {
-           // (android.util.Log.i("onNext", itemId))
             emitter ->
               db.collection("post")
                   .document(itemId)
@@ -66,8 +61,9 @@ class PostsRepository @Inject constructor() {
                       } else if (snapshot != null && snapshot.exists()) {
                   //        android.util.Log.i("onNext", "ahihi")
                           val post = Post();
-                          post.getData(snapshot)
-//                           emitter.onNext(post)
+                              post.getData(snapshot)
+                              emitter.onNext(post)
+
 //                          emitter.onNext(
 //                              snapshot.toObject (Post::class.java)
 //                                  ?: throw IllegalArgumentException()

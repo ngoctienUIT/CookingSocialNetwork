@@ -1,15 +1,17 @@
 package com.example.cookingsocialnetwork.main.fragment.home.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
@@ -41,15 +43,18 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
     override fun onViewRecycled(holder: PostViewHolder) {
         super.onViewRecycled(holder)
         holder.apply {
+            userName.text = ""
+            rating.numStars = 0
             foodName.text = ""
-            author.text = ""
-            rating.numStars = 0;
-//            crdRecord.setCardBackgroundColor(
-//                ContextCompat.getColor(
-//                    view.context,
-//                    android.R.color.white
-//                )
-//            )
+            foodImage.setImageDrawable(Drawable.createFromPath("@drawable/food_picker"))
+            comment.text = "";
+            heart.text = ""
+            /*ryc_postView.setBackgroundColor(
+                ContextCompat.getColor(
+                    view.context,
+                    android.R.color.white
+                )
+            )*/
             viewHolderDisposables.clear()
         }
     }
@@ -58,25 +63,25 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
         val viewHolderDisposables = CompositeDisposable()
 
         val userImage : ImageView = itemView.findViewById(R.id.user_image)
-        val author : TextView = itemView.findViewById(R.id.user_name)
+        val userName : TextView = itemView.findViewById(R.id.user_name)
         val foodImage : ImageView = itemView.findViewById(R.id.food_image_rec)
         val foodName : TextView = itemView.findViewById(R.id.food_name)
         val rating : RatingBar = itemView.findViewById(R.id.food_rating)
         val comment : TextView = itemView.findViewById(R.id.comment)
         val heart : TextView = itemView.findViewById(R.id.heart)
+        val ryc_postView by lazy {itemView.findViewById<SwipeRefreshLayout>(R.id.swp_records)}
 
         fun bind(realtimePost: RealtimePost?) {
             realtimePost?.let {
                 it.post
                     .subscribe { post ->
-                        foodName.text = post.nameFood
-                        author.text = post.owner
-                        // timeCooking.text = post.cookingTime
-                        rating.numStars =  post.level.toInt()
+                        userName.text = post.nameEmail
+                        rating.numStars = post.level.toInt()
                         foodImage.load(post.images[0])
+                        foodName.text = post.nameFood
+                        comment.text = post.comments.size.toString()
+                        heart.text = post.favourites.size.toString()
                     } to viewHolderDisposables
-               // viewHolderDisposables.add();
-
             }
         }
     }

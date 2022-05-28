@@ -47,6 +47,7 @@ class ListAdapterNotifyComment(context: Activity, private var commentNotify: Mut
             .get()
             .addOnSuccessListener {
                 val post = Post()
+
                 post.getData(it)
                 Picasso.get().load(post.images[0]).into(postView)
             }
