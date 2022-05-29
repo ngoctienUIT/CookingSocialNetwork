@@ -46,13 +46,13 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
         binding.lifecycleOwner = this
 
         //listpost
-      /*  binding.recPosts.adapter = postsAdapter
+        binding.recPosts.adapter = postsAdapter
         binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.listPosts.observe(viewLifecycleOwner) {
             binding.swpRecords.isRefreshing = false;
             postsAdapter.submitList(it)
-        }*/
+        }
 
         binding.trending.adapter = introSliderAdapter
         val handler = Handler()

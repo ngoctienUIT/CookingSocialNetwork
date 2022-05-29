@@ -26,14 +26,14 @@ data class Post(
     var timePost : HashMap<String, Any>,
     var comments: MutableList<Map<String, Any>>, // danh sách commment
     var share: Long,
-    var nameEmail: String,
-    var avatarUser:String,
+    var avatarOwner:String,
+    var infoOwner:Map<String, Any>,
 ) {
 
     constructor() : this(
         "",   "", mutableListOf(), "", mutableListOf(),
         mutableListOf(),"0", mutableListOf(), "", "", "",
-        hashMapOf(), mutableListOf(), 0, "",""
+        hashMapOf(), mutableListOf(), 0, "", mapOf()
     )
 
     fun  getData(document: DocumentSnapshot) {
@@ -52,6 +52,10 @@ data class Post(
             servers = document.data?.get("nameFood") as String
             share = document.data?.get("share") as Long
             timePost = document.data?.get("timePost") as HashMap<String, Any>
+            infoOwner = document.data?.get("infoOwner") as Map<String, Any>
+            owner = infoOwner["name"].toString()
+            avatarOwner = infoOwner["avatar"].toString()
+
         }catch (e : Exception){
             throw e
         }
@@ -85,8 +89,6 @@ data class Post(
                             servers = document.data?.get("nameFood") as String
                             share = document.data?.get("share") as Long
                             timePost = document.data?.get("timePost") as HashMap<String, Any>
-                            avatarUser = info["avatar"].toString()
-                            nameEmail = info["name"].toString();
                             Log.i("getInfo", info.size.toString())
                         }
                     }

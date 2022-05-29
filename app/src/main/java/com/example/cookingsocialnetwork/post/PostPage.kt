@@ -47,7 +47,9 @@ class PostPage : AppCompatActivity() {
     private var arrEditTextMethod:MutableList<String> = mutableListOf() // mảng lưu Text của phương thức nấu
 
 
-    private var listImageUri: MutableList<Uri> = mutableListOf()            // imageUrl
+    private var listImageUri: MutableList<Uri> = mutableListOf()  // image choose from device
+    private var listImageUrlFB : MutableList<String> = mutableListOf() // image url from firebase
+    private var infoUser : Map<String, Any> = mapOf() // infor of post's user
 
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -183,7 +185,7 @@ class PostPage : AppCompatActivity() {
         adapterImageChoosed.notifyDataSetChanged()
     }
 
-    private fun initPost(listUri: MutableList<String>){
+    private fun initPost(){
         Log.d("PostPage", "initPost")
         getIngredientText()
         getMethodText()
@@ -192,7 +194,7 @@ class PostPage : AppCompatActivity() {
         val postData = hashMapOf(
             "id" to newPostData.id,
             "owner" to FirebaseAuth.getInstance().currentUser?.email.toString(),
-            "images" to listUri,
+            "images" to listImageUrlFB,
             "nameFood" to databinding.nameFood.text.toString(),
             "description" to databinding.txtDec.text.toString()  ,
             "cookingTime" to databinding.cookingTime.text.toString(),
@@ -203,7 +205,8 @@ class PostPage : AppCompatActivity() {
             "favourites" to mutableListOf<String>(),
             "timePost" to LocalDateTime.now(),
             "share" to 0,
-            "comments" to mutableListOf<Map<String, Any>>()
+            "comments" to mutableListOf<Map<String, Any>>(),
+            "infoOwner" to infoUser
         )
         newPostData.set(postData)
         addIDPostToUser(newPostData.id)
@@ -218,11 +221,24 @@ class PostPage : AppCompatActivity() {
         Log.d("PostPage", "add ID successful")
 
     }
+
+    private fun getInfoUser(){
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document("${FirebaseAuth.getInstance().currentUser?.email}")
+            .get()
+            .addOnSuccessListener {
+                infoUser = it.data?.get("info") as Map<String, Any>
+                initPost()
+            }
+
+    }
+
     private fun upLoadDataToFirebase() {
 
         Log.d("PostPage", "Loading...")
 
-        val listUri: MutableList<String> = mutableListOf()
+      //  val listUri: MutableList<String> = mutableListOf()
 
         val storageRef = FirebaseStorage.getInstance().reference
 
@@ -251,13 +267,15 @@ class PostPage : AppCompatActivity() {
 
                 if (task.isSuccessful) {
                    // uploadTask.pause()
-                    listUri.add(task.result.toString())
+                  //  listUri.add(task.result.toString())
+                    listImageUrlFB.add(task.result.toString());
                    // Log.d("PostPage", "Succesfully upadated an image with: ${task.result}")
 
                     //nếu đã get đủ url ảnh
-                    if(listUri.count() == listImageUri.count()){
-                        initPost(listUri)
-                        Log.d("PostPage", "Succesfully upadated an image with: $listUri")
+                    if(listImageUrlFB.count() == listImageUri.count()){
+                        getInfoUser()
+                       // initPost(listImageUrlFB)
+                       // Log.d("PostPage", "Succesfully upadated an image with: $listUri")
                     }
                    // uploadTask.resume()
 

@@ -47,6 +47,7 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
             rating.numStars = 0
             foodName.text = ""
             foodImage.setImageDrawable(Drawable.createFromPath("@drawable/food_picker"))
+            userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
             comment.text = "";
             heart.text = ""
             /*ryc_postView.setBackgroundColor(
@@ -69,15 +70,16 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
         val rating : RatingBar = itemView.findViewById(R.id.food_rating)
         val comment : TextView = itemView.findViewById(R.id.comment)
         val heart : TextView = itemView.findViewById(R.id.heart)
-        val ryc_postView by lazy {itemView.findViewById<SwipeRefreshLayout>(R.id.swp_records)}
+       // val ryc_postView by lazy {itemView.findViewById<SwipeRefreshLayout>(R.id.swp_records)}
 
         fun bind(realtimePost: RealtimePost?) {
             realtimePost?.let {
                 it.post
                     .subscribe { post ->
-                        userName.text = post.nameEmail
-                        rating.numStars = post.level.toInt()
                         foodImage.load(post.images[0])
+                        userImage.load(post.avatarOwner)
+                        userName.text = post.owner
+                        rating.numStars = post.level.toInt()
                         foodName.text = post.nameFood
                         comment.text = post.comments.size.toString()
                         heart.text = post.favourites.size.toString()

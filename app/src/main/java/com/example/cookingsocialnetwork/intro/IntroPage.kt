@@ -235,7 +235,7 @@ class IntroPage: AppCompatActivity() {
             .set(post)
             .addOnSuccessListener {
                 val intent = Intent(this, MyService::class.java)
-              startForegroundService(intent)
+              //startForegroundService(intent)
             }
     }
 
@@ -253,7 +253,7 @@ class IntroPage: AppCompatActivity() {
                 else if (!foregroundServiceRunning())
                 {
                     val intent = Intent(this, MyService::class.java)
-                    startForegroundService(intent)
+                  //  startForegroundService(intent)
                 }
             }
 
