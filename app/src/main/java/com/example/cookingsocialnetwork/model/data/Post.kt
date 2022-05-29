@@ -17,7 +17,7 @@ data class Post(
     var favourites: MutableList<String>, // danh sách username đã thích bài viết
     var id: String, //id bài viết
     var images: MutableList<String>, // danh sách ảnh
-    var ingredients: MutableList<String>,
+    var ingredients: MutableList<String>, // danh sách nguyên liệu
     var level: String, // độ khó
     var methods: MutableList<String>,//danh sách các bước làm món ăn
     var nameFood: String, // tên món ăn

@@ -30,20 +30,21 @@ class AllSearchFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
-        val layoutManager = GridLayoutManager(activity, 2)
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                return if (position < 5) 2
-                else 1
-            }
-        }
-
-        binding.recyclerView.layoutManager = layoutManager
         activity?.let {
             viewModel._posts.observe(it)
             { listPost ->
                 viewModel._users.observe(it)
                 { listUser ->
+                    val index: Int = if (listUser.size < 6) listUser.size
+                    else 5
+                    val layoutManager = GridLayoutManager(activity, 2)
+                    layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                        override fun getSpanSize(position: Int): Int {
+                            return if (position < index) 2
+                            else 1
+                        }
+                    }
+                    binding.recyclerView.layoutManager = layoutManager
                     val adapter = AllSearchAdapter(listUser, listPost)
                     binding.recyclerView.adapter = adapter
                 }

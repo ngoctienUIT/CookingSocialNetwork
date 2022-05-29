@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.search.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,11 +11,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentPostSearchBinding
+import com.example.cookingsocialnetwork.main.MainPage
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModelFactory
 import com.example.cookingsocialnetwork.model.adapter.GridAdapterPost
 import com.example.cookingsocialnetwork.model.adapter.ListAdapterUser
 import com.example.cookingsocialnetwork.model.data.Post
+import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class PostSearchFragment : Fragment() {
     lateinit var query: String
@@ -39,6 +42,9 @@ class PostSearchFragment : Fragment() {
                 binding.gridViewPost.adapter = adapter
                 binding.gridViewPost.setOnItemClickListener { _, _, position, _ ->
                     Log.w("Username", list[position].nameFood)
+                    val fullPost = Intent(activity, ViewFullPost::class.java)
+                    fullPost.putExtra("id_post", list[position].id)
+                    startActivity(fullPost)
                 }
             }
         }

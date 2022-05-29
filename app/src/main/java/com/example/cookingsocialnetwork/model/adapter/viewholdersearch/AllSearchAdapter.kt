@@ -36,7 +36,9 @@ class AllSearchAdapter(private var listUser: MutableList<User>, private var list
             }
 
             is PostViewHolder -> {
-                holder.post = listPost[position - 5]
+                val index: Int = if (listUser.size < 6) listUser.size
+                else 5
+                holder.post = listPost[position - index]
                 holder.updateView()
             }
         }
@@ -48,7 +50,9 @@ class AllSearchAdapter(private var listUser: MutableList<User>, private var list
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position < 5) ViewHolderType.USER.ordinal
+        val index: Int = if (listUser.size < 6) listUser.size
+        else 5
+        return if (position < index) ViewHolderType.USER.ordinal
         else ViewHolderType.POST.ordinal
     }
 }
