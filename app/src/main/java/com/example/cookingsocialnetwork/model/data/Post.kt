@@ -18,7 +18,7 @@ data class Post(
     var id: String, //id bài viết
     var images: MutableList<String>, // danh sách ảnh
     var ingredients: MutableList<String>,
-    var level: Long, // độ khó
+    var level: String, // độ khó
     var methods: MutableList<String>,//danh sách các bước làm món ăn
     var nameFood: String, // tên món ăn
     var owner: String, // username chủ bài viết
@@ -32,7 +32,7 @@ data class Post(
 
     constructor() : this(
         "",   "", mutableListOf(), "", mutableListOf(),
-        mutableListOf(),0, mutableListOf(), "", "", "",
+        mutableListOf(),"0", mutableListOf(), "", "", "",
         hashMapOf(), mutableListOf(), 0, "",""
     )
 
@@ -45,7 +45,7 @@ data class Post(
             id = document.data?.get("id") as String
             images = document.data?.get("images") as MutableList<String>
             ingredients = document.data?.get("ingredients") as MutableList<String>
-            level =  document.data?.get("level") as Long
+            level =  document.data?.get("level") as String
             methods = document.data?.get("methods") as MutableList<String>
             nameFood = document.data?.get("nameFood") as String
             owner = document.data?.get("owner") as String
@@ -79,7 +79,7 @@ data class Post(
                             id = document.data?.get("id") as String
                             images = document.data?.get("images") as MutableList<String>
                             ingredients = document.data?.get("ingredients") as MutableList<String>
-                            level =  document.data?.get("level") as Long
+                            level =  document.data?.get("level") as String
                             methods = document.data?.get("methods") as MutableList<String>
                             nameFood = document.data?.get("nameFood") as String
                             servers = document.data?.get("nameFood") as String

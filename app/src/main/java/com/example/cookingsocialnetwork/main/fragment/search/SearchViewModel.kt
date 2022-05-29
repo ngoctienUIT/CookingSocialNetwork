@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.search
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cookingsocialnetwork.model.data.Post
@@ -96,7 +97,7 @@ class SearchViewModel: ViewModel() {
                     posts = mutableListOf()
                     documents.forEach()
                     {
-                        val data = it.data?.get("nameFood") as String
+                        val data = it.data?.get("nameFood").toString()
                         if (data.uppercase().contains(query.uppercase())) {
                             val post = Post()
                             post.getData(it)
