@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.main.fragment.home.adapter
+package com.example.cookingsocialnetwork.main.fragment.home.realtimePost
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.api.load
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
 import io.reactivex.disposables.CompositeDisposable
 
 class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>(

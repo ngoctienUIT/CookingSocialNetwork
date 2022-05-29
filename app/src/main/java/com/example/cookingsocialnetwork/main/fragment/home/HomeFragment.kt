@@ -5,20 +5,16 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.intro.IntroSlide
 import com.example.cookingsocialnetwork.intro.IntroSliderAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.adapter.PostsAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.MiniPost
-import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingAdapter
+import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapter
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
