@@ -2,14 +2,11 @@ package com.example.cookingsocialnetwork.viewpost
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.databinding.DataBindingUtil
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
-import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfileViewModel
-import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfileViewModelFactory
+import com.example.cookingsocialnetwork.viewpost.adapter.ListIngredientAdapter
 import com.squareup.picasso.Picasso
 import me.relex.circleindicator.CircleIndicator
 
@@ -44,15 +41,33 @@ class ViewFullPost : AppCompatActivity() {
             Picasso.get().load(it.avatar).into(binding.avatar)
         }
 
-        //slider images
-        viewModel.post.observe(this){
+        viewModel.post.observe(this) {
+
+            //slider images
             it.images.let { list ->
-            viewPagerAdapter = ImageSlideAdapter(this, list )
-            binding.viewpager.adapter = viewPagerAdapter
-            indicator = binding.indicator
-            indicator.setViewPager(binding.viewpager)
+                viewPagerAdapter = ImageSlideAdapter(this, list )
+                binding.viewpager.adapter = viewPagerAdapter
+                indicator = binding.indicator
+                indicator.setViewPager(binding.viewpager)
+
+            }
+
+            val ingredientAdapter = ListIngredientAdapter(this, it.ingredients)
+            binding.ingredients.isClickable = false
+            binding.ingredients.adapter = ingredientAdapter
+            binding.methods.adapter = ingredientAdapter
 
         }
+
+        viewModel.checkFavourite().observe(this)
+        {
+            if (it) binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
+            else binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
+        }
+
+        binding.btnFavourite.setOnClickListener()
+        {
+            viewModel.updateFavourite()
         }
     }
 }

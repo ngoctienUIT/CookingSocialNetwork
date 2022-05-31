@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
+import com.example.cookingsocialnetwork.model.data.User
+import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost as RealtimePost1
 
@@ -83,9 +85,19 @@ class PostsAdapter : PagedListAdapter<RealtimePost1, PostsAdapter.PostViewHolder
             realtimePost?.let {
                 it.post
                     .subscribe { post ->
-                        foodImage.load(post.images[0])
+                        /*FirebaseFirestore.getInstance()
+                            .collection("user")
+                            .document(post.owner)
+                            .get()
+                            .addOnSuccessListener { userSnap ->
+                                val user = User()
+                                user.getData(userSnap)
+                                userImage.load(user.avatar)
+                                userName.text = user.name
+                            }*/ // không cần
                         userImage.load(post.avatarOwner)
                         userName.text = post.owner
+                        foodImage.load(post.images[0])
                         rating.numStars = post.level.toInt()
                         foodName.text = post.nameFood
                         comment.text = post.comments.size.toString()
