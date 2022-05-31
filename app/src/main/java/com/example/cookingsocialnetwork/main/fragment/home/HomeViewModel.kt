@@ -1,12 +1,10 @@
 package com.example.cookingsocialnetwork.main.fragment.home
 
-import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.MiniPost
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsDataSource
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsRepository
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
@@ -17,7 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(postsRepository : PostsRepository): ViewModel() {

@@ -30,13 +30,14 @@
             </RelativeLayout>
 
         <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -213,6 +214,7 @@
 
                 <ListView
                     android:id="@+id/ingredients"
+                    android:nestedScrollingEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -226,6 +228,7 @@
                     android:layout_marginHorizontal="10dp"/>
 
                 <ListView
+                    android:nestedScrollingEnabled="true"
                     android:id="@+id/methods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -236,12 +239,14 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/btn_favourite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_weight="1">
 
                         <ImageView
+                            android:id="@+id/ico_favourite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

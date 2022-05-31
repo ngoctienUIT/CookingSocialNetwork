@@ -205,8 +205,8 @@ class PostPage : AppCompatActivity() {
             "favourites" to mutableListOf<String>(),
             "timePost" to LocalDateTime.now(),
             "share" to 0,
-            "comments" to mutableListOf<Map<String, Any>>(),
-            "infoOwner" to infoUser
+            "comments" to mutableListOf<Map<String, Any>>()
+//            "infoOwner" to infoUser
         )
         newPostData.set(postData)
         addIDPostToUser(newPostData.id)

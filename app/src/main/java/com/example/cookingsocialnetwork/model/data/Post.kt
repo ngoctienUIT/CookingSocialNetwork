@@ -52,9 +52,8 @@ data class Post(
             servers = document.data?.get("nameFood") as String
             share = document.data?.get("share") as Long
             timePost = document.data?.get("timePost") as HashMap<String, Any>
-            infoOwner = document.data?.get("infoOwner") as Map<String, Any>
-            owner = infoOwner["name"].toString()
-            avatarOwner = infoOwner["avatar"].toString()
+//            infoOwner = document.data?.get("infoOwner") as Map<String, Any>
+//            avatarOwner = infoOwner["avatar"].toString()
 
         }catch (e : Exception){
             throw e
