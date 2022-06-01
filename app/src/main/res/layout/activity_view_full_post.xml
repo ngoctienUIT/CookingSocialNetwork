@@ -10,24 +10,25 @@
             type="com.example.cookingsocialnetwork.viewpost.ViewFullPostViewModel" />
     </data>
 
-    <LinearLayout android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/back_view_full_post"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="0dp"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_back_ios"
-                    app:tint="@color/black" />
+            <ImageView
+                android:id="@+id/back_view_full_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_back_ios"
+                app:tint="@color/black" />
 
-            </RelativeLayout>
+        </RelativeLayout>
 
         <androidx.core.widget.NestedScrollView
             android:scrollbars="vertical"
@@ -221,14 +222,12 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="Nguyên liệu:"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="10dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ingredients"
-                    android:scrollbars="none"
                     android:layout_width="match_parent"
+                    android:paddingVertical="10dp"
                     android:layout_height="wrap_content"/>
 
                 <TextView
@@ -236,13 +235,11 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="Cách làm:"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="10dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:paddingVertical="10dp"
                     android:id="@+id/methods"
-                    android:scrollbars="none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -326,6 +323,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingHorizontal="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -344,21 +342,44 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <EditText
-                        android:id="@+id/name_Food"
+                    <RelativeLayout
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:background="@drawable/round_view"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:maxLines="1"
-                        android:drawablePadding="10dp"
-                        android:hint="Bình luận" />
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/content_comment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:background="@drawable/round_view"
+                            android:layout_margin="10dp"
+                            android:padding="10dp"
+                            android:lines="8"
+                            android:minLines="1"
+                            android:maxLines="10"
+                            android:scrollbars="vertical"
+                            android:paddingEnd="60dp"
+                            android:drawablePadding="10dp"
+                            android:hint="Bình luận"
+                            tools:ignore="RtlSymmetry" />
+
+                        <ImageView
+                            android:id="@+id/send"
+                            android:src="@drawable/ic_send"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="35dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_height="35dp"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:padding="10dp"
                     android:id="@+id/comments"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>

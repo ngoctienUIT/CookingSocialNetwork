@@ -1,54 +1,70 @@
 package com.example.cookingsocialnetwork.viewpost
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
+import java.time.LocalDateTime
 
 class ViewFullPostViewModel: ViewModel() {
+    private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var _post: Post = Post()
     var post: MutableLiveData<Post> = MutableLiveData()
     private var _user: User = User()
     var user: MutableLiveData<User> = MutableLiveData()
+    private var _myData: User = User()
+    var myData: MutableLiveData<User> = MutableLiveData()
     var id: String = ""
 
     init {
+        firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
         post.value = _post
         user.value = _user
+        getMyData()
     }
 
-    fun getData() {
-        Log.w("id data Post", id)
-        FirebaseFirestore.getInstance()
-            .collection("post")
-            .document(id)
-            .get()
-            .addOnSuccessListener {
-                val data = it.data?.get("nameFood").toString()
-                Log.w("data Post", data)
-                _post.getData(it)
-                post.value = _post
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(post.value!!.owner)
-                    .get()
-                    .addOnSuccessListener { userSnap ->
-                        _user.getData(userSnap)
-                        user.value = _user
-                    }
+    private fun getMyData()
+    {
+        firestore
+            .collection("user")
+            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    _myData.getData(snapshot)
+                    myData.value = _myData
+                }
             }
     }
 
-    //kiểm tra xem người dùng đã thích bài viết đó chưa
-    fun checkFavourite(): MutableLiveData<Boolean>
-    {
-        var check = false
-        val index = post.value?.favourites?.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString())
-        if (index!! > -1) check = true
-        return MutableLiveData(check)
+    fun getData() {
+        firestore
+            .collection("post")
+            .document(id)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    _post.getData(snapshot)
+                    post.value = _post
+                    FirebaseFirestore.getInstance()
+                        .collection("user")
+                        .document(post.value!!.owner)
+                        .get()
+                        .addOnSuccessListener { userSnap ->
+                            _user.getData(userSnap)
+                            user.value = _user
+                        }
+                }
+            }
     }
 
     //update dữ liệu sau khi nhấn thích hoặc bỏ thích
@@ -82,5 +98,23 @@ class ViewFullPostViewModel: ViewModel() {
                         .update("favourites", favouritesUser)
                 }
             }
+    }
+
+    fun updateComment(content: String)
+    {
+        val comment = hashMapOf(
+            "content" to content,
+            "favourite" to mutableListOf<String>(),
+            "time" to LocalDateTime.now(),
+            "userName" to FirebaseAuth.getInstance().currentUser?.email.toString()
+        )
+
+        val comments = _post.comments
+        comments.add(comment)
+
+        FirebaseFirestore.getInstance()
+            .collection("post")
+            .document(id)
+            .update("comments", comments)
     }
 }

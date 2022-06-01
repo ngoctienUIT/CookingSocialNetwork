@@ -2,13 +2,18 @@ package com.example.cookingsocialnetwork.viewpost
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
+import com.example.cookingsocialnetwork.viewpost.adapter.CommentAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 //import me.relex.circleindicator.CircleIndicator
 
@@ -43,6 +48,11 @@ class ViewFullPost : AppCompatActivity() {
             Picasso.get().load(it.avatar).into(binding.avatar)
         }
 
+        viewModel.myData.observe(this)
+        {
+            Picasso.get().load(it.avatar).into(binding.userAvatar)
+        }
+
         viewModel.post.observe(this) {
             val ingredientAdapter = IngredientAdapter(it.ingredients)
             val ingredientsLayoutManager = LinearLayoutManager(this)
@@ -54,6 +64,16 @@ class ViewFullPost : AppCompatActivity() {
             binding.methods.layoutManager = methodsLayoutManager
             binding.methods.adapter = methodsAdapter
 
+            val commentAdapter = CommentAdapter(it.comments)
+            val commentLayoutManager = LinearLayoutManager(this)
+            binding.comments.layoutManager = commentLayoutManager
+            binding.comments.adapter = commentAdapter
+
+            if (it.favourites.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString()) > -1)
+                binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
+            else binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
+
+
             //slider images
 //            it.images.let { list ->
 //                viewPagerAdapter = ImageSlideAdapter(this, list )
@@ -63,11 +83,28 @@ class ViewFullPost : AppCompatActivity() {
 //
 //            }
         }
-
-        viewModel.checkFavourite().observe(this)
+        binding.send.visibility = View.GONE
+        binding.contentComment.addTextChangedListener(object :TextWatcher
         {
-            if (it) binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
-            else binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0.toString() == "") binding.send.visibility = View.GONE
+                else binding.send.visibility = View.VISIBLE
+            }
+
+        })
+
+        binding.send.setOnClickListener()
+        {
+            viewModel.updateComment(binding.contentComment.text.toString())
+            binding.contentComment.text = Editable.Factory.getInstance().newEditable("")
         }
 
         binding.btnFavourite.setOnClickListener()
