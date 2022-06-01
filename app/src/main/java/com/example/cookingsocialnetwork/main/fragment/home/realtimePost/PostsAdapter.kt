@@ -85,7 +85,7 @@ class PostsAdapter : PagedListAdapter<RealtimePost1, PostsAdapter.PostViewHolder
             realtimePost?.let {
                 it.post
                     .subscribe { post ->
-                        /*FirebaseFirestore.getInstance()
+                        FirebaseFirestore.getInstance()
                             .collection("user")
                             .document(post.owner)
                             .get()
@@ -94,9 +94,7 @@ class PostsAdapter : PagedListAdapter<RealtimePost1, PostsAdapter.PostViewHolder
                                 user.getData(userSnap)
                                 userImage.load(user.avatar)
                                 userName.text = user.name
-                            }*/ // không cần
-                        userImage.load(post.avatarOwner)
-                        userName.text = post.owner
+                            }
                         foodImage.load(post.images[0])
                         rating.numStars = post.level.toInt()
                         foodName.text = post.nameFood

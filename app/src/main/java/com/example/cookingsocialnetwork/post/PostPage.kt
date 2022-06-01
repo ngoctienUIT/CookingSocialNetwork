@@ -49,7 +49,6 @@ class PostPage : AppCompatActivity() {
 
     private var listImageUri: MutableList<Uri> = mutableListOf()  // image choose from device
     private var listImageUrlFB : MutableList<String> = mutableListOf() // image url from firebase
-    private var infoUser : Map<String, Any> = mapOf() // infor of post's user
 
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -206,7 +205,6 @@ class PostPage : AppCompatActivity() {
             "timePost" to LocalDateTime.now(),
             "share" to 0,
             "comments" to mutableListOf<Map<String, Any>>()
-//            "infoOwner" to infoUser
         )
         newPostData.set(postData)
         addIDPostToUser(newPostData.id)
@@ -219,18 +217,6 @@ class PostPage : AppCompatActivity() {
             .update("post", FieldValue.arrayUnion(IDNewPost))
 
         Log.d("PostPage", "add ID successful")
-
-    }
-
-    private fun getInfoUser(){
-        FirebaseFirestore.getInstance()
-            .collection("user")
-            .document("${FirebaseAuth.getInstance().currentUser?.email}")
-            .get()
-            .addOnSuccessListener {
-                infoUser = it.data?.get("info") as Map<String, Any>
-                initPost()
-            }
 
     }
 
@@ -273,7 +259,6 @@ class PostPage : AppCompatActivity() {
 
                     //nếu đã get đủ url ảnh
                     if(listImageUrlFB.count() == listImageUri.count()){
-                        getInfoUser()
                        // initPost(listImageUrlFB)
                        // Log.d("PostPage", "Succesfully upadated an image with: $listUri")
                     }

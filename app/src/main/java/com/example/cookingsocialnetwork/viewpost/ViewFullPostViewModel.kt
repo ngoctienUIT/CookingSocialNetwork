@@ -33,7 +33,7 @@ class ViewFullPostViewModel: ViewModel() {
                 post.value = _post
                 FirebaseFirestore.getInstance()
                     .collection("user")
-                    .document(post.value!!.ownerEmail)
+                    .document(post.value!!.owner)
                     .get()
                     .addOnSuccessListener { userSnap ->
                         _user.getData(userSnap)

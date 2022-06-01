@@ -57,19 +57,15 @@ class HomeViewModel @Inject constructor(postsRepository : PostsRepository): View
             _posts = value
         }
 
-    private fun listenToDataPost()
-    {
+    private fun listenToDataPost() {
         firestore.collection("post")
             .addSnapshotListener()
-            {
-                    snapshot,e ->
-                if (e!=null)
-                {
+            { snapshot, e ->
+                if (e != null) {
                     return@addSnapshotListener
                 }
 
-                if (snapshot!= null)
-                {
+                if (snapshot != null) {
                     val documents = snapshot.documents
                     posts = mutableListOf()
                     documents.forEach()

@@ -205,14 +205,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
-                <me.relex.circleindicator.CircleIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:elevation="4dp" />
+
+<!--                <CircleIndicator-->
+<!--                    android:id="@+id/indicator"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:elevation="4dp" />-->
+
             </androidx.constraintlayout.widget.ConstraintLayout>
                 <TextView
                     android:layout_width="match_parent"

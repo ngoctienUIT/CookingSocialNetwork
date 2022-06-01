@@ -26,15 +26,12 @@ data class Post(
     var timePost : HashMap<String, Any>,
     var comments: MutableList<Map<String, Any>>, // danh sách commment
     var share: Long,
-    var avatarOwner:String,
-    var infoOwner:Map<String, Any>,
-    var ownerEmail:String
 ) {
 
     constructor() : this(
         "",   "", mutableListOf(), "", mutableListOf(),
         mutableListOf(),"0", mutableListOf(), "", "", "",
-        hashMapOf(), mutableListOf(), 0, "", mapOf(), ""
+        hashMapOf(), mutableListOf(), 0
     )
 
     fun  getData(document: DocumentSnapshot) {
@@ -53,15 +50,10 @@ data class Post(
             servers = document.data?.get("nameFood") as String
             share = document.data?.get("share") as Long
             timePost = document.data?.get("timePost") as HashMap<String, Any>
-            infoOwner = document.data?.get("infoOwner") as Map<String, Any>
-            owner = infoOwner["name"].toString()
-            avatarOwner = infoOwner["avatar"].toString()
-            ownerEmail = infoOwner["username"].toString()
 
         }catch (e : Exception){
             throw e
         }
-
     }
 
     suspend fun  takeDataToHome(document: DocumentSnapshot) = coroutineScope {
@@ -99,7 +91,5 @@ data class Post(
         }catch (e : Exception){
             throw e
         }
-
     }
-
 }
