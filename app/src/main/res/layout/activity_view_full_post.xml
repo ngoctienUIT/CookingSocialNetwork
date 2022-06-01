@@ -216,6 +216,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:elevation="4dp"/>
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
                 <TextView
                     android:layout_width="match_parent"
@@ -275,6 +276,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btn_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -323,6 +325,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/write_comment"
                     android:paddingHorizontal="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"

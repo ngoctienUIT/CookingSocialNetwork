@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import me.relex.circleindicator.CircleIndicator
 
-//import me.relex.circleindicator.CircleIndicator
 
 class ViewFullPost : AppCompatActivity() {
     lateinit var binding: ActivityViewFullPostBinding
@@ -66,7 +65,7 @@ class ViewFullPost : AppCompatActivity() {
             binding.methods.layoutManager = methodsLayoutManager
             binding.methods.adapter = methodsAdapter
 
-            val commentAdapter = CommentAdapter(it.comments)
+            val commentAdapter = CommentAdapter(it.comments, id)
             val commentLayoutManager = LinearLayoutManager(this)
             binding.comments.layoutManager = commentLayoutManager
             binding.comments.adapter = commentAdapter
@@ -75,14 +74,12 @@ class ViewFullPost : AppCompatActivity() {
                 binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
             else binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
 
-
-            //slider images
+//            slider images
             it.images.let { list ->
                 viewPagerAdapter = ImageSlideAdapter(this, list )
                 binding.viewpager.adapter = viewPagerAdapter
                 indicator = binding.indicator
                 indicator.setViewPager(binding.viewpager)
-
             }
         }
         binding.send.visibility = View.GONE
@@ -112,6 +109,20 @@ class ViewFullPost : AppCompatActivity() {
         binding.btnFavourite.setOnClickListener()
         {
             viewModel.updateFavourite()
+        }
+
+        binding.comments.visibility = View.GONE
+        binding.writeComment.visibility = View.GONE
+        binding.btnComment.setOnClickListener()
+        {
+            if (binding.comments.visibility == View.GONE) {
+                binding.comments.visibility = View.VISIBLE
+                binding.writeComment.visibility = View.VISIBLE
+            }
+            else {
+                binding.comments.visibility = View.GONE
+                binding.writeComment.visibility = View.GONE
+            }
         }
     }
 }
