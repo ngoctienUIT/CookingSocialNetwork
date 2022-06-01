@@ -207,14 +207,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
-<!--                <CircleIndicator-->
-<!--                    android:id="@+id/indicator"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    android:elevation="4dp" />-->
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:elevation="4dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
                 <TextView
@@ -275,6 +275,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btn_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -323,6 +324,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/write_comment"
                     android:paddingHorizontal="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
