@@ -1,6 +1,9 @@
 package com.example.cookingsocialnetwork.main.fragment.home.realtimePost
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +15,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 import com.example.cookingsocialnetwork.model.data.User
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
+import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost as RealtimePost1
 
-class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>(
-    object : DiffUtil.ItemCallback<RealtimePost>() {
-        override fun areItemsTheSame(old: RealtimePost, new: RealtimePost): Boolean =
+class PostsAdapter : PagedListAdapter<RealtimePost1, PostsAdapter.PostViewHolder>(
+    object : DiffUtil.ItemCallback<RealtimePost1>() {
+        override fun areItemsTheSame(old: RealtimePost1, new: RealtimePost1): Boolean =
             old.id == new.id
 
-        override fun areContentsTheSame(old: RealtimePost, new: RealtimePost): Boolean =
+        override fun areContentsTheSame(old: RealtimePost1, new: RealtimePost1): Boolean =
             old == new
     }
 ) {
@@ -34,9 +39,21 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
         return PostViewHolder(view)
     }
 
+    @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val record = getItem(position)
         holder.bind(record)
+
+        holder.itemView.setOnClickListener{
+            val idPostClicked = record?.id
+            val context = holder.itemView.context
+            if(idPostClicked != ""){
+                val fullPost = Intent(context, ViewFullPost::class.java)
+                fullPost.putExtra("id_post", idPostClicked)
+                context.startActivity(fullPost)
+            }
+        }
+
     }
 
     override fun onViewRecycled(holder: PostViewHolder) {
@@ -49,12 +66,6 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
             userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
             comment.text = "";
             heart.text = ""
-            /*ryc_postView.setBackgroundColor(
-                ContextCompat.getColor(
-                    view.context,
-                    android.R.color.white
-                )
-            )*/
             viewHolderDisposables.clear()
         }
     }
@@ -69,13 +80,12 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
         val rating : RatingBar = itemView.findViewById(R.id.food_rating)
         val comment : TextView = itemView.findViewById(R.id.comment)
         val heart : TextView = itemView.findViewById(R.id.heart)
-       // val ryc_postView by lazy {itemView.findViewById<SwipeRefreshLayout>(R.id.swp_records)}
 
-        fun bind(realtimePost: RealtimePost?) {
+        fun bind(realtimePost: RealtimePost1?) {
             realtimePost?.let {
                 it.post
                     .subscribe { post ->
-                        FirebaseFirestore.getInstance()
+                        /*FirebaseFirestore.getInstance()
                             .collection("user")
                             .document(post.owner)
                             .get()
@@ -84,7 +94,9 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
                                 user.getData(userSnap)
                                 userImage.load(user.avatar)
                                 userName.text = user.name
-                            }
+                            }*/ // không cần
+                        userImage.load(post.avatarOwner)
+                        userName.text = post.owner
                         foodImage.load(post.images[0])
                         rating.numStars = post.level.toInt()
                         foodName.text = post.nameFood
@@ -93,7 +105,9 @@ class PostsAdapter : PagedListAdapter<RealtimePost, PostsAdapter.PostViewHolder>
                     } to viewHolderDisposables
             }
         }
+
     }
+    fun
     interface OnClickListener{
         fun onCommentClick(view: View, position : Int)
     }

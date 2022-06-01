@@ -10,11 +10,14 @@ import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
 import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 import com.squareup.picasso.Picasso
+import me.relex.circleindicator.CircleIndicator
 
 class ViewFullPost : AppCompatActivity() {
     lateinit var binding: ActivityViewFullPostBinding
     private lateinit var viewModel: ViewFullPostViewModel
     private lateinit var id: String
+    lateinit var viewPagerAdapter: ImageSlideAdapter
+    lateinit var indicator: CircleIndicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,20 @@ class ViewFullPost : AppCompatActivity() {
             val methodsLayoutManager = LinearLayoutManager(this)
             binding.methods.layoutManager = methodsLayoutManager
             binding.methods.adapter = methodsAdapter
+
+            //slider images
+            it.images.let { list ->
+                viewPagerAdapter = ImageSlideAdapter(this, list )
+                binding.viewpager.adapter = viewPagerAdapter
+                indicator = binding.indicator
+                indicator.setViewPager(binding.viewpager)
+
+            }
+
+            val ingredientAdapter = ListIngredientAdapter(this, it.ingredients)
+            binding.ingredients.isClickable = false
+            binding.ingredients.adapter = ingredientAdapter
+            binding.methods.adapter = ingredientAdapter
         }
 
         viewModel.checkFavourite().observe(this)

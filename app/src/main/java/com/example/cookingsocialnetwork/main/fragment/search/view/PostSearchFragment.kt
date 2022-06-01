@@ -44,7 +44,7 @@ class PostSearchFragment : Fragment() {
                     Log.w("Username", list[position].nameFood)
                     val fullPost = Intent(activity, ViewFullPost::class.java)
                     fullPost.putExtra("id_post", list[position].id)
-                    startActivity(fullPost)
+                     startActivity(fullPost)
                 }
             }
         }
