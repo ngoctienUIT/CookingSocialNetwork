@@ -10,6 +10,8 @@ import androidx.viewpager.widget.ViewPager
 import coil.api.load
 import com.bumptech.glide.Glide
 import com.example.cookingsocialnetwork.R
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.yield
 
 class ImageSlideAdapter(private val context: Context, private var imageList: MutableList<String>) : PagerAdapter() {
     override fun getCount(): Int {
@@ -27,6 +29,7 @@ class ImageSlideAdapter(private val context: Context, private var imageList: Mut
 
         imageList[position].let {
             ivImages.load(it)
+            //Picasso.get().load(it).into(ivImages)
           /*  Glide.with(context)
                 .load(it)
                 .into(ivImages);*/

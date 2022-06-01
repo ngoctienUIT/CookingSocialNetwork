@@ -2,12 +2,15 @@ package com.example.cookingsocialnetwork.main.fragment.home
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
@@ -15,6 +18,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.intro.IntroSlide
 import com.example.cookingsocialnetwork.intro.IntroSliderAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapter
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
@@ -49,6 +53,7 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
             binding.swpRecords.isRefreshing = false;
             postsAdapter.submitList(it)
         }
+
 
         binding.trending.adapter = introSliderAdapter
         val handler = Handler()

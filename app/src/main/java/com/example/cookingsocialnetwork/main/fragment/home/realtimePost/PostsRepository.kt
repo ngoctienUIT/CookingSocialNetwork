@@ -1,6 +1,7 @@
 package com.example.cookingsocialnetwork.main.fragment.home.realtimePost
 
 import com.example.cookingsocialnetwork.model.data.Post
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.logging.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -20,12 +21,11 @@ class PostsRepository @Inject constructor() {
         loadBefore: String? = null,
         loadAfter: String? = null
     ): List<RealtimePost> {
-        var query = db.collection("post").limit(pageSize.toLong())
+        var query = db.collection("post").limit(pageSize.toLong()).whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
         loadBefore?.let {
             val item = db.collection("post").document(it)
                 .get()
                 .await()
-
             query = query.endBefore(item)
         }
 

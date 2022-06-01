@@ -207,14 +207,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
-<!--                <CircleIndicator-->
-<!--                    android:id="@+id/indicator"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    android:elevation="4dp" />-->
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:elevation="4dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
                 <TextView
@@ -352,17 +352,20 @@
                             android:id="@+id/content_comment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/round_view"
-                            android:layout_margin="10dp"
-                            android:padding="10dp"
-                            android:lines="8"
-                            android:minLines="1"
-                            android:maxLines="10"
-                            android:scrollbars="vertical"
-                            android:paddingEnd="60dp"
                             android:drawablePadding="10dp"
                             android:hint="Bình luận"
+                            android:inputType="textMultiLine"
+                            android:lines="8"
+                            android:maxLines="10"
+                            android:minLines="1"
+                            android:padding="10dp"
+                            android:paddingEnd="60dp"
+                            android:scrollbars="vertical"
                             tools:ignore="RtlSymmetry" />
 
                         <ImageView

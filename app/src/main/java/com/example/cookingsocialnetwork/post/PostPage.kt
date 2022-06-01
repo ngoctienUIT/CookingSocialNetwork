@@ -260,6 +260,7 @@ class PostPage : AppCompatActivity() {
                     //nếu đã get đủ url ảnh
                     if(listImageUrlFB.count() == listImageUri.count()){
                        // initPost(listImageUrlFB)
+                        initPost()
                        // Log.d("PostPage", "Succesfully upadated an image with: $listUri")
                     }
                    // uploadTask.resume()

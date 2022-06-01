@@ -15,6 +15,8 @@ import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
+import me.relex.circleindicator.CircleIndicator
+
 //import me.relex.circleindicator.CircleIndicator
 
 class ViewFullPost : AppCompatActivity() {
@@ -22,7 +24,7 @@ class ViewFullPost : AppCompatActivity() {
     private lateinit var viewModel: ViewFullPostViewModel
     private lateinit var id: String
     lateinit var viewPagerAdapter: ImageSlideAdapter
-//    lateinit var indicator: CircleIndicator
+    lateinit var indicator: CircleIndicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,13 +77,13 @@ class ViewFullPost : AppCompatActivity() {
 
 
             //slider images
-//            it.images.let { list ->
-//                viewPagerAdapter = ImageSlideAdapter(this, list )
-//                binding.viewpager.adapter = viewPagerAdapter
-//                indicator = binding.indicator
-//                indicator.setViewPager(binding.viewpager)
-//
-//            }
+            it.images.let { list ->
+                viewPagerAdapter = ImageSlideAdapter(this, list )
+                binding.viewpager.adapter = viewPagerAdapter
+                indicator = binding.indicator
+                indicator.setViewPager(binding.viewpager)
+
+            }
         }
         binding.send.visibility = View.GONE
         binding.contentComment.addTextChangedListener(object :TextWatcher

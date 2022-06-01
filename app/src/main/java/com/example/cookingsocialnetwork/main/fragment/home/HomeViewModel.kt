@@ -38,6 +38,8 @@ class HomeViewModel @Inject constructor(postsRepository : PostsRepository): View
             config
         ).build()
 
+
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
