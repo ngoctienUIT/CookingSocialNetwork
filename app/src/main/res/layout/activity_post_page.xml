@@ -108,6 +108,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:text="@string/image_request" />
+
                 <EditText
                     android:id="@+id/name_Food"
                     android:layout_width="match_parent"

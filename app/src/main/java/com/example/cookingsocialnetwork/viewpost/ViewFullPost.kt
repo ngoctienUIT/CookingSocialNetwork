@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
-import com.example.cookingsocialnetwork.viewpost.adapter.ListIngredientAdapter
+import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
+import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 import com.squareup.picasso.Picasso
 
 class ViewFullPost : AppCompatActivity() {
@@ -39,10 +41,14 @@ class ViewFullPost : AppCompatActivity() {
         }
 
         viewModel.post.observe(this) {
-            val ingredientAdapter = ListIngredientAdapter(this, it.ingredients)
-            binding.ingredients.isClickable = false
+            val ingredientAdapter = IngredientAdapter(it.ingredients)
+            val ingredientsLayoutManager = LinearLayoutManager(this)
+            binding.ingredients.layoutManager = ingredientsLayoutManager
             binding.ingredients.adapter = ingredientAdapter
-            binding.methods.adapter = ingredientAdapter
+            val methodsAdapter = MethodsAdapter(it.ingredients)
+            val methodsLayoutManager = LinearLayoutManager(this)
+            binding.methods.layoutManager = methodsLayoutManager
+            binding.methods.adapter = methodsAdapter
         }
 
         viewModel.checkFavourite().observe(this)
