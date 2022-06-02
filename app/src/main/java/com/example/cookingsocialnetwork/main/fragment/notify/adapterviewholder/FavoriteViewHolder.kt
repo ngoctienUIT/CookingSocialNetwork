@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholdernotify
+package com.example.cookingsocialnetwork.main.fragment.notify.adapterviewholder
 
 import android.view.View
 import android.widget.ImageView
@@ -11,14 +11,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.lang.ref.WeakReference
 
-class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
+class FavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var view: WeakReference<View> = WeakReference(itemView)
     private var nameView: TextView? = null
     private var contentView: TextView? = null
     private var timeView: TextView? = null
     private var avatarView: ImageView? = null
     private var postView: ImageView? = null
-    var comment: Notify? = null
+    var favorite: Notify? = null
     var onClickItem : ((String)->Unit)? = null
 
     init {
@@ -38,17 +38,17 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
     {
         view.get()?.setOnClickListener()
         {
-            onClickItem?.let { comment?.let { it1 -> it(it1.name) } }
+            onClickItem?.let { favorite?.let { it1 -> it(it1.name) } }
         }
     }
 
     fun updateView()
     {
         findView()
-        timeView?.text = comment?.time
+        timeView?.text = favorite?.time
         FirebaseFirestore.getInstance()
             .collection("user")
-            .document(comment!!.name)
+            .document(favorite!!.name)
             .get()
             .addOnSuccessListener {
                 val data = it.data
@@ -62,13 +62,12 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
 
         FirebaseFirestore.getInstance()
             .collection("post")
-            .document(comment!!.id)
+            .document(favorite!!.id)
             .get()
             .addOnSuccessListener {
                 val post = Post()
                 post.getData(it)
                 Picasso.get().load(post.images[0]).into(postView)
             }
-        contentView?.text = "Đã bình luận: " + comment?.content
     }
 }

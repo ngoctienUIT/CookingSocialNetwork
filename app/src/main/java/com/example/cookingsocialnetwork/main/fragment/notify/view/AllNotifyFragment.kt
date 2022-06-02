@@ -12,7 +12,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentAllNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
-import com.example.cookingsocialnetwork.model.adapter.viewholdernotify.AdapterViewHolder
+import com.example.cookingsocialnetwork.main.fragment.notify.adapterviewholder.AdapterViewHolder
 
 class AllNotifyFragment : Fragment() {
     lateinit var binding: FragmentAllNotifyBinding

@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model.adapter
+package com.example.cookingsocialnetwork.main.fragment.search.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context

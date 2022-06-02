@@ -11,7 +11,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentFavoriteNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
-import com.example.cookingsocialnetwork.model.adapter.ListAdapterNotifyFavorite
+import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyFavorite
 
 class FavoriteNotifyFragment : Fragment() {
     lateinit var binding: FragmentFavoriteNotifyBinding

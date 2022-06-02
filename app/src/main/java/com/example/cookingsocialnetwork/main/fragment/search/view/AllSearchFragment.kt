@@ -12,7 +12,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentAllSearchBinding
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModelFactory
-import com.example.cookingsocialnetwork.model.adapter.viewholdersearch.AllSearchAdapter
+import com.example.cookingsocialnetwork.main.fragment.search.adapterviewholder.AllSearchAdapter
 
 class AllSearchFragment : Fragment() {
     lateinit var query: String

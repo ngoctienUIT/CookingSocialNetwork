@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholdersearch
+package com.example.cookingsocialnetwork.main.fragment.search.adapterviewholder
 
 import android.annotation.SuppressLint
 import android.view.View

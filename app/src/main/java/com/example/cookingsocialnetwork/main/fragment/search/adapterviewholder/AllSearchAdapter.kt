@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholdersearch
+package com.example.cookingsocialnetwork.main.fragment.search.adapterviewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

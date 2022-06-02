@@ -1,6 +1,5 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholdersearch
+package com.example.cookingsocialnetwork.main.fragment.search.adapterviewholder
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView

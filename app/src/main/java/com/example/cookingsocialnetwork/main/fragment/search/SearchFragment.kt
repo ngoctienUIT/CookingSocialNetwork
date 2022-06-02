@@ -15,8 +15,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentSearchBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDialogSearchableBinding
-import com.example.cookingsocialnetwork.model.adapter.ListAdapterSearchHistory
-import com.example.cookingsocialnetwork.model.adapter.ListAdapterSearchUser
+import com.example.cookingsocialnetwork.main.fragment.search.adapter.ListAdapterSearchHistory
+import com.example.cookingsocialnetwork.main.fragment.search.adapter.ListAdapterSearchUser
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

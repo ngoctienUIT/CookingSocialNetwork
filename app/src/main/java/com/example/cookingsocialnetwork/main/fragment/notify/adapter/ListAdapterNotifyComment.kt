@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model.adapter
+package com.example.cookingsocialnetwork.main.fragment.notify.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity

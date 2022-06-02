@@ -11,7 +11,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentFollowNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
-import com.example.cookingsocialnetwork.model.adapter.ListAdapterNotifyFollow
+import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyFollow
 
 class FollowNotifyFragment : Fragment() {
     lateinit var binding: FragmentFollowNotifyBinding

@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.model.adapter.viewholdernotify
+package com.example.cookingsocialnetwork.main.fragment.notify.adapterviewholder
 
 import android.view.View
 import android.widget.Button

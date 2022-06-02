@@ -11,12 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentPostSearchBinding
-import com.example.cookingsocialnetwork.main.MainPage
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModelFactory
-import com.example.cookingsocialnetwork.model.adapter.GridAdapterPost
-import com.example.cookingsocialnetwork.model.adapter.ListAdapterUser
-import com.example.cookingsocialnetwork.model.data.Post
+import com.example.cookingsocialnetwork.main.fragment.search.adapter.GridAdapterPost
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class PostSearchFragment : Fragment() {
