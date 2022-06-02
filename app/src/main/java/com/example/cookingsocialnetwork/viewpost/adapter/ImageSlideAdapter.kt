@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.viewpost
+package com.example.cookingsocialnetwork.viewpost.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,10 +8,7 @@ import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import coil.api.load
-import com.bumptech.glide.Glide
 import com.example.cookingsocialnetwork.R
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.yield
 
 class ImageSlideAdapter(private val context: Context, private var imageList: MutableList<String>) : PagerAdapter() {
     override fun getCount(): Int {

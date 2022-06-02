@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
 import com.example.cookingsocialnetwork.viewpost.adapter.CommentAdapter
+import com.example.cookingsocialnetwork.viewpost.adapter.ImageSlideAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 import com.google.firebase.auth.FirebaseAuth

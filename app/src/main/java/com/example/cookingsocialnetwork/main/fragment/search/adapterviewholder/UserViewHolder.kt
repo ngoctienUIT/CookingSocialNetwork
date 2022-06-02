@@ -1,6 +1,7 @@
 package com.example.cookingsocialnetwork.main.fragment.search.adapterviewholder
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.lang.ref.WeakReference
+import java.time.LocalDateTime
 
 class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var view: WeakReference<View> = WeakReference(itemView)
@@ -76,6 +78,7 @@ class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     if (!checkFollow) {
                         following.add(user!!.username)
                         follower!!.add(myData.username)
+                        addNotify(myData.username)
                     } else {
                         following.remove(user?.username)
                         follower!!.remove(myData.username)
@@ -91,6 +94,33 @@ class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                         .document(user!!.username)
                         .update("followers", follower)
                 }
+            }
+    }
+
+    private fun addNotify(userName: String)
+    {
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(user!!.username)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val data = snapshot.data
+                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
+
+                val notify = hashMapOf(
+                    "content" to "",
+                    "id" to "",
+                    "name" to userName,
+                    "status" to 1,
+                    "time" to LocalDateTime.now(),
+                    "type" to "follow"
+                )
+
+                notifyData.add(notify)
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(user!!.username)
+                    .update("notify", notifyData)
             }
     }
 }

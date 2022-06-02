@@ -98,6 +98,8 @@ class ViewFullPostViewModel: ViewModel() {
                         .update("favourites", favouritesUser)
                 }
             }
+
+        if (!check && _post.owner != _myData.username) addNotify("favorite", "")
     }
 
     fun updateComment(content: String)
@@ -116,5 +118,34 @@ class ViewFullPostViewModel: ViewModel() {
             .collection("post")
             .document(id)
             .update("comments", comments)
+
+        if (_post.owner != _myData.username) addNotify("comment", content)
+    }
+
+    private fun addNotify(type: String, content: String)
+    {
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(_user.username)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val data = snapshot.data
+                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
+
+                val notify = hashMapOf(
+                    "content" to content,
+                    "id" to _post.id,
+                    "name" to _post.owner,
+                    "status" to 1,
+                    "time" to LocalDateTime.now(),
+                    "type" to type
+                )
+
+                notifyData.add(notify)
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(_user.username)
+                    .update("notify", notifyData)
+            }
     }
 }
