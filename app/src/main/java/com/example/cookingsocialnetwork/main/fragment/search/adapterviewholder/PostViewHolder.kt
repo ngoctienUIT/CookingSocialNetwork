@@ -18,11 +18,9 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var avatarView: ImageView? = null
     private var imagePostView: ImageView? = null
     var post: Post? = null
-    var onClickItem: ((String) -> Unit)? = null
 
     init {
         findView()
-        setListener()
     }
 
     private fun findView() {
@@ -31,10 +29,6 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         avatarView = view.get()?.findViewById(R.id.avatar)
         imagePostView = view.get()?.findViewById(R.id.image_post)
         favoriteView = view.get()?.findViewById(R.id.favorite)
-    }
-
-    private fun setListener() {
-
     }
 
     fun updateView() {

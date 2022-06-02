@@ -1,10 +1,12 @@
 package com.example.cookingsocialnetwork.main.fragment.notify.adapterviewholder
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     enum class ViewHolderType {
@@ -37,6 +39,12 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
         when (holder) {
             is CommentViewHolder -> {
                 holder.comment = listNotify[position]
+                holder.itemView.setOnClickListener()
+                {
+                    val fullPost = Intent(holder.itemView.context, ViewFullPost::class.java)
+                    fullPost.putExtra("id_post", listNotify[position].id)
+                    holder.itemView.context.startActivity(fullPost)
+                }
                 holder.updateView()
             }
 
@@ -47,6 +55,12 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
 
             is FavoriteViewHolder -> {
                 holder.favorite = listNotify[position]
+                holder.itemView.setOnClickListener()
+                {
+                    val fullPost = Intent(holder.itemView.context, ViewFullPost::class.java)
+                    fullPost.putExtra("id_post", listNotify[position].id)
+                    holder.itemView.context.startActivity(fullPost)
+                }
                 holder.updateView()
             }
         }

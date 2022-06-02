@@ -21,11 +21,9 @@ class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var infoView: TextView? = null
     private var follow: Button? = null
     var user: User? =null
-    var onClickItem : ((String)->Unit)? = null
 
     init {
         findView()
-        setListener()
     }
 
     private fun findView() {
@@ -34,11 +32,6 @@ class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         infoView = view.get()?.findViewById(R.id.info)
         avatarView=view.get()?.findViewById(R.id.avatarUser)
         follow = view.get()?.findViewById(R.id.follow)
-    }
-
-    private fun setListener()
-    {
-
     }
 
     @SuppressLint("SetTextI18n")

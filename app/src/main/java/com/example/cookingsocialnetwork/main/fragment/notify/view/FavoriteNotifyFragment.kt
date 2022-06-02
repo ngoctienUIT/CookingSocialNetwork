@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.notify.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentFavoriteNotifyBindin
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyFavorite
+import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class FavoriteNotifyFragment : Fragment() {
     lateinit var binding: FragmentFavoriteNotifyBinding
@@ -30,8 +32,10 @@ class FavoriteNotifyFragment : Fragment() {
                 val adapter = ListAdapterNotifyFavorite(it, list.asReversed())
                 binding.listFavorite.isClickable = true
                 binding.listFavorite.adapter = adapter
-                binding.listFavorite.setOnItemClickListener { _, _, _, _ ->
-
+                binding.listFavorite.setOnItemClickListener { _, _, position, _ ->
+                    val fullPost = Intent(it, ViewFullPost::class.java)
+                    fullPost.putExtra("id_post", list[position].id)
+                    it.startActivity(fullPost)
                 }
             }
         }

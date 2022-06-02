@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.notify.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentCommentNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyComment
+import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class CommentNotifyFragment : Fragment() {
     lateinit var binding: FragmentCommentNotifyBinding
@@ -30,8 +32,10 @@ class CommentNotifyFragment : Fragment() {
                 val adapter = ListAdapterNotifyComment(it, list.asReversed())
                 binding.listComment.isClickable = true
                 binding.listComment.adapter = adapter
-                binding.listComment.setOnItemClickListener { _, _, _, _ ->
-
+                binding.listComment.setOnItemClickListener { _, _, position, _ ->
+                    val fullPost = Intent(it, ViewFullPost::class.java)
+                    fullPost.putExtra("id_post", list[position].id)
+                    it.startActivity(fullPost)
                 }
             }
         }
