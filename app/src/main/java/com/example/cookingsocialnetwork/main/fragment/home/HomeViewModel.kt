@@ -3,8 +3,9 @@ package com.example.cookingsocialnetwork.main.fragment.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
+import androidx.lifecycle.viewModelScope
+import androidx.paging.*
+import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.FirestorePagingSource
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsDataSource
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsRepository
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
@@ -39,6 +40,9 @@ class HomeViewModel @Inject constructor(postsRepository : PostsRepository): View
         ).build()
 
 
+    val flow = Pager(PagingConfig(20)) {
+        FirestorePagingSource(FirebaseFirestore.getInstance())
+    }.flow.cachedIn(viewModelScope)
 
     override fun onCleared() {
         super.onCleared()

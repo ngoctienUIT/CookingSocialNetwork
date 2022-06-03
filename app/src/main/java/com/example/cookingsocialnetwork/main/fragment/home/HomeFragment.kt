@@ -6,11 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
@@ -18,6 +21,8 @@ import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.intro.IntroSlide
 import com.example.cookingsocialnetwork.intro.IntroSliderAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapter
+import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapterTest
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +30,8 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val postsAdapter by lazy { PostsAdapter() }
+    private val postsAdapterTest: PostsAdapterTest by lazy { PostsAdapterTest() }
+
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     lateinit var viewModel: HomeViewModel
@@ -46,12 +53,29 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
         binding.lifecycleOwner = this
 
         //listpost
-        binding.recPosts.adapter = postsAdapter
+      /*  binding.recPosts.adapter = postsAdapter
         binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.listPosts.observe(viewLifecycleOwner) {
             binding.swpRecords.isRefreshing = false;
             postsAdapter.submitList(it)
+        }*/
+        
+
+        binding.recPosts.adapter = postsAdapterTest
+        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        lifecycleScope.launch {
+            viewModel.flow.collect {
+                postsAdapterTest.submitData(it)
+            }
+        }
+
+        lifecycleScope.launch {
+            postsAdapterTest.loadStateFlow.collectLatest { loadStates ->
+               binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
+                binding.progressBarLoadMore.isVisible = loadStates.append is LoadState.Loading
+            }
         }
 
 

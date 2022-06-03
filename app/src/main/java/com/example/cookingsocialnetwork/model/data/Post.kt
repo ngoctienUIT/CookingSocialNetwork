@@ -12,6 +12,7 @@ import java.time.LocalDateTime
 
 data class Post(
     @Transient
+    var comments: MutableList<Map<String, Any>>, // danh sách commment
     var cookingTime: String, // thời gian nấu
     var description: String, // mô tả
     var favourites: MutableList<String>, // danh sách username đã thích bài viết
@@ -23,15 +24,15 @@ data class Post(
     var nameFood: String, // tên món ăn
     var owner: String, // username chủ bài viết
     var servers: String, // số người ăn
-    var timePost : HashMap<String, Any>,
-    var comments: MutableList<Map<String, Any>>, // danh sách commment
     var share: Long,
+    var timePost : HashMap<String, Any>,
+
 ) {
 
     constructor() : this(
-        "",   "", mutableListOf(), "", mutableListOf(),
+        mutableListOf(),"",   "", mutableListOf(), "", mutableListOf(),
         mutableListOf(),"0", mutableListOf(), "", "", "",
-        hashMapOf(), mutableListOf(), 0
+        0,hashMapOf(),
     )
 
     fun  getData(document: DocumentSnapshot) {
