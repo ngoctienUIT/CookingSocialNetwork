@@ -113,6 +113,8 @@
         <entry key="..\:/Kotlin/New folder/CookingSocialNetwork/app/src/main/res/layout/activity_post_page.xml" value="0.264" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/appbar_bg.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/back_gradient.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_btn_edit.xml" value="0.1395" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_btn_follow.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_iv.xml" value="0.148" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_linear_layout.xml" value="0.148" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/circle_bg.xml" value="0.1495" />
@@ -123,6 +125,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_back_ios.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_notifications.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/icon_gradient.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/logout_gradient.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_about_page.xml" value="0.25407608695652173" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_account_page.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_home_page.xml" value="0.13272543059777103" />
@@ -154,6 +157,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_search.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_user_search.xml" value="0.25" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/grid_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/grid_item_clicked_image_choosed.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/grid_item_post.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/image_food_slider_item.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/item_comment.xml" value="0.22826086956521738" />
@@ -165,6 +169,8 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/layout_dialog_choose_language.xml" value="0.13272543059777103" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/list_item_post.xml" value="0.25" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/list_item_user.xml" value="0.13272543059777103" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/list_search_history_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/list_search_user_item.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/postpage_ingredient_child.xml" value="0.25407608695652173" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_form.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_formimage.xml" value="0.22826086956521738" />
