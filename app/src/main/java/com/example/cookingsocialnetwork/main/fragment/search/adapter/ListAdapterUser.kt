@@ -40,7 +40,6 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
 
             follow.setOnClickListener()
             {
-
                 if (!checkFollow) {
                     following.add(userArrayList[position].username)
                     follower.add(myData.username)

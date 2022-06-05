@@ -40,6 +40,7 @@
     <string name="favorite">Yêu thích</string>
     <string name="comment">Bình luận</string>
     <string name="follow">Theo dõi</string>
+    <string name="unfollow">Bỏ theo dõi</string>
     <string name="all">Tất cả</string>
 
     <string-array name="gender">

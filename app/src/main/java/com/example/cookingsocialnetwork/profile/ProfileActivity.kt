@@ -3,8 +3,10 @@ package com.example.cookingsocialnetwork.profile
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityProfileBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 class ProfileActivity : AppCompatActivity() {
@@ -33,8 +35,7 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.follow.setOnClickListener()
         {
-//            val checkFollow = viewModel.getUser.value.following.indexOf(userArrayList[position].username) != -1
-//            if (checkFollow) binding.follow.text = "Unfollow"
+            viewModel.eventFollow()
         }
 
         viewModel.getUser.observe(this)
@@ -44,6 +45,9 @@ class ProfileActivity : AppCompatActivity() {
             binding.post.text = user.post.size.toString()
             binding.follower.text = user.followers.size.toString()
             binding.following.text = user.following.size.toString()
+            val checkFollow = user.followers.indexOf(FirebaseAuth.getInstance().currentUser?.email) != -1
+            if (checkFollow) binding.follow.text = getString(R.string.unfollow)
+            else binding.follow.text = getString(R.string.follow)
 
             val pageProfile = ViewPageProfileAdapter(this)
             pageProfile.listPost = user.post

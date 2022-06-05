@@ -39,6 +39,7 @@
     <string name="favorite">Favorite</string>
     <string name="comment">Comment</string>
     <string name="follow">Follow</string>
+    <string name="unfollow">Unfollow</string>
     <string name="all">All</string>
 
     <string-array name="gender">
