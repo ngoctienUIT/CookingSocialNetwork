@@ -12,20 +12,19 @@ class SearchPageAdapter(fragmentActivity: SearchFragment): FragmentStateAdapter(
     override fun getItemCount() = 3
 
     override fun createFragment(position: Int): Fragment {
-        when (position)
-        {
+        when (position) {
             0 -> {
-                val frag= AllSearchFragment()
+                val frag = AllSearchFragment()
                 frag.query = query
                 return frag
             }
             1 -> {
-                val frag= UserSearchFragment()
+                val frag = UserSearchFragment()
                 frag.query = query
                 return frag
             }
             else -> {
-                val frag= PostSearchFragment()
+                val frag = PostSearchFragment()
                 frag.query = query
                 return frag
             }

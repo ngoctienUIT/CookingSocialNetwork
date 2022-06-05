@@ -98,7 +98,7 @@ class SearchViewModel: ViewModel() {
                     documents.forEach()
                     {
                         val data = it.data?.get("nameFood").toString()
-                        Log.w("data Post", data)
+//                        Log.w("data Post", it.data.toString() + " " + it.id)
                         if (data.uppercase().contains(query.uppercase())) {
                             val post = Post()
                             post.getData(it)

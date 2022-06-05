@@ -60,32 +60,19 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="233dp">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        app:cardCornerRadius="180dp">
 
                         <ImageView
-                            android:id="@+id/imageProfileBackground"
-                            android:layout_width="wrap_content"
-                            android:layout_height="181dp"
-                            android:scaleType="center"
-                            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                            android:id="@+id/userAvatar"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            app:srcCompat="@drawable/profile_cir" />
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            app:cardCornerRadius="180dp">
-
-                            <ImageView
-                                android:id="@+id/userAvatar"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                app:srcCompat="@drawable/profile_cir" />
-
-                        </androidx.cardview.widget.CardView>
-
-                    </FrameLayout>
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:id="@+id/textUserid"
@@ -183,56 +170,26 @@
                         android:layout_marginStart="50dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="50dp"
+                        android:layout_marginBottom="30dp"
                         android:fontFamily="sans-serif-light"
                         android:gravity="center"
-                        android:text="Quote"
+                        android:maxLines="4"
+                        android:text="@{viewmodel.getUser.description}"
                         android:textSize="16sp"
                         android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Description:"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/Description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="15dp"
-                        android:textSize="17sp"
-                        tools:text="I am..." />
 
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/tab_layout_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:tabInlineLabel="true"
-                        app:tabMode="fixed">
-
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Bài đăng" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Lưu trữ" />
-
-                    </com.google.android.material.tabs.TabLayout>
+                        app:tabMode="fixed"/>
 
                     <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/view_pager2_profile"
+                        android:id="@+id/view_pager_profile"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent"/>
 
-                    </androidx.viewpager2.widget.ViewPager2>
                 </LinearLayout>
 
             </ScrollView>
@@ -240,6 +197,5 @@
         </LinearLayout>
 
     </FrameLayout>
-
 
 </layout>
