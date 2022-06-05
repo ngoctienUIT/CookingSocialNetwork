@@ -4,17 +4,19 @@
     android:layout_height="240dp"
     android:layout_marginEnd="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
-    >
+    app:cardCornerRadius="10dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/userAvatarCard"
                 android:layout_width="25dp"
@@ -47,6 +49,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/userAvatarCard"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="Name"
                 android:textSize="13sp" />
 
@@ -57,6 +60,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:drawableLeft="@drawable/ic_more_vert" />
+
         </RelativeLayout>
 
 
@@ -68,7 +72,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/food_picker" />
 
-
         <TextView
             android:id="@+id/food_name"
             android:layout_width="wrap_content"
@@ -76,12 +79,14 @@
             android:layout_marginStart="5dp"
             android:text="Name"
             android:textSize="18sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginStart="5dp"
             android:layout_marginVertical="5dp"
             android:orientation="horizontal">
+
             <RatingBar
                 android:id="@+id/food_rating"
                 style="@style/Widget.AppCompat.RatingBar.Small"
@@ -92,6 +97,7 @@
                 android:progressTint="@color/black"
                 android:secondaryProgressTint="@color/black"
                 android:layout_height="16dp"/>
+
             <TextView
                 android:id="@+id/comment"
                 android:layout_width="40dp"
@@ -104,6 +110,7 @@
                 android:background="@drawable/round_view"
                 android:drawableLeft="@drawable/ic_chat"
                 android:textSize="8sp"/>
+
             <TextView
                 android:id="@+id/heart"
                 android:layout_width="40dp"
@@ -115,7 +122,6 @@
                 android:text="123"
                 android:drawableLeft="@drawable/ic_heart"
                 android:textSize="8sp"/>
-
 
         </LinearLayout>
 

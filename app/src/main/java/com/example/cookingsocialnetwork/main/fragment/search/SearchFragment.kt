@@ -2,6 +2,7 @@ package com.example.cookingsocialnetwork.main.fragment.search
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentSearchBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDialogSearchableBinding
 import com.example.cookingsocialnetwork.main.fragment.search.adapter.ListAdapterSearchHistory
 import com.example.cookingsocialnetwork.main.fragment.search.adapter.ListAdapterSearchUser
+import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -150,20 +152,21 @@ class SearchFragment : Fragment() {
                 if (newText.toString() != "") {
                     viewModel.listenToDataUser()
                     activity?.let {
-                        viewModel._users.observe(context) {
+                        viewModel._users.observe(context) { list ->
                             val adapter =
                                 viewModel._users.value?.let {
                                     ListAdapterSearchUser(dialog, it)
                                 }
                             dialogBinding.listView.adapter = adapter
+                            dialogBinding.listView.isClickable = true
+                            dialogBinding.listView.setOnItemClickListener()
+                            { _, _, position, _ ->
+                                val profile = Intent(activity, ProfileActivity::class.java)
+                                profile.putExtra("user_name", list[position].username)
+                                startActivity(profile)
+                                dialog.dismiss()
+                            }
                         }
-                    }
-
-                    dialogBinding.listView.isClickable = true
-                    dialogBinding.listView.setOnItemClickListener()
-                    { _, _, position, _ ->
-                        Log.w("ok", "abc")
-                        dialog.dismiss()
                     }
                 }
                 else {

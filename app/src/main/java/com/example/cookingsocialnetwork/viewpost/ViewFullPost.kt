@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.viewpost
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
+import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.example.cookingsocialnetwork.viewpost.adapter.CommentAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.ImageSlideAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
@@ -18,13 +20,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import me.relex.circleindicator.CircleIndicator
 
-
 class ViewFullPost : AppCompatActivity() {
     lateinit var binding: ActivityViewFullPostBinding
     private lateinit var viewModel: ViewFullPostViewModel
     private lateinit var id: String
-    lateinit var viewPagerAdapter: ImageSlideAdapter
-    lateinit var indicator: CircleIndicator
+    private lateinit var viewPagerAdapter: ImageSlideAdapter
+    private lateinit var indicator: CircleIndicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,13 @@ class ViewFullPost : AppCompatActivity() {
         binding.backViewFullPost.setOnClickListener()
         {
             finish()
+        }
+
+        binding.viewProfile.setOnClickListener()
+        {
+            val profile = Intent(this, ProfileActivity::class.java)
+            profile.putExtra("user_name", viewModel.user.value?.username)
+            startActivity(profile)
         }
 
         viewModel.user.observe(this)

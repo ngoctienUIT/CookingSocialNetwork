@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class AllSearchAdapter(private var listUser: MutableList<User>, private var listPost:MutableList<Post>)
@@ -34,6 +35,12 @@ class AllSearchAdapter(private var listUser: MutableList<User>, private var list
         when (holder) {
             is UserViewHolder -> {
                 holder.user = listUser[position]
+                holder.itemView.setOnClickListener()
+                {
+                    val profile = Intent(holder.itemView.context, ProfileActivity::class.java)
+                    profile.putExtra("user_name", listUser[position].username)
+                    holder.itemView.context.startActivity(profile)
+                }
                 holder.updateView()
             }
 

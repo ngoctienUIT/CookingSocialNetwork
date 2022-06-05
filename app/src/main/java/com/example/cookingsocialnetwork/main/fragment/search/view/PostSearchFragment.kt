@@ -38,7 +38,6 @@ class PostSearchFragment : Fragment() {
                 binding.gridViewPost.isClickable = true
                 binding.gridViewPost.adapter = adapter
                 binding.gridViewPost.setOnItemClickListener { _, _, position, _ ->
-                    Log.w("Username", list[position].nameFood)
                     val fullPost = Intent(activity, ViewFullPost::class.java)
                     fullPost.putExtra("id_post", list[position].id)
                      startActivity(fullPost)

@@ -1,49 +1,43 @@
-package com.example.cookingsocialnetwork.main.fragment.profile
+package com.example.cookingsocialnetwork.profile
 
-import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.FragmentProfileBinding
-import com.example.cookingsocialnetwork.main.fragment.profile.adapter.ViewPageProfileAdapter
-import com.example.cookingsocialnetwork.main.fragment.search.SearchPageAdapter
-import com.example.cookingsocialnetwork.setting.SettingPage
-import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
+import com.example.cookingsocialnetwork.databinding.ActivityProfileBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 
-class ProfileFragment : Fragment() {
+class ProfileActivity : AppCompatActivity() {
+    lateinit var binding: ActivityProfileBinding
     private lateinit var viewModel: ProfileViewModel
-    private lateinit var binding: FragmentProfileBinding
+    private var userName: String = ""
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-
-    ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        userName = intent.getStringExtra("user_name")!!
+        binding = ActivityProfileBinding.inflate(layoutInflater)
         val factory = ProfileViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
+        viewModel.userName = userName
+        viewModel.listenToData()
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
-        binding.openSetting.setOnClickListener {
-            val settingPage = Intent(activity, SettingPage::class.java)
-            startActivity(settingPage)
-        }
+        setContentView(binding.root)
+        supportActionBar?.hide()
 
-        binding.editProfile.setOnClickListener()
+        binding.backProfile.setOnClickListener()
         {
-            val settingPage = Intent(activity, SettingChangeProfile::class.java)
-            startActivity(settingPage)
+            finish()
         }
 
-        viewModel.getUser.observe(viewLifecycleOwner)
+        binding.follow.setOnClickListener()
+        {
+//            val checkFollow = viewModel.getUser.value.following.indexOf(userArrayList[position].username) != -1
+//            if (checkFollow) binding.follow.text = "Unfollow"
+        }
+
+        viewModel.getUser.observe(this)
         { user ->
 //            binding.userAvatar.setImageURI(Uri.parse(user.avatar))
             Picasso.get().load(user.avatar).into(binding.userAvatar)
@@ -69,7 +63,5 @@ class ProfileFragment : Fragment() {
                 }
             }.attach()
         }
-
-        return binding.root
     }
 }

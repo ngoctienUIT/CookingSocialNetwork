@@ -17,10 +17,10 @@
             android:id="@+id/back_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/back_button"
             android:elevation="0dp"
             android:src="@drawable/ic_back_ios"
-            app:tint="@drawable/icon_back_gradient"
-            android:contentDescription="@string/back_button" />
+            app:tint="@drawable/icon_back_gradient" />
 
         <TextView
             android:layout_width="wrap_content"
