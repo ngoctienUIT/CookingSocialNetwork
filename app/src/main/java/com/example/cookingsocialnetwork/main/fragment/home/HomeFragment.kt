@@ -2,15 +2,12 @@ package com.example.cookingsocialnetwork.main.fragment.home
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -20,6 +17,8 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.intro.IntroSlide
 import com.example.cookingsocialnetwork.intro.IntroSliderAdapter
+import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingAdapter
+import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingSlide
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapterTest
 import kotlinx.coroutines.flow.collectLatest
@@ -79,7 +78,7 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
         }
 
 
-        binding.trending.adapter = introSliderAdapter
+        binding.trending.adapter = trendingSliderAdapter
         val handler = Handler()
         var isScrollDown = true;
         binding.trending.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -120,23 +119,20 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
     override fun onCommentClick(view: View, position: Int) {
         TODO("Not yet implemented")
     }
-    private val introSliderAdapter
-        get() = IntroSliderAdapter(
+    private val trendingSliderAdapter
+        get() = TrendingAdapter(
             listOf(
-                IntroSlide(
-                    "Ex 1",
-                    "This is example 1",
-                    R.drawable.example_image1
+                TrendingSlide(
+                    R.drawable.food_picker,
+                    "1"
                 ),
-                IntroSlide(
-                    "Ex 2",
-                    "This is example 2",
-                    R.drawable.example_image2
+                TrendingSlide(
+                    R.drawable.food_picker,
+                    "2"
                 ),
-                IntroSlide(
-                    "Ex 3",
-                    "This is example 3",
-                    R.drawable.example_image3
+                TrendingSlide(
+                    R.drawable.food_picker,
+                    "3"
                 )
             )
         )

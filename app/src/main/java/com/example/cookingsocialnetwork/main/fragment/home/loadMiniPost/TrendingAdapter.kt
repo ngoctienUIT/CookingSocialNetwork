@@ -9,35 +9,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.intro.IntroSlide
 
-class TrendingAdapter(private val introSlides: List<IntroSlide>) :
-    RecyclerView.Adapter<TrendingAdapter.IntroSlideViewHolder>() {
-    inner class IntroSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val textTitle = view.findViewById<TextView>(R.id.textTitle)
-        private val textDescription = view.findViewById<TextView>(R.id.textDescription)
-        private val imageIcon = view.findViewById<ImageView>(R.id.imageSlideIcon)
+class TrendingAdapter(private val trendingSlides: List<TrendingSlide>) :
+    RecyclerView.Adapter<TrendingAdapter.TrendingSlideViewHolder>() {
+    inner class TrendingSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val foodImage = view.findViewById<ImageView>(R.id.trendingFoodPicture)
+        private val foodName = view.findViewById<TextView>(R.id.trendingFoodName)
 
-        fun bind(introSlide: IntroSlide) {
-            textTitle.text = introSlide.title
-            textDescription.text = introSlide.description
-            imageIcon.setImageResource(introSlide.icon)
+        fun bind(trendingSlide: TrendingSlide) {
+            foodImage.setImageResource(trendingSlide.foodImage)
+            foodName.text =  trendingSlide.foodName
+
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroSlideViewHolder {
-        return IntroSlideViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingSlideViewHolder {
+        return TrendingSlideViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.slide_item_container,
+                R.layout.trending_slider,
                 parent,
                 false
             )
         )
     }
 
-    override fun onBindViewHolder(holder: IntroSlideViewHolder, position: Int) {
-        holder.bind(introSlides[position])
+    override fun onBindViewHolder(holder: TrendingSlideViewHolder, position: Int) {
+        holder.bind(trendingSlides[position])
     }
 
     override fun getItemCount(): Int {
-        return introSlides.size
+        return trendingSlides.size
     }
 }

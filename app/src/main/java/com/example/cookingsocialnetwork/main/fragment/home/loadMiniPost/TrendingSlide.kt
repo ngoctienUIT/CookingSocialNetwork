@@ -1,4 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost
 
-class TrendingSlide {
-}
+class TrendingSlide (
+    val foodImage: Int ,
+    val foodName: String
+)
