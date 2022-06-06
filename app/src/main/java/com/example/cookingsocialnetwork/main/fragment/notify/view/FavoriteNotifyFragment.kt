@@ -29,13 +29,15 @@ class FavoriteNotifyFragment : Fragment() {
 
         activity?.let {
             viewModel.favorites.observe(it) { list ->
-                val adapter = ListAdapterNotifyFavorite(it, list.asReversed())
-                binding.listFavorite.isClickable = true
-                binding.listFavorite.adapter = adapter
-                binding.listFavorite.setOnItemClickListener { _, _, position, _ ->
-                    val fullPost = Intent(it, ViewFullPost::class.java)
-                    fullPost.putExtra("id_post", list[position].id)
-                    it.startActivity(fullPost)
+                if (list.size > 0) {
+                    val adapter = ListAdapterNotifyFavorite(it, list.asReversed())
+                    binding.listFavorite.isClickable = true
+                    binding.listFavorite.adapter = adapter
+                    binding.listFavorite.setOnItemClickListener { _, _, position, _ ->
+                        val fullPost = Intent(it, ViewFullPost::class.java)
+                        fullPost.putExtra("id_post", list[position].id)
+                        it.startActivity(fullPost)
+                    }
                 }
             }
         }

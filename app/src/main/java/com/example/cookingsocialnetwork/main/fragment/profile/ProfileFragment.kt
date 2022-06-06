@@ -12,9 +12,12 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentProfileBinding
 import com.example.cookingsocialnetwork.main.fragment.profile.adapter.ViewPageProfileAdapter
 import com.example.cookingsocialnetwork.main.fragment.search.SearchPageAdapter
+import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.example.cookingsocialnetwork.setting.SettingPage
 import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
+import com.example.cookingsocialnetwork.viewfollow.ViewFollowActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 class ProfileFragment : Fragment() {
@@ -41,6 +44,22 @@ class ProfileFragment : Fragment() {
         {
             val settingPage = Intent(activity, SettingChangeProfile::class.java)
             startActivity(settingPage)
+        }
+
+        binding.btnFollower.setOnClickListener()
+        {
+            val viewFollower = Intent(activity, ViewFollowActivity::class.java)
+            viewFollower.putExtra("user_name", FirebaseAuth.getInstance().currentUser?.email.toString())
+            viewFollower.putExtra("index", 1)
+            startActivity(viewFollower)
+        }
+
+        binding.btnFollowing.setOnClickListener()
+        {
+            val viewFollowing = Intent(activity, ViewFollowActivity::class.java)
+            viewFollowing.putExtra("user_name", FirebaseAuth.getInstance().currentUser?.email.toString())
+            viewFollowing.putExtra("index", 0)
+            startActivity(viewFollowing)
         }
 
         viewModel.getUser.observe(viewLifecycleOwner)

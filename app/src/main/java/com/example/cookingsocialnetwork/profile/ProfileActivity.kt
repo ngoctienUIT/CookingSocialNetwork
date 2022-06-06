@@ -1,10 +1,12 @@
 package com.example.cookingsocialnetwork.profile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityProfileBinding
+import com.example.cookingsocialnetwork.viewfollow.ViewFollowActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
@@ -36,6 +38,22 @@ class ProfileActivity : AppCompatActivity() {
         binding.follow.setOnClickListener()
         {
             viewModel.eventFollow()
+        }
+
+        binding.btnFollower.setOnClickListener()
+        {
+            val viewFollower = Intent(this, ViewFollowActivity::class.java)
+            viewFollower.putExtra("user_name", userName)
+            viewFollower.putExtra("index", 1)
+            startActivity(viewFollower)
+        }
+
+        binding.btnFollowing.setOnClickListener()
+        {
+            val viewFollower = Intent(this, ViewFollowActivity::class.java)
+            viewFollower.putExtra("user_name", userName)
+            viewFollower.putExtra("index", 0)
+            startActivity(viewFollower)
         }
 
         viewModel.getUser.observe(this)

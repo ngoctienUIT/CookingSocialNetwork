@@ -18,7 +18,7 @@ class AllNotifyFragment : Fragment() {
     lateinit var binding: FragmentAllNotifyBinding
     lateinit var viewModel: NotifyViewModel
     lateinit var adapter: AdapterViewHolder
-    lateinit var layoutManager: LinearLayoutManager
+    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

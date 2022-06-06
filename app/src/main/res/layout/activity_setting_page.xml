@@ -64,7 +64,6 @@
                 android:layout_centerVertical="true"
                 android:paddingStart="40dp"
                 android:text="@string/account"
-                android:textColor="@color/textColor"
                 android:textSize="18sp" />
 
             <ImageView
@@ -250,6 +249,7 @@
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/log_out"
             android:background="@drawable/logout_gradient" />
 

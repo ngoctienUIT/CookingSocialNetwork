@@ -27,11 +27,12 @@ class FollowNotifyFragment : Fragment() {
 
         activity?.let {
             viewModel.follows.observe(it) { list ->
-                val adapter = ListAdapterNotifyFollow(it, list.asReversed())
-                binding.listFollow.isClickable = true
-                binding.listFollow.adapter = adapter
-                binding.listFollow.setOnItemClickListener { _, _, _, _ ->
-
+                if (list.size > 0) {
+                    val adapter = ListAdapterNotifyFollow(it, list.asReversed())
+                    binding.listFollow.isClickable = true
+                    binding.listFollow.adapter = adapter
+                    binding.listFollow.setOnItemClickListener { _, _, _, _ ->
+                    }
                 }
             }
         }

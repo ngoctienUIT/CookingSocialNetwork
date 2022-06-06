@@ -33,13 +33,15 @@ class UserSearchFragment : Fragment() {
 
         activity?.let {
             viewModel._users.observe(it) { list ->
-                val adapter = ListAdapterUser(it, list, viewModel.myData.value!!)
-                binding.listUser.isClickable = true
-                binding.listUser.adapter = adapter
-                binding.listUser.setOnItemClickListener { _, _, position, _ ->
-                    val profile = Intent(activity, ProfileActivity::class.java)
-                    profile.putExtra("user_name", list[position].username)
-                    startActivity(profile)
+                if (list.size > 0) {
+                    val adapter = ListAdapterUser(it, list, viewModel.myData.value!!)
+                    binding.listUser.isClickable = true
+                    binding.listUser.adapter = adapter
+                    binding.listUser.setOnItemClickListener { _, _, position, _ ->
+                        val profile = Intent(activity, ProfileActivity::class.java)
+                        profile.putExtra("user_name", list[position].username)
+                        startActivity(profile)
+                    }
                 }
             }
         }

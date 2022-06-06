@@ -29,13 +29,15 @@ class CommentNotifyFragment : Fragment() {
 
         activity?.let {
             viewModel.comments.observe(it) { list ->
-                val adapter = ListAdapterNotifyComment(it, list.asReversed())
-                binding.listComment.isClickable = true
-                binding.listComment.adapter = adapter
-                binding.listComment.setOnItemClickListener { _, _, position, _ ->
-                    val fullPost = Intent(it, ViewFullPost::class.java)
-                    fullPost.putExtra("id_post", list[position].id)
-                    it.startActivity(fullPost)
+                if (list.size > 0) {
+                    val adapter = ListAdapterNotifyComment(it, list.asReversed())
+                    binding.listComment.isClickable = true
+                    binding.listComment.adapter = adapter
+                    binding.listComment.setOnItemClickListener { _, _, position, _ ->
+                        val fullPost = Intent(it, ViewFullPost::class.java)
+                        fullPost.putExtra("id_post", list[position].id)
+                        it.startActivity(fullPost)
+                    }
                 }
             }
         }

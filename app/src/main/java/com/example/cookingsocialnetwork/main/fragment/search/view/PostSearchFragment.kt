@@ -34,13 +34,15 @@ class PostSearchFragment : Fragment() {
 
         activity?.let {
             viewModel._posts.observe(it) { list ->
-                val adapter = GridAdapterPost(it, list)
-                binding.gridViewPost.isClickable = true
-                binding.gridViewPost.adapter = adapter
-                binding.gridViewPost.setOnItemClickListener { _, _, position, _ ->
-                    val fullPost = Intent(activity, ViewFullPost::class.java)
-                    fullPost.putExtra("id_post", list[position].id)
-                     startActivity(fullPost)
+                if (list.size > 0) {
+                    val adapter = GridAdapterPost(it, list)
+                    binding.gridViewPost.isClickable = true
+                    binding.gridViewPost.adapter = adapter
+                    binding.gridViewPost.setOnItemClickListener { _, _, position, _ ->
+                        val fullPost = Intent(activity, ViewFullPost::class.java)
+                        fullPost.putExtra("id_post", list[position].id)
+                        startActivity(fullPost)
+                    }
                 }
             }
         }

@@ -17,7 +17,6 @@ Thành viên:
 | STT  | Tên                | MSSV      | Ghi chú     |
 |:-----|:-------------------|:----------|:------------|
 |  1   |  Trần Ngọc Tiến    |  20520808 | Trưởng nhóm |
-|  2   |  Vũ Xuân Hoàng Lâm |  20520609 |             |
 |  3   |  Trần Trọng Hoàng  |  20520521 |             |
 |  4   |  Bùi Lê Hoài An    |  20520985 |             |
 
