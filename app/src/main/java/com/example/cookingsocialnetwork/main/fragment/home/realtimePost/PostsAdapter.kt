@@ -3,7 +3,6 @@ package com.example.cookingsocialnetwork.main.fragment.home.realtimePost
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,7 @@ class PostsAdapter : PagedListAdapter<RealtimePost1, PostsAdapter.PostViewHolder
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.recyclerview_item_form,
+            R.layout.recyclerview_item_form_2,
             parent,
             false
         )
