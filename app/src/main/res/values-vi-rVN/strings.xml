@@ -42,6 +42,11 @@
     <string name="follow">Theo dõi</string>
     <string name="unfollow">Bỏ theo dõi</string>
     <string name="all">Tất cả</string>
+    <string name="week">tuần</string>
+    <string name="day">ngày</string>
+    <string name="hour">giờ</string>
+    <string name="minute">phút</string>
+    <string name="second">giây</string>
 
     <string-array name="gender">
         <item>Nam</item>

@@ -1,14 +1,11 @@
 package com.example.cookingsocialnetwork.model.data
 
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import java.lang.Exception
-import java.time.LocalDateTime
 
 data class Post(
     @Transient
@@ -25,14 +22,14 @@ data class Post(
     var owner: String, // username chủ bài viết
     var servers: String, // số người ăn
     var share: Long,
-    var timePost : HashMap<String, Any>,
+    var timePost : Time,
 
 ) {
 
     constructor() : this(
         mutableListOf(),"",   "", mutableListOf(), "", mutableListOf(),
         mutableListOf(),"0", mutableListOf(), "", "", "",
-        0,hashMapOf(),
+        0, Time(),
     )
 
     fun  getData(document: DocumentSnapshot) {
@@ -50,7 +47,8 @@ data class Post(
             owner = document.data?.get("owner") as String
             servers = document.data?.get("nameFood") as String
             share = document.data?.get("share") as Long
-            timePost = document.data?.get("timePost") as HashMap<String, Any>
+            val time = document.data?.get("timePost") as HashMap<String, Any>
+            timePost.getTime(time)
 
         }catch (e : Exception){
             throw e
@@ -83,7 +81,8 @@ data class Post(
                             nameFood = document.data?.get("nameFood") as String
                             servers = document.data?.get("nameFood") as String
                             share = document.data?.get("share") as Long
-                            timePost = document.data?.get("timePost") as HashMap<String, Any>
+                            var time = document.data?.get("timePost") as HashMap<String, Any>
+                            timePost.getTime(time)
                             Log.i("getInfo", info.size.toString())
                         }
                     }

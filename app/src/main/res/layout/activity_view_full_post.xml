@@ -82,12 +82,13 @@
                             android:textSize="14sp"
                             android:text="@{viewmodel.user.username}"/>
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/time"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="match_parent"-->
-<!--                            android:textSize="14sp"-->
-<!--                            android:text="Cũng không phải thông tin người sở hữu"/>-->
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="14sp"
+                            android:textColor="#69C9D0"
+                            android:text="@{viewmodel.post.timePost.dataTime}"/>
 
                     </LinearLayout>
 

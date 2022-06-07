@@ -33,7 +33,7 @@ class FavoritePostFragment : Fragment() {
             viewModel.getPost.observe(it) { postList ->
                 val layoutManager = GridLayoutManager(activity, 3)
                 binding.favoritePost.layoutManager = layoutManager
-                val adapter = PostAdapter(postList)
+                val adapter = PostAdapter(postList.asReversed())
                 binding.favoritePost.adapter = adapter
             }
         }
