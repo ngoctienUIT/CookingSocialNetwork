@@ -27,7 +27,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
-                        android:id="@+id/user_image"
+                        android:id="@+id/user_image_rec"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@color/black"
@@ -38,7 +38,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/user_name"
+                android:id="@+id/user_name_rec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -59,7 +59,7 @@
 
 
         <ImageView
-            android:id="@+id/food_image_rec"
+            android:id="@+id/food_image_trending"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_alignParentTop="true"

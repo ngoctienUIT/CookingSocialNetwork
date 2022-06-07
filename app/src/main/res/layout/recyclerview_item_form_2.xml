@@ -32,7 +32,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
-                        android:id="@+id/user_image_rec2"
+                        android:id="@+id/user_image_post_card"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@color/black"
@@ -43,7 +43,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/user_name_rec2"
+                android:id="@+id/user_name_post_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -66,7 +66,7 @@
 
 
         <ImageView
-            android:id="@+id/food_image_rec2"
+            android:id="@+id/food_image_post_card"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_alignParentTop="true"
@@ -74,7 +74,7 @@
             android:src="@drawable/food_picker" />
 
         <TextView
-            android:id="@+id/food_name_rec2"
+            android:id="@+id/food_name_post_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -90,7 +90,7 @@
             android:orientation="horizontal">
 
             <RatingBar
-                android:id="@+id/food_rating_rec2"
+                android:id="@+id/food_rating_post_card"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:numStars="5"
@@ -101,7 +101,7 @@
                 android:layout_height="16dp"/>
 
             <TextView
-                android:id="@+id/comment_rec2"
+                android:id="@+id/comment_post_card"
                 android:layout_width="40dp"
                 android:paddingStart="4dp"
                 android:layout_height="match_parent"
@@ -114,7 +114,7 @@
                 android:textSize="8sp"/>
 
             <TextView
-                android:id="@+id/heart_rec2"
+                android:id="@+id/heart_post_card"
                 android:layout_width="40dp"
                 android:paddingStart="4dp"
                 android:layout_height="match_parent"

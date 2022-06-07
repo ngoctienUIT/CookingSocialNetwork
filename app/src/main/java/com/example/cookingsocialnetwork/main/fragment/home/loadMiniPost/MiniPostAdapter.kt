@@ -29,9 +29,9 @@ class MiniPostAdapter(private val miniPostList: List<MiniPost>): RecyclerView.Ad
     override fun getItemCount() = miniPostList.size
 
     class MiniPostViewHolder(itemView: View):  RecyclerView.ViewHolder(itemView) {
-        val userImage : ImageView = itemView.findViewById(R.id.user_image)
-        val userName : TextView = itemView.findViewById(R.id.user_name)
-        val foodImage : ImageView = itemView.findViewById(R.id.food_image_rec)
+        //val userImage : ImageView = itemView.findViewById(R.id.user_image_trending)
+        val userName : TextView = itemView.findViewById(R.id.user_name_post_card)
+        val foodImage : ImageView = itemView.findViewById(R.id.food_image_trending)
         val foodName : TextView = itemView.findViewById(R.id.food_name)
         val rating : RatingBar = itemView.findViewById(R.id.food_rating)
         val comment : TextView = itemView.findViewById(R.id.comment)

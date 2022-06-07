@@ -51,18 +51,9 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
-        //listpost
-      /*  binding.recPosts.adapter = postsAdapter
-        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
-        viewModel.listPosts.observe(viewLifecycleOwner) {
-            binding.swpRecords.isRefreshing = false;
-            postsAdapter.submitList(it)
-        }*/
-        
-
-        binding.recPosts.adapter = postsAdapterTest
-        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        //random
+       /* binding.recPosts.adapter = postsAdapterTest
+        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         lifecycleScope.launch {
             viewModel.flow.collect {
@@ -72,12 +63,20 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
 
         lifecycleScope.launch {
             postsAdapterTest.loadStateFlow.collectLatest { loadStates ->
-               binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
+                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
                 binding.progressBarLoadMore.isVisible = loadStates.append is LoadState.Loading
             }
+        }*/
+
+        //recent
+        binding.recRecentPosts.adapter = postsAdapter
+        binding.recRecentPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        viewModel.listPosts.observe(viewLifecycleOwner) {
+            binding.swpRecords.isRefreshing = false;
+            postsAdapter.submitList(it)
         }
-
-
+        //trending
         binding.trending.adapter = trendingSliderAdapter
         val handler = Handler()
         var isScrollDown = true;
@@ -87,7 +86,7 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
 
                 handler.removeMessages(0)
                 val runnable = Runnable {
-                    if( position+1 == binding.trending.adapter?.itemCount?: 0 ) isScrollDown = false
+                    if(position + 1 == (binding.trending.adapter?.itemCount ?: 0)) isScrollDown = false
                     if(position == 0) isScrollDown = true
                     if(isScrollDown){
                         ++binding.trending.currentItem
@@ -97,7 +96,7 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
 
 
                 }
-                if (position < binding.trending.adapter?.itemCount ?: 0) {
+                if (position < (binding.trending.adapter?.itemCount ?: 0)) {
                     handler.postDelayed(runnable, 1000)
                 }
             }

@@ -72,13 +72,13 @@ class PostsAdapter : PagedListAdapter<RealtimePost1, PostsAdapter.PostViewHolder
     inner class PostViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val viewHolderDisposables = CompositeDisposable()
 
-        val userImage : ImageView = itemView.findViewById(R.id.user_image)
-        val userName : TextView = itemView.findViewById(R.id.user_name)
-        val foodImage : ImageView = itemView.findViewById(R.id.food_image_rec)
-        val foodName : TextView = itemView.findViewById(R.id.food_name)
-        val rating : RatingBar = itemView.findViewById(R.id.food_rating)
-        val comment : TextView = itemView.findViewById(R.id.comment)
-        val heart : TextView = itemView.findViewById(R.id.heart)
+        val userImage : ImageView = itemView.findViewById(R.id.user_image_post_card)
+        val userName : TextView = itemView.findViewById(R.id.user_name_post_card)
+        val foodImage : ImageView = itemView.findViewById(R.id.food_image_post_card)
+        val foodName : TextView = itemView.findViewById(R.id.food_name_post_card)
+        val rating : RatingBar = itemView.findViewById(R.id.food_rating_post_card)
+        val comment : TextView = itemView.findViewById(R.id.comment_post_card)
+        val heart : TextView = itemView.findViewById(R.id.heart_post_card)
 
         fun bind(realtimePost: RealtimePost1?) {
             realtimePost?.let {
