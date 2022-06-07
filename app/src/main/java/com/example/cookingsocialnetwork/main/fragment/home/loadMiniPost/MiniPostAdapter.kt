@@ -11,7 +11,7 @@ import com.example.cookingsocialnetwork.R
 
 class MiniPostAdapter(private val miniPostList: List<MiniPost>): RecyclerView.Adapter<MiniPostAdapter.MiniPostViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MiniPostViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item_form, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item_form_2, parent, false)
         return MiniPostViewHolder(itemView)
     }
 

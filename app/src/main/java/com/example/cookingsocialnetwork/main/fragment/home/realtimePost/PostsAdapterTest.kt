@@ -61,12 +61,13 @@ class PostsAdapterTest : PagingDataAdapter<Post, PostsAdapterTest.PostViewHolder
         super.onViewRecycled(holder)
         holder.apply {
             userName.text = ""
-            rating.numStars = 0
             foodName.text = ""
             foodImage.setImageDrawable(Drawable.createFromPath("@drawable/food_picker"))
-            userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
-            comment.text = "";
-            heart.text = ""
+
+//            userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
+//            comment.text = "";
+//            heart.text = ""
+//            rating.numStars = 0
             viewHolderDisposables.clear()
         }
     }
@@ -75,13 +76,16 @@ class PostsAdapterTest : PagingDataAdapter<Post, PostsAdapterTest.PostViewHolder
     inner class PostViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val viewHolderDisposables = CompositeDisposable()
 
-        val userImage : ImageView = itemView.findViewById(R.id.user_image)
-        val userName : TextView = itemView.findViewById(R.id.user_name)
+//        val userImage : ImageView = itemView.findViewById(R.id.user_image)
+//        val rating : RatingBar = itemView.findViewById(R.id.food_rating)
+//        val comment : TextView = itemView.findViewById(R.id.comment)
+//        val heart : TextView = itemView.findViewById(R.id.heart)
+
+        val userName : TextView = itemView.findViewById(R.id.user_rec)
         val foodImage : ImageView = itemView.findViewById(R.id.food_image_rec)
-        val foodName : TextView = itemView.findViewById(R.id.food_name)
-        val rating : RatingBar = itemView.findViewById(R.id.food_rating)
-        val comment : TextView = itemView.findViewById(R.id.comment)
-        val heart : TextView = itemView.findViewById(R.id.heart)
+        val foodName : TextView = itemView.findViewById(R.id.food_name_rec)
+
+
 
         fun bind(post : Post) {
             post.let {
@@ -92,14 +96,14 @@ class PostsAdapterTest : PagingDataAdapter<Post, PostsAdapterTest.PostViewHolder
                     .addOnSuccessListener { userSnap ->
                         val user = User()
                         user.getData(userSnap)
-                        userImage.load(user.avatar)
+                        //userImage.load(user.avatar)
                         userName.text = user.name
                     }
                 foodImage.load(post.images[0])
-                rating.numStars = post.level.toInt()
                 foodName.text = post.nameFood
-                comment.text = post.comments.size.toString()
-                heart.text = post.favourites.size.toString()
+                //rating.numStars = post.level.toInt()
+                //comment.text = post.comments.size.toString()
+                //heart.text = post.favourites.size.toString()
             } to viewHolderDisposables
 
         }
