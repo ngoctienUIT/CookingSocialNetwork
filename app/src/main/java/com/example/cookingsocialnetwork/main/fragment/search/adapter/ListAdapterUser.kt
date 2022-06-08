@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.model.service.SendNotify
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.time.LocalDateTime
@@ -48,7 +50,14 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
                     following.remove(userArrayList[position].username)
                     follower.remove(myData.username)
                 }
-
+                SendNotify.sendMessage(
+                    "",
+                    FirebaseAuth.getInstance().currentUser?.email.toString(),
+                    userArrayList[position].username,
+                    "",
+                    "follow",
+                    "notification"
+                )
                 FirebaseFirestore.getInstance()
                     .collection("user")
                     .document(myData.username)

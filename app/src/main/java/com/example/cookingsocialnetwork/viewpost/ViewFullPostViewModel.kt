@@ -97,7 +97,6 @@ class ViewFullPostViewModel: ViewModel() {
                     {
                         favouritesUser.add(post.value!!.id)
                         if (!check && _post.owner != _myData.username) addNotify("favorite", "")
-                        SendNotify.sendMessage("",FirebaseAuth.getInstance().currentUser?.email.toString(),post.value!!.owner,"JIrREV7L50OG8nlz5Vei","favorite", "notification")
                     }
                     else {
                         favouritesUser.remove(post.value!!.id)
@@ -177,7 +176,14 @@ class ViewFullPostViewModel: ViewModel() {
                     "time" to LocalDateTime.now(),
                     "type" to type
                 )
-
+                SendNotify.sendMessage(
+                    content,
+                    FirebaseAuth.getInstance().currentUser?.email.toString(),
+                    post.value!!.owner,
+                    _post.id,
+                    type,
+                    "notification"
+                )
                 notifyData.add(notify)
                 FirebaseFirestore.getInstance()
                     .collection("user")
