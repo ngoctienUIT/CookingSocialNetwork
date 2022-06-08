@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -90,7 +91,11 @@ class ViewFullPostViewModel: ViewModel() {
             .addOnSuccessListener {
                 if (it != null) {
                     favouritesUser = it.get("favourites") as MutableList<String>
-                    if (!check) favouritesUser.add(post.value!!.id)
+                    if (!check)
+                    {
+                        favouritesUser.add(post.value!!.id)
+                        SendNotify.sendMessage("",FirebaseAuth.getInstance().currentUser?.email.toString(),post.value!!.owner,"JIrREV7L50OG8nlz5Vei","favorite", "notification")
+                    }
                     else favouritesUser.remove(post.value!!.id)
                     FirebaseFirestore.getInstance()
                         .collection("user")

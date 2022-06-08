@@ -27,7 +27,7 @@ class ListAdapterNotifyComment(context: Activity, private var commentNotify: Mut
         val content:TextView = view.findViewById(R.id.content)
         val postView: ImageView = view.findViewById(R.id.post)
 
-        time.text = commentNotify[position].time
+        time.text = commentNotify[position].time.dataTime
         content.text = "Đã bình luận: " + commentNotify[position].content
         FirebaseFirestore.getInstance()
             .collection("user")

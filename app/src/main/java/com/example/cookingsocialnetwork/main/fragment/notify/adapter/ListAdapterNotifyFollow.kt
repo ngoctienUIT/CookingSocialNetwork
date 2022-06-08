@@ -36,7 +36,7 @@ class ListAdapterNotifyFollow(context: Activity, private var followNotify: Mutab
                 Picasso.get().load(avatar).into(imageView)
             }
 
-        time.text = followNotify[position].time
+        time.text = followNotify[position].time.dataTime
 
         return view
     }

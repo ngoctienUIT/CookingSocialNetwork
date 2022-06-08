@@ -1,10 +1,7 @@
 package com.example.cookingsocialnetwork.model.data
 
-import java.text.SimpleDateFormat
-import java.util.*
-
-data class Notify(var name: String, var id: String, var type: String, var status: Long, var time: String) {
-    constructor() : this("", "", "", 1, "")
+data class Notify(var name: String, var id: String, var type: String, var status: Long, var time: Time) {
+    constructor() : this("", "", "", 1, Time())
 
     var content: String = ""
     private lateinit var currentTime: com.google.firebase.Timestamp
@@ -12,7 +9,6 @@ data class Notify(var name: String, var id: String, var type: String, var status
     fun getData(data: Map<String, Any>) {
         name = data["name"] as String
         type = data["type"] as String
-        status = data["status"] as Long
         id = data["id"] as String
         content = data["content"] as String
 //        val timestamp = data["time"] as com.google.firebase.Timestamp

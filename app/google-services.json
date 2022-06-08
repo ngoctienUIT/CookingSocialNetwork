@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "462610362675-5parldka76b2hpl9mvekvbkl9vobqo4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cookingsocialnetwork",
+            "certificate_hash": "8ba4a13def52fd10b56836a3ae620b40f8a13f48"
+          }
+        },
+        {
           "client_id": "462610362675-94jcui4oep0bodtov4ols5j9vjqjmimv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -31,19 +39,19 @@
           }
         },
         {
-          "client_id": "462610362675-k88ad8g95j0vln4hsdrvu66h55t5j9gn.apps.googleusercontent.com",
+          "client_id": "462610362675-btc35tsj2sk6d9krutlnncur1vk7ngr5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.cookingsocialnetwork",
-            "certificate_hash": "a7f3da0cc8a451b6c9df3daefa46214606697645"
+            "certificate_hash": "95d51a4e2a07c81adf4127dd04804912d4f00508"
           }
         },
         {
-          "client_id": "462610362675-rc27mf0ne76u4bvb698b65ofpvdv5rr2.apps.googleusercontent.com",
+          "client_id": "462610362675-t399587j9pa1oqolov99u0829ph83k8g.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.cookingsocialnetwork",
-            "certificate_hash": "29eae61d956f0be8dc89761e47428e229f7e2ac6"
+            "certificate_hash": "9cc05446a59143baecf3508ecd039ca212a9c179"
           }
         },
         {

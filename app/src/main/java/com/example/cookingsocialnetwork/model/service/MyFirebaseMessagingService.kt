@@ -1,89 +1,56 @@
 package com.example.cookingsocialnetwork.model.service
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.os.IBinder
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.MainPage
-import com.example.cookingsocialnetwork.mainActivity.MainActivity
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class MyService: Service() {
-    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    override fun onBind(p0: Intent?): IBinder? {
-        return null
+class MyFirebaseMessagingService: FirebaseMessagingService() {
+    override fun onNewToken(token: String) {
+        Log.w("MyFirebaseMsgService", "New Token: $token")
+        super.onNewToken(token)
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
         createNotificationChannel()
-        firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
-        getNotify()
-        val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent,0)
-        val mBuilder =
-            NotificationCompat.Builder(
-                this,
-                NotificationManager.EXTRA_NOTIFICATION_CHANNEL_ID
-            )
-                .setSmallIcon(R.drawable.ic_cooking)
-                .setContentText(getString(R.string.app_name))
-                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-        startForeground(1102, mBuilder.build())
-        return START_NOT_STICKY
-    }
+        // TODO(developer): Handle FCM messages here.
+        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
+        Log.d("MyFirebaseMsgService", "From: ${remoteMessage.from}")
 
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun getNotify() {
-        var notifyList: MutableList<Notify>
-        firestore.collection("user")
-            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .addSnapshotListener()
-            { snapshot, e ->
-                if (e != null) return@addSnapshotListener
-
-                if (snapshot != null && snapshot.exists()) {
-                    notifyList = mutableListOf()
-                    val data = snapshot.data
-                    val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-
-                    for (item in notifyData) {
-                        val notify = Notify()
-                        notify.getData(item)
-                        notifyList.add(notify)
-                    }
-                    checkNotify(notifyList)
-                }
+        // Check if message contains a data payload.
+        if (remoteMessage.data.isNotEmpty()) {
+            Log.d("MyFirebaseMsgService", "Message data payload: ${remoteMessage.data}")
+            val receiver = remoteMessage.data["receiver"] as String
+            if (receiver == FirebaseAuth.getInstance().currentUser?.email.toString()) {
+                val notify = Notify()
+                notify.getData(remoteMessage.data)
+                initNotify(notify)
             }
-    }
+        }
 
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun checkNotify(notifyList: MutableList<Notify>) {
-        val updateList: MutableList<Map<String, Any>> = mutableListOf()
-        for (item in notifyList)
-            if (item.status == 1.toLong()) {
-                initNotify(item)
-                item.status = 0
-                updateList.add(item.convertToMap())
-            } else updateList.add(item.convertToMap())
-
-        updateNotify(updateList)
+        // Check if message contains a notification payload.
+        remoteMessage.notification?.let {
+            Log.d("MyFirebaseMsgService", "Message Notification Body: ${it.body}")
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -113,22 +80,25 @@ class MyService: Service() {
                         content = "$name đã theo dõi bạn"
                     }
                 }
-                showNotify(title, content, avatar)
+                showNotify(title, content, item, avatar)
             }
-    }
-
-    private fun updateNotify(updateList: MutableList<Map<String, Any>>) {
-        firestore.collection("user")
-            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .update("notify", updateList)
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
     @RequiresApi(Build.VERSION_CODES.P)
-    private fun showNotify(title: String, content: String, url: String) {
-        val intent = Intent(this, MainPage::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent,0)
+    private fun showNotify(title: String, content: String, item: Notify, url: String) {
+        val intent: Intent
+        if (item.type == "follow") {
+            intent = Intent(this, MainPage::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        else
+        {
+            intent = Intent(this, ViewFullPost::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("id_post", item.id)
+        }
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         val context = this
         Picasso.get().load(url).into(object : com.squareup.picasso.Target {
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {

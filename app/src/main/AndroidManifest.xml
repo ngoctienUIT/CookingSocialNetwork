@@ -4,7 +4,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -72,15 +71,14 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <service android:name=".model.service.MyService" />
-
-        <receiver
-            android:name=".model.service.MyBroadcastReceiver"
-            android:exported="true">
+        <service
+            android:name=".model.service.MyFirebaseMessagingService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </receiver>
+        </service>
+
     </application>
 
 </manifest>
