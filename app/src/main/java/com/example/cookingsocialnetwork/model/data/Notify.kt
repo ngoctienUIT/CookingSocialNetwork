@@ -11,12 +11,14 @@ data class Notify(var name: String, var id: String, var type: String, var status
         type = data["type"] as String
         id = data["id"] as String
         content = data["content"] as String
-//        val timestamp = data["time"] as com.google.firebase.Timestamp
-//        currentTime = timestamp
-//        val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
-//        val sdf = SimpleDateFormat("hh:mm:ss - dd/MM/yyyy")
-//        val netDate = Date(milliseconds)
-//        time = sdf.format(netDate).toString()
+        val notifyTime = data["time"] as HashMap<String, Any>
+        time.getTime(notifyTime)
+    }
+
+    fun compareTo(notify: Notify): Boolean
+    {
+        return (notify.name.compareTo(name) == 0 && notify.type.compareTo(type) == 0
+                && notify.content.compareTo(content) == 0 && notify.id.compareTo(id) == 0)
     }
 
     fun convertToMap(): Map<String, Any> {
