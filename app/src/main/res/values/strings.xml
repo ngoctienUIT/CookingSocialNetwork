@@ -46,6 +46,8 @@
     <string name="hour">hour</string>
     <string name="minute">minute</string>
     <string name="second">second</string>
+    <string name="next">Next</string>
+    <string name="login">Login</string>
 
     <string-array name="gender">
         <item>Male</item>

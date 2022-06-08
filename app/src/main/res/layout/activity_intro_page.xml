@@ -13,20 +13,21 @@
         android:layout_marginBottom="70dp"
         android:text="Skip Intro"
         android:textColor="@color/purple_700"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/black"
         android:minWidth="110dp"
-        android:text="Next"
+        android:text="@string/next"
+        android:background="@drawable/btn_gradient_next_intro"
+        android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/textSkipIntro"
@@ -49,6 +50,6 @@
         android:overScrollMode="never"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@id/indicatorsContainer"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

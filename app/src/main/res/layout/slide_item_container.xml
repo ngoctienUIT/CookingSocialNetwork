@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/imageSlideIcon"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -32,4 +32,5 @@
         android:text="Description Text"
         android:textColor="@color/textColor"
         android:textSize="15sp" />
+
 </LinearLayout>

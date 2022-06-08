@@ -47,6 +47,8 @@
     <string name="hour">giờ</string>
     <string name="minute">phút</string>
     <string name="second">giây</string>
+    <string name="next">Tiếp theo</string>
+    <string name="login">Đăng nhập</string>
 
     <string-array name="gender">
         <item>Nam</item>

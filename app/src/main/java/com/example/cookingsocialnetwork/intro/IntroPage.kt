@@ -35,7 +35,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
 
-
 class IntroPage: AppCompatActivity() {
     lateinit var binding: ActivityIntroPageBinding
     private lateinit var auth: FirebaseAuth
@@ -56,19 +55,19 @@ class IntroPage: AppCompatActivity() {
         get() = IntroSliderAdapter(
             listOf(
                 IntroSlide(
-                    "Ex 1",
-                    "This is example 1",
-                    R.drawable.example_image1
+                    "Bài viết",
+                    "Bạn có thể đăng tải và xem các bài viết về món ăn",
+                    R.drawable.intro1
                 ),
                 IntroSlide(
-                    "Ex 2",
-                    "This is example 2",
-                    R.drawable.example_image2
+                    "Tìm kiếm",
+                    "Tìm kiếm những món ăn mà bạn yêu thích",
+                    R.drawable.intro2
                 ),
                 IntroSlide(
-                    "Ex 3",
-                    "This is example 3",
-                    R.drawable.example_image3
+                    "Trang cá nhân",
+                    "Xây dựng trang cá nhân của riêng bạn",
+                    R.drawable.intro3
                 )
             )
         )
@@ -94,8 +93,8 @@ class IntroPage: AppCompatActivity() {
 
         binding.introSliderViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
-                if (position == introSliderAdapter.itemCount -1) binding.buttonNext.text = "Login"
-                else binding.buttonNext.text = "Next"
+                if (position == introSliderAdapter.itemCount -1) binding.buttonNext.text = getString(R.string.login)
+                else binding.buttonNext.text = getString(R.string.next)
                 super.onPageSelected(position)
             }
         })
@@ -234,10 +233,6 @@ class IntroPage: AppCompatActivity() {
             .collection("user")
             .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .set(post)
-//            .addOnSuccessListener {
-//                val intent = Intent(this, MyService::class.java)
-//                startForegroundService(intent)
-//            }
     }
 
     private fun updateUI(user: FirebaseUser?) {
@@ -251,11 +246,6 @@ class IntroPage: AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.data == null) initUser() // khởi tạo các trường document của user
-//                else if (!foregroundServiceRunning())
-//                {
-//                    val intent = Intent(this, MyService::class.java)
-//                    startForegroundService(intent)
-//                }
             }
         subscribeTopics()
 
@@ -265,16 +255,7 @@ class IntroPage: AppCompatActivity() {
         finish()
     }
 
-//    private fun foregroundServiceRunning(): Boolean
-//    {
-//        val activityManager: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-//        for (service in activityManager.getRunningServices(Integer.MAX_VALUE))
-//            if (MyService::class.java.name.equals(service.service.className)) return true
-//        return false
-//    }
-
     //Firebase Messenger
-
     private fun subscribeTopics() {
         // [START subscribe_topics]
         Firebase.messaging.subscribeToTopic("notification")
