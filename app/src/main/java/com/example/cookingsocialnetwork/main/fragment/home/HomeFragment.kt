@@ -97,7 +97,7 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
 
                 }
                 if (position < (binding.trending.adapter?.itemCount ?: 0)) {
-                    handler.postDelayed(runnable, 1000)
+                    handler.postDelayed(runnable, 10000)
                 }
             }
             override fun onPageScrollStateChanged(state: Int) {
