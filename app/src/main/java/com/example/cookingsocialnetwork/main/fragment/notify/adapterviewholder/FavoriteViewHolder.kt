@@ -45,7 +45,7 @@ class FavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun updateView()
     {
         findView()
-        timeView?.text = favorite?.time
+        timeView?.text = favorite?.time?.dataTime
         FirebaseFirestore.getInstance()
             .collection("user")
             .document(favorite!!.name)

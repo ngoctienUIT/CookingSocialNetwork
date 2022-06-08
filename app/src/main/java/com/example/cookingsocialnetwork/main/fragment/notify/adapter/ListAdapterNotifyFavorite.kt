@@ -48,7 +48,7 @@ class ListAdapterNotifyFavorite(context: Activity, private var favoriteNotify: M
                 Picasso.get().load(post.images[0]).into(postView)
             }
 
-        time.text = favoriteNotify[position].time
+        time.text = favoriteNotify[position].time.dataTime
 
         return view
     }

@@ -43,7 +43,7 @@ class FollowViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun updateView() {
         findView()
-        timeView?.text = follow?.time
+        timeView?.text = follow?.time?.dataTime
         FirebaseFirestore.getInstance()
             .collection("user")
             .document(follow!!.name)

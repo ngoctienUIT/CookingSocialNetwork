@@ -45,7 +45,7 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
     fun updateView()
     {
         findView()
-        timeView?.text = comment?.time
+        timeView?.text = comment?.time?.dataTime
         FirebaseFirestore.getInstance()
             .collection("user")
             .document(comment!!.name)

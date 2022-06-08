@@ -45,7 +45,6 @@ data class Post(
             share = document.data?.get("share") as Long
             val time = document.data?.get("timePost") as HashMap<String, Any>
             timePost.getTime(time)
-
         }catch (e : Exception){
             throw e
         }

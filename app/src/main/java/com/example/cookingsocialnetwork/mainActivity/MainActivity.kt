@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import com.example.cookingsocialnetwork.model.LanguageManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.intro.IntroPage
-import com.example.cookingsocialnetwork.model.service.MyService
 
 class MainActivity : AppCompatActivity() {
 

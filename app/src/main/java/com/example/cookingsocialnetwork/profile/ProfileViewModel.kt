@@ -3,6 +3,7 @@ package com.example.cookingsocialnetwork.profile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -66,6 +67,15 @@ class ProfileViewModel: ViewModel() {
                     following.remove(_user.value!!.username)
                     follower.remove(myData.username)
                 }
+
+                SendNotify.sendMessage(
+                    "",
+                    FirebaseAuth.getInstance().currentUser?.email.toString(),
+                    _user.value!!.username,
+                    "",
+                    "follow",
+                    "notification"
+                )
 
                 FirebaseFirestore.getInstance()
                     .collection("user")

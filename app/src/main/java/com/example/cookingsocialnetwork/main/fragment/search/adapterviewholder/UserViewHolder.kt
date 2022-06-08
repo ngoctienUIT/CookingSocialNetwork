@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
@@ -83,7 +84,14 @@ class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                         following.remove(user?.username)
                         follower!!.remove(myData.username)
                     }
-
+                    SendNotify.sendMessage(
+                        "",
+                        FirebaseAuth.getInstance().currentUser?.email.toString(),
+                        user!!.username,
+                        "",
+                        "follow",
+                        "notification"
+                    )
                     FirebaseFirestore.getInstance()
                         .collection("user")
                         .document(myData.username)

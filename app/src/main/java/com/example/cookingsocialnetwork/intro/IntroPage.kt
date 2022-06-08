@@ -1,18 +1,17 @@
 package com.example.cookingsocialnetwork.intro
 
 import android.app.Activity
-import android.app.ActivityManager
-import android.content.Context
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.IntegerRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
@@ -20,7 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityIntroPageBinding
 import com.example.cookingsocialnetwork.main.MainPage
-import com.example.cookingsocialnetwork.model.service.MyService
+import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -31,9 +30,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
+
 
 class IntroPage: AppCompatActivity() {
     lateinit var binding: ActivityIntroPageBinding
@@ -233,10 +234,10 @@ class IntroPage: AppCompatActivity() {
             .collection("user")
             .document(FirebaseAuth.getInstance().currentUser?.email.toString())
             .set(post)
-            .addOnSuccessListener {
-                val intent = Intent(this, MyService::class.java)
-              //startForegroundService(intent)
-            }
+//            .addOnSuccessListener {
+//                val intent = Intent(this, MyService::class.java)
+//                startForegroundService(intent)
+//            }
     }
 
     private fun updateUI(user: FirebaseUser?) {
@@ -250,12 +251,13 @@ class IntroPage: AppCompatActivity() {
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.data == null) initUser() // khởi tạo các trường document của user
-                else if (!foregroundServiceRunning())
-                {
-                    val intent = Intent(this, MyService::class.java)
-                  //  startForegroundService(intent)
-                }
+//                else if (!foregroundServiceRunning())
+//                {
+//                    val intent = Intent(this, MyService::class.java)
+//                    startForegroundService(intent)
+//                }
             }
+        subscribeTopics()
 
         //Sau khi đăng nhập xog sẽ chuyển đến màn hình home
         val main = Intent(this, MainPage::class.java)
@@ -263,11 +265,28 @@ class IntroPage: AppCompatActivity() {
         finish()
     }
 
-    private fun foregroundServiceRunning(): Boolean
-    {
-        val activityManager: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        for (service in activityManager.getRunningServices(Integer.MAX_VALUE))
-            if (MyService::class.java.name.equals(service.service.className)) return true
-        return false
+//    private fun foregroundServiceRunning(): Boolean
+//    {
+//        val activityManager: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//        for (service in activityManager.getRunningServices(Integer.MAX_VALUE))
+//            if (MyService::class.java.name.equals(service.service.className)) return true
+//        return false
+//    }
+
+    //Firebase Messenger
+
+    private fun subscribeTopics() {
+        // [START subscribe_topics]
+        Firebase.messaging.subscribeToTopic("notification")
+            .addOnCompleteListener { task ->
+                var msg = "Subscribed"
+                if (!task.isSuccessful) {
+                    msg = "Subscribe failed"
+                }
+                Log.d(TAG, msg)
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+//                SendNotify.sendMessage("abc","ngoctien.c42019@gmail.com","JIrREV7L50OG8nlz5Vei","comment", "notification")
+            }
+        // [END subscribe_topics]
     }
 }
