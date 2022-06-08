@@ -83,7 +83,7 @@ class PostsAdapterTest : PagingDataAdapter<Post, PostsAdapterTest.PostViewHolder
 
         val userName : TextView = itemView.findViewById(R.id.user_rec)
         val foodImage : ImageView = itemView.findViewById(R.id.food_image_trending)
-        val foodName : TextView = itemView.findViewById(R.id.food_name_trending)
+        val foodName : TextView = itemView.findViewById(R.id.food_name)
 
 
 
