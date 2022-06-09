@@ -50,15 +50,6 @@
                 android:layout_alignParentEnd="true"
                 android:text="@string/post"/>
 
-            <TextView
-                android:id="@+id/viewPost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@id/post"
-                android:text="View Post"
-                android:textSize="16sp" />
         </RelativeLayout>
 
         <ScrollView
@@ -261,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/postpage_ingredient_child"/>
+                    <include layout="@layout/postpage_method_child"/>
 
 
                 </LinearLayout>

@@ -131,16 +131,16 @@ class PostPage : AppCompatActivity() {
         }
       //  add_ingredient.setOnClickListener()
         databinding.addMakingMethod.setOnClickListener {
-            val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_ingredient_child, null)
+            val newLayout = LayoutInflater.from(this).inflate(R.layout.postpage_method_child, null)
             databinding.method.addView(newLayout)
-            newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
+            newLayout.findViewById<Button>(R.id.btn_Methods).setOnClickListener {
                 (newLayout.parent as LinearLayout).removeView(newLayout)
             }
         }
-        databinding.viewPost.setOnClickListener{
-            val viewPost = Intent(this, ViewPostPage::class.java)
-            startActivity(viewPost)
-        }
+//        databinding.viewPost.setOnClickListener{
+//            val viewPost = Intent(this, ViewPostPage::class.java)
+//            startActivity(viewPost)
+//        }
 
     }
 
@@ -275,13 +275,15 @@ class PostPage : AppCompatActivity() {
     }
 
     fun deleteIngredient(view: View){
+
         // edit text
-        val newText = EditText(this)
-        newText.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            1F
-        )
+        //(view.parent as LinearLayout).removeView(view)
+//        val newText = EditText(this)
+//        newText.layoutParams = LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams.MATCH_PARENT,
+//            LinearLayout.LayoutParams.WRAP_CONTENT,
+//            1F
+//        )
     }
 }
 
