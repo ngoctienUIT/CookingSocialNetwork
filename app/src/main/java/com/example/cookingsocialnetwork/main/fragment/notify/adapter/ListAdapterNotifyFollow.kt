@@ -2,7 +2,6 @@ package com.example.cookingsocialnetwork.main.fragment.notify.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.model.NotifyControl
 import com.example.cookingsocialnetwork.model.data.Notify
-import com.example.cookingsocialnetwork.model.data.Time
 import com.example.cookingsocialnetwork.model.data.User
-import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
-import java.time.LocalDateTime
 
 class ListAdapterNotifyFollow(context: Activity, private var followNotify: MutableList<Notify>):
     ArrayAdapter<Notify>(context, R.layout.favorite_notify_item , followNotify) {
@@ -102,19 +99,11 @@ class ListAdapterNotifyFollow(context: Activity, private var followNotify: Mutab
                         if (!checkFollow) {
                             following.add(userData.username)
                             follower.add(myData.username)
-                            addNotify(userData.username, myData.username)
-                            SendNotify.sendMessage(
-                                "",
-                                FirebaseAuth.getInstance().currentUser?.email.toString(),
-                                userData.username,
-                                "",
-                                "follow",
-                                "notification"
-                            )
+                            NotifyControl.addNotify(userData.username, "", "", "follow")
                         } else {
                             following.remove(userData.username)
                             follower.remove(myData.username)
-                            removeNotify(userData.username)
+                            NotifyControl.removeNotify(userData.username, "","","follow")
                         }
 
                         FirebaseFirestore.getInstance()
@@ -128,61 +117,6 @@ class ListAdapterNotifyFollow(context: Activity, private var followNotify: Mutab
                             .update("followers", follower)
 
                     }
-            }
-    }
-
-    private fun addNotify(username: String, myUser: String)
-    {
-        FirebaseFirestore.getInstance()
-            .collection("user")
-            .document(username)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val data = snapshot.data
-                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-
-                val notify = hashMapOf(
-                    "content" to "",
-                    "id" to "",
-                    "name" to myUser,
-                    "status" to 1,
-                    "time" to LocalDateTime.now(),
-                    "type" to "follow"
-                )
-
-                notifyData.add(notify)
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(username)
-                    .update("notify", notifyData)
-            }
-    }
-
-    private fun removeNotify(username: String)
-    {
-        FirebaseFirestore.getInstance()
-            .collection("user")
-            .document(username)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val data = snapshot.data
-                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-                var count = 0;
-                val myNotify = Notify(FirebaseAuth.getInstance().currentUser?.email.toString(), "", "follow", 1, Time())
-                myNotify.content = ""
-                notifyData.forEach()
-                {
-                    val notify = Notify()
-                    notify.getData(it)
-                    if (notify.compareTo(myNotify)) return@forEach
-                    count++
-                }
-
-                notifyData.removeAt(count)
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(username)
-                    .update("notify", notifyData)
             }
     }
 }

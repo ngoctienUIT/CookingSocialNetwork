@@ -11,12 +11,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.model.NotifyControl
 import com.example.cookingsocialnetwork.model.data.User
-import com.example.cookingsocialnetwork.model.service.SendNotify
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
-import java.time.LocalDateTime
 
 class ListAdapterUser(context: Activity, private var userArrayList: MutableList<User>, private var myData: User):
     ArrayAdapter<User>(context, R.layout.list_item_user , userArrayList) {
@@ -45,19 +43,12 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
                 if (!checkFollow) {
                     following.add(userArrayList[position].username)
                     follower.add(myData.username)
-                    addNotify(position)
+                    NotifyControl.addNotify(userArrayList[position].username, "","","follow")
                 } else {
                     following.remove(userArrayList[position].username)
                     follower.remove(myData.username)
+                    NotifyControl.removeNotify(userArrayList[position].username, "","","follow")
                 }
-                SendNotify.sendMessage(
-                    "",
-                    FirebaseAuth.getInstance().currentUser?.email.toString(),
-                    userArrayList[position].username,
-                    "",
-                    "follow",
-                    "notification"
-                )
                 FirebaseFirestore.getInstance()
                     .collection("user")
                     .document(myData.username)
@@ -77,32 +68,5 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
         info.text = "${userArrayList[position].followers.size} follower · ${userArrayList[position].post.size} bài viết"
 
         return view
-    }
-
-    private fun addNotify(position: Int)
-    {
-        FirebaseFirestore.getInstance()
-            .collection("user")
-            .document(userArrayList[position].username)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val data = snapshot.data
-                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-
-                val notify = hashMapOf(
-                    "content" to "",
-                    "id" to "",
-                    "name" to myData.username,
-                    "status" to 1,
-                    "time" to LocalDateTime.now(),
-                    "type" to "follow"
-                )
-
-                notifyData.add(notify)
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(userArrayList[position].username)
-                    .update("notify", notifyData)
-            }
     }
 }

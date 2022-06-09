@@ -2,11 +2,9 @@ package com.example.cookingsocialnetwork.viewpost
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.model.NotifyControl
 import com.example.cookingsocialnetwork.model.data.Post
-import com.example.cookingsocialnetwork.model.data.Time
 import com.example.cookingsocialnetwork.model.data.User
-import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -93,14 +91,13 @@ class ViewFullPostViewModel: ViewModel() {
             .addOnSuccessListener {
                 if (it != null) {
                     favouritesUser = it.get("favourites") as MutableList<String>
-                    if (!check)
-                    {
+                    if (!check) {
                         favouritesUser.add(post.value!!.id)
-                        if (!check && _post.owner != _myData.username) addNotify("favorite", "")
-                    }
-                    else {
+                        if (!check && _post.owner != _myData.username)
+                            NotifyControl.addNotify(_user.username, "", _post.id, "favorite")
+                    } else {
                         favouritesUser.remove(post.value!!.id)
-                        removeNotify("favorite", "")
+                        NotifyControl.removeNotify(_user.username, "", _post.id, "favorite")
                     }
                     FirebaseFirestore.getInstance()
                         .collection("user")
@@ -127,68 +124,6 @@ class ViewFullPostViewModel: ViewModel() {
             .document(id)
             .update("comments", comments)
 
-        if (_post.owner != _myData.username) addNotify("comment", content)
-    }
-
-    private fun removeNotify(type: String, content: String)
-    {
-        FirebaseFirestore.getInstance()
-            .collection("user")
-            .document(_user.username)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val data = snapshot.data
-                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-                var count = 0;
-                val myNotify = Notify(FirebaseAuth.getInstance().currentUser?.email.toString(), _post.id, type, 1, Time())
-                myNotify.content = content
-                notifyData.forEach()
-                {
-                    val notify = Notify()
-                    notify.getData(it)
-                    if (notify.compareTo(myNotify)) return@forEach
-                    count++
-                }
-
-                notifyData.removeAt(count)
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(_user.username)
-                    .update("notify", notifyData)
-            }
-    }
-
-    private fun addNotify(type: String, content: String)
-    {
-        FirebaseFirestore.getInstance()
-            .collection("user")
-            .document(_user.username)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val data = snapshot.data
-                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
-
-                val notify = hashMapOf(
-                    "content" to content,
-                    "id" to _post.id,
-                    "name" to FirebaseAuth.getInstance().currentUser?.email.toString(),
-                    "status" to 1,
-                    "time" to LocalDateTime.now(),
-                    "type" to type
-                )
-                SendNotify.sendMessage(
-                    content,
-                    FirebaseAuth.getInstance().currentUser?.email.toString(),
-                    post.value!!.owner,
-                    _post.id,
-                    type,
-                    "notification"
-                )
-                notifyData.add(notify)
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(_user.username)
-                    .update("notify", notifyData)
-            }
+        if (_post.owner != _myData.username) NotifyControl.addNotify(_user.username, content, _post.id, "comment")
     }
 }
