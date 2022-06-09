@@ -53,6 +53,9 @@
             android:exported="false"
             android:screenOrientation="fullSensor" />
         <activity
+            android:name=".post.PostPage2"
+            android:exported="false"/>
+        <activity
             android:name=".post.ViewPostPage"
             android:exported="false" />
         <activity

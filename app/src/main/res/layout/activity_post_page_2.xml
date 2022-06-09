@@ -2,13 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <import type="com.example.cookingsocialnetwork.post.PostViewModel"/>
-        <variable
-            name="postPageViewModel"
-            type="PostViewModel" />
-    </data>
     <RelativeLayout
         android:id="@+id/postPage2_layout"
         android:layout_width="match_parent"
@@ -64,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_below="@id/post_page_tab"
             android:layout_height="match_parent"/>
+
     </RelativeLayout>
 
 
