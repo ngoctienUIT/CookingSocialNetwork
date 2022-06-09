@@ -10,8 +10,10 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.model.data.Post
+import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.model.data.Time
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
@@ -31,13 +33,21 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
         val favouriteList = comments[position]["favourite"] as MutableList<String>
         holder.btnFavourite?.setOnClickListener()
         {
+            var check = false
             if (favouriteList.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString()) > -1)
                 favouriteList.remove(FirebaseAuth.getInstance().currentUser?.email.toString())
-            else favouriteList.add(FirebaseAuth.getInstance().currentUser?.email.toString())
-                    val commentList: MutableList<Map<String, Any>> = mutableListOf()
+            else {
+                favouriteList.add(FirebaseAuth.getInstance().currentUser?.email.toString())
+                check = true
+            }
+            val commentList: MutableList<Map<String, Any>> = mutableListOf()
             for ((count, item) in comments.withIndex()) {
                 if (count != position) commentList.add(item)
                 else {
+                    if (FirebaseAuth.getInstance().currentUser?.email.toString().compareTo(item["userName"] as String) != 0) {
+                        if (check) addNotify(item["content"] as String, item["userName"] as String)
+                        else removeNotify(item["content"] as String, item["userName"] as String)
+                    }
                     val comment = hashMapOf(
                         "content" to item["content"],
                         "favourite" to favouriteList,
@@ -45,7 +55,6 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
                         "userName" to item["userName"]
                     ) as Map<String, Any>
                     commentList.add(comment)
-                    Log.w("data", "$position $count $comment")
                 }
             }
             FirebaseFirestore.getInstance()
@@ -57,6 +66,68 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
     }
 
     override fun getItemCount(): Int = comments.size
+
+    private fun removeNotify(content: String, username: String)
+    {
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(username)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val data = snapshot.data
+                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
+                var count = 0
+                val myNotify = Notify(FirebaseAuth.getInstance().currentUser?.email.toString(), id, "like_comment", 1, Time())
+                myNotify.content = content
+                notifyData.forEach()
+                {
+                    val notify = Notify()
+                    notify.getData(it)
+                    if (notify.compareTo(myNotify)) return@forEach
+                    count++
+                }
+
+                notifyData.removeAt(count)
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(username)
+                    .update("notify", notifyData)
+            }
+    }
+
+    private fun addNotify(content: String, username: String)
+    {
+        FirebaseFirestore.getInstance()
+            .collection("user")
+            .document(username)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val data = snapshot.data
+                val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
+
+                val notify = hashMapOf(
+                    "content" to content,
+                    "id" to id,
+                    "name" to FirebaseAuth.getInstance().currentUser?.email.toString(),
+//                    "status" to 1,
+                    "time" to LocalDateTime.now(),
+                    "type" to "like_comment"
+                )
+                SendNotify.sendMessage(
+                    content,
+                    FirebaseAuth.getInstance().currentUser?.email.toString(),
+                    username,
+                    id,
+                    "like_comment",
+                    "notification"
+                )
+                notifyData.add(notify)
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(username)
+                    .update("notify", notifyData)
+            }
+    }
 
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
@@ -89,6 +160,9 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
             content?.text = comment?.get("content").toString()
             val favouriteList = comment?.get("favourite") as MutableList<String>
             favourite?.text = favouriteList.size.toString()
+            val timeData = Time()
+            timeData.getTime(comment?.get("time") as Map<String, Any>)
+            time?.text = timeData.dataTime
             FirebaseFirestore.getInstance()
                 .collection("user")
                 .document(comment?.get("userName").toString())

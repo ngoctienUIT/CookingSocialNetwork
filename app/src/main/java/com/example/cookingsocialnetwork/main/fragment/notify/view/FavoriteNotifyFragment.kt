@@ -27,6 +27,10 @@ class FavoriteNotifyFragment : Fragment() {
         val factory = NotifyViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(NotifyViewModel::class.java)
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
         activity?.let {
             viewModel.favorites.observe(it) { list ->
                 if (list.size > 0) {

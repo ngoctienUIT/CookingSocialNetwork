@@ -29,6 +29,7 @@ data class Time(
         val time = LocalDateTime.now()
         val myTime = LocalDateTime.of(year.toInt(), month.toInt(), day.toInt(), hour.toInt(), minute.toInt(), second.toInt())
         var timeLong = ChronoUnit.SECONDS.between(myTime, time)
+        if (timeLong == 0.toLong()) return  "Vừa xong"
         if (timeLong in 1..59) return "$timeLong giây" //+ Resources.getSystem().getString(R.string.second)
         timeLong = ChronoUnit.MINUTES.between(myTime, time)
         if (timeLong in 1..59) return "$timeLong phút" //+ Resources.getSystem().getString(R.string.minute)

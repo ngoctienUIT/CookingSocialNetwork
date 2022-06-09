@@ -75,6 +75,7 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
     override fun getItemViewType(position: Int): Int {
         return when (listNotify[position].type) {
             "comment" -> ViewHolderType.COMMENT.ordinal
+            "like_comment" -> ViewHolderType.COMMENT.ordinal
             "follow" -> ViewHolderType.FOLLOW.ordinal
             else -> ViewHolderType.FAVORITE.ordinal
         }

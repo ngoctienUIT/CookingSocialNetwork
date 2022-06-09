@@ -69,6 +69,7 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
                 post.getData(it)
                 Picasso.get().load(post.images[0]).into(postView)
             }
-        contentView?.text = "Đã bình luận: " + comment?.content
+        if (comment?.type?.compareTo("comment") == 0) contentView?.text = "Đã bình luận: " + comment?.content
+        else contentView?.text = "Đã thích bình luận: " + comment?.content
     }
 }

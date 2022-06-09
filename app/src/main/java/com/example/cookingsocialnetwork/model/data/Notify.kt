@@ -20,15 +20,4 @@ data class Notify(var name: String, var id: String, var type: String, var status
         return (notify.name.compareTo(name) == 0 && notify.type.compareTo(type) == 0
                 && notify.content.compareTo(content) == 0 && notify.id.compareTo(id) == 0)
     }
-
-    fun convertToMap(): Map<String, Any> {
-        return hashMapOf(
-            "name" to name,
-            "type" to type,
-            "status" to status,
-            "id" to id,
-            "content" to content,
-            "time" to currentTime
-        )
-    }
 }

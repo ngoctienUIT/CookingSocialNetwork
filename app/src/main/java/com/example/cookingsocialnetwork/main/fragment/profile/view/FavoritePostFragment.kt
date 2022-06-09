@@ -29,6 +29,10 @@ class FavoritePostFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
         activity?.let {
             viewModel.getPost.observe(it) { postList ->
                 val layoutManager = GridLayoutManager(activity, 3)

@@ -17,6 +17,7 @@ import com.example.cookingsocialnetwork.viewpost.adapter.ImageSlideAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import me.relex.circleindicator.CircleIndicator
 
@@ -123,41 +124,47 @@ class ViewFullPost : AppCompatActivity() {
 
         binding.btnShare.setOnClickListener()
         {
-            var text = ""
-            viewModel.post.observe(this)
-            { post ->
-                viewModel.user.observe(this)
-                { user ->
-                    text += "Tác giả: ${user.name} \nTên món ăn: ${post.nameFood} \nThời gian: ${post.cookingTime} \nĐộ khó: ${post.level}\nNguyên liệu: \n"
-                    var count = 0
-                    post.ingredients.forEach()
-                    {
-                        count++
-                        text += "$count. $it\n"
-                    }
-                    text += "Cách làm:\n"
-                    count = 0
-                    post.methods.forEach()
-                    {
-                        count++
-                        text += "Bước $count: $it\n"
-                    }
-                    text += "Các hình ảnh món ăn:\n"
-                    post.images.forEach()
-                    {
-                        text += "$it\n\n"
-                    }
-                    text += "Ứng dụng được hoàn thiện bởi:\nTrần Ngọc Tiến\nTrần Trọng Hoàng \nBùi Lê Hoài An"
-                    val sendIntent: Intent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, text)
-                        type = "text/plain"
-                    }
+            FirebaseFirestore.getInstance()
+                .collection("post")
+                .document(viewModel.post.value!!.id)
+                .update("share", viewModel.post.value!!.share + 1)
+                .addOnSuccessListener {
+                    var text = ""
+                    viewModel.post.observe(this)
+                    { post ->
+                        viewModel.user.observe(this)
+                        { user ->
+                            text += "Tác giả: ${user.name} \nTên món ăn: ${post.nameFood} \nThời gian: ${post.cookingTime} \nĐộ khó: ${post.level}\nNguyên liệu: \n"
+                            var count = 0
+                            post.ingredients.forEach()
+                            {
+                                count++
+                                text += "$count. $it\n"
+                            }
+                            text += "Cách làm:\n"
+                            count = 0
+                            post.methods.forEach()
+                            {
+                                count++
+                                text += "Bước $count: $it\n"
+                            }
+                            text += "Các hình ảnh món ăn:\n"
+                            post.images.forEach()
+                            {
+                                text += "$it\n\n"
+                            }
+                            text += "Ứng dụng được hoàn thiện bởi:\nTrần Ngọc Tiến\nTrần Trọng Hoàng \nBùi Lê Hoài An"
+                            val sendIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, text)
+                                type = "text/plain"
+                            }
 
-                    val shareIntent = Intent.createChooser(sendIntent, null)
-                    startActivity(shareIntent)
+                            val shareIntent = Intent.createChooser(sendIntent, null)
+                            startActivity(shareIntent)
+                        }
+                    }
                 }
-            }
         }
 
         binding.comments.visibility = View.GONE

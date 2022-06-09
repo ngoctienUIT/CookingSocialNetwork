@@ -30,6 +30,10 @@ class AllSearchFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
         activity?.let {
             viewModel._posts.observe(it)
             { listPost ->

@@ -24,11 +24,13 @@ class ListAdapterNotifyComment(context: Activity, private var commentNotify: Mut
         val imageView: ImageView = view.findViewById(R.id.avatarUser)
         val name: TextView = view.findViewById(R.id.name)
         val time: TextView = view.findViewById(R.id.time)
-        val content:TextView = view.findViewById(R.id.content)
+        val content: TextView = view.findViewById(R.id.content)
         val postView: ImageView = view.findViewById(R.id.post)
 
         time.text = commentNotify[position].time.dataTime
-        content.text = "Đã bình luận: " + commentNotify[position].content
+        if (commentNotify[position].type.compareTo("comment") == 0)
+            content.text = "Đã bình luận: " + commentNotify[position].content
+        else content.text = "Đã thích bình luận: " + commentNotify[position].content
         FirebaseFirestore.getInstance()
             .collection("user")
             .document(commentNotify[position].name)
@@ -47,7 +49,6 @@ class ListAdapterNotifyComment(context: Activity, private var commentNotify: Mut
             .get()
             .addOnSuccessListener {
                 val post = Post()
-
                 post.getData(it)
                 Picasso.get().load(post.images[0]).into(postView)
             }

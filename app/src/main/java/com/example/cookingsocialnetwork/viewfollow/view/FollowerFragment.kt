@@ -32,6 +32,10 @@ class FollowerFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
         activity?.let { activity ->
             viewModel.follower.observe(activity)
             { listFollower ->

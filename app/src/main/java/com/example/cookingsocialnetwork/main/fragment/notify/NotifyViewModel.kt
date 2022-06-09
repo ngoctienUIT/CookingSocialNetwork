@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.notify
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cookingsocialnetwork.model.data.Notify
@@ -35,6 +36,9 @@ class NotifyViewModel: ViewModel() {
 
                 if (snapshot != null && snapshot.exists()) {
                     _notifys = mutableListOf()
+                    _comments = mutableListOf()
+                    _favorites = mutableListOf()
+                    _follows = mutableListOf()
                     val data = snapshot.data
                     val notifyData = data?.get("notify") as MutableList<Map<String, Any>>
 
@@ -45,6 +49,7 @@ class NotifyViewModel: ViewModel() {
                         when (notify.type) {
                             "follow" -> _follows.add(notify)
                             "comment" -> _comments.add(notify)
+                            "like_comment" -> _comments.add(notify)
                             else -> _favorites.add(notify)
                         }
                     }

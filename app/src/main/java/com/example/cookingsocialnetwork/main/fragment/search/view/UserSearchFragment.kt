@@ -31,6 +31,10 @@ class UserSearchFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
         activity?.let {
             viewModel._users.observe(it) { list ->
                 if (list.size > 0) {

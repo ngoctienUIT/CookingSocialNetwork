@@ -12,10 +12,17 @@
         android:layout_height="match_parent"
         tools:context=".viewfollow.view.FollowerFragment">
 
-        <ListView
-            android:id="@+id/list_follower"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/list_follower"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 
