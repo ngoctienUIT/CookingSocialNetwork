@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.cookingsocialnetwork.post.PostViewModel"/>
+        <variable
+            name="postPageViewModel"
+            type="PostViewModel" />
+    </data>
+    <RelativeLayout
+        android:id="@+id/postPage2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/post_page_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <Button
+                android:id="@+id/post_page_btn_back"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:minWidth="55dp"
+                android:text="x"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/post_page_btn_back"
+                android:text="Tạo công thức"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/post_page_btn_close"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:minWidth="55dp"
+                android:text="Đóng"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/post_page_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page_top"
+            app:tabInlineLabel="true"
+            app:tabMode="fixed" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/post_page_viewPager"
+            android:layout_width="match_parent"
+            android:layout_below="@id/post_page_tab"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+
+</layout>
