@@ -48,7 +48,7 @@ class MainPage : AppCompatActivity() {
         binding.floatingButton.setOnClickListener()
         {
             //val post = Intent(this, PostPage::class.java)
-            val post = Intent(this, PostPage::class.java)
+            val post = Intent(this, PostPage2::class.java)
             startActivity(post)
         }
 

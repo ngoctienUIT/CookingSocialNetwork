@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/post_page2_fragment1_start_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f7f6f2"
+            android:padding="15dp"
+            android:text="Một công thức mới ư? Hãy bắt đầu nào.."
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment1_food_name_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment1_start_text"
+            android:layout_marginStart="15sp"
+            android:layout_marginTop="30dp"
+            android:text="Tên món ăn"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/post_page2_fragment1_food_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment1_food_name_lb"
+            android:layout_marginHorizontal="15sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment1_food_name_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment1_food_name"
+            android:layout_alignEnd="@id/post_page2_fragment1_food_name"
+            android:layout_marginTop="10dp"
+            android:text="0/30"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment1_food_image_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment1_food_name"
+            android:layout_alignStart="@id/post_page2_fragment1_food_name_lb"
+            android:layout_marginTop="30dp"
+            android:text="Hình ảnh món ăn"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/post_page2_fragment1_food_image_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment1_food_image_lb"
+            android:layout_marginHorizontal="15sp"
+            android:layout_marginTop="10dp"
+            android:elevation="0dp"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:id="@+id/post_page2_fragment1_food_image"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/food_picker" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</ScrollView>

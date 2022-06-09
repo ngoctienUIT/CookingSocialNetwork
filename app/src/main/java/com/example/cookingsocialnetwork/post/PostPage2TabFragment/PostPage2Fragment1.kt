@@ -13,7 +13,7 @@ class PostPage2Fragment1: Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
-        return inflater.inflate(R.layout.post_page_2_fragment_page1, container, false)
+        return inflater.inflate(R.layout.post_page_2_fragment1, container, false)
 
     }
 }

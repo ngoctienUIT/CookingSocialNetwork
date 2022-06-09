@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_start_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f7f6f2"
+            android:padding="15dp"
+            android:text="Tiếp tục với chút thông tin của món ăn nhé..."
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_portion_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_start_text"
+            android:layout_marginStart="15sp"
+            android:layout_marginTop="30dp"
+            android:text="Loại khẩu phần"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_portion_detail"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_food_portion_lb"
+            android:layout_alignStart="@id/post_page2_fragment2_food_portion_lb"
+            android:text="Chọn giữa khẩu phần ăn (khẩu phần cho 1 người) hoặc miếng (vd: 1 miếng bánh)"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_portion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/post_page2_fragment2_food_portion_lb"
+            android:layout_alignParentEnd="true"
+            android:text="200 phần"
+            android:layout_marginEnd="15dp"
+            android:textSize="25sp" />
+
+        <View
+            android:id="@+id/separate1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/post_page2_fragment2_food_portion_detail"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_difficult_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separate1"
+            android:layout_marginStart="15sp"
+            android:text="Độ khó"
+            android:layout_marginTop="30dp"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_difficult_detail"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_food_difficult_lb"
+            android:layout_alignStart="@id/post_page2_fragment2_food_portion_lb"
+            android:text="5 ★ = gordon ramsay"
+            android:textSize="18sp" />
+
+        <RatingBar
+            style="?android:attr/ratingBarStyleIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/post_page2_fragment2_food_difficult_lb"
+            android:layout_alignEnd="@id/post_page2_fragment2_food_portion"
+            android:isIndicator="false"
+            android:numStars="5" />
+
+        <View
+            android:id="@+id/separate2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/post_page2_fragment2_food_difficult_detail"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_prep_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separate2"
+            android:layout_marginStart="15sp"
+            android:text="Thời gian chuẩn bị"
+            android:layout_marginTop="30dp"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_prep_detail"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_food_prep_lb"
+            android:layout_alignStart="@id/post_page2_fragment2_food_portion_lb"
+            android:text="Món ăn được chuẩn bị trong bao lâu?"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_prep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/post_page2_fragment2_food_prep_lb"
+            android:layout_alignParentEnd="true"
+            android:text="200 phần"
+            android:layout_marginEnd="15dp"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_baking_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_food_prep_detail"
+            android:layout_marginStart="15sp"
+            android:layout_marginTop="30dp"
+            android:text="Thời gian nấu"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_baking_detail"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_food_baking_lb"
+            android:layout_alignStart="@id/post_page2_fragment2_food_portion_lb"
+            android:text="Thời gian món ăn được nấu là?"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_baking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/post_page2_fragment2_food_baking_lb"
+            android:layout_alignParentEnd="true"
+            android:text="200 phần"
+            android:layout_marginEnd="15dp"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_rest_lb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_food_baking_detail"
+            android:layout_marginStart="15sp"
+            android:layout_marginTop="30dp"
+            android:text="Thời gian chờ"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_rest_detail"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment2_food_rest_lb"
+            android:layout_alignStart="@id/post_page2_fragment2_food_portion_lb"
+            android:text="Món ăn này có cần thời gian chờ không?"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/post_page2_fragment2_food_rest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/post_page2_fragment2_food_rest_lb"
+            android:layout_alignParentEnd="true"
+            android:text="200 phần"
+            android:layout_marginEnd="15dp"
+            android:textSize="25sp" />
+
+
+    </RelativeLayout>
+
+</ScrollView>
