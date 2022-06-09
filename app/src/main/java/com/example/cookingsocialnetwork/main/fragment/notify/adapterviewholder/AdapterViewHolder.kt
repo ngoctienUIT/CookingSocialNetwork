@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -50,6 +51,12 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
 
             is FollowViewHolder -> {
                 holder.follow = listNotify[position]
+                holder.itemView.setOnClickListener()
+                {
+                    val profile = Intent(holder.itemView.context, ProfileActivity::class.java)
+                    profile.putExtra("user_name", listNotify[position].name)
+                    holder.itemView.context.startActivity(profile)
+                }
                 holder.updateView()
             }
 

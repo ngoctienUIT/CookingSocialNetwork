@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.notify.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentFollowNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyFollow
+import com.example.cookingsocialnetwork.profile.ProfileActivity
 
 class FollowNotifyFragment : Fragment() {
     lateinit var binding: FragmentFollowNotifyBinding
@@ -36,7 +38,10 @@ class FollowNotifyFragment : Fragment() {
                     val adapter = ListAdapterNotifyFollow(it, list.asReversed())
                     binding.listFollow.isClickable = true
                     binding.listFollow.adapter = adapter
-                    binding.listFollow.setOnItemClickListener { _, _, _, _ ->
+                    binding.listFollow.setOnItemClickListener { _, _, position, _ ->
+                        val profile = Intent(activity, ProfileActivity::class.java)
+                        profile.putExtra("user_name", list[position].name)
+                        startActivity(profile)
                     }
                 }
             }
