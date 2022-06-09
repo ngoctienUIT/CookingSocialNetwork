@@ -5,20 +5,20 @@
     android:id="@+id/asd">
 
     <EditText
-        android:id="@+id/txt_Ingredients"
+        android:id="@+id/txt_Methods"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_marginVertical="10dp"
         android:layout_marginStart="10dp"
-        android:layout_toStartOf="@+id/btn_Ingredients"
+        android:layout_toStartOf="@+id/btn_Methods"
         android:background="@drawable/round_view"
         android:hint="@string/ingredients_hint"
         android:minHeight="48dp"
         android:padding="10dp" />
 
     <Button
-        android:id="@+id/btn_Ingredients"
+        android:id="@+id/btn_Methods"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -30,6 +30,14 @@
         android:textColor="#deddd9"
         android:textSize="15sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/txt_Methods"
+        android:scaleType="centerCrop"
+        android:src="@drawable/food_picker"
+        android:layout_alignStart="@id/txt_Methods"/>
 
 
 
