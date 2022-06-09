@@ -1,11 +1,11 @@
 package com.example.cookingsocialnetwork.viewpost
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +19,7 @@ import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import me.relex.circleindicator.CircleIndicator
+
 
 class ViewFullPost : AppCompatActivity() {
     lateinit var binding: ActivityViewFullPostBinding
@@ -118,6 +119,45 @@ class ViewFullPost : AppCompatActivity() {
         binding.btnFavourite.setOnClickListener()
         {
             viewModel.updateFavourite()
+        }
+
+        binding.btnShare.setOnClickListener()
+        {
+            var text = ""
+            viewModel.post.observe(this)
+            { post ->
+                viewModel.user.observe(this)
+                { user ->
+                    text += "Tác giả: ${user.name} \nTên món ăn: ${post.nameFood} \nThời gian: ${post.cookingTime} \nĐộ khó: ${post.level}\nNguyên liệu: \n"
+                    var count = 0
+                    post.ingredients.forEach()
+                    {
+                        count++
+                        text += "$count. $it\n"
+                    }
+                    text += "Cách làm:\n"
+                    count = 0
+                    post.methods.forEach()
+                    {
+                        count++
+                        text += "Bước $count: $it\n"
+                    }
+                    text += "Các hình ảnh món ăn:\n"
+                    post.images.forEach()
+                    {
+                        text += "$it\n\n"
+                    }
+                    text += "Ứng dụng được hoàn thiện bởi:\nTrần Ngọc Tiến\nTrần Trọng Hoàng \nBùi Lê Hoài An"
+                    val sendIntent: Intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, text)
+                        type = "text/plain"
+                    }
+
+                    val shareIntent = Intent.createChooser(sendIntent, null)
+                    startActivity(shareIntent)
+                }
+            }
         }
 
         binding.comments.visibility = View.GONE
