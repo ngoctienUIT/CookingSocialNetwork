@@ -1,16 +1,26 @@
 package com.example.cookingsocialnetwork.viewpost
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
+import com.example.cookingsocialnetwork.databinding.LayoutBottomsheetBinding
+import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
+import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.example.cookingsocialnetwork.viewpost.adapter.CommentAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.ImageSlideAdapter
@@ -46,6 +56,11 @@ class ViewFullPost : AppCompatActivity() {
         binding.backViewFullPost.setOnClickListener()
         {
             finish()
+        }
+
+        binding.more.setOnClickListener()
+        {
+            showDialog()
         }
 
         binding.viewProfile.setOnClickListener()
@@ -180,5 +195,36 @@ class ViewFullPost : AppCompatActivity() {
                 binding.writeComment.visibility = View.GONE
             }
         }
+    }
+
+    private fun showDialog()
+    {
+        val dialog = Dialog(this)
+        val dialogBinding: LayoutDeleteBinding = LayoutDeleteBinding.inflate(layoutInflater)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(dialogBinding.root)
+
+        dialogBinding.delete.setOnClickListener()
+        {
+            Log.w("ok","delete")
+            FirebaseFirestore.getInstance()
+                .collection("post")
+                .document(id)
+                .delete()
+            val postList = viewModel.myData.value?.post
+            postList?.remove(id)
+            FirebaseFirestore.getInstance()
+                .collection("user")
+                .document(FirebaseAuth.getInstance().currentUser?.email.toString())
+                .update("post", postList)
+
+            finish()
+        }
+
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.show()
     }
 }
