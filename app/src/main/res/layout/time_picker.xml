@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/time_picker_done_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="#00FFFFFF"
+        android:text="Xong"
+        android:textColor="@color/black" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_below="@id/time_picker_done_btn"/>
+    <RelativeLayout
+        android:layout_below="@id/time_picker_done_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <NumberPicker
+            android:id="@+id/time_picker_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp" />
+
+        <NumberPicker
+            android:id="@+id/time_picker_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginStart="50dp"
+            android:layout_toEndOf="@id/time_picker_hour" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_picker_hour"
+            android:layout_alignStart="@id/time_picker_hour"
+            android:layout_alignEnd="@id/time_picker_hour"
+            android:gravity="center"
+            android:text="giờ"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_picker_minute"
+            android:layout_alignStart="@id/time_picker_minute"
+            android:layout_alignEnd="@id/time_picker_minute"
+            android:gravity="center"
+            android:text="phút"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

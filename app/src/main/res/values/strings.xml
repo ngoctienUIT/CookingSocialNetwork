@@ -53,5 +53,9 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string-array name="portion_type">
+        <item>pieces</item>
+        <item>servings</item>
+    </string-array>
 
 </resources>

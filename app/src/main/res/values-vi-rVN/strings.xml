@@ -54,5 +54,9 @@
         <item>Nam</item>
         <item>Nữ</item>
     </string-array>
+    <string-array name="portion_type">
+        <item>miếng</item>
+        <item>phần</item>
+    </string-array>
     <!---->
 </resources>

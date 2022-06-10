@@ -172,6 +172,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/postpage_ingredient_child.xml" value="0.25407608695652173" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/menu/menu.xml" value="0.23425925925925925" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1355" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/dialog_bg.xml" value="0.1595" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/ic_account_circle.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/ic_add.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/ic_chat.xml" value="0.2" />
@@ -199,8 +200,9 @@
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/item_view_trending.xml" value="0.2033514492753623" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/layout_bottomsheet.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/list_item_post.xml" value="0.30885416666666665" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/portion_picker.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment1.xml" value="0.23233695652173914" />
-        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment2.xml" value="0.3802931596091205" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment2.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment3.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment4.xml" value="0.264" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment5.xml" value="0.1" />
@@ -212,6 +214,7 @@
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_form_2.xml" value="0.14719202898550723" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_formimage.xml" value="0.17844202898550723" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/slide_item_container.xml" value="0.32447916666666665" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/time_picker.xml" value="0.264" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/trending_slider.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1785" />
       </map>

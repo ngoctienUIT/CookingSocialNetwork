@@ -36,7 +36,7 @@
             android:text="Chọn giữa khẩu phần ăn (khẩu phần cho 1 người) hoặc miếng (vd: 1 miếng bánh)"
             android:textSize="18sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/post_page2_fragment2_food_portion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
             android:text="200 phần"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:inputType="none"
+            android:textIsSelectable="true"
+            android:focusable="false"/>
 
         <View
             android:id="@+id/separate1"
@@ -113,14 +116,17 @@
             android:text="Món ăn được chuẩn bị trong bao lâu?"
             android:textSize="18sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/post_page2_fragment2_food_prep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/post_page2_fragment2_food_prep_lb"
             android:layout_alignParentEnd="true"
-            android:text="200 phần"
             android:layout_marginEnd="15dp"
+            android:focusable="false"
+            android:inputType="none"
+            android:text="200 phần"
+            android:textIsSelectable="true"
             android:textSize="25sp" />
 
         <TextView
@@ -143,15 +149,18 @@
             android:text="Thời gian món ăn được nấu là?"
             android:textSize="18sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/post_page2_fragment2_food_baking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/post_page2_fragment2_food_baking_lb"
             android:layout_alignParentEnd="true"
-            android:text="200 phần"
             android:layout_marginEnd="15dp"
-            android:textSize="25sp" />
+            android:text="200 phần"
+            android:textSize="25sp"
+            android:inputType="none"
+            android:textIsSelectable="true"
+            android:focusable="false"/>
 
         <TextView
             android:id="@+id/post_page2_fragment2_food_rest_lb"
@@ -173,15 +182,18 @@
             android:text="Món ăn này có cần thời gian chờ không?"
             android:textSize="18sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/post_page2_fragment2_food_rest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/post_page2_fragment2_food_rest_lb"
             android:layout_alignParentEnd="true"
-            android:text="200 phần"
             android:layout_marginEnd="15dp"
-            android:textSize="25sp" />
+            android:text="200 phần"
+            android:textSize="25sp"
+            android:inputType="none"
+            android:textIsSelectable="true"
+            android:focusable="false"/>
 
 
     </RelativeLayout>
