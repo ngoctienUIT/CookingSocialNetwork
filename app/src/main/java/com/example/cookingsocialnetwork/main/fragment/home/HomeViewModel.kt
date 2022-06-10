@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.FirestorePagingSource
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsDataSource
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsRepository
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentDataSource
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentRepository
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(postsRepository : PostsRepository): ViewModel() {
+class HomeViewModel @Inject constructor(postRecentRepository : PostRecentRepository): ViewModel() {
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var posts:MutableList<Post> = mutableListOf()
     private var _posts: MutableLiveData<MutableList<Post>> = MutableLiveData()
@@ -35,14 +34,14 @@ class HomeViewModel @Inject constructor(postsRepository : PostsRepository): View
 
     val listPosts: LiveData<PagedList<RealtimePost>> =
         LivePagedListBuilder<String, RealtimePost>(
-            PostsDataSource.Factory(postsRepository, uiScope),
+            PostRecentDataSource.Factory(postRecentRepository, uiScope),
             config
         ).build()
 
 
-    val flow = Pager(PagingConfig(20)) {
-        FirestorePagingSource(FirebaseFirestore.getInstance())
-    }.flow.cachedIn(viewModelScope)
+//    val flow = Pager(PagingConfig(10)) {
+//        RandomPostPagingSource(FirebaseFirestore.getInstance())
+//    }.flow.cachedIn(viewModelScope)
 
     override fun onCleared() {
         super.onCleared()

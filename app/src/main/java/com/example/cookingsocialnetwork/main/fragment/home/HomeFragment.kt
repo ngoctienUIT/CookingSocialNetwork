@@ -15,21 +15,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
-import com.example.cookingsocialnetwork.intro.IntroSlide
-import com.example.cookingsocialnetwork.intro.IntroSliderAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingSlide
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.PostsAdapterTest
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentAdapter
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
+class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
-    private val postsAdapter by lazy { PostsAdapter() }
-    private val postsAdapterTest: PostsAdapterTest by lazy { PostsAdapterTest() }
+    private val postRecentAdapter by lazy { PostRecentAdapter() }
+    //private val randomPostAdapter by lazy { RandomPostAdapter() }
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -52,29 +50,30 @@ class HomeFragment : Fragment(), PostsAdapter.OnClickListener {
         binding.lifecycleOwner = this
 
         //random
-       /* binding.recPosts.adapter = postsAdapterTest
-        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+       /* binding.recPosts.adapter = randomPostAdapter
+        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         lifecycleScope.launch {
             viewModel.flow.collect {
-                postsAdapterTest.submitData(it)
+                randomPostAdapter.submitData(it)
             }
         }
 
         lifecycleScope.launch {
-            postsAdapterTest.loadStateFlow.collectLatest { loadStates ->
+            randomPostAdapter.loadStateFlow.collectLatest { loadStates ->
                 binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
                 binding.progressBarLoadMore.isVisible = loadStates.append is LoadState.Loading
             }
         }*/
 
         //recent
-        binding.recRecentPosts.adapter = postsAdapter
+        binding.recRecentPosts.adapter = postRecentAdapter
         binding.recRecentPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.listPosts.observe(viewLifecycleOwner) {
             binding.swpRecords.isRefreshing = false;
-            postsAdapter.submitList(it)
+            postRecentAdapter.submitList(it)
+
         }
         //trending
         binding.trending.adapter = trendingSliderAdapter

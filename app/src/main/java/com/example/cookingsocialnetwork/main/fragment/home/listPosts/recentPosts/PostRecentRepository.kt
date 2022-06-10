@@ -1,19 +1,13 @@
-package com.example.cookingsocialnetwork.main.fragment.home.realtimePost
+package com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts
 
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.logging.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.Observable
-import kotlinx.coroutines.android.awaitFrame
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
-import java.util.*
 import javax.inject.Inject
 
-class PostsRepository @Inject constructor() {
+class PostRecentRepository @Inject constructor() {
     private val db = FirebaseFirestore.getInstance()
 
     suspend fun getPosts(

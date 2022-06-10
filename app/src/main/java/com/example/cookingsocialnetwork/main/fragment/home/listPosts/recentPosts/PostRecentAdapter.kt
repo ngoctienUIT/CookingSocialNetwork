@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.main.fragment.home.realtimePost
+package com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -18,9 +18,9 @@ import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 import com.example.cookingsocialnetwork.model.data.User
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
-import com.example.cookingsocialnetwork.main.fragment.home.realtimePost.RealtimePost as RealtimePost1
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost as RealtimePost1
 
-class PostsAdapter : PagedListAdapter<RealtimePost1, PostsAdapter.PostViewHolder>(
+class PostRecentAdapter : PagedListAdapter<RealtimePost1, PostRecentAdapter.PostViewHolder>(
     object : DiffUtil.ItemCallback<RealtimePost1>() {
         override fun areItemsTheSame(old: RealtimePost1, new: RealtimePost1): Boolean =
             old.id == new.id
