@@ -5,19 +5,19 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.TimePickerBinding
+import com.example.cookingsocialnetwork.databinding.AddIngredientBinding
+import com.example.cookingsocialnetwork.databinding.UnitPickerBinding
 import com.google.android.material.button.MaterialButton
-import com.google.type.LatLng
 
 
 class PostPage2Fragment3 : Fragment() {
     private lateinit var addIngredient: MaterialButton
     private lateinit var ingredients: LinearLayout
+    private lateinit var unit : Array<String>
 
 
     override fun onCreateView(
@@ -35,21 +35,49 @@ class PostPage2Fragment3 : Fragment() {
 
         addIngredient = requireView().findViewById(R.id.post_page2_fragment3_ingredients_btn)
         addIngredient.setOnClickListener{
-//            val newLayout = LayoutInflater.from(context).inflate(R.layout.postpage_ingredient_child, null)
-//            ingredients.addView(newLayout)
-//            newLayout.findViewById<Button>(R.id.btn_Ingredients).setOnClickListener {
-//                (newLayout.parent as LinearLayout).removeView(newLayout)
-//            }
             addIngredient()
         }
+        unit = resources.getStringArray(R.array.unit)
     }
     private fun addIngredient(){
         val dialog = context?.let { Dialog(it) }
-        val dialogBinding: TimePickerBinding = TimePickerBinding.inflate(layoutInflater)
+        val dialogBinding: AddIngredientBinding = AddIngredientBinding.inflate(layoutInflater)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(dialogBinding.root)
 
+        dialogBinding.addIngredientCloseBtn.setOnClickListener {
+            dialog.dismiss()
+        }
 
+        dialogBinding.addIngredientDoneBtn.setOnClickListener {
+            val newLayout = LayoutInflater.from(context).inflate(R.layout.post_page_2_ingredient_child, null)
+            ingredients.addView(newLayout)
+            newLayout.findViewById<Button>(R.id.post_page_2_ingredient_child_delete_btn).setOnClickListener {
+                (newLayout.parent as LinearLayout).removeView(newLayout)
+            }
+            dialog.dismiss()
+        }
+        dialogBinding.addIngredientUnit.setOnClickListener {
+            val secondDialog = context?.let { Dialog(it) }
+            val secondDialogBinding: UnitPickerBinding = UnitPickerBinding.inflate(layoutInflater)
+            secondDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            secondDialog.setContentView(secondDialogBinding.root)
+
+            secondDialogBinding.unitPickerDoneBtn.setOnClickListener {
+                dialogBinding.addIngredientUnit.setText(unit[secondDialogBinding.unitPickerUnit.value])
+                secondDialog.dismiss()
+            }
+
+            secondDialogBinding.unitPickerUnit.minValue = 0
+            secondDialogBinding.unitPickerUnit.maxValue = unit.size-1
+            secondDialogBinding.unitPickerUnit.displayedValues = unit
+
+            secondDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            secondDialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+            secondDialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+            secondDialog.window?.setGravity(Gravity.BOTTOM)
+            secondDialog.show()
+        }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))

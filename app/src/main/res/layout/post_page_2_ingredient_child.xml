@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/post_page2_ingredient_child_ingredient_amount"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="10dp"
+        android:text="100"
+        android:textSize="25sp"/>
+    <TextView
+        android:id="@+id/post_page2_ingredient_child_ingredient_unit"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/post_page2_ingredient_child_ingredient_amount"
+        android:layout_toEndOf="@id/post_page2_ingredient_child_ingredient_amount"
+        android:layout_marginStart="10dp"
+        android:text="quả"
+        android:textSize="25sp"/>
+    <TextView
+        android:id="@+id/post_page2_ingredient_child_ingredient_name"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/post_page2_ingredient_child_ingredient_amount"
+        android:layout_toEndOf="@id/post_page2_ingredient_child_ingredient_unit"
+        android:layout_marginStart="10dp"
+        android:text="trứng"
+        android:textSize="25sp"/>
+    <Button
+        android:id="@+id/post_page_2_ingredient_child_delete_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:minWidth="55dp"
+        android:text="x"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+
+
+
+</RelativeLayout>

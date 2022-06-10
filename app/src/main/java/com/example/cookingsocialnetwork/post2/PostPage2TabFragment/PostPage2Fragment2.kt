@@ -56,11 +56,12 @@ class PostPage2Fragment2 : Fragment(){
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(dialogBinding.root)
 
+
         dialogBinding.numberPortion.minValue = 1
         dialogBinding.numberPortion.maxValue = 100
 
         dialogBinding.portionType.minValue = 0
-        dialogBinding.portionType.maxValue = 1
+        dialogBinding.portionType.maxValue = portionType.size-1
         dialogBinding.portionType.displayedValues = portionType
 
         dialogBinding.portionPickerDoneBtn.setOnClickListener{

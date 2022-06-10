@@ -17,11 +17,11 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:minWidth="55dp"
                 android:text="x"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -31,17 +31,18 @@
                 android:text="Tạo công thức"
                 android:textSize="25sp"
                 android:textStyle="bold" />
+
             <Button
                 android:id="@+id/post_page_btn_close"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
+                android:gravity="center"
                 android:minWidth="55dp"
                 android:text="Đóng"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -55,8 +56,8 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/post_page_viewPager"
             android:layout_width="match_parent"
-            android:layout_below="@id/post_page_tab"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_below="@id/post_page_tab" />
 
     </RelativeLayout>
 
