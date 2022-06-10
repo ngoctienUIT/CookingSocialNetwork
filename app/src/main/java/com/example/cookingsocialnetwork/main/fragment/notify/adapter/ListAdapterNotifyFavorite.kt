@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
 import com.example.cookingsocialnetwork.model.data.Post
@@ -35,7 +36,8 @@ class ListAdapterNotifyFavorite(context: Activity, private var favoriteNotify: M
                 val info = data?.get("info") as Map<String, Any>
                 name.text = info["name"].toString()
                 val avatar = info["avatar"].toString()
-                Picasso.get().load(avatar).into(imageView)
+                imageView.load(avatar)
+//                Picasso.get().load(avatar).into(imageView)
             }
 
         FirebaseFirestore.getInstance()
@@ -45,7 +47,8 @@ class ListAdapterNotifyFavorite(context: Activity, private var favoriteNotify: M
             .addOnSuccessListener {
                 val post = Post()
                 post.getData(it)
-                Picasso.get().load(post.images[0]).into(postView)
+                postView.load(post.images[0])
+//                Picasso.get().load(post.images[0]).into(postView)
             }
 
         time.text = favoriteNotify[position].time.dataTime

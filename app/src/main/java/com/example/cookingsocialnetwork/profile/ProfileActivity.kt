@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityProfileBinding
 import com.example.cookingsocialnetwork.model.FollowControl
@@ -59,8 +60,8 @@ class ProfileActivity : AppCompatActivity() {
 
         viewModel.getUser.observe(this)
         { user ->
-//            binding.userAvatar.setImageURI(Uri.parse(user.avatar))
-            Picasso.get().load(user.avatar).into(binding.userAvatar)
+//            Picasso.get().load(user.avatar).into(binding.userAvatar)
+            binding.userAvatar.load(user.avatar)
             binding.post.text = user.post.size.toString()
             binding.follower.text = user.followers.size.toString()
             binding.following.text = user.following.size.toString()

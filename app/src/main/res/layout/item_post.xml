@@ -9,11 +9,11 @@
 
     <ImageView
         android:id="@+id/image_post"
-        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/vietnam"
-        android:scaleType="centerInside" />
+        android:layout_marginHorizontal="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/vietnam" />
 
         <LinearLayout
             android:paddingRight="10dp"

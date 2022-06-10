@@ -1,6 +1,7 @@
 package com.example.cookingsocialnetwork.main.fragment.profile.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,18 +28,16 @@ class FavoritePostFragment : Fragment() {
         viewModel.listPost = listFavorite
         viewModel.listenToData()
         binding.viewmodel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.lifecycleOwner = this
 
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
+        val layoutManager = GridLayoutManager(activity, 3)
+        binding.favoritePost.layoutManager = layoutManager
 
         activity?.let {
             viewModel.getPost.observe(it) { postList ->
-                val layoutManager = GridLayoutManager(activity, 3)
-                binding.favoritePost.layoutManager = layoutManager
-                val adapter = PostAdapter(postList.asReversed())
-                binding.favoritePost.adapter = adapter
+                if (postList.size > 0) {
+                    binding.favoritePost.adapter = PostAdapter(postList.asReversed())
+                }
             }
         }
 

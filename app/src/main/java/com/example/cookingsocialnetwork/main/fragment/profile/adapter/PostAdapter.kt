@@ -17,13 +17,13 @@ class PostAdapter(private var listPost: MutableList<Post>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.post = listPost[position]
-        holder.updateView()
         holder.viewPost?.setOnClickListener()
         {
             val fullPost = Intent(holder.itemView.context, ViewFullPost::class.java)
             fullPost.putExtra("id_post", listPost[position].id)
             holder.itemView.context.startActivity(fullPost)
         }
+        holder.updateView()
     }
 
     override fun getItemCount(): Int = listPost.size

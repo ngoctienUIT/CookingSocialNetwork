@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
 import com.example.cookingsocialnetwork.model.data.Post
@@ -46,7 +47,8 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
                 nameView?.text = info["name"].toString()
                 val avatar = info["avatar"].toString()
                 avatarView?.let { image ->
-                    Picasso.get().load(avatar).into(image)
+                    image.load(avatar)
+//                    Picasso.get().load(avatar).into(image)
                 }
             }
 
@@ -57,7 +59,8 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
             .addOnSuccessListener {
                 val post = Post()
                 post.getData(it)
-                Picasso.get().load(post.images[0]).into(postView)
+                postView?.load(post.images[0])
+//                Picasso.get().load(post.images[0]).into(postView)
             }
         if (comment?.type?.compareTo("comment") == 0) contentView?.text = "Đã bình luận: " + comment?.content
         else contentView?.text = "Đã thích bình luận: " + comment?.content

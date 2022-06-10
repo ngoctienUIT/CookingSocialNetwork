@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.User
 import com.squareup.picasso.Picasso
@@ -25,7 +26,8 @@ class ListAdapterSearchUser (private var dialog: Dialog, private var userList: M
 
         name.text = userList[position].name
         username.text = userList[position].username
-        Picasso.get().load(userList[position].avatar).into(avatar)
+        avatar.load(userList[position].avatar)
+//        Picasso.get().load(userList[position].avatar).into(avatar)
 
         return view
     }

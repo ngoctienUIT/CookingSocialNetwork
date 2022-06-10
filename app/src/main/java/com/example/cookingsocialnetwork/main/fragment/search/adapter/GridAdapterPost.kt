@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.marginEnd
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
@@ -32,7 +33,8 @@ class GridAdapterPost(var context: Context, var listPost: MutableList<Post>): Ba
 
         favorite.text = listPost[positon].favourites.size.toString()
         namePost.text = listPost[positon].nameFood
-        Picasso.get().load(listPost[positon].images[0]).into(imagePost)
+        imagePost.load(listPost[positon].images[0])
+//        Picasso.get().load(listPost[positon].images[0]).into(imagePost)
 
         FirebaseFirestore.getInstance()
             .collection("user")
@@ -42,7 +44,8 @@ class GridAdapterPost(var context: Context, var listPost: MutableList<Post>): Ba
                 val user = User()
                 user.getData(it)
                 name.text = user.name
-                Picasso.get().load(user.avatar).into(avatar)
+                avatar.load(user.avatar)
+//                Picasso.get().load(user.avatar).into(avatar)
             }
 
         return view

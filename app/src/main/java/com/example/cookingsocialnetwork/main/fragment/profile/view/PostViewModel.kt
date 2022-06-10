@@ -22,30 +22,32 @@ class PostViewModel: ViewModel() {
 
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
-        listenToData()
+//        listenToData()
     }
 
-    fun listenToData()
-    {
-        post = mutableListOf()
-        listPost.forEach()
-        { item ->
-            firestore.collection("post")
-                .document(item)
-                .addSnapshotListener()
-                { snapshot, e ->
-                    if (e != null) {
-                        return@addSnapshotListener
-                    }
+    fun listenToData() {
+        firestore.collection("post")
+            .addSnapshotListener()
+            { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
 
-                    if (snapshot!= null && snapshot.exists())
-                    {
-                        val myPost = Post()
-                        myPost.getData(snapshot)
-                        post.add(myPost)
-                        postData.value = post
+                if (snapshot != null) {
+                    post = mutableListOf()
+                    listPost.forEach()
+                    { item ->
+                        firestore.collection("post")
+                            .document(item)
+                            .get()
+                            .addOnSuccessListener { dataPost ->
+                                val myPost = Post()
+                                myPost.getData(dataPost)
+                                post.add(myPost)
+                                postData.value = post
+                            }
                     }
                 }
-        }
+            }
     }
 }

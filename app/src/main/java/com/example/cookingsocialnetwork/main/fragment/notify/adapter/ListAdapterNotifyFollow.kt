@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.FollowControl
 import com.example.cookingsocialnetwork.model.data.Notify
@@ -39,7 +40,8 @@ class ListAdapterNotifyFollow(context: Activity, private var followNotify: Mutab
                 val info = data?.get("info") as Map<String, Any>
                 name.text = info["name"].toString()
                 val avatar = info["avatar"].toString()
-                Picasso.get().load(avatar).into(imageView)
+                imageView.load(avatar)
+//                Picasso.get().load(avatar).into(imageView)
             }
 
         FirebaseFirestore.getInstance()

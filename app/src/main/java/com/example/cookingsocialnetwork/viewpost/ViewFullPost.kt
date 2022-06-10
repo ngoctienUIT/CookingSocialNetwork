@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
@@ -72,12 +73,14 @@ class ViewFullPost : AppCompatActivity() {
 
         viewModel.user.observe(this)
         {
-            Picasso.get().load(it.avatar).into(binding.avatar)
+            binding.avatar.load(it.avatar)
+//            Picasso.get().load(it.avatar).into(binding.avatar)
         }
 
         viewModel.myData.observe(this)
         {
-            Picasso.get().load(it.avatar).into(binding.userAvatar)
+            binding.userAvatar.load(it.avatar)
+//            Picasso.get().load(it.avatar).into(binding.userAvatar)
         }
 
         viewModel.post.observe(this) {

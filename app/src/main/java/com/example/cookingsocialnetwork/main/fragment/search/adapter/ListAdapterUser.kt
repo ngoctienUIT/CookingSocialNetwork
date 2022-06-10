@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.NotifyControl
 import com.example.cookingsocialnetwork.model.data.User
@@ -61,7 +62,8 @@ class ListAdapterUser(context: Activity, private var userArrayList: MutableList<
             }
         }
 
-        Picasso.get().load(userArrayList[position].avatar).into(imageView)
+        imageView.load(userArrayList[position].avatar)
+//        Picasso.get().load(userArrayList[position].avatar).into(imageView)
         imageView.setImageURI(Uri.parse(userArrayList[position].avatar))
         name.text = userArrayList[position].name
         username.text = userArrayList[position].username

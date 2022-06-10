@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.NotifyControl
 import com.example.cookingsocialnetwork.model.data.User
@@ -52,7 +53,8 @@ class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 nameView?.text = info["name"].toString()
                 val avatar = info["avatar"].toString()
                 avatarView?.let { image ->
-                    Picasso.get().load(avatar).into(image)
+                    image.load(avatar)
+//                    Picasso.get().load(avatar).into(image)
                 }
                 infoView?.text = "${followers.size} follower . ${post.size} bài viết"
             }

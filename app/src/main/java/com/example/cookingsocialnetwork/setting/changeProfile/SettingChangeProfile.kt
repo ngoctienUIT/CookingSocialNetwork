@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivitySettingChangeProfileBinding
 import com.squareup.picasso.Picasso
@@ -85,7 +86,8 @@ class SettingChangeProfile : AppCompatActivity() {
 
         viewModel.user.observe(this)
         {
-            Picasso.get().load(it.avatar).into(dataBinding.ivAvatar)
+            dataBinding.ivAvatar.load(it.avatar)
+//            Picasso.get().load(it.avatar).into(dataBinding.ivAvatar)
             if (viewModel.user.value!!.gender.compareTo("0") == 0)
                 dataBinding.gender.check(R.id.male)
             else if (viewModel.user.value!!.gender.compareTo("1") == 0)

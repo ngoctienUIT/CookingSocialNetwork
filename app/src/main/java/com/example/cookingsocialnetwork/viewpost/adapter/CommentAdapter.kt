@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.NotifyControl
 import com.example.cookingsocialnetwork.model.data.Time
@@ -106,7 +107,8 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
                 .addOnSuccessListener {
                     val user = User()
                     user.getData(it)
-                    Picasso.get().load(user.avatar).into(userAvatar)
+                    userAvatar?.load(user.avatar)
+//                    Picasso.get().load(user.avatar).into(userAvatar)
                     name?.text = user.name
                 }
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentProfileBinding
 import com.example.cookingsocialnetwork.main.fragment.profile.adapter.ViewPageProfileAdapter
@@ -62,31 +63,34 @@ class ProfileFragment : Fragment() {
             startActivity(viewFollowing)
         }
 
+        val pageProfile = ViewPageProfileAdapter(this)
+        pageProfile.listPost = mutableListOf()
+        pageProfile.listFavoritePost = mutableListOf()
+        binding.viewPagerProfile.adapter = pageProfile
+        binding.viewPagerProfile.isSaveEnabled = false
+        TabLayoutMediator(binding.tabLayoutProfile, binding.viewPagerProfile)
+        { tab, index ->
+            tab.text = when (index) {
+                0 -> {
+                    "Bài viết"
+                }
+                else -> {
+                    "Yêu thích"
+                }
+            }
+        }.attach()
+
         viewModel.getUser.observe(viewLifecycleOwner)
         { user ->
-//            binding.userAvatar.setImageURI(Uri.parse(user.avatar))
-            Picasso.get().load(user.avatar).into(binding.userAvatar)
+//            Picasso.get().load(user.avatar).into(binding.userAvatar)
+            binding.userAvatar.load(user.avatar)
             binding.post.text = user.post.size.toString()
             binding.follower.text = user.followers.size.toString()
             binding.following.text = user.following.size.toString()
 
-            val pageProfile = ViewPageProfileAdapter(this)
             pageProfile.listPost = user.post
             pageProfile.listFavoritePost = user.favourites
-
             binding.viewPagerProfile.adapter = pageProfile
-            binding.viewPagerProfile.isSaveEnabled = false
-            TabLayoutMediator(binding.tabLayoutProfile, binding.viewPagerProfile)
-            { tab, index ->
-                tab.text = when (index) {
-                    0 -> {
-                        "Bài viết"
-                    }
-                    else -> {
-                        "Yêu thích"
-                    }
-                }
-            }.attach()
         }
 
         return binding.root

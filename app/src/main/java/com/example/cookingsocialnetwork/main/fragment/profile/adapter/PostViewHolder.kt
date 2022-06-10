@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
 import com.squareup.picasso.Picasso
@@ -29,7 +30,7 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun updateView() {
         findView()
-        Picasso.get().load(post!!.images[0]).into(imagePost)
+        imagePost?.load(post!!.images[0])
         favourite?.text = post?.favourites?.size.toString()
     }
 }
