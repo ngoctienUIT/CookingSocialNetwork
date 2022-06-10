@@ -19,11 +19,9 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
     private var avatarView: ImageView? = null
     private var postView: ImageView? = null
     var comment: Notify? = null
-    var onClickItem : ((String)->Unit)? = null
 
     init {
         findView()
-        setListener()
     }
 
     private fun findView() {
@@ -32,14 +30,6 @@ class CommentViewHolder(itemView:View): RecyclerView.ViewHolder(itemView) {
         timeView = view.get()?.findViewById(R.id.time)
         avatarView = view.get()?.findViewById(R.id.avatarUser)
         postView = view.get()?.findViewById(R.id.post)
-    }
-
-    private fun setListener()
-    {
-        view.get()?.setOnClickListener()
-        {
-            onClickItem?.let { comment?.let { it1 -> it(it1.name) } }
-        }
     }
 
     fun updateView()

@@ -14,8 +14,6 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
         COMMENT, FOLLOW, FAVORITE
     }
 
-    var onLoadMore: (() -> Unit)? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
          when (viewType) {
             ViewHolderType.COMMENT.ordinal -> {
@@ -70,10 +68,6 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
                 }
                 holder.updateView()
             }
-        }
-
-        if (position == listNotify.size) {
-            onLoadMore?.let { it() }
         }
     }
 

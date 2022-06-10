@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityProfileBinding
+import com.example.cookingsocialnetwork.model.FollowControl
 import com.example.cookingsocialnetwork.viewfollow.ViewFollowActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
@@ -37,7 +38,7 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.follow.setOnClickListener()
         {
-            viewModel.eventFollow()
+            FollowControl.follow(viewModel.getUser.value!!.username)
         }
 
         binding.btnFollower.setOnClickListener()

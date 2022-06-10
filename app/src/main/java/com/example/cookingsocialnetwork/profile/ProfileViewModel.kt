@@ -45,37 +45,4 @@ class ProfileViewModel: ViewModel() {
                 }
             }
     }
-
-    fun eventFollow()
-    {
-        FirebaseFirestore.getInstance()
-            .collection("user")
-            .document(FirebaseAuth.getInstance().currentUser?.email.toString())
-            .get()
-            .addOnSuccessListener {
-                val myData = User()
-                myData.getData(it)
-                val following = myData.following
-                val follower = _user.value!!.followers
-                val checkFollow = user.followers.indexOf(FirebaseAuth.getInstance().currentUser?.email) != -1
-                if (!checkFollow) {
-                    following.add(_user.value!!.username)
-                    follower.add(myData.username)
-                    NotifyControl.addNotify(user.username, "", "", "follow")
-                } else {
-                    following.remove(_user.value!!.username)
-                    follower.remove(myData.username)
-                    NotifyControl.removeNotify(user.username, "", "", "follow")
-                }
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(myData.username)
-                    .update("following", following)
-
-                FirebaseFirestore.getInstance()
-                    .collection("user")
-                    .document(_user.value!!.username)
-                    .update("followers", follower)
-            }
-    }
 }
