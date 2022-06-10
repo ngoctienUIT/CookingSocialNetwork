@@ -15,7 +15,9 @@ class PostRecentRepository @Inject constructor() {
         loadBefore: String? = null,
         loadAfter: String? = null
     ): List<RealtimePost> {
-        var query = db.collection("post").limit(pageSize.toLong()).whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
+        var query = db.collection("post")
+            .limit(pageSize.toLong())
+            //.whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
         loadBefore?.let {
             val item = db.collection("post").document(it)
                 .get()
