@@ -15,6 +15,14 @@ data class Notify(var name: String, var id: String, var type: String, var status
         time.getTime(notifyTime)
     }
 
+    fun  getDataNotify(data: Map<String, Any>)
+    {
+        name = data["name"] as String
+        type = data["type"] as String
+        id = data["id"] as String
+        content = data["content"] as String
+    }
+
     fun compareTo(notify: Notify): Boolean
     {
         return (notify.name.compareTo(name) == 0 && notify.type.compareTo(type) == 0

@@ -42,7 +42,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
             val receiver = remoteMessage.data["receiver"] as String
             if (receiver == FirebaseAuth.getInstance().currentUser?.email.toString()) {
                 val notify = Notify()
-                notify.getData(remoteMessage.data)
+                notify.getDataNotify(remoteMessage.data)
                 initNotify(notify)
             }
         }
