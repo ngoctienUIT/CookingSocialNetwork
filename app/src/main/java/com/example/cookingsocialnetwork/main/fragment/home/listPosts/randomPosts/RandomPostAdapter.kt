@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
@@ -63,7 +64,7 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
             userName.text = ""
             foodName.text = ""
             foodImage.setImageDrawable(Drawable.createFromPath("@drawable/food_picker"))
-//            userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
+           // userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
             comment.text = "";
             heart.text = ""
             rating.numStars = 0
@@ -75,7 +76,7 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
     inner class PostViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val viewHolderDisposables = CompositeDisposable()
 
-        //        val userImage : ImageView = itemView.findViewById(R.id.user_image)
+       // val userImage : ImageView = itemView.findViewById(R.id.user_image)
         val rating : RatingBar = itemView.findViewById(R.id.food_diff_random_post)
         val comment : TextView = itemView.findViewById(R.id.comment_random_post)
         val heart : TextView = itemView.findViewById(R.id.heart_random_post)
@@ -106,6 +107,5 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
 
         }
 
+        }
     }
-
-}
