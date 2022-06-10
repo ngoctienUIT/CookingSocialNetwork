@@ -18,7 +18,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
-import com.example.cookingsocialnetwork.databinding.LayoutBottomsheetBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
 import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.profile.ProfileActivity
@@ -28,6 +27,7 @@ import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import me.relex.circleindicator.CircleIndicator
 
@@ -81,6 +81,10 @@ class ViewFullPost : AppCompatActivity() {
         }
 
         viewModel.post.observe(this) {
+            if (FirebaseAuth.getInstance().currentUser?.email.toString().compareTo(it.owner) == 0)
+                binding.more.visibility = View.VISIBLE
+            else binding.more.visibility = View.GONE
+
             val ingredientAdapter = IngredientAdapter(it.ingredients)
             val ingredientsLayoutManager = LinearLayoutManager(this)
             binding.ingredients.layoutManager = ingredientsLayoutManager
@@ -206,7 +210,29 @@ class ViewFullPost : AppCompatActivity() {
 
         dialogBinding.delete.setOnClickListener()
         {
-            Log.w("ok","delete")
+            viewModel.post.value?.favourites?.forEach()
+            { username ->
+                FirebaseFirestore.getInstance()
+                    .collection("user")
+                    .document(username)
+                    .get()
+                    .addOnSuccessListener { data ->
+                        val user = User()
+                        user.getData(data)
+                        val list = user.favourites
+                        list.remove(id)
+                        FirebaseFirestore.getInstance()
+                            .collection("user")
+                            .document(username)
+                            .update("favourites", list)
+                    }
+            }
+            val storageRef = FirebaseStorage.getInstance().reference
+            viewModel.post.value?.images?.forEach()
+            { url ->
+                val httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(url)
+                storageRef.child("post/${httpsReference.name}").delete()
+            }
             FirebaseFirestore.getInstance()
                 .collection("post")
                 .document(id)
@@ -221,10 +247,10 @@ class ViewFullPost : AppCompatActivity() {
             finish()
         }
 
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
-        dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.window?.setGravity(Gravity.CENTER)
         dialog.show()
     }
 }

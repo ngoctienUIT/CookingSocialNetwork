@@ -4,17 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/dialog_more_bg"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/delete"
-        android:paddingVertical="20dp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_marginStart="10dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
