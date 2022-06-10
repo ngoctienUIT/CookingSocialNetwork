@@ -2,6 +2,7 @@ package com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPost
 
 import com.example.cookingsocialnetwork.model.data.Post
 import io.reactivex.Observable
+import java.time.LocalDateTime
 
 
 data class RealtimePost (

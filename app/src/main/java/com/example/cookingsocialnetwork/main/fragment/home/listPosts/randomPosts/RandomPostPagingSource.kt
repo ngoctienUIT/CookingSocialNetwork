@@ -16,7 +16,7 @@ class RandomPostPagingSource(private val db: FirebaseFirestore) : PagingSource<Q
         return try {
             val currentPage = params.key ?: db.collection("post")
                 .limit(10)
-                //.whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
+                .whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
                 .get()
                 .await()
 
@@ -28,7 +28,7 @@ class RandomPostPagingSource(private val db: FirebaseFirestore) : PagingSource<Q
 
             val nextPage = db.collection("post")
                 .limit(10)
-                //.whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
+                .whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
                 .startAfter(lastDocumentSnapshot)
                 .get()
                 .await()
