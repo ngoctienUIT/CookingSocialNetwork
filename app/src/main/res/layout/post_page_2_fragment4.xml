@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".post.PostPage2TabFragment.PostPage2Fragment3">
+    tools:context=".post2.PostPage2TabFragment.PostPage2Fragment3">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,14 +28,15 @@
             android:text="Cách làm"
             android:textSize="25sp"
             android:textStyle="bold" />
+
         <LinearLayout
             android:id="@+id/post_page2_fragment4_step"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/post_page2_fragment4_food_step_lb"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="30dp"
-            android:layout_below="@id/post_page2_fragment4_food_step_lb"
-            android:orientation="vertical"/>
+            android:orientation="vertical" />
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
@@ -47,8 +48,8 @@
             android:text="+ Thêm một bước"
             android:textColor="@color/black"
             app:cornerRadius="5dp"
-            app:rippleColor="@color/black"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="2dp"
+            android:stateListAnimator="@null"/>
     </RelativeLayout>
 </ScrollView>

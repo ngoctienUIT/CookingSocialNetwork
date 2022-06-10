@@ -1,11 +1,10 @@
-package com.example.cookingsocialnetwork.post
+package com.example.cookingsocialnetwork.post2
 
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.cookingsocialnetwork.post.PostPage2TabFragment.*
+import com.example.cookingsocialnetwork.post2.PostPage2TabFragment.*
 
 class PostPage2ViewPagerAdapter(fragment: FragmentManager, lifecycle : Lifecycle): FragmentStateAdapter(fragment, lifecycle) {
 

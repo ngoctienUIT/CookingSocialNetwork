@@ -1,7 +1,6 @@
-package com.example.cookingsocialnetwork.post
+package com.example.cookingsocialnetwork.post2
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R

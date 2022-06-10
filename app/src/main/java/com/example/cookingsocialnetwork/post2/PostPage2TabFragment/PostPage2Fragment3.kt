@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.post.PostPage2TabFragment
+package com.example.cookingsocialnetwork.post2.PostPage2TabFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
