@@ -2,6 +2,7 @@ package com.example.cookingsocialnetwork.main.fragment.home
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingSlide
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,7 +30,7 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val postRecentAdapter by lazy { PostRecentAdapter() }
-    //private val randomPostAdapter by lazy { RandomPostAdapter() }
+    private val randomPostAdapter by lazy { RandomPostAdapter() }
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -50,10 +53,11 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         binding.lifecycleOwner = this
 
         //random
-       /* binding.recPosts.adapter = randomPostAdapter
+        binding.recPosts.adapter = randomPostAdapter
         binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         lifecycleScope.launch {
+
             viewModel.flow.collect {
                 randomPostAdapter.submitData(it)
             }
@@ -64,7 +68,7 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
                 binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
                 binding.progressBarLoadMore.isVisible = loadStates.append is LoadState.Loading
             }
-        }*/
+        }
 
         //recent
         binding.recRecentPosts.adapter = postRecentAdapter

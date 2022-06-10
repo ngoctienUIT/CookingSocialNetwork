@@ -62,7 +62,7 @@ class PostRecentAdapter : PagedListAdapter<RealtimePost1, PostRecentAdapter.Post
             rating.numStars = 0
             foodName.text = ""
             foodImage.setImageDrawable(Drawable.createFromPath("@drawable/food_picker"))
-            userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
+            //userImage.setImageDrawable(Drawable.createFromPath("@color/black"))
             comment.text = "";
             heart.text = ""
             viewHolderDisposables.clear()

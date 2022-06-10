@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostPagingSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentDataSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentRepository
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
@@ -39,9 +40,9 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
         ).build()
 
 
-//    val flow = Pager(PagingConfig(10)) {
-//        RandomPostPagingSource(FirebaseFirestore.getInstance())
-//    }.flow.cachedIn(viewModelScope)
+    val flow = Pager(PagingConfig(10)) {
+        RandomPostPagingSource(FirebaseFirestore.getInstance())
+    }.flow.cachedIn(viewModelScope)
 
     override fun onCleared() {
         super.onCleared()
