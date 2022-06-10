@@ -33,8 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/post_page2_fragment1_food_name_lb"
-            android:maxLength="30"
-            android:layout_marginHorizontal="15sp" />
+            android:layout_marginHorizontal="15sp"
+            android:maxLength="30" />
 
         <TextView
             android:id="@+id/post_page2_fragment1_food_name_count"

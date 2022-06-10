@@ -58,5 +58,35 @@
         <item>miếng</item>
         <item>phần</item>
     </string-array>
+    <string-array name="unit">
+        <item>g</item>
+        <item>ml</item>
+        <item>tsp</item>
+        <item>tbsp</item>
+        <item>bag</item>
+        <item>bar</item>
+        <item>bulb</item>
+        <item>bundle</item>
+        <item>capsule</item>
+        <item>cl</item>
+        <item>clove</item>
+        <item>cob</item>
+        <item>dash</item>
+        <item>drop</item>
+        <item>head</item>
+        <item>kg</item>
+        <item>l</item>
+        <item>leaf</item>
+        <item>loaf</item>
+        <item>meter</item>
+        <item>package</item>
+        <item>pinch</item>
+        <item>scoop</item>
+        <item>sheet</item>
+        <item>sprig</item>
+        <item>stalk</item>
+        <item>strip</item>
+        <item>tea bag</item>
+    </string-array>
     <!---->
 </resources>
