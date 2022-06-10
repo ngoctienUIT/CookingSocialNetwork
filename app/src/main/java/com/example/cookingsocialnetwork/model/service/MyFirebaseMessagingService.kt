@@ -131,7 +131,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
         val name: CharSequence = getString(R.string.app_name)
         val description = getString(R.string.app_name)
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        val channel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel(
                 NotificationManager.EXTRA_NOTIFICATION_CHANNEL_ID,
                 name,

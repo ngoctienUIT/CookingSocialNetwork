@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -30,7 +31,7 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val postRecentAdapter by lazy { PostRecentAdapter() }
-    private val randomPostAdapter by lazy { RandomPostAdapter() }
+    private val randomPostAdapter : RandomPostAdapter by lazy { RandomPostAdapter() }
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory

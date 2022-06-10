@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
         ).build()
 
 
-    val flow = Pager(PagingConfig(10)) {
+    val flow = Pager(PagingConfig(20)) {
         RandomPostPagingSource(FirebaseFirestore.getInstance())
     }.flow.cachedIn(viewModelScope)
 

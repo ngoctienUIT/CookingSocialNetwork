@@ -8,6 +8,7 @@ import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.protobuf.Value
 import kotlinx.coroutines.tasks.await
 
 class RandomPostPagingSource(private val db: FirebaseFirestore) : PagingSource<QuerySnapshot, Post>() {
@@ -31,13 +32,23 @@ class RandomPostPagingSource(private val db: FirebaseFirestore) : PagingSource<Q
 
             LoadResult.Page(
 
-                data = currentPage.toObjects(Post::class.java),
+                //data = currentPage.toObjects(Post::class.java),
+                data = takeListValue(currentPage),
                 prevKey = null,
                 nextKey = nextPage
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
+    }
+    private fun takeListValue(snapshot: QuerySnapshot) : List<Post>{
+        val listValue = mutableListOf<Post>()
+        for (snap in snapshot){
+            val post = Post();
+            post.getData(snap);
+            listValue.add(post)
+        }
+        return listValue
     }
 
     override fun getRefreshKey(state: PagingState<QuerySnapshot, Post>): QuerySnapshot? {
