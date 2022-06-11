@@ -20,13 +20,12 @@ class StepAdapter(private val stepList: MutableList<Step>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = stepList[position]
-
-        holder.stepCount.text = (position + 1).toString()
+        holder.stepCount.text = "Bước " + (position + 1).toString()
         //holder.stepImage.load(currentItem.image)
         holder.step.text = currentItem.step
 
         holder.delete.setOnClickListener {
-            stepList.removeAt(position)
+            stepList.remove(currentItem)
             this.notifyDataSetChanged()
         }
     }
@@ -41,17 +40,7 @@ class StepAdapter(private val stepList: MutableList<Step>): RecyclerView.Adapter
     }
 
     override fun onRowMove(from: Int, to: Int) {
-//        if(from < to){
-//            for(i in from..to){
-//                Collections.swap(ingredientList, i, i+1)
-//            }
-//        } else {
-//            for(i in from downTo to){
-//                Collections.swap(ingredientList, i, i-1)
-//            }
-//        }
         Collections.swap(stepList, from, to)
-        //notifyDataSetChanged()
         notifyItemMoved(from, to)
     }
 
