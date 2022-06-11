@@ -41,19 +41,20 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
 
         //Inject here
         DaggerHomeComponent.create().inject(this)
 
-        viewModel = ViewModelProvider(this,factory).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
         //random
         binding.recPosts.adapter = randomPostAdapter
-        binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recPosts.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         lifecycleScope.launch {
             viewModel.flowRandomPosts.collect {
@@ -70,7 +71,8 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
 
         //recent
         binding.recRecentPosts.adapter = postRecentAdapter
-        binding.recRecentPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recRecentPosts.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.listPosts.observe(viewLifecycleOwner) {
             binding.swpRecords.isRefreshing = false;
@@ -79,20 +81,24 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         //trending
 
         //binding.trendingViewPaper.adapter = trendingSliderAdapter
-        lifecycleScope.launch{
-            viewModel.flowTrendingPosts.collect{
+        lifecycleScope.launch {
+            val x = viewModel.flowTrendingPosts.collect {
                 trendingSliderAdapter.submitData(it)
-                Log.d("uaalo", trendingSliderAdapter.itemCount.toString())
+            }
+            x.run {
+                binding.trendingViewPaper.adapter = trendingSliderAdapter
             }
         }
 
-       // binding.trendingViewPaper.adapter = trendingSliderAdapter
-        /*binding.trending.adapter = trendingSliderAdapter
+
+            // binding.trendingViewPaper.adapter = trendingSliderAdapter
+            /*binding.trending.adapter = trendingSliderAdapter
         setAnimationTrending(binding)*/
 
-        return binding.root
+            return binding.root
 
     }
+
     private fun setAnimationTrending(thisBinding: FragmentHomeBinding){
         val handler = Handler()
         var isScrollDown = true;
@@ -141,6 +147,5 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
     override fun onCommentClick(view: View, position: Int) {
         TODO("Not yet implemented")
     }
-
-
 }
+

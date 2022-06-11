@@ -75,6 +75,7 @@
         <entry key="..\:/Kotlin/DanDd/CookingSocialNetwork/app/src/main/res/layout/fragment_profile.xml" value="0.23072916666666668" />
         <entry key="..\:/Kotlin/DanDd/CookingSocialNetwork/app/src/main/res/layout/fragment_search.xml" value="0.23072916666666668" />
         <entry key="..\:/Kotlin/DanDd/CookingSocialNetwork/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1905" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/drawable/ic_heart.xml" value="0.15" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_about_page.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_add_function.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_add_material.xml" value="0.2056434373663959" />
@@ -82,13 +83,14 @@
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_main.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_main_page.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_post_page.xml" value="0.268" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_post_page_2.xml" value="0.25052083333333336" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_report.xml" value="0.11543394613082514" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_report_error.xml" value="0.11543394613082514" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_setting_change_profile.xml" value="0.11543394613082514" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_setting_page.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_splash_page.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_follow.xml" value="0.14739583333333334" />
-        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_full_post.xml" value="0.1" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_full_post.xml" value="0.23322332233223322" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_post_page.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_post_page_2.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/add_ingredient.xml" value="0.15" />
@@ -104,8 +106,12 @@
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/fragment_notifications.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/fragment_post_search.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/fragment_profile.xml" value="0.14151346729371525" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/grid_item.xml" value="0.25052083333333336" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/grid_item_clicked_image_choosed.xml" value="0.12954253954681488" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/grid_item_post.xml" value="0.2056434373663959" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/item_ingredient.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/item_methods.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/item_post.xml" value="0.25052083333333336" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/item_view_post.xml" value="0.3" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/item_view_trending.xml" value="0.21770833333333334" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/layout_bottomsheet.xml" value="0.2056434373663959" />
@@ -113,11 +119,20 @@
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/list_item_post.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/list_item_user.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/list_search_history_item.xml" value="0.2056434373663959" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment1.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment2.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment3.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment4.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment5.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/post_page_2_ingredient_child.xml" value="0.25052083333333336" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/postpage_ingredient_child.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_form.xml" value="0.26582278481012656" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_form_2.xml" value="0.14739583333333334" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_formimage.xml" value="0.11714407866609662" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/slide_item_container.xml" value="0.11714407866609662" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/time_picker.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/trending_slider.xml" value="0.25052083333333336" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/unit_picker.xml" value="0.25052083333333336" />
         <entry key="..\:/Kotlin/New folder/CookingSocialNetwork/app/src/main/res/layout/activity_main.xml" value="0.21875" />
         <entry key="..\:/Kotlin/New folder/CookingSocialNetwork/app/src/main/res/layout/activity_main_page.xml" value="0.21875" />
         <entry key="..\:/Kotlin/New folder/CookingSocialNetwork/app/src/main/res/layout/activity_post_page.xml" value="0.264" />
@@ -189,7 +204,6 @@
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/activity_setting_page.xml" value="0.4" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/activity_view_post_page.xml" value="0.30885416666666665" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/add_ingredient.xml" value="0.264" />
-        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/add_step.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/amount_picker.xml" value="0.221889696451475" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/example_item.xml" value="0.15989583333333332" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/fracment1.xml" value="0.11901535682023487" />
