@@ -190,8 +190,10 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout_profile"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:tabIndicatorColor="@color/red"
                     app:tabInlineLabel="true"
                     app:tabMode="fixed"/>
 

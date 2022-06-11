@@ -1,6 +1,8 @@
 package com.example.cookingsocialnetwork.profile
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +11,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityProfileBinding
 import com.example.cookingsocialnetwork.model.FollowControl
 import com.example.cookingsocialnetwork.viewfollow.ViewFollowActivity
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
@@ -58,6 +61,21 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(viewFollower)
         }
 
+        binding.tabLayoutProfile.addOnTabSelectedListener( object :
+            TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.icon?.setTint(Color.RED)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                tab?.icon?.setTint(Color.parseColor("#C0C0C0"))
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                TODO("Not yet implemented")
+            }
+        })
+
         viewModel.getUser.observe(this)
         { user ->
 //            Picasso.get().load(user.avatar).into(binding.userAvatar)
@@ -77,14 +95,14 @@ class ProfileActivity : AppCompatActivity() {
             binding.viewPagerProfile.isSaveEnabled = false
             TabLayoutMediator(binding.tabLayoutProfile, binding.viewPagerProfile)
             { tab, index ->
-                tab.text = when (index) {
-                    0 -> {
-                        "Bài viết"
+                tab.setIcon(
+                    when (index) {
+                        0 -> R.drawable.ic_list_post
+                        else -> R.drawable.ic_favorite
                     }
-                    else -> {
-                        "Yêu thích"
-                    }
-                }
+                )
+                if (index == 0) tab.icon?.setTint(Color.RED)
+                else tab.icon?.setTint(Color.parseColor("#C0C0C0"))
             }.attach()
         }
     }

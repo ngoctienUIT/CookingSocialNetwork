@@ -109,8 +109,8 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="Following"
-                                android:textSize="12sp"
-                                android:textColor="#69C9D0"/>
+                                android:textColor="#69C9D0"
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -134,8 +134,8 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="Follower"
-                                android:textSize="12sp"
-                                android:textColor="#69C9D0"/>
+                                android:textColor="#69C9D0"
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -166,14 +166,14 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/edit_profile"
-                        android:gravity="center"
-                        android:background="@drawable/bg_btn_edit"
-                        android:text="Edit Profile"
-                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
                         android:layout_marginHorizontal="100dp"
                         android:layout_marginVertical="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"/>
+                        android:background="@drawable/bg_btn_edit"
+                        android:gravity="center"
+                        android:text="Edit Profile"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/quote"
@@ -183,24 +183,24 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="50dp"
                         android:layout_marginBottom="30dp"
-                        android:fontFamily="sans-serif-light"
                         android:gravity="center"
-                        android:maxLines="4"
+                        android:maxLines="6"
                         android:text="@{viewmodel.getUser.description}"
-                        android:textSize="16sp"
-                        android:textStyle="italic" />
+                        android:textSize="16sp" />
 
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/tab_layout_profile"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:tabIndicatorColor="@color/red"
                         app:tabInlineLabel="true"
-                        app:tabMode="fixed"/>
+                        app:tabMode="fixed" />
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/view_pager_profile"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 

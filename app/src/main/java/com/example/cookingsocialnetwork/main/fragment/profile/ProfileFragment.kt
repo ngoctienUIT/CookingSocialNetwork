@@ -1,6 +1,8 @@
 package com.example.cookingsocialnetwork.main.fragment.profile
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +14,14 @@ import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentProfileBinding
 import com.example.cookingsocialnetwork.main.fragment.profile.adapter.ViewPageProfileAdapter
-import com.example.cookingsocialnetwork.main.fragment.search.SearchPageAdapter
-import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.example.cookingsocialnetwork.setting.SettingPage
 import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
 import com.example.cookingsocialnetwork.viewfollow.ViewFollowActivity
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
+
 
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
@@ -70,15 +72,29 @@ class ProfileFragment : Fragment() {
         binding.viewPagerProfile.isSaveEnabled = false
         TabLayoutMediator(binding.tabLayoutProfile, binding.viewPagerProfile)
         { tab, index ->
-            tab.text = when (index) {
-                0 -> {
-                    "Bài viết"
+            tab.setIcon(
+                when (index) {
+                    0 -> R.drawable.ic_list_post
+                    else -> R.drawable.ic_favorite
                 }
-                else -> {
-                    "Yêu thích"
-                }
-            }
+            )
+            if (index == 0) tab.icon?.setTint(Color.RED)
+            else tab.icon?.setTint(Color.parseColor("#C0C0C0"))
         }.attach()
+
+        binding.tabLayoutProfile.addOnTabSelectedListener( object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.icon?.setTint(Color.RED)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                tab?.icon?.setTint(Color.parseColor("#C0C0C0"))
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                TODO("Not yet implemented")
+            }
+        })
 
         viewModel.getUser.observe(viewLifecycleOwner)
         { user ->
