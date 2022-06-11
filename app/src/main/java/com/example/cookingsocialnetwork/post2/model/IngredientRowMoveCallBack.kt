@@ -19,6 +19,7 @@ class IngredientRowMoveCallBack(private val touchHelperContract: RecyclerViewRow
         target: RecyclerView.ViewHolder
     ): Boolean {
         touchHelperContract.onRowMove(viewHolder.adapterPosition, target.adapterPosition)
+
         return false
     }
 
@@ -52,4 +53,5 @@ class IngredientRowMoveCallBack(private val touchHelperContract: RecyclerViewRow
         fun onRowSelected(ingredientViewHolder: IngredientAdapter.ViewHolder?)
         fun onRowClear(ingredientViewHolder: IngredientAdapter.ViewHolder?)
     }
+
 }

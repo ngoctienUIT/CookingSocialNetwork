@@ -39,17 +39,18 @@
             android:orientation="vertical" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/post_page2_fragment4_add_step"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/post_page2_fragment4_step"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="30dp"
             android:backgroundTint="#00FFFFFF"
+            android:stateListAnimator="@null"
             android:text="+ Thêm một bước"
             android:textColor="@color/black"
             app:cornerRadius="5dp"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            android:stateListAnimator="@null"/>
+            app:strokeWidth="2dp" />
     </RelativeLayout>
 </ScrollView>

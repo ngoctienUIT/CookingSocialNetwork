@@ -41,15 +41,12 @@ class PostPage2Fragment3 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        ingredients = requireView().findViewById(R.id.post_page2_fragment3_ingredients)
-
         addIngredient = requireView().findViewById(R.id.post_page2_fragment3_ingredients_btn)
         addIngredient.setOnClickListener{
             addIngredient()
         }
         unit = resources.getStringArray(R.array.unit)
 
-        ingredientList.add(Ingredient("asd","asd","asd"))
         ingredientAdapter = IngredientAdapter(ingredientList)
 
         ingredientRec = requireView().findViewById(R.id.post_page2_fragment3_ingredients)
@@ -59,8 +56,6 @@ class PostPage2Fragment3 : Fragment() {
         val callBack: ItemTouchHelper.Callback = IngredientRowMoveCallBack(ingredientAdapter)
         val touchHelper = ItemTouchHelper(callBack)
         touchHelper.attachToRecyclerView(ingredientRec)
-
-
 
     }
     private fun addIngredient(){
@@ -74,11 +69,6 @@ class PostPage2Fragment3 : Fragment() {
         }
 
         dialogBinding.addIngredientDoneBtn.setOnClickListener {
-//            val newLayout = LayoutInflater.from(context).inflate(R.layout.post_page_2_ingredient_child, null)
-//            ingredients.addView(newLayout)
-//            newLayout.findViewById<Button>(R.id.post_page_2_ingredient_child_delete_btn).setOnClickListener {
-//                (newLayout.parent as LinearLayout).removeView(newLayout)
-//            }
             ingredientList.add(Ingredient(dialogBinding.addIngredientAmount.text.toString(),dialogBinding.addIngredientUnit.text.toString(),dialogBinding.addIngredientsIngredient.text.toString()))
             ingredientAdapter.notifyDataSetChanged()
             dialog.dismiss()
@@ -111,9 +101,4 @@ class PostPage2Fragment3 : Fragment() {
         dialog.window?.setGravity(Gravity.BOTTOM)
         dialog.show()
     }
-
-
-
-
-
 }
