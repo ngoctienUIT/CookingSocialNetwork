@@ -1,38 +1,32 @@
 package com.example.cookingsocialnetwork.post2.PostPage2TabFragment
 
 import android.app.Dialog
-import android.content.ClipData
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
-import android.widget.Adapter
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.AddIngredientBinding
 import com.example.cookingsocialnetwork.databinding.UnitPickerBinding
-import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingSlide
 import com.example.cookingsocialnetwork.post2.model.Ingredient
 import com.example.cookingsocialnetwork.post2.model.IngredientAdapter
-import com.example.cookingsocialnetwork.post2.model.RecyclerRowMoveCallBack
+import com.example.cookingsocialnetwork.post2.model.IngredientRowMoveCallBack
 import com.google.android.material.button.MaterialButton
 
 
 class PostPage2Fragment3 : Fragment() {
+
     private lateinit var addIngredient: MaterialButton
-//    private lateinit var ingredients: LinearLayout
     private lateinit var unit : Array<String>
-
     private lateinit var ingredientRec: RecyclerView
-
     private lateinit var ingredientAdapter: IngredientAdapter
-    private  var ingredientList: MutableList<Ingredient> = ArrayList()
+
+
+    private var ingredientList: MutableList<Ingredient> = ArrayList() //lấy cái này
 
 
 
@@ -62,7 +56,7 @@ class PostPage2Fragment3 : Fragment() {
         ingredientRec.adapter = ingredientAdapter
         ingredientRec.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        val callBack: ItemTouchHelper.Callback = RecyclerRowMoveCallBack(ingredientAdapter)
+        val callBack: ItemTouchHelper.Callback = IngredientRowMoveCallBack(ingredientAdapter)
         val touchHelper = ItemTouchHelper(callBack)
         touchHelper.attachToRecyclerView(ingredientRec)
 

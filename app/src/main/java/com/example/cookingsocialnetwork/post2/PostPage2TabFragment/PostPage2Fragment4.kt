@@ -17,7 +17,5 @@ class PostPage2Fragment4 : Fragment() {
         return inflater.inflate(R.layout.post_page_2_fragment4, container, false)
     }
 
-    companion object {
 
-    }
 }

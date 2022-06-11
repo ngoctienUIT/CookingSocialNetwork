@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import java.util.*
 
-class IngredientAdapter(private val ingredientList: MutableList<Ingredient>): RecyclerView.Adapter<IngredientAdapter.ViewHolder>(), RecyclerRowMoveCallBack.RecyclerViewRowTouchHelperContract {
+class IngredientAdapter(private val ingredientList: MutableList<Ingredient>): RecyclerView.Adapter<IngredientAdapter.ViewHolder>(), IngredientRowMoveCallBack.RecyclerViewRowTouchHelperContract {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.post_page_2_ingredient_child, parent, false)
         return ViewHolder(itemView)

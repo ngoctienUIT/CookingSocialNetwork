@@ -12,10 +12,12 @@ import com.example.cookingsocialnetwork.databinding.PortionPickerBinding
 import com.example.cookingsocialnetwork.databinding.TimePickerBinding
 
 class PostPage2Fragment2 : Fragment(){
-    private lateinit var portion: EditText
-    private lateinit var prepTime: EditText
-    private lateinit var bakingTime :EditText
-    private lateinit var restTime : EditText
+
+    private lateinit var portion: EditText  //lấy cái này
+    private lateinit var prepTime: EditText //lấy cái này
+    private lateinit var bakingTime :EditText   //lấy cái này
+    private lateinit var restTime : EditText    //lấy cái này
+
     private lateinit var portionType: Array<String>
 
     override fun onCreateView(

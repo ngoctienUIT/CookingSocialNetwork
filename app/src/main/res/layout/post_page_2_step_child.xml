@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/post_page2_step_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/food_picker"
+        android:scaleType="centerCrop"/>
+
+    <Button
+        android:id="@+id/post_page_2_step_child_delete_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:minWidth="55dp"
+        android:text="x"
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/post_page2_step_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Bước 1"
+        android:textSize="20sp"
+        android:layout_toEndOf="@id/post_page2_step_image"/>
+
+    <TextView
+        android:id="@+id/post_page2_step_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/post_page2_step_count"
+        android:layout_alignStart="@id/post_page2_step_count"
+        android:lines="2"
+        android:text="Bây giờ làm cái gì"
+        android:layout_toStartOf="@id/post_page_2_step_child_delete_btn"
+        android:textSize="20sp" />
+
+
+
+
+
+</RelativeLayout>

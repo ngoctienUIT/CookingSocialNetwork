@@ -1,10 +1,9 @@
 package com.example.cookingsocialnetwork.post2.model
 
-import com.example.cookingsocialnetwork.post2.model.RecyclerRowMoveCallBack.RecyclerViewRowTouchHelperContract
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerRowMoveCallBack(private val touchHelperContract: RecyclerViewRowTouchHelperContract) :
+class StepRowMoveCallBack(private val touchHelperContract: RecyclerViewRowTouchHelperContract) :
     ItemTouchHelper.Callback() {
     override fun getMovementFlags(
         recyclerView: RecyclerView,
@@ -25,7 +24,7 @@ class RecyclerRowMoveCallBack(private val touchHelperContract: RecyclerViewRowTo
 
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-            if (viewHolder is IngredientAdapter.ViewHolder) {
+            if (viewHolder is StepAdapter.ViewHolder) {
                 touchHelperContract.onRowSelected(viewHolder)
             }
         }
@@ -33,7 +32,7 @@ class RecyclerRowMoveCallBack(private val touchHelperContract: RecyclerViewRowTo
     }
 
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-        if (viewHolder is IngredientAdapter.ViewHolder) {
+        if (viewHolder is StepAdapter.ViewHolder) {
             touchHelperContract.onRowClear(viewHolder)
         }
         super.clearView(recyclerView, viewHolder)
@@ -50,7 +49,7 @@ class RecyclerRowMoveCallBack(private val touchHelperContract: RecyclerViewRowTo
 
     interface RecyclerViewRowTouchHelperContract {
         fun onRowMove(from: Int, to: Int)
-        fun onRowSelected(ingredientViewHolder: IngredientAdapter.ViewHolder?)
-        fun onRowClear(ingredientViewHolder: IngredientAdapter.ViewHolder?)
+        fun onRowSelected(stepViewHolder: StepAdapter.ViewHolder?)
+        fun onRowClear(stepViewHolder: StepAdapter.ViewHolder?)
     }
 }
