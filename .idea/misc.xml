@@ -93,6 +93,7 @@
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_full_post.xml" value="0.268" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_post_page.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/activity_view_post_page_2.xml" value="0.2056434373663959" />
+        <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/add_ingredient.xml" value="0.15" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/comment_notify_item.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/favorite_notify_item.xml" value="0.2056434373663959" />
         <entry key="..\:/Kotlin/DoAn/CookingSocialNetwork/app/src/main/res/layout/follow_notify_item.xml" value="0.2056434373663959" />
@@ -225,7 +226,6 @@
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment_page1.xml" value="0.4" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment_page2.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_ingredient_child.xml" value="0.221889696451475" />
-        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_step_child.xml" value="0.20008550662676358" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/postpage_ingredient_child.xml" value="0.4" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/postpage_method_child.xml" value="0.23233695652173914" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_form.xml" value="0.536" />

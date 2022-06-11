@@ -2,6 +2,7 @@ package com.example.cookingsocialnetwork.main.fragment.home
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,7 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val postRecentAdapter by lazy { PostRecentAdapter() }
     private val randomPostAdapter  by lazy { RandomPostAdapter() }
-    private lateinit var  trendingSliderAdapter : TrendingAdapter
+    private val  trendingSliderAdapter by lazy {TrendingAdapter()}
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -74,9 +75,18 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         viewModel.listPosts.observe(viewLifecycleOwner) {
             binding.swpRecords.isRefreshing = false;
             postRecentAdapter.submitList(it)
-
         }
         //trending
+
+        //binding.trendingViewPaper.adapter = trendingSliderAdapter
+        lifecycleScope.launch{
+            viewModel.flowTrendingPosts.collect{
+                trendingSliderAdapter.submitData(it)
+                Log.d("uaalo", trendingSliderAdapter.itemCount.toString())
+            }
+        }
+
+       // binding.trendingViewPaper.adapter = trendingSliderAdapter
         /*binding.trending.adapter = trendingSliderAdapter
         setAnimationTrending(binding)*/
 
@@ -86,20 +96,20 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
     private fun setAnimationTrending(thisBinding: FragmentHomeBinding){
         val handler = Handler()
         var isScrollDown = true;
-        thisBinding.trending.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        thisBinding.trendingViewPaper.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 handler.removeMessages(0)
                 val runnable = Runnable {
-                    if(position + 1 == (thisBinding.trending.adapter?.itemCount ?: 0)) isScrollDown = false
+                    if(position + 1 == (thisBinding.trendingViewPaper.adapter?.itemCount ?: 0)) isScrollDown = false
                     if(position == 0) isScrollDown = true
                     if(isScrollDown){
-                        ++thisBinding.trending.currentItem
+                        ++thisBinding.trendingViewPaper.currentItem
                     } else {
-                        --thisBinding.trending.currentItem
+                        --thisBinding.trendingViewPaper.currentItem
                     }
                 }
-                if (position < (thisBinding.trending.adapter?.itemCount ?: 0)) {
+                if (position < (thisBinding.trendingViewPaper.adapter?.itemCount ?: 0)) {
                     handler.postDelayed(runnable, 10000)
                 }
             }

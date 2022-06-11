@@ -46,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/trendingNameFood"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Tên món ăn được yêu thích nhất"
@@ -56,16 +57,6 @@
 
 
         </LinearLayout>
-
-
-                <TextView
-            android:id="@+id/trendingFoodName"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:textSize="25sp"
-            android:text="Một cái món gì đấy mà có vẻ nó sẽ là trend"
-            android:gravity="center"/>
-
 
     </LinearLayout>
 

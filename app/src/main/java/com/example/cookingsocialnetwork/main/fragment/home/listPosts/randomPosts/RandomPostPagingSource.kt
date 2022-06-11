@@ -21,7 +21,6 @@ class RandomPostPagingSource(private val db: FirebaseFirestore) : PagingSource<Q
                 .await()
 
             val randomCurrentPage = currentPage.shuffled()
-            //randomSnapShot
 
 
             val lastDocumentSnapshot = currentPage.documents[currentPage.size() - 1]

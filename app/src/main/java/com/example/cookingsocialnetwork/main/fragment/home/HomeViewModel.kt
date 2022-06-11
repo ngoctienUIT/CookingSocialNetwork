@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentDataSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentRepository
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPostSource
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -41,8 +43,16 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
 
     //data random posts
     val flowRandomPosts = Pager(PagingConfig(20)) {
+
         RandomPostPagingSource(FirebaseFirestore.getInstance())
     }.flow.cachedIn(viewModelScope)
+
+    //data trending post
+    val flowTrendingPosts = Pager(PagingConfig(5)){
+
+        TrendingPostSource(FirebaseFirestore.getInstance())
+    }.flow.cachedIn(viewModelScope)
+
 
 
     override fun onCleared() {

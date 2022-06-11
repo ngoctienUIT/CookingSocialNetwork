@@ -38,7 +38,7 @@
 
 
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/trending"
+                    android:id="@+id/trendingViewPaper"
                     android:layout_width="match_parent"
                     android:layout_height="250dp" />
 
