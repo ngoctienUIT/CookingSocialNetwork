@@ -102,17 +102,18 @@
                 android:background="@drawable/round_view"
                 android:drawableLeft="@drawable/ic_chat"
                 android:textSize="8sp"/>
+
             <TextView
                 android:id="@+id/heart"
                 android:layout_width="40dp"
-                android:paddingStart="4dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
-                android:gravity="center"
                 android:background="@drawable/round_view"
-                android:text="123"
                 android:drawableLeft="@drawable/ic_heart"
-                android:textSize="8sp"/>
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:text="123"
+                android:textSize="8sp" />
 
 
         </LinearLayout>

@@ -2,11 +2,9 @@ package com.example.cookingsocialnetwork.main.fragment.home
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -18,12 +16,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingSlide
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingAdapter
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingSlide
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentAdapter
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,7 +27,8 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val postRecentAdapter by lazy { PostRecentAdapter() }
-    private val randomPostAdapter : RandomPostAdapter by lazy { RandomPostAdapter() }
+    private val randomPostAdapter  by lazy { RandomPostAdapter() }
+    private lateinit var  trendingSliderAdapter : TrendingAdapter
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -58,8 +55,7 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         binding.recPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         lifecycleScope.launch {
-
-            viewModel.flow.collect {
+            viewModel.flowRandomPosts.collect {
                 randomPostAdapter.submitData(it)
             }
         }
@@ -81,48 +77,41 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
 
         }
         //trending
-        binding.trending.adapter = trendingSliderAdapter
+        /*binding.trending.adapter = trendingSliderAdapter
+        setAnimationTrending(binding)*/
+
+        return binding.root
+
+    }
+    private fun setAnimationTrending(thisBinding: FragmentHomeBinding){
         val handler = Handler()
         var isScrollDown = true;
-        binding.trending.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        thisBinding.trending.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-
                 handler.removeMessages(0)
                 val runnable = Runnable {
-                    if(position + 1 == (binding.trending.adapter?.itemCount ?: 0)) isScrollDown = false
+                    if(position + 1 == (thisBinding.trending.adapter?.itemCount ?: 0)) isScrollDown = false
                     if(position == 0) isScrollDown = true
                     if(isScrollDown){
-                        ++binding.trending.currentItem
+                        ++thisBinding.trending.currentItem
                     } else {
-                        --binding.trending.currentItem
+                        --thisBinding.trending.currentItem
                     }
-
-
                 }
-                if (position < (binding.trending.adapter?.itemCount ?: 0)) {
+                if (position < (thisBinding.trending.adapter?.itemCount ?: 0)) {
                     handler.postDelayed(runnable, 10000)
                 }
             }
             override fun onPageScrollStateChanged(state: Int) {
                 super.onPageScrollStateChanged(state)
                 //if (state == SCROLL_STATE_DRAGGING) handler.removeMessages(0)
-                if(state == ViewPager2.SCROLL_STATE_IDLE){
-
-                }
+                if (state != ViewPager2.SCROLL_STATE_IDLE) return
             }
         })
-
-        return binding.root
-
-
     }
 
-
-    override fun onCommentClick(view: View, position: Int) {
-        TODO("Not yet implemented")
-    }
-    private val trendingSliderAdapter
+   /* private val trendingSliderAdapter
         get() = TrendingAdapter(
             listOf(
                 TrendingSlide(
@@ -138,7 +127,10 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
                     "3"
                 )
             )
-        )
+        )*/
+    override fun onCommentClick(view: View, position: Int) {
+        TODO("Not yet implemented")
+    }
 
 
 }

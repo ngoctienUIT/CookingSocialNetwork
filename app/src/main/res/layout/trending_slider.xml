@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     app:cardBackgroundColor="#73e6f8"
     android:layout_margin="20dp">
@@ -21,7 +21,44 @@
             android:layout_height="295dp"
             android:scaleType="centerCrop"
             android:src="@drawable/food_picker" />
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/heartTrending"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="0dp"
+                    android:background="@drawable/round_view"
+                    android:gravity="center"
+                    android:paddingStart="4dp"
+                    android:text="123"
+                    android:textSize="20sp"
+                    app:drawableLeftCompat="@drawable/ic_favorite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Tên món ăn được yêu thích nhất"
+                    android:textSize="25dp"
+                    />
+
+        </LinearLayout>
+
+
+        </LinearLayout>
+
+
+                <TextView
             android:id="@+id/trendingFoodName"
             android:layout_width="match_parent"
             android:layout_height="80dp"

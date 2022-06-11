@@ -32,17 +32,18 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
         .setPageSize(20)
         .build()
 
-
+    // data recent posts
     val listPosts: LiveData<PagedList<RealtimePost>> =
         LivePagedListBuilder<String, RealtimePost>(
             PostRecentDataSource.Factory(postRecentRepository, uiScope),
             config
         ).build()
 
-
-    val flow = Pager(PagingConfig(20)) {
+    //data random posts
+    val flowRandomPosts = Pager(PagingConfig(20)) {
         RandomPostPagingSource(FirebaseFirestore.getInstance())
     }.flow.cachedIn(viewModelScope)
+
 
     override fun onCleared() {
         super.onCleared()

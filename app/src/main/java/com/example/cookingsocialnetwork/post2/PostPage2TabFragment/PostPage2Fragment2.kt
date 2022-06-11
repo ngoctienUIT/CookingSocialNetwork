@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.post2.PostPage2TabFragment
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -77,6 +78,7 @@ class PostPage2Fragment2 : Fragment(){
         dialog.window?.setGravity(Gravity.BOTTOM)
         dialog.show()
     }
+    @SuppressLint("SetTextI18n")
     private fun timePicker(editText: EditText){
         val dialog = context?.let { Dialog(it) }
         val dialogBinding: TimePickerBinding = TimePickerBinding.inflate(layoutInflater)

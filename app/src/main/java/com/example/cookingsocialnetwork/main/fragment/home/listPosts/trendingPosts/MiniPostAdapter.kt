@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost
+package com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts
 
 import android.view.LayoutInflater
 import android.view.View
