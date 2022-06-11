@@ -86,8 +86,9 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
             it!!.let { listTrendingSlide ->
                 trendingAdapter = TrendingAdapter(listTrendingSlide)
                 Log.d("hoicham", listTrendingSlide.size.toString())
+                binding.trendingViewPaper.adapter = trendingAdapter
             }
-            binding.trendingViewPaper.adapter = trendingAdapter
+
 
         }
         //binding.trendingViewPaper.adapter = trendingSliderAdapter
@@ -131,16 +132,20 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         get() = TrendingAdapter(
             listOf(
                 TrendingSlide(
-                    R.drawable.food_picker,
-                    "1"
+                    R.drawable.food_picker.toString(),
+                    "1",
+                "34"
                 ),
                 TrendingSlide(
-                    R.drawable.food_picker,
-                    "2"
+                    R.drawable.food_picker.toString(),
+                    "2",
+                    "23"
+
                 ),
                 TrendingSlide(
-                    R.drawable.food_picker,
-                    "3"
+                    R.drawable.food_picker.toString(),
+                    "3",
+                    "85"
                 )
             )
         )*/

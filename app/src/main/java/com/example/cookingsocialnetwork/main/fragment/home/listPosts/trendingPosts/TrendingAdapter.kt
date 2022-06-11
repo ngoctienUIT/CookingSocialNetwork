@@ -14,21 +14,6 @@ import com.example.cookingsocialnetwork.R
 class TrendingAdapter(private val trendingSlides: List<TrendingSlide>) :
     RecyclerView.Adapter<TrendingAdapter.TrendingSlideViewHolder>() {
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingSlideViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(
-                R.layout.trending_slider,
-                parent,
-                false
-            )
-            return TrendingSlideViewHolder(view)
-
-        }
-
-    override fun getItemCount(): Int {
-        return trendingSlides.size
-    }
-
     inner class TrendingSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val foodImage = view.findViewById<ImageView>(R.id.trendingFoodPicture)!!
         private val foodName = view.findViewById<TextView>(R.id.trendingNameFood)!!
@@ -41,9 +26,27 @@ class TrendingAdapter(private val trendingSlides: List<TrendingSlide>) :
         }
     }
 
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingSlideViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(
+                R.layout.trending_slider,
+                parent,
+                false
+            )
+            return TrendingSlideViewHolder(view)
+
+        }
     override fun onBindViewHolder(holder: TrendingSlideViewHolder, position: Int) {
         holder.bind(trendingSlides[position])
     }
+
+    override fun getItemCount(): Int {
+        return trendingSlides.size
+    }
+
+
+
+
 }
 
 
