@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.AddIngredientBinding
+import com.example.cookingsocialnetwork.databinding.AddStepBinding
 import com.example.cookingsocialnetwork.databinding.UnitPickerBinding
 import com.example.cookingsocialnetwork.post2.model.*
 import com.google.android.material.button.MaterialButton
@@ -50,49 +51,29 @@ class PostPage2Fragment4 : Fragment() {
 
     }
     private fun addStep(){
-        stepList.add(Step("asd","asd" ))
-        stepAdapter.notifyDataSetChanged()
-//        val dialog = context?.let { Dialog(it) }
-//        val dialogBinding: AddIngredientBinding = AddIngredientBinding.inflate(layoutInflater)
-//        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog.setContentView(dialogBinding.root)
-//
-//        dialogBinding.addIngredientCloseBtn.setOnClickListener {
-//            dialog.dismiss()
-//        }
-//
-//        dialogBinding.addIngredientDoneBtn.setOnClickListener {
-//            ingredientList.add(Ingredient(dialogBinding.addIngredientAmount.text.toString(),dialogBinding.addIngredientUnit.text.toString(),dialogBinding.addIngredientsIngredient.text.toString()))
-//            ingredientAdapter.notifyDataSetChanged()
-//            dialog.dismiss()
-//        }
-//        dialogBinding.addIngredientUnit.setOnClickListener {
-//            val secondDialog = context?.let { Dialog(it) }
-//            val secondDialogBinding: UnitPickerBinding = UnitPickerBinding.inflate(layoutInflater)
-//            secondDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//            secondDialog.setContentView(secondDialogBinding.root)
-//
-//            secondDialogBinding.unitPickerDoneBtn.setOnClickListener {
-//                dialogBinding.addIngredientUnit.setText(unit[secondDialogBinding.unitPickerUnit.value])
-//                secondDialog.dismiss()
-//            }
-//
-//            secondDialogBinding.unitPickerUnit.minValue = 0
-//            secondDialogBinding.unitPickerUnit.maxValue = unit.size-1
-//            secondDialogBinding.unitPickerUnit.displayedValues = unit
-//
-//            secondDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-//            secondDialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-//            secondDialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
-//            secondDialog.window?.setGravity(Gravity.BOTTOM)
-//            secondDialog.show()
-//        }
-//
-//        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-//        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-//        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
-//        dialog.window?.setGravity(Gravity.BOTTOM)
-//        dialog.show()
+        val dialog = context?.let { Dialog(it) }
+        val dialogBinding: AddStepBinding = AddStepBinding.inflate(layoutInflater)
+        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(dialogBinding.root)
+
+        dialogBinding.addStepLb.text = "Bước " + (stepList.size + 1)
+
+        dialogBinding.addStepCloseBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogBinding.addStepDoneBtn.setOnClickListener {
+            val imageUri = "nói chung là URI của cái image m làm nhá"
+            stepList.add(Step(imageUri,dialogBinding.addStepStepDes.text.toString()))
+            stepAdapter.notifyDataSetChanged()
+            dialog.dismiss()
+        }
+
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.show()
     }
 
 }
