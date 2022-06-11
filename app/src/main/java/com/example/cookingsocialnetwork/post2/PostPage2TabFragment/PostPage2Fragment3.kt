@@ -1,6 +1,7 @@
 package com.example.cookingsocialnetwork.post2.PostPage2TabFragment
 
 import android.app.Dialog
+import android.content.ClipData
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.widget.Adapter
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
@@ -18,6 +20,7 @@ import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.Trending
 import com.example.cookingsocialnetwork.main.fragment.home.loadMiniPost.TrendingSlide
 import com.example.cookingsocialnetwork.post2.model.Ingredient
 import com.example.cookingsocialnetwork.post2.model.IngredientAdapter
+import com.example.cookingsocialnetwork.post2.model.RecyclerRowMoveCallBack
 import com.google.android.material.button.MaterialButton
 
 
@@ -59,6 +62,12 @@ class PostPage2Fragment3 : Fragment() {
         ingredientRec.adapter = ingredientAdapter
         ingredientRec.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        val callBack: ItemTouchHelper.Callback = RecyclerRowMoveCallBack(ingredientAdapter)
+        val touchHelper = ItemTouchHelper(callBack)
+        touchHelper.attachToRecyclerView(ingredientRec)
+
+
+
     }
     private fun addIngredient(){
         val dialog = context?.let { Dialog(it) }
@@ -76,7 +85,7 @@ class PostPage2Fragment3 : Fragment() {
 //            newLayout.findViewById<Button>(R.id.post_page_2_ingredient_child_delete_btn).setOnClickListener {
 //                (newLayout.parent as LinearLayout).removeView(newLayout)
 //            }
-            ingredientList.add(Ingredient("asd","asd","asd"))
+            ingredientList.add(Ingredient(dialogBinding.addIngredientAmount.text.toString(),dialogBinding.addIngredientUnit.text.toString(),dialogBinding.addIngredientsIngredient.text.toString()))
             ingredientAdapter.notifyDataSetChanged()
             dialog.dismiss()
         }
@@ -108,15 +117,7 @@ class PostPage2Fragment3 : Fragment() {
         dialog.window?.setGravity(Gravity.BOTTOM)
         dialog.show()
     }
-    private val hm
-        get() = IngredientAdapter(
-            listOf(
-                Ingredient(
-                    "123","123","123"
-                )
 
-            )
-        )
 
 
 

@@ -30,6 +30,7 @@
         android:layout_marginStart="10dp"
         android:text="trứng"
         android:textSize="25sp"/>
+
     <Button
         android:id="@+id/post_page_2_ingredient_child_delete_btn"
         style="?android:attr/borderlessButtonStyle"
