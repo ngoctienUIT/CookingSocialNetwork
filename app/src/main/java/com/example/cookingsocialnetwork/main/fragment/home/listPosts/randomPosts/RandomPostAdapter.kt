@@ -107,5 +107,5 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
 
         }
 
-        }
     }
+}
