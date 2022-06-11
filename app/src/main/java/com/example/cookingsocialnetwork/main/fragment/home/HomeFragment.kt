@@ -29,7 +29,8 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val postRecentAdapter by lazy { PostRecentAdapter() }
     private val randomPostAdapter  by lazy { RandomPostAdapter() }
-    private val  trendingSliderAdapter by lazy {TrendingAdapter()}
+    private lateinit var trendingAdapter : TrendingAdapter;
+
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -80,17 +81,16 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         }
         //trending
 
-        //binding.trendingViewPaper.adapter = trendingSliderAdapter
-        lifecycleScope.launch {
-            val x = viewModel.flowTrendingPosts.collect {
-                trendingSliderAdapter.submitData(it)
+        viewModel.mutblLiveDataTrendingSlide.observe(viewLifecycleOwner){
+            //slider trendingSlide
+            it!!.let { listTrendingSlide ->
+                trendingAdapter = TrendingAdapter(listTrendingSlide)
+                Log.d("hoicham", listTrendingSlide.size.toString())
             }
-            x.run {
-                binding.trendingViewPaper.adapter = trendingSliderAdapter
-            }
+            binding.trendingViewPaper.adapter = trendingAdapter
+
         }
-
-
+        //binding.trendingViewPaper.adapter = trendingSliderAdapter
             // binding.trendingViewPaper.adapter = trendingSliderAdapter
             /*binding.trending.adapter = trendingSliderAdapter
         setAnimationTrending(binding)*/

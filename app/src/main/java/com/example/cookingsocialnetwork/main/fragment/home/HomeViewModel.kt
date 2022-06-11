@@ -11,6 +11,7 @@ import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentRepository
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPostSource
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingSlide
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +26,14 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
     private var posts:MutableList<Post> = mutableListOf()
     private var _posts: MutableLiveData<MutableList<Post>> = MutableLiveData()
     private var post: MutableLiveData<Post> = MutableLiveData()
+    private var listTrendingSlide: MutableList<TrendingSlide> = mutableListOf()
+    var mutblLiveDataTrendingSlide : MutableLiveData<MutableList<TrendingSlide>> = MutableLiveData()
+
+    init {
+        firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
+//        listenToDataPost()
+        takeTrendingPosts()
+    }
 
     private val viewModelJob =  SupervisorJob()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -48,10 +57,10 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
     }.flow.cachedIn(viewModelScope)
 
     //data trending post
-    val flowTrendingPosts = Pager(PagingConfig(5)){
+  /*  val flowTrendingPosts = Pager(PagingConfig(5)){
 
         TrendingPostSource(FirebaseFirestore.getInstance())
-    }.flow.cachedIn(viewModelScope)
+    }.flow.cachedIn(viewModelScope)*/
 
 
 
@@ -61,11 +70,6 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
     }
 
 
-    init {
-        firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
-//        listenToDataPost()
-    }
-
     var getPosts: MutableLiveData<MutableList<Post>>
         get() {
             return _posts
@@ -73,6 +77,35 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
         set(value) {
             _posts = value
         }
+
+    private fun takeTrendingPosts(){
+
+            firestore.collection("post")
+                .addSnapshotListener()
+                { snapshot, e ->
+                    if (e != null) {
+                        return@addSnapshotListener
+                    }
+
+                    if (snapshot != null) {
+                        val documents = snapshot.documents
+                        documents.forEach()
+                        { documentSnapshot ->
+
+                           documentSnapshot.data?.let {
+                               listTrendingSlide.add(
+                                   TrendingSlide(
+                                       (it["images"] as MutableList<*>)[0] as String,
+                                       it["nameFood"] as String,
+                                       (it["favourites"]  as MutableList<*>).size.toString()
+                                   )
+                               )
+                           }
+                        }
+                        mutblLiveDataTrendingSlide.value = listTrendingSlide
+                    }
+                }
+    }
 
     private fun listenToDataPost() {
         firestore.collection("post")

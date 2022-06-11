@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.viewpost.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class ImageSlideAdapter(private val context: Context, private var imageList: Mut
         return view === `object`
     }
 
+    @SuppressLint("InflateParams")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view: View =  (context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
             R.layout.image_food_slider_item, null)
@@ -26,10 +28,6 @@ class ImageSlideAdapter(private val context: Context, private var imageList: Mut
 
         imageList[position].let {
             ivImages.load(it)
-            //Picasso.get().load(it).into(ivImages)
-          /*  Glide.with(context)
-                .load(it)
-                .into(ivImages);*/
         }
 
 
