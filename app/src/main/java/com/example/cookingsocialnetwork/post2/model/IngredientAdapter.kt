@@ -24,8 +24,9 @@ class IngredientAdapter(private val ingredientList: MutableList<Ingredient>): Re
         holder.ingredientName.text = currentItem.name
 
         holder.delete.setOnClickListener {
-            ingredientList.removeAt(position)
+            ingredientList.remove(currentItem)
             this.notifyDataSetChanged()
+
         }
     }
 
@@ -39,18 +40,10 @@ class IngredientAdapter(private val ingredientList: MutableList<Ingredient>): Re
     }
 
     override fun onRowMove(from: Int, to: Int) {
-//        if(from < to){
-//            for(i in from..to){
-//                Collections.swap(ingredientList, i, i+1)
-//            }
-//        } else {
-//            for(i in from downTo to){
-//                Collections.swap(ingredientList, i, i-1)
-//            }
-//        }
         Collections.swap(ingredientList, from, to)
         //notifyDataSetChanged()
         notifyItemMoved(from, to)
+
     }
 
     override fun onRowSelected(ingredientViewHolder: ViewHolder?) {

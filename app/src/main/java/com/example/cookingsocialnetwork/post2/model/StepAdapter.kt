@@ -22,7 +22,7 @@ class StepAdapter(private val stepList: MutableList<Step>): RecyclerView.Adapter
         val currentItem = stepList[position]
 
         holder.stepCount.text = (position + 1).toString()
-        holder.stepImage.load(currentItem.image)
+        //holder.stepImage.load(currentItem.image)
         holder.step.text = currentItem.step
 
         holder.delete.setOnClickListener {
