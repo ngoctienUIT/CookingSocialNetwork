@@ -57,10 +57,10 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
     }.flow.cachedIn(viewModelScope)
 
     //data trending post
-  /*  val flowTrendingPosts = Pager(PagingConfig(5)){
+    val flowTrendingPosts = Pager(PagingConfig(5)){
 
         TrendingPostSource(FirebaseFirestore.getInstance())
-    }.flow.cachedIn(viewModelScope)*/
+    }.flow.cachedIn(viewModelScope)
 
 
 

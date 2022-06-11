@@ -2,7 +2,6 @@ package com.example.cookingsocialnetwork.main.fragment.home
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +16,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingSlide
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPagingAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentAdapter
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,6 +29,7 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
     private val postRecentAdapter by lazy { PostRecentAdapter() }
     private val randomPostAdapter  by lazy { RandomPostAdapter() }
     private lateinit var trendingAdapter : TrendingAdapter;
+    private val trendingPagingAdapter by lazy { TrendingPagingAdapter() }
 
 
     @Inject
@@ -81,24 +81,30 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         }
         //trending
 
-        viewModel.mutblLiveDataTrendingSlide.observe(viewLifecycleOwner){
+      /*  viewModel.mutblLiveDataTrendingSlide.observe(viewLifecycleOwner) {
             //slider trendingSlide
             it!!.let { listTrendingSlide ->
                 trendingAdapter = TrendingAdapter(listTrendingSlide)
-                Log.d("hoicham", listTrendingSlide.size.toString())
                 binding.trendingViewPaper.adapter = trendingAdapter
             }
+        }*/
 
-
+        binding.trendingViewPaper.adapter = trendingPagingAdapter
+        setAnimationTrending(binding)
+        lifecycleScope.launch {
+            viewModel.flowTrendingPosts.collect {
+                trendingPagingAdapter.submitData(it)
+            }
         }
-        //binding.trendingViewPaper.adapter = trendingSliderAdapter
+
+            //binding.trendingViewPaper.adapter = trendingSliderAdapter
             // binding.trendingViewPaper.adapter = trendingSliderAdapter
             /*binding.trending.adapter = trendingSliderAdapter
         setAnimationTrending(binding)*/
 
             return binding.root
 
-    }
+        }
 
     private fun setAnimationTrending(thisBinding: FragmentHomeBinding){
         val handler = Handler()
@@ -153,4 +159,5 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         TODO("Not yet implemented")
     }
 }
+
 
