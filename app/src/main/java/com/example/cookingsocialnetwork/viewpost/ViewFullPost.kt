@@ -56,23 +56,29 @@ class ViewFullPost : AppCompatActivity(), MyListListener {
             showDialog()
         }
 
-        binding.viewProfile.setOnClickListener()
+        binding.avatar.setOnClickListener()
         {
-            val profile = Intent(this, ProfileActivity::class.java)
-            profile.putExtra("user_name", viewModel.user.value?.username)
-            startActivity(profile)
+            viewProfile()
+        }
+
+        binding.name.setOnClickListener()
+        {
+            viewProfile()
+        }
+
+        binding.userName.setOnClickListener()
+        {
+            viewProfile()
         }
 
         viewModel.user.observe(this)
         {
             binding.avatar.load(it.avatar)
-//            Picasso.get().load(it.avatar).into(binding.avatar)
         }
 
         viewModel.myData.observe(this)
         {
             binding.userAvatar.load(it.avatar)
-//            Picasso.get().load(it.avatar).into(binding.userAvatar)
         }
 
         viewModel.post.observe(this) {
@@ -282,5 +288,12 @@ class ViewFullPost : AppCompatActivity(), MyListListener {
             dialog.window?.setGravity(Gravity.BOTTOM)
             dialog.show()
         }
+    }
+
+    fun viewProfile()
+    {
+        val profile = Intent(this, ProfileActivity::class.java)
+        profile.putExtra("user_name", viewModel.user.value?.username)
+        startActivity(profile)
     }
 }
