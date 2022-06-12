@@ -140,6 +140,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/back_gradient.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_btn_follow.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_intro.xml" value="0.1355" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_item_post.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_iv.xml" value="0.148" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_linear_layout.xml" value="0.148" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_post.xml" value="0.1355" />
@@ -148,6 +149,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dash_separator_vertical.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dialog_bg.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dialog_language.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dialog_more_bg.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/gradient.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/home_selector.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_account_circle.xml" value="0.1495" />
