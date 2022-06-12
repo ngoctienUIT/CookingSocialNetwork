@@ -12,16 +12,14 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
-            <Button
+            <ImageView
                 android:id="@+id/post_page_btn_back"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:minWidth="55dp"
-                android:text="x"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_round_close"
+                android:layout_centerVertical="true"
+                app:tint="@color/red" />
 
             <TextView
                 android:layout_width="wrap_content"

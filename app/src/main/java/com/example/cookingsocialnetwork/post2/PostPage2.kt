@@ -3,11 +3,9 @@ package com.example.cookingsocialnetwork.post2
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.viewfollow.FollowPageAdapter
@@ -17,7 +15,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class  PostPage2 : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
-    private lateinit var backBtn: Button
+    private lateinit var backBtn: ImageView
     private lateinit var closeBtn: Button
     private lateinit var previewBtn :Button
     private lateinit var nextBtn: Button
@@ -40,16 +38,21 @@ class  PostPage2 : AppCompatActivity() {
         viewPager.registerOnPageChangeCallback(
             object: ViewPager2.OnPageChangeCallback(){
                 override fun onPageSelected(position: Int) {
-                    if(position == 0){
-                        backBtn.text = "x"
-                    }
-                    else if( position == 4 ){
-                        previewBtn.visibility = View.GONE
-                        nextBtn.text = "Xem lại trước khi đăng"
-                    } else {
-                        backBtn.text = "<"
-                        nextBtn.text = "Tiếp theo"
-                        previewBtn.visibility = View.VISIBLE
+                    when (position) {
+                        0 -> {
+                            backBtn.setImageResource(R.drawable.ic_round_close)
+                            backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.red))
+                        }
+                        4 -> {
+                            previewBtn.visibility = View.GONE
+                            nextBtn.text = "Xem lại trước khi đăng"
+                        }
+                        else -> {
+                            backBtn.setImageResource(R.drawable.ic_back_ios)
+                            backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.green))
+                            nextBtn.text = "Tiếp theo"
+                            previewBtn.visibility = View.VISIBLE
+                        }
                     }
                     super.onPageSelected(position)
                 }
