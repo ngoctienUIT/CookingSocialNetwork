@@ -1,7 +1,6 @@
 package com.example.cookingsocialnetwork.viewpost.adapter
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,11 +17,16 @@ import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.squareup.picasso.Picasso
 import java.lang.ref.WeakReference
 
-class CommentAdapter(private var comments: MutableList<Map<String, Any>>, private var id: String)
+class CommentAdapter(private var comments: MutableList<Map<String, Any>>, private var id: String, listener: MyListListener)
     : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+    private var listener: MyListListener? = null
+
+    init {
+        this.listener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_comment, parent, false)
@@ -32,6 +36,11 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         holder.comment = comments[position]
         val favouriteList = comments[position]["favourite"] as MutableList<String>
+        holder.itemView.setOnLongClickListener()
+        {
+            listener?.onItemLongPressed(position)
+            return@setOnLongClickListener true
+        }
         holder.btnFavourite?.setOnClickListener()
         {
             var check = false

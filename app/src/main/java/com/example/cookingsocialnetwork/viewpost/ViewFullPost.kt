@@ -7,11 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
@@ -22,18 +18,14 @@ import com.example.cookingsocialnetwork.databinding.ActivityViewFullPostBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
 import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.profile.ProfileActivity
-import com.example.cookingsocialnetwork.viewpost.adapter.CommentAdapter
-import com.example.cookingsocialnetwork.viewpost.adapter.ImageSlideAdapter
-import com.example.cookingsocialnetwork.viewpost.adapter.IngredientAdapter
-import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
+import com.example.cookingsocialnetwork.viewpost.adapter.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
 import me.relex.circleindicator.CircleIndicator
 
 
-class ViewFullPost : AppCompatActivity() {
+class ViewFullPost : AppCompatActivity(), MyListListener {
     lateinit var binding: ActivityViewFullPostBinding
     private lateinit var viewModel: ViewFullPostViewModel
     private lateinit var id: String
@@ -98,7 +90,7 @@ class ViewFullPost : AppCompatActivity() {
             binding.methods.layoutManager = methodsLayoutManager
             binding.methods.adapter = methodsAdapter
 
-            val commentAdapter = CommentAdapter(it.comments, id)
+            val commentAdapter = CommentAdapter(it.comments, id, this)
             val commentLayoutManager = LinearLayoutManager(this)
             binding.comments.layoutManager = commentLayoutManager
             binding.comments.adapter = commentAdapter
@@ -255,5 +247,40 @@ class ViewFullPost : AppCompatActivity() {
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.CENTER)
         dialog.show()
+    }
+
+    override fun onItemLongPressed(index: Int) {
+        if (FirebaseAuth.getInstance().currentUser?.email.toString()
+                .compareTo(viewModel.post.value!!.comments[index]["userName"] as String) == 0
+            || FirebaseAuth.getInstance().currentUser?.email.toString()
+                .compareTo(viewModel.post.value!!.owner) == 0
+        ) {
+            val dialog = Dialog(this)
+            val dialogBinding: LayoutDeleteBinding = LayoutDeleteBinding.inflate(layoutInflater)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(dialogBinding.root)
+            dialogBinding.content.text = "Xóa bình luận"
+
+            dialogBinding.delete.setOnClickListener()
+            {
+                val listComment = viewModel.post.value?.comments
+                listComment?.removeAt(index)
+                FirebaseFirestore.getInstance()
+                    .collection("post")
+                    .document(id)
+                    .update("comments", listComment)
+
+                dialog.dismiss()
+            }
+
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+            dialog.window?.setGravity(Gravity.BOTTOM)
+            dialog.show()
+        }
     }
 }
