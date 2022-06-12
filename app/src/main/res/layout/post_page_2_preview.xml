@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/post_page2_preview_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/post_page2_preview_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/post_page2_preview_food_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/contact_photo_height"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food_picker" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:layout_marginTop="@dimen/contact_photo_height">
+
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+
+</ScrollView>
