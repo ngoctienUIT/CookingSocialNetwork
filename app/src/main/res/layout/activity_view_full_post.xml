@@ -300,7 +300,8 @@
                             android:layout_gravity="center"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_comment"/>
+                            android:src="@drawable/icons_comment"
+                            app:tint="@color/green" />
 
                         <TextView
                             android:id="@+id/comment"
@@ -324,7 +325,8 @@
                             android:layout_gravity="center"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_share"/>
+                            android:src="@drawable/ic_round_reply"
+                            app:tint="@color/green" />
 
                         <TextView
                             android:id="@+id/share"

@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.viewpost.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.NotifyControl
 import com.example.cookingsocialnetwork.model.data.Time
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
@@ -61,6 +63,18 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
                 .document(id)
                 .update("comments", commentList)
         }
+        holder.name?.setOnClickListener()
+        {
+            val profile = Intent(holder.itemView.context, ProfileActivity::class.java)
+            profile.putExtra("user_name", comments[position]["userName"] as String)
+            holder.itemView.context.startActivity(profile)
+        }
+        holder.userAvatar?.setOnClickListener()
+        {
+            val profile = Intent(holder.itemView.context, ProfileActivity::class.java)
+            profile.putExtra("user_name", comments[position]["userName"] as String)
+            holder.itemView.context.startActivity(profile)
+        }
         holder.updateView()
     }
 
@@ -69,11 +83,11 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
         private var view: WeakReference<View> = WeakReference(itemView)
-        private var name: TextView? = null
+        var name: TextView? = null
         private var content: TextView? = null
         private var time: TextView? = null
         private var favourite: TextView? = null
-        private var userAvatar: ImageView? = null
+        var userAvatar: ImageView? = null
         private var iconFavourite: ImageView? = null
         var btnFavourite: LinearLayout? = null
         var comment: Map<String, Any>? = null
@@ -111,8 +125,6 @@ class CommentAdapter(private var comments: MutableList<Map<String, Any>>, privat
 //                    Picasso.get().load(user.avatar).into(userAvatar)
                     name?.text = user.name
                 }
-
-            Log.w("favouriteList", favouriteList.toString())
 
             if (favouriteList.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString()) > -1)
                 iconFavourite?.setImageDrawable(ResourcesCompat.getDrawable(view.get()!!.resources, R.drawable.ic_favorite, null))

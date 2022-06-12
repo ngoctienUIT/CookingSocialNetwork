@@ -5,11 +5,13 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityProfileBinding
 import com.example.cookingsocialnetwork.model.FollowControl
+import com.example.cookingsocialnetwork.setting.changeProfile.SettingChangeProfile
 import com.example.cookingsocialnetwork.viewfollow.ViewFollowActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -43,6 +45,16 @@ class ProfileActivity : AppCompatActivity() {
         binding.follow.setOnClickListener()
         {
             FollowControl.follow(viewModel.getUser.value!!.username)
+        }
+
+        if (FirebaseAuth.getInstance().currentUser?.email.toString().compareTo(userName) == 0)
+            binding.follow.visibility = View.GONE
+        else binding.editProfile.visibility = View.GONE
+
+        binding.editProfile.setOnClickListener()
+        {
+            val settingPage = Intent(this, SettingChangeProfile::class.java)
+            startActivity(settingPage)
         }
 
         binding.btnFollower.setOnClickListener()
