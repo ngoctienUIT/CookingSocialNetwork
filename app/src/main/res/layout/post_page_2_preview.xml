@@ -7,13 +7,26 @@
         android:id="@+id/post_page2_preview_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/post_page2_preview_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationZ="1dp"
+            android:alpha="0"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/post_page2_preview_food_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/contact_photo_height"
             android:scaleType="centerCrop"
-            android:src="@drawable/food_picker" />
+            android:src="@drawable/food_picker"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

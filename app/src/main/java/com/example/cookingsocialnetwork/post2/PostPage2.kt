@@ -1,13 +1,20 @@
 package com.example.cookingsocialnetwork.post2
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.databinding.PortionPickerBinding
+import com.example.cookingsocialnetwork.databinding.PostPage2PreviewBinding
 import com.example.cookingsocialnetwork.viewfollow.FollowPageAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -44,14 +51,14 @@ class  PostPage2 : AppCompatActivity() {
                             backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.red))
                         }
                         4 -> {
-                            previewBtn.visibility = View.GONE
-                            nextBtn.text = "Xem lại trước khi đăng"
+                            nextBtn.visibility = View.GONE
+                            previewBtn.text = "Xem lại trước khi đăng"
                         }
                         else -> {
                             backBtn.setImageResource(R.drawable.ic_back_ios)
                             backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.green))
-                            nextBtn.text = "Tiếp theo"
-                            previewBtn.visibility = View.VISIBLE
+                            previewBtn.text = "Xem trước"
+                            nextBtn.visibility = View.VISIBLE
                         }
                     }
                     super.onPageSelected(position)
@@ -80,6 +87,27 @@ class  PostPage2 : AppCompatActivity() {
                 tab?.select()
             }
         }
+        previewBtn.setOnClickListener {  preview()}
+    }
+    private fun preview(){
+        val dialog = Dialog(this)
+        val dialogBinding: PostPage2PreviewBinding = PostPage2PreviewBinding.inflate(layoutInflater)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(dialogBinding.root)
+
+        dialogBinding.postPage2PreviewScroll.setOnScrollChangeListener{ v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            dialogBinding.postPage2PreviewFoodImage.layoutParams.height = resources.getDimensionPixelSize(R.dimen.contact_photo_height) - scrollY*2
+            dialogBinding.postPage2PreviewFoodImage.requestLayout()
+            dialogBinding.postPage2PreviewTop.alpha = (scrollY/resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()
+//            println(scrollY.toFloat()/resources.getDimensionPixelSize(R.dimen.contact_photo_height).toFloat())
+//            println(resources.getDimensionPixelSize(R.dimen.contact_photo_height)-resources.getDimensionPixelSize(scrollY + "dp"))
+        }
+
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.show()
     }
 }
 
