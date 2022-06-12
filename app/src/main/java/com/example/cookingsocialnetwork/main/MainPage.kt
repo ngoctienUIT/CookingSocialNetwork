@@ -30,6 +30,7 @@ class MainPage : AppCompatActivity() {
 
         binding.bottomNavigation.background = null
         binding.bottomNavigation.menu.getItem(2).isEnabled = false
+//        binding.bottomNavigation.itemIconTintList = null
 
         replaceFragment(home)
         binding.bottomNavigation.setOnItemSelectedListener {

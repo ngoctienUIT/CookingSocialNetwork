@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.intro)
     }
 
     override fun onStart() {

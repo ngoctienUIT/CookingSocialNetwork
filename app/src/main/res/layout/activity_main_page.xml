@@ -33,9 +33,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:itemRippleColor="@android:color/transparent"
             app:menu="@menu/menu"
-            android:background="#9db847"
-            app:itemIconTint="#9db847"
-            app:itemTextColor="#ffa500"/>
+            app:itemIconTint="#DC143C"
+            app:itemTextColor="#ff6347"/>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 

@@ -138,18 +138,28 @@
         <entry key="..\:/Kotlin/New folder/CookingSocialNetwork/app/src/main/res/layout/activity_post_page.xml" value="0.264" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/appbar_bg.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/back_gradient.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_btn_follow.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_intro.xml" value="0.1355" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_iv.xml" value="0.148" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_linear_layout.xml" value="0.148" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/bg_post.xml" value="0.1355" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/circle_bg.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dash_separator_horizontal.xml" value="0.1395" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dash_separator_vertical.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dialog_bg.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/dialog_language.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/gradient.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/home_selector.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_account_circle.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_back_ios.xml" value="0.1495" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_notifications.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/ic_outline_home.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/icon_gradient.xml" value="0.1495" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/line.xml" value="0.1395" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/line_hor.xml" value="0.1395" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/line_ver.xml" value="0.1395" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/notify_selector.xml" value="0.1395" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/drawable/person_selector.xml" value="0.1395" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_about_page.xml" value="0.25407608695652173" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_account_page.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_home_page.xml" value="0.13272543059777103" />
@@ -161,6 +171,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_setting_change_profile.xml" value="0.264" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_setting_page.xml" value="0.264" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_splash_page.xml" value="0.13272543059777103" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_view_follow.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_view_full_post.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/activity_view_post_page.xml" value="0.264" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/comment_notify_item.xml" value="0.25" />

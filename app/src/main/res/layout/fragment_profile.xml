@@ -39,8 +39,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:elevation="0dp"
-                    android:src="@drawable/ic_menu"
-                    app:tint="@color/black" />
+                    android:src="@drawable/ic_menu"/>
+
             </RelativeLayout>
 
             <androidx.core.widget.NestedScrollView
@@ -94,7 +94,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:layout_marginEnd="30dp"
+                            android:layout_marginEnd="15dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -114,12 +114,17 @@
 
                         </LinearLayout>
 
+                        <View
+                            android:layout_width="0.6dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/line_ver"/>
+
                         <LinearLayout
                             android:id="@+id/btn_follower"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:layout_marginEnd="30dp"
+                            android:layout_marginHorizontal="15dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -139,9 +144,15 @@
 
                         </LinearLayout>
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/line_ver"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
                             android:layout_gravity="start"
                             android:orientation="vertical">
 

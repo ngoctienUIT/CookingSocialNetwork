@@ -78,13 +78,13 @@ class ProfileFragment : Fragment() {
                     else -> R.drawable.ic_favorite
                 }
             )
-            if (index == 0) tab.icon?.setTint(Color.RED)
+            if (index == 0) tab.icon?.setTint(Color.parseColor("#FF4500"))
             else tab.icon?.setTint(Color.parseColor("#C0C0C0"))
         }.attach()
 
         binding.tabLayoutProfile.addOnTabSelectedListener( object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.icon?.setTint(Color.RED)
+                tab?.icon?.setTint(Color.parseColor("#FF4500"))
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
