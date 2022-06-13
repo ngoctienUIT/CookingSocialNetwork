@@ -17,34 +17,47 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="12dp">
+            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search"
-                android:layout_marginVertical="10dp"
+            <LinearLayout
+                android:paddingHorizontal="12dp"
+                android:orientation="vertical"
+                android:elevation="5dp"
+                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:iconifiedByDefault="false"
-                app:iconifiedByDefault="false"
-                app:submitBackground="@drawable/submit_search_bg"
-                app:queryHint="@string/search_tab"
-                app:queryBackground="@null"
-                android:background="@drawable/search_bg"
-                android:queryHint="@string/search_tab"/>
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.tabs.TabLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:id="@+id/tab_search"
-                app:tabRippleColor="@android:color/transparent"
-                app:tabGravity="center"
-                app:tabIndicatorGravity="stretch"
-                app:tabSelectedTextColor="@color/white"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicator="@drawable/tab_indicator"/>
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search"
+                    android:layout_marginVertical="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:iconifiedByDefault="false"
+                    app:iconifiedByDefault="false"
+                    app:submitBackground="@drawable/submit_search_bg"
+                    app:queryHint="@string/search_tab"
+                    app:queryBackground="@null"
+                    android:background="@drawable/search_bg"
+                    android:queryHint="@string/search_tab"/>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/tab_search"
+                    app:tabRippleColor="@android:color/transparent"
+                    app:tabGravity="center"
+                    app:tabIndicatorGravity="stretch"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabIndicatorAnimationMode="elastic"
+                    app:tabTextAppearance="@style/MineCustomTabText"
+                    app:tabIndicatorColor="#E3735E"
+                    app:tabIndicator="@drawable/tab_indicator"/>
+
+            </LinearLayout>
 
             <androidx.viewpager2.widget.ViewPager2
+                android:padding="12dp"
                 android:id="@+id/view_search_page"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

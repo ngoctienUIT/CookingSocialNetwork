@@ -8,6 +8,8 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:elevation="5dp"
+            android:background="@color/white"
             android:id="@+id/post_page_top"
             android:layout_width="match_parent"
             android:layout_height="50dp">

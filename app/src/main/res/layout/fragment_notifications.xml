@@ -11,10 +11,11 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="12dp">
+            android:layout_height="match_parent">
 
             <com.google.android.material.tabs.TabLayout
+                android:elevation="5dp"
+                android:padding="5dp"
                 app:tabTextAppearance="@style/MineCustomTabText"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -24,9 +25,11 @@
                 app:tabIndicatorGravity="stretch"
                 app:tabSelectedTextColor="@color/white"
                 app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="#E3735E"
                 app:tabIndicator="@drawable/tab_indicator"/>
 
             <androidx.viewpager2.widget.ViewPager2
+                android:layout_marginBottom="35dp"
                 android:id="@+id/view_notify_page"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

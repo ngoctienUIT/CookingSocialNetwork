@@ -17,7 +17,7 @@
         android:clipToPadding="false">
 
         <RelativeLayout
-            android:elevation="10dp"
+            android:elevation="5dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -263,10 +263,12 @@
                     android:textStyle="bold"
                     android:text="Nguyên liệu:"
                     android:textAlignment="center"
-                    android:background="#98FB98"
-                    android:elevation="5dp"
+                    android:backgroundTint="#98FB98"
+                    android:background="@drawable/bg_rounded_corners"
+                    android:elevation="3dp"
                     android:layout_marginTop="10dp"
-                    android:paddingHorizontal="10dp"/>
+                    android:layout_marginHorizontal="5dp"
+                    android:paddingVertical="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ingredients"
@@ -279,11 +281,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:background="#ADFF2F"
+                    android:backgroundTint="#ADFF2F"
+                    android:background="@drawable/bg_rounded_corners"
                     android:text="Cách làm:"
                     android:textAlignment="center"
-                    android:elevation="5dp"
-                    android:paddingHorizontal="10dp"/>
+                    android:elevation="3dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:paddingVertical="5dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:paddingVertical="10dp"

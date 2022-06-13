@@ -20,9 +20,10 @@
         tools:ignore="UselessParent">
 
         <RelativeLayout
+            android:elevation="5dp"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="10dp"
             android:padding="12dp">
 
             <ImageView

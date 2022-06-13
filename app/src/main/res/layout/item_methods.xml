@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/round_view_less"
-    android:backgroundTint="#ffffff">
+    android:backgroundTint="#FFFFFF">
 
     <TextView
         android:elevation="10dp"
