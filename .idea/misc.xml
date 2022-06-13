@@ -233,6 +233,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/unit_picker.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/menu/menu.xml" value="0.23425925925925925" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1355" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/circle_60.xml" value="0.1665" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/dialog_bg.xml" value="0.1595" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/ic_account_circle.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/drawable/ic_add.xml" value="0.2" />
@@ -275,7 +276,10 @@
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment_page1.xml" value="0.4" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment_page2.xml" value="0.2" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_ingredient_child.xml" value="0.221889696451475" />
-        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_preview.xml" value="0.4" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_ingredient_view.xml" value="0.21633176571184268" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_preview.xml" value="0.264" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_step_child.xml" value="0.21633176571184268" />
+        <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/post_page_2_step_view.xml" value="0.264" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/postpage_ingredient_child.xml" value="0.4" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/postpage_method_child.xml" value="0.23233695652173914" />
         <entry key="..\:/Users/buile/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/prevew_post.xml" value="0.23345421577515865" />

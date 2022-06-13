@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/post_page2_step_view_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bước 1/1"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:background="#f7f6f2"
+        />
+    <ImageView
+        android:id="@+id/post_page2_step_view_image"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/food_picker"
+        android:layout_below="@id/post_page2_step_view_count"/>
+    <TextView
+        android:id="@+id/post_page2_step_view_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Làm cái gì bây giờ :(((("
+        android:layout_below="@id/post_page2_step_view_image"
+        android:textSize="20sp"
+        android:layout_margin="20dp"/>
+
+</RelativeLayout>

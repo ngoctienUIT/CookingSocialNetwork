@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <RelativeLayout
         android:id="@+id/post_page2_preview_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:translationZ="1dp"
+        android:translationZ="2dp"
         android:alpha="1">
         <Button
             android:id="@+id/post_page2_preview_top_back_btn"
@@ -20,7 +21,7 @@
             android:layout_toEndOf="@id/post_page2_preview_top_back_btn"
             android:layout_marginStart="10dp"
             android:text="Food name"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
 
     </RelativeLayout>
 
@@ -39,11 +40,12 @@
                 android:layout_height="@dimen/contact_photo_height"
                 android:scaleType="centerCrop"
                 android:src="@drawable/food_picker"
+                android:translationZ="1dp"
                 />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/contact_photo_height">
                 <TextView
                     android:id="@+id/post_page2_preview_food_name"
@@ -107,17 +109,160 @@
                     android:layout_margin="15dp"
                     android:text="''Đôi lời muốn nói''"
                     android:textSize="20sp" />
+
                 <View
                     android:id="@+id/post_page2_preview_seperate1"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black"
                     android:layout_below="@id/post_page2_preview_food_note"
-                    android:layout_marginHorizontal="15dp"/>
+                    android:background="@color/black" />
 
+                <TextView
+                    android:id="@+id/post_page2_preview_food_dif_lb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/post_page2_preview_seperate1"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="15dp"
+                    android:text="ĐỘ KHÓ"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
+                <RatingBar
+                    android:id="@+id/post_page2_preview_food_dif"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/post_page2_preview_seperate1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginEnd="15dp" />
+
+                <View
+                    android:id="@+id/post_page2_preview_seperate2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/post_page2_preview_food_dif_lb"
+                    android:background="@color/black" />
+                <LinearLayout
+                    android:id="@+id/post_page2_preview_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/post_page2_preview_seperate2"
+                    android:layout_marginVertical="20dp">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/post_page2_preview_food_prep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/circle_60"
+                            android:text="60 phút"
+                            android:gravity="center"
+                            android:layout_gravity="center|top"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Chuẩn bị"
+                            android:layout_gravity="center|bottom"/>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/post_page2_preview_food_cook"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/circle_60"
+                            android:text="60 phút"
+                            android:gravity="center"
+                            android:layout_gravity="center|top"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nấu"
+                            android:layout_gravity="center|bottom"/>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/post_page2_preview_food_rest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/circle_60"
+                            android:text="60 phút"
+                            android:gravity="center"
+                            android:layout_gravity="center|top"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nghỉ"
+                            android:layout_gravity="center|bottom"/>
+                    </FrameLayout>
+                </LinearLayout>
+                <View
+                    android:id="@+id/post_page2_preview_seperate3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    android:layout_below="@id/post_page2_preview_time"
+                    android:layout_marginBottom="30dp"/>
+                <TextView
+                    android:id="@+id/post_page2_preview_food_ingredient_lb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/post_page2_preview_seperate3"
+                    android:text="NGUYÊN LIỆU"
+                    android:layout_marginStart="15dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/post_page2_preview_food_portion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 phần"
+                    android:layout_alignTop="@id/post_page2_preview_food_ingredient_lb"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp"
+                    android:textSize="20sp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/post_page2_preview_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/post_page2_preview_food_ingredient_lb"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="30dp"
+                    tools:listitem="@layout/post_page_2_ingredient_view"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/post_page2_preview_steps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/post_page2_preview_ingredients"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="30dp"
+                    tools:listitem="@layout/post_page_2_step_view"/>
             </RelativeLayout>
         </FrameLayout>
     </ScrollView>
+    <RelativeLayout
+        android:id="@+id/post_page2_preview_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Đăng bài"/>
 
-</FrameLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
