@@ -100,20 +100,17 @@ class  PostPage2 : AppCompatActivity() {
             dialogBinding.postPage2PreviewTop.alpha = Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/resources.getDimensionPixelSize(R.dimen.contact_photo_height).toFloat()
             dialogBinding.postPage2PreviewFoodImage.translationY=Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/ 2.5F
         }
-        if(postPageAdapter.fragment1 != null){
-            dialogBinding.postPage2PreviewFoodName.text = postPageAdapter.fragment1.foodName.text
-            // cái image nằm đây
-        }
-//        if(postPageAdapter.fragment2 != null){
-//            dialogBinding.postPage2PreviewFoodPortion.text = postPageAdapter.fragment2.portion.text
-//            dialogBinding.postPage2PreviewFoodDif.rating = postPageAdapter.fragment2.difficult.rating
-//            dialogBinding.postPage2PreviewFoodPrep.text = postPageAdapter.fragment2.prepTime.text
-//        }
         if(postPageAdapter.fragment1.isInitialized()){
-
+            dialogBinding.postPage2PreviewFoodName.text = postPageAdapter.fragment1.foodName.text
+            dialogBinding.postPage2PreviewFoodName.text
+            // lấy cái image
         }
         if(postPageAdapter.fragment2.isInitialized()){
             dialogBinding.postPage2PreviewFoodPortion.text = postPageAdapter.fragment2.portion.text
+            dialogBinding.postPage2PreviewFoodDif.rating = postPageAdapter.fragment2.difficult.rating
+            dialogBinding.postPage2PreviewFoodPrep.text = postPageAdapter.fragment2.prepTime.text
+            dialogBinding.postPage2PreviewFoodCook.text = postPageAdapter.fragment2.bakingTime.text
+            dialogBinding.postPage2PreviewFoodRest.text = postPageAdapter.fragment2.restTime.text
         }
         if(postPageAdapter.fragment3.isInitialized()){
 
@@ -122,7 +119,7 @@ class  PostPage2 : AppCompatActivity() {
 
         }
         if(postPageAdapter.fragment5.isInitialized()){
-
+            dialogBinding.postPage2PreviewFoodNote.text = postPageAdapter.fragment5.foodnote.text
         }
 
 

@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import com.example.cookingsocialnetwork.R
+import com.google.android.material.textview.MaterialTextView
 
 
 class PostPage2Fragment5 : Fragment() {
 
-    lateinit var foodnote: EditText
+    lateinit var foodnote: MaterialTextView
     fun isInitialized() = ::foodnote.isInitialized
 
 
