@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/statusBar"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,156 +39,82 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:elevation="4dp"/>
 
-            <ImageView
-                android:id="@+id/back_post"
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_back_ios"
-                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/back_post"
+                    android:layout_width="25dp"
+                    android:src="@drawable/ic_back_ios"
+                    android:layout_height="25dp" />
+
+            </androidx.cardview.widget.CardView>
 
             <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/more"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_width="wrap_content"
                 android:src="@drawable/ic_more_horiz"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/share"
-                android:layout_marginBottom="10dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_favourite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="15dp"
                 android:layout_marginEnd="10dp"
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_round_reply"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/favorite"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
                 android:padding="20dp"
                 app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:backgroundTint="@color/white">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#FFFFFF">
 
                 <ImageView
+                    android:id="@+id/favorite"
                     android:layout_gravity="center"
-                    android:layout_width="30dp"
+                    android:layout_width="25dp"
                     android:src="@drawable/ic_favorite"
-                    android:layout_height="30dp"
-                    app:tint="@color/red" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/unfavorite"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
-                android:padding="20dp"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:backgroundTint="#FC6163">
-
-                <ImageView
-                    android:layout_gravity="center"
-                    android:layout_width="30dp"
-                    android:src="@drawable/ic_favorite"
-                    android:layout_height="30dp"
-                    app:tint="@color/white" />
+                    android:layout_height="25dp"
+                    app:tint="#FC6163" />
 
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:elevation="5dp"
+            android:layout_marginTop="-10dp"
+            android:paddingTop="10dp"
+            android:elevation="15dp"
             android:orientation="vertical"
             android:background="@drawable/bg_view_post"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_marginTop="10dp"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="@{viewmodel.post.nameFood}"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_marginEnd="70dp"
-                    android:orientation="horizontal"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_outline_time"
-                        app:tint="#69C9D0" />
-
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewmodel.post.cookingTime}"
-                        android:textColor="#69C9D0"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginEnd="15dp"
-                    android:orientation="horizontal"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_star"
-                        app:tint="#FFD700"/>
-
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{viewmodel.post.level}"
-                        android:textSize="16dp"
-                        android:textColor="#69C9D0"/>
-
-                </LinearLayout>
-
-            </RelativeLayout>
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@{viewmodel.post.nameFood}"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_post"
                 app:tabMode="scrollable"
                 app:tabIndicatorColor="@color/red"
+                app:tabSelectedTextColor="@color/red"
                 app:tabTextAppearance="@style/MineCustomTabText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

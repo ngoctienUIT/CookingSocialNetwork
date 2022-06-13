@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentCommentBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
@@ -44,6 +45,10 @@ class CommentFragment : Fragment(), MyListListener {
                 val commentLayoutManager = LinearLayoutManager(it)
                 binding.comment.layoutManager = commentLayoutManager
                 binding.comment.adapter = commentAdapter
+            }
+            viewModel.myData.observe(it)
+            { user ->
+                binding.userAvatar.load(user.avatar)
             }
         }
 

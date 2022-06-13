@@ -1,5 +1,7 @@
 package com.example.cookingsocialnetwork.newviewpost
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cookingsocialnetwork.model.NotifyControl
@@ -125,5 +127,50 @@ class ViewPostViewModel: ViewModel() {
             .update("comments", comments)
 
         if (_post.owner != _myData.username) NotifyControl.addNotify(_user.username, content, _post.id, "comment")
+    }
+
+    fun share(activity: AppCompatActivity)
+    {
+        FirebaseFirestore.getInstance()
+            .collection("post")
+            .document(post.value!!.id)
+            .update("share", post.value!!.share + 1)
+            .addOnSuccessListener {
+                var text = ""
+                post.observe(activity)
+                { post ->
+                    user.observe(activity)
+                    { user ->
+                        text += "Tác giả: ${user.name} \nTên món ăn: ${post.nameFood} \nThời gian: ${post.cookingTime} \nĐộ khó: ${post.level}\nNguyên liệu: \n"
+                        var count = 0
+                        post.ingredients.forEach()
+                        {
+                            count++
+                            text += "$count. $it\n"
+                        }
+                        text += "Cách làm:\n"
+                        count = 0
+                        post.methods.forEach()
+                        {
+                            count++
+                            text += "Bước $count: $it\n"
+                        }
+                        text += "Các hình ảnh món ăn:\n"
+                        post.images.forEach()
+                        {
+                            text += "$it\n\n"
+                        }
+                        text += "Ứng dụng được hoàn thiện bởi:\nTrần Ngọc Tiến\nTrần Trọng Hoàng \nBùi Lê Hoài An"
+                        val sendIntent: Intent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(Intent.EXTRA_TEXT, text)
+                            type = "text/plain"
+                        }
+
+                        val shareIntent = Intent.createChooser(sendIntent, null)
+                        activity.startActivity(shareIntent)
+                    }
+                }
+            }
     }
 }

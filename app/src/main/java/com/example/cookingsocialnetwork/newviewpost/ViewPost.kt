@@ -2,7 +2,6 @@ package com.example.cookingsocialnetwork.newviewpost
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -11,13 +10,13 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewPostBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.newviewpost.adapter.EventPost
 import com.example.cookingsocialnetwork.newviewpost.adapter.PostPageAdapter
 import com.example.cookingsocialnetwork.viewpost.adapter.ImageSlideAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -26,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import me.relex.circleindicator.CircleIndicator
 
-class ViewPost : AppCompatActivity() {
+class ViewPost : AppCompatActivity(), EventPost {
     lateinit var binding: ActivityViewPostBinding
     private lateinit var viewModel: ViewPostViewModel
     private lateinit var id: String
@@ -50,6 +49,7 @@ class ViewPost : AppCompatActivity() {
 
         val postAdapter = PostPageAdapter(this)
         postAdapter.id = id
+        postAdapter.eventPost = this
 
         binding.pageViewPost.adapter = postAdapter
         binding.pageViewPost.isSaveEnabled = false
@@ -81,64 +81,9 @@ class ViewPost : AppCompatActivity() {
             showDialog()
         }
 
-//        binding.favoritePost.setOnClickListener()
-//        {
-//            viewModel.updateFavourite()
-//        }
-
-        binding.favorite.setOnClickListener()
+        binding.btnFavourite.setOnClickListener()
         {
             viewModel.updateFavourite()
-        }
-
-        binding.unfavorite.setOnClickListener()
-        {
-            viewModel.updateFavourite()
-        }
-
-        binding.share.setOnClickListener()
-        {
-            FirebaseFirestore.getInstance()
-                .collection("post")
-                .document(viewModel.post.value!!.id)
-                .update("share", viewModel.post.value!!.share + 1)
-                .addOnSuccessListener {
-                    var text = ""
-                    viewModel.post.observe(this)
-                    { post ->
-                        viewModel.user.observe(this)
-                        { user ->
-                            text += "Tác giả: ${user.name} \nTên món ăn: ${post.nameFood} \nThời gian: ${post.cookingTime} \nĐộ khó: ${post.level}\nNguyên liệu: \n"
-                            var count = 0
-                            post.ingredients.forEach()
-                            {
-                                count++
-                                text += "$count. $it\n"
-                            }
-                            text += "Cách làm:\n"
-                            count = 0
-                            post.methods.forEach()
-                            {
-                                count++
-                                text += "Bước $count: $it\n"
-                            }
-                            text += "Các hình ảnh món ăn:\n"
-                            post.images.forEach()
-                            {
-                                text += "$it\n\n"
-                            }
-                            text += "Ứng dụng được hoàn thiện bởi:\nTrần Ngọc Tiến\nTrần Trọng Hoàng \nBùi Lê Hoài An"
-                            val sendIntent: Intent = Intent().apply {
-                                action = Intent.ACTION_SEND
-                                putExtra(Intent.EXTRA_TEXT, text)
-                                type = "text/plain"
-                            }
-
-                            val shareIntent = Intent.createChooser(sendIntent, null)
-                            startActivity(shareIntent)
-                        }
-                    }
-                }
         }
 
         viewModel.post.observe(this) {
@@ -146,16 +91,9 @@ class ViewPost : AppCompatActivity() {
                 binding.more.visibility = View.VISIBLE
             else binding.more.visibility = View.GONE
 
-            if (it.favourites.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString()) > -1) {
-                binding.favorite.visibility = View.VISIBLE
-                binding.unfavorite.visibility = View.GONE
-//                binding.favoritePost.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
-            }
-            else {
-                binding.favorite.visibility = View.GONE
-                binding.unfavorite.visibility = View.VISIBLE
-//                binding.favoritePost.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
-            }
+            if (it.favourites.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString()) > -1)
+                binding.favorite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
+            else binding.favorite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
 
 //            slider images
             it.images.let { list ->
@@ -218,5 +156,14 @@ class ViewPost : AppCompatActivity() {
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.CENTER)
         dialog.show()
+    }
+
+    override fun comment() {
+        val tab = binding.tabPost.getTabAt(3)
+        tab?.select()
+    }
+
+    override fun share() {
+        viewModel.share(this)
     }
 }

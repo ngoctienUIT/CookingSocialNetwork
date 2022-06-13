@@ -80,6 +80,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingHorizontal="10dp"
                 android:id="@+id/comment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

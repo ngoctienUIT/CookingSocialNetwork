@@ -7,10 +7,10 @@
         android:id="@+id/cv_images"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/image_food_full_post"
             android:layout_width="match_parent"

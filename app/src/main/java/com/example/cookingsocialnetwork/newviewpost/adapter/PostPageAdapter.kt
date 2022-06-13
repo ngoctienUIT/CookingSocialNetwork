@@ -10,6 +10,7 @@ import com.example.cookingsocialnetwork.newviewpost.view.MethodFragment
 
 class PostPageAdapter(activity: ViewPost): FragmentStateAdapter(activity) {
     var id: String = ""
+    var eventPost: EventPost? = null
 
     override fun getItemCount() = 4
 
@@ -18,6 +19,7 @@ class PostPageAdapter(activity: ViewPost): FragmentStateAdapter(activity) {
             0 -> {
                 val frag = InformationFragment()
                 frag.id = id
+                frag.eventPost = eventPost
                 frag
             }
             1 -> {
