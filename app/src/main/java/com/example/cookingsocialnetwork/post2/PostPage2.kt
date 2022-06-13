@@ -96,11 +96,11 @@ class  PostPage2 : AppCompatActivity() {
         dialog.setContentView(dialogBinding.root)
 
         dialogBinding.postPage2PreviewScroll.setOnScrollChangeListener{ v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            dialogBinding.postPage2PreviewFoodImage.layoutParams.height = resources.getDimensionPixelSize(R.dimen.contact_photo_height) - scrollY*2
-            dialogBinding.postPage2PreviewFoodImage.requestLayout()
-            dialogBinding.postPage2PreviewTop.alpha = (scrollY/resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()
-//            println(scrollY.toFloat()/resources.getDimensionPixelSize(R.dimen.contact_photo_height).toFloat())
-//            println(resources.getDimensionPixelSize(R.dimen.contact_photo_height)-resources.getDimensionPixelSize(scrollY + "dp"))
+            dialogBinding.postPage2PreviewTop.alpha = Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/resources.getDimensionPixelSize(R.dimen.contact_photo_height).toFloat()
+            //dialogBinding.postPage2PreviewTopName.alpha = (Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height))/resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()
+            dialogBinding.postPage2PreviewFoodImage.translationY=Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/ 2.5F
+            //println(Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)))
+
         }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

@@ -17,6 +17,7 @@
             android:padding="15dp"
             android:text="Gần xong rồi! Có điều gì muốn chia sẻ không?"
             android:textSize="22sp" />
+
         <TextView
             android:id="@+id/post_page2_fragment5_food_note_lb"
             android:layout_width="wrap_content"
@@ -24,7 +25,7 @@
             android:layout_below="@id/post_page2_fragment5_start_text"
             android:layout_marginStart="15sp"
             android:layout_marginTop="30dp"
-            android:text="Lưu ý"
+            android:text="Đôi lời muốn nói"
             android:textSize="25sp"
             android:textStyle="bold" />
 

@@ -46,41 +46,13 @@
             android:text="0/30"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/post_page2_fragment1_food_des_lb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_name"
-            android:layout_marginStart="15sp"
-            android:layout_marginTop="30dp"
-            android:text="Mô tả món ăn"
-            android:textSize="25sp"
-            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/post_page2_fragment1_food_des"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_des_lb"
-            android:layout_marginHorizontal="15sp"
-            android:maxLength="60"
-            android:minLines="2" />
-
-        <TextView
-            android:id="@+id/post_page2_fragment1_food_des_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_des"
-            android:layout_alignEnd="@id/post_page2_fragment1_food_name"
-            android:layout_marginTop="10dp"
-            android:text="0/60"
-            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/post_page2_fragment1_food_image_lb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_des"
+            android:layout_below="@id/post_page2_fragment1_food_name"
             android:layout_alignStart="@id/post_page2_fragment1_food_name_lb"
             android:layout_marginTop="30dp"
             android:text="Hình ảnh món ăn"
