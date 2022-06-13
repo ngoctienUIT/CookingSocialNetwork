@@ -33,14 +33,14 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/post_page_btn_close"
+                android:id="@+id/post_page_btn_post"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:gravity="center"
                 android:minWidth="55dp"
-                android:text="Đóng"
+                android:text="Đăng"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </RelativeLayout>
@@ -57,34 +57,34 @@
             android:id="@+id/post_page_viewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/post_page_end"
             android:layout_below="@id/post_page_tab" />
-        <LinearLayout
-            android:id="@+id/post_page_end"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true">
 
-            <Button
-                android:id="@+id/post_page_preview_btn"
-                android:layout_width="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:text="Xem trước"
-                android:layout_marginHorizontal="15dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_weight="1"/>
+<!--        <LinearLayout-->
+<!--            android:id="@+id/post_page_end"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_alignParentBottom="true">-->
 
-            <Button
-                android:id="@+id/post_page_next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
-                android:layout_weight="1"
-                android:text="Tiếp theo"/>
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/post_page_preview_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_marginHorizontal="15dp"-->
+<!--                android:layout_marginVertical="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Xem trước" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/post_page_next_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginHorizontal="15dp"-->
+<!--                android:layout_marginVertical="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="Tiếp theo" />-->
+<!--        </LinearLayout>-->
     </RelativeLayout>
 
 

@@ -23,9 +23,9 @@ class  PostPage2 : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
     private lateinit var backBtn: ImageView
-    private lateinit var closeBtn: Button
-    private lateinit var previewBtn :Button
-    private lateinit var nextBtn: Button
+    private lateinit var postBtn: Button
+//    private lateinit var previewBtn :Button
+//    private lateinit var nextBtn: Button
 
     private val postPageAdapter = PostPage2ViewPagerAdapter(supportFragmentManager, lifecycle)
 
@@ -37,9 +37,9 @@ class  PostPage2 : AppCompatActivity() {
         tabLayout = findViewById(R.id.post_page_tab)
         backBtn = findViewById(R.id.post_page_btn_back)
         viewPager  = findViewById(R.id.post_page_viewPager)
-        closeBtn = findViewById(R.id.post_page_btn_close)
-        previewBtn = findViewById(R.id.post_page_preview_btn)
-        nextBtn = findViewById(R.id.post_page_next_button)
+        postBtn = findViewById(R.id.post_page_btn_post)
+//        previewBtn = findViewById(R.id.post_page_preview_btn)
+//        nextBtn = findViewById(R.id.post_page_next_button)
 
 
         viewPager.adapter = postPageAdapter
@@ -52,34 +52,28 @@ class  PostPage2 : AppCompatActivity() {
                             backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.red))
                         }
                         4 -> {
-                            nextBtn.visibility = View.GONE
-                            previewBtn.text = "Xem lại trước khi đăng"
+//                            nextBtn.visibility = View.GONE
+//                            previewBtn.text = "Xem lại trước khi đăng"
                         }
                         else -> {
                             backBtn.setImageResource(R.drawable.ic_back_ios)
                             backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.green))
-                            previewBtn.text = "Xem trước"
-                            nextBtn.visibility = View.VISIBLE
                         }
                     }
                     super.onPageSelected(position)
                 }
             }
         )
-        viewPager.isUserInputEnabled = false
+
         TabLayoutMediator(tabLayout, viewPager){
             tabLayoutt, position ->
         }.attach()
 
 
-        closeBtn.setOnClickListener {
-            finish()
+        postBtn.setOnClickListener {
+            post()
         }
 
-        nextBtn.setOnClickListener {
-            val tab: TabLayout.Tab? = tabLayout.getTabAt(tabLayout.selectedTabPosition + 1)
-            tab?.select()
-        }
         backBtn.setOnClickListener {
             if(tabLayout.selectedTabPosition == 0){
                 finish()
@@ -88,29 +82,21 @@ class  PostPage2 : AppCompatActivity() {
                 tab?.select()
             }
         }
-        previewBtn.setOnClickListener {preview()}
-    }
-    private fun preview(){
-        val dialog = Dialog(this)
-        val dialogBinding: PostPage2PreviewBinding = PostPage2PreviewBinding.inflate(layoutInflater)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(dialogBinding.root)
 
-        dialogBinding.postPage2PreviewScroll.setOnScrollChangeListener{ v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            dialogBinding.postPage2PreviewTop.alpha = Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/resources.getDimensionPixelSize(R.dimen.contact_photo_height).toFloat()
-            dialogBinding.postPage2PreviewFoodImage.translationY=Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/ 2.5F
-        }
+    }
+    private fun post(){
+
+        // chỗ này m làm nhá hoàng
         if(postPageAdapter.fragment1.isInitialized()){
-            dialogBinding.postPage2PreviewFoodName.text = postPageAdapter.fragment1.foodName.text
-            dialogBinding.postPage2PreviewFoodName.text
-            // lấy cái image
+            postPageAdapter.fragment1.foodName.text
+
         }
         if(postPageAdapter.fragment2.isInitialized()){
-            dialogBinding.postPage2PreviewFoodPortion.text = postPageAdapter.fragment2.portion.text
-            dialogBinding.postPage2PreviewFoodDif.rating = postPageAdapter.fragment2.difficult.rating
-            dialogBinding.postPage2PreviewFoodPrep.text = postPageAdapter.fragment2.prepTime.text
-            dialogBinding.postPage2PreviewFoodCook.text = postPageAdapter.fragment2.bakingTime.text
-            dialogBinding.postPage2PreviewFoodRest.text = postPageAdapter.fragment2.restTime.text
+            postPageAdapter.fragment2.portion.text
+            postPageAdapter.fragment2.difficult.rating
+            postPageAdapter.fragment2.prepTime.text
+            postPageAdapter.fragment2.bakingTime.text
+            postPageAdapter.fragment2.restTime.text
         }
         if(postPageAdapter.fragment3.isInitialized()){
 
@@ -119,21 +105,11 @@ class  PostPage2 : AppCompatActivity() {
 
         }
         if(postPageAdapter.fragment5.isInitialized()){
-            dialogBinding.postPage2PreviewFoodNote.text = postPageAdapter.fragment5.foodnote.text
+            postPageAdapter.fragment5.foodnote.text
         }
-
-
-
-
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
-        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
-        dialog.window?.setGravity(Gravity.BOTTOM)
-        dialog.show()
+        finish()
     }
-    private fun getPostInfo(){
 
-    }
 }
 
 
