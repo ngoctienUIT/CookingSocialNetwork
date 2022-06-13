@@ -48,6 +48,9 @@
         </RelativeLayout>
 
             <com.google.android.material.tabs.TabLayout
+                app:tabTextAppearance="@style/MineCustomTabText"
+                app:tabIndicatorColor="@color/red"
+                app:tabSelectedTextColor="@color/red"
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

@@ -62,7 +62,7 @@ class NotifyControl {
                         count++
                     }
 
-                    notifyData.removeAt(count)
+                    if (count< notifyData.size) notifyData.removeAt(count)
                     FirebaseFirestore.getInstance()
                         .collection("user")
                         .document(userName)
