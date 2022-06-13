@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
-import com.example.cookingsocialnetwork.post.chooseImage.FragmentClickedImageChoosed
-import com.example.cookingsocialnetwork.post.chooseImage.RecyclerAdapterImageChoosed
+import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosed
+import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.RecyclerAdapterImageChoosed
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,8 +31,7 @@ import java.time.format.DateTimeFormatter
 
 class PostPage : AppCompatActivity() {
 
-    private lateinit var gridLayoutManager: GridLayoutManager
-    private lateinit var adapterImageChoosed: RecyclerAdapterImageChoosed
+
 
     private lateinit var viewModel: PostViewModel
     private lateinit var databinding: ActivityPostPageBinding
@@ -44,7 +43,8 @@ class PostPage : AppCompatActivity() {
     private var arrEditTextIngredient:MutableList<String> = mutableListOf() // mảng lưu Text của thành phần món ăn
     private var arrEditTextMethod:MutableList<String> = mutableListOf() // mảng lưu Text của phương thức nấu
 
-
+    private lateinit var gridLayoutManager: GridLayoutManager
+    private lateinit var adapterImageChoosed: RecyclerAdapterImageChoosed
     private var listImageUri: MutableList<Uri> = mutableListOf()  // image choose from device
     private var listImageUrlFB : MutableList<String> = mutableListOf() // image url from firebase
 
@@ -167,11 +167,11 @@ class PostPage : AppCompatActivity() {
 
         adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri)
             {
-                val editGridClickedImageFragment = FragmentClickedImageChoosed()
+               /* val editGridClickedImageFragment = FragmentClickedImageChoosed()
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.container_fragmentGridClickedItem, editGridClickedImageFragment)
                 transaction.addToBackStack(null)
-                transaction.commit()
+                transaction.commit()*/
             }
         databinding.recyclerViewImage.adapter = adapterImageChoosed
         databinding.recyclerViewImage.setHasFixedSize(true)

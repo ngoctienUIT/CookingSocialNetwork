@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.post.chooseImage
+package com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -6,26 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 
-import com.bumptech.glide.Glide
 import com.example.cookingsocialnetwork.R
-import com.squareup.picasso.MemoryPolicy
-import com.squareup.picasso.Picasso
-
 
 
 class RecyclerAdapterImageClicked(private var mPhotoUris: MutableList<Uri>,
-private var itemClickListener: ItemClickListener) :
+private var itemClickListener: ItemClickListener
+) :
     RecyclerView.Adapter<RecyclerAdapterImageClicked.ViewHolder>(){
 
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecyclerAdapterImageClicked.ViewHolder {
+    ): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.grid_item_clicked_image_choosed, parent, false)
 //        val params = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
@@ -34,7 +30,7 @@ private var itemClickListener: ItemClickListener) :
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapterImageClicked.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemImage = mPhotoUris[position]
         holder.bindImage(itemImage)
 

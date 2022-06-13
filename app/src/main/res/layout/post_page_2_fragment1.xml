@@ -1,80 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <RelativeLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1ViewModel"/>
+        <variable
+            name="postPage2Fragment1ViewModel"
+            type="PostPage2Fragment1ViewModel" />
+    </data>
+    <FrameLayout
+        android:id="@+id/container_fragmentGridClickedItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/post_page2_fragment1_start_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f7f6f2"
-            android:padding="15dp"
-            android:text="Một công thức mới ư? Hãy bắt đầu nào.."
-            android:textSize="22sp" />
-
-        <TextView
-            android:id="@+id/post_page2_fragment1_food_name_lb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_start_text"
-            android:layout_marginStart="15sp"
-            android:layout_marginTop="30dp"
-            android:text="Tên món ăn"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/post_page2_fragment1_food_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_name_lb"
-            android:layout_marginHorizontal="15sp"
-            android:maxLength="30" />
-
-        <TextView
-            android:id="@+id/post_page2_fragment1_food_name_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_name"
-            android:layout_alignEnd="@id/post_page2_fragment1_food_name"
-            android:layout_marginTop="10dp"
-            android:text="0/30"
-            android:textSize="15sp" />
-
-
-
-        <TextView
-            android:id="@+id/post_page2_fragment1_food_image_lb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_name"
-            android:layout_alignStart="@id/post_page2_fragment1_food_name_lb"
-            android:layout_marginTop="30dp"
-            android:text="Hình ảnh món ăn"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/post_page2_fragment1_food_image_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment1_food_image_lb"
-            android:layout_marginHorizontal="15sp"
-            android:layout_marginTop="10dp"
-            android:elevation="0dp"
-            app:cardCornerRadius="20dp">
-
-            <ImageView
-                android:id="@+id/post_page2_fragment1_food_image"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/food_picker" />
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
-</ScrollView>
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/post_page2_fragment1_start_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#f7f6f2"
+                        android:padding="15dp"
+                        android:text="Một công thức mới ư? Hãy bắt đầu nào.."
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/post_page2_fragment1_food_name_lb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/post_page2_fragment1_start_text"
+                        android:layout_marginStart="15sp"
+                        android:layout_marginTop="30dp"
+                        android:text="Tên món ăn"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/post_page2_fragment1_food_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/post_page2_fragment1_food_name_lb"
+                        android:layout_marginHorizontal="15sp"
+                        android:maxLength="30" />
+
+                    <TextView
+                        android:id="@+id/post_page2_fragment1_food_name_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/post_page2_fragment1_food_name"
+                        android:layout_alignEnd="@id/post_page2_fragment1_food_name"
+                        android:layout_marginTop="10dp"
+                        android:text="0/30"
+                        android:textSize="15sp" />
+
+
+
+                    <TextView
+                        android:id="@+id/post_page2_fragment1_food_image_lb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/post_page2_fragment1_food_name"
+                        android:layout_alignStart="@id/post_page2_fragment1_food_name_lb"
+                        android:layout_marginTop="30dp"
+                        android:text="Hình ảnh món ăn"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <!--        <androidx.cardview.widget.CardView-->
+                    <!--            android:id="@+id/post_page2_fragment1_food_image_card"-->
+                    <!--            android:layout_width="match_parent"-->
+                    <!--            android:layout_height="wrap_content"-->
+                    <!--            android:layout_below="@id/post_page2_fragment1_food_image_lb"-->
+                    <!--            android:layout_marginHorizontal="15sp"-->
+                    <!--            android:layout_marginTop="10dp"-->
+                    <!--            android:elevation="0dp"-->
+                    <!--            app:cardCornerRadius="20dp">-->
+
+                    <!--            <ImageView-->
+                    <!--                android:id="@+id/post_page2_fragment1_food_image"-->
+                    <!--                android:layout_width="match_parent"-->
+                    <!--                android:layout_height="350dp"-->
+                    <!--                android:scaleType="centerCrop"-->
+                    <!--                android:src="@drawable/food_picker" />-->
+                    <!--        </androidx.cardview.widget.CardView>-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/constraintRecycleview"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_below="@id/post_page2_fragment1_food_image_lb"
+                        android:layout_marginHorizontal="15sp"
+                        android:layout_marginTop="10dp"
+                        android:elevation="0dp"
+                        android:padding="0dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:background="#30000000"
+                            android:scrollbars="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_max="250dp"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageButton
+                        android:id="@+id/food_image"
+                        android:layout_width="126dp"
+                        android:layout_height="104dp"
+                        android:layout_below="@id/constraintRecycleview"
+                        android:adjustViewBounds="true"
+                        android:padding="0dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/food_picker"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/constraintRecycleview"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="@string/image_request" />
+
+
+                </RelativeLayout>
+            </ScrollView>
+
+    </FrameLayout>
+
+</layout>

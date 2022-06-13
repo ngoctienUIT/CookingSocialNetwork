@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.post2.PostPage2TabFragment
+package com.example.cookingsocialnetwork.post2.postPage2TabFragment
 
 import android.app.Dialog
 import android.graphics.Color

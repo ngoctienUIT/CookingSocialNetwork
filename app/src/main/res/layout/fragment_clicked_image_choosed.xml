@@ -2,10 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".post.chooseImage.FragmentClickedImageChoosed">
+    tools:context=".post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosed">
 
     <data>
-        <import type="com.example.cookingsocialnetwork.post.chooseImage.FragmentClickedImageChoosedViewModel"/>
+        <import type="com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosedViewModel"/>
         <variable
             name="viewModelClickedImage"
             type="FragmentClickedImageChoosedViewModel" />
@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:background="#30000000"
             android:scrollbars="vertical"
-            />
+            tools:listitem="@layout/grid_item_clicked_image_choosed" />
 
     </RelativeLayout>
 </layout>

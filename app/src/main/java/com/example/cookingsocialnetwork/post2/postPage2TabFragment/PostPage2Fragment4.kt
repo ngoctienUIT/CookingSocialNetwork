@@ -1,5 +1,6 @@
-package com.example.cookingsocialnetwork.post2.PostPage2TabFragment
+package com.example.cookingsocialnetwork.post2.postPage2TabFragment
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -10,9 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.AddIngredientBinding
 import com.example.cookingsocialnetwork.databinding.AddStepBinding
-import com.example.cookingsocialnetwork.databinding.UnitPickerBinding
 import com.example.cookingsocialnetwork.post2.model.*
 import com.google.android.material.button.MaterialButton
 
@@ -52,6 +51,7 @@ class PostPage2Fragment4 : Fragment() {
         touchHelper.attachToRecyclerView(stepRec)
 
     }
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     private fun addStep(){
         val dialog = context?.let { Dialog(it) }
         val dialogBinding: AddStepBinding = AddStepBinding.inflate(layoutInflater)

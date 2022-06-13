@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.post.chooseImage
+package com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -14,6 +14,8 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentClickedImageChoosedBinding
 import com.example.cookingsocialnetwork.post.PostPage
 import com.example.cookingsocialnetwork.post.PostViewModel
+import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1
+import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1ViewModel
 
 class FragmentClickedImageChoosed : Fragment() {
 
@@ -21,7 +23,7 @@ class FragmentClickedImageChoosed : Fragment() {
     private lateinit var adapterImageClicked: RecyclerAdapterImageClicked
 
 
-    lateinit var viewModel: PostViewModel
+    lateinit var viewModel: PostPage2Fragment1ViewModel
     lateinit var dataBiding: FragmentClickedImageChoosedBinding
 
 
@@ -34,9 +36,9 @@ class FragmentClickedImageChoosed : Fragment() {
 
         //set dataBiding
         dataBiding =DataBindingUtil.inflate(inflater, R.layout.fragment_clicked_image_choosed, container, false)
-        val factoryViewModel = FragmentClickedImageChoosedViewModelFactory()
+
         // set viewModel
-        viewModel = ViewModelProvider(requireActivity()).get(PostViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(PostPage2Fragment1ViewModel::class.java)
 
         staggeredGridLayoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         dataBiding.recyclerClickView.layoutManager = staggeredGridLayoutManager
@@ -49,7 +51,7 @@ class FragmentClickedImageChoosed : Fragment() {
                 override fun onItemRemoveClick(uri: Uri, int: Int) {
                     viewModel.removeUriListUris(uri)
                     adapterImageClicked.notifyItemRemoved(int)
-                    (activity as PostPage).noticeDataChangeToRecyclerAdapterImageChoosed()
+                    (parentFragment as PostPage2Fragment1).noticeDataChangeToRecyclerAdapterImageChoosed()
                     if(viewModel.mListUri.isEmpty()){
                        closedFragment()
                     }
@@ -71,12 +73,15 @@ class FragmentClickedImageChoosed : Fragment() {
     private fun closedFragment(){
         val manager = requireActivity().supportFragmentManager
         manager.beginTransaction().remove(this).commit()
+
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         staggeredGridLayoutManager.removeAllViews()
         dataBiding.recyclerClickView.adapter = null
+        closedFragment()
 
     }
 

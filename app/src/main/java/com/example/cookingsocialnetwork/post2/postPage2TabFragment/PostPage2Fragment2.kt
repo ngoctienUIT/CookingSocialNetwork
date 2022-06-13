@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.post2.PostPage2TabFragment
+package com.example.cookingsocialnetwork.post2.postPage2TabFragment
 
 import android.annotation.SuppressLint
 import android.app.Dialog

@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.post.chooseImage
+package com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage
 
 import android.net.Uri
 

@@ -1,23 +1,15 @@
-package com.example.cookingsocialnetwork.post.chooseImage
-import android.annotation.SuppressLint
-import android.icu.number.NumberRangeFormatter.with
-import android.icu.number.Scale
+package com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage
 import android.net.Uri
-import android.view.Gravity.FILL
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.lifecycle.MutableLiveData
 
 
 import androidx.recyclerview.widget.RecyclerView
-import coil.Coil
 import coil.api.load
-import com.bumptech.glide.Glide
 
 import com.example.cookingsocialnetwork.R
-import com.squareup.picasso.Picasso
 
 
 class RecyclerAdapterImageChoosed(
@@ -27,7 +19,7 @@ class RecyclerAdapterImageChoosed(
     RecyclerView.Adapter<RecyclerAdapterImageChoosed.ViewHolder>(){
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapterImageChoosed.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.recyclerview_item_formimage, parent, false)
@@ -37,7 +29,7 @@ class RecyclerAdapterImageChoosed(
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapterImageChoosed.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val itemImageUri = mPhotosUris[position]
         holder.bindImage(itemImageUri)
@@ -56,7 +48,7 @@ class RecyclerAdapterImageChoosed(
 
         init {
             itemView.setOnClickListener {
-                clickAtPosition(adapterPosition)
+                clickAtPosition(absoluteAdapterPosition)
             }
         }
         fun bindImage(uri: Uri) {

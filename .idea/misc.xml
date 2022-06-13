@@ -41,6 +41,14 @@
         <entry key="..\:/HOANGLAM.DATA/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/grid_item.xml" value="0.25" />
         <entry key="..\:/HOANGLAM.DATA/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/recyclerview_item_form.xml" value="0.1" />
         <entry key="..\:/HOANGLAM.DATA/Documents/GitHub/CookingSocialNetwork/app/src/main/res/layout/slide_item_container.xml" value="0.1" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/activity_post_page.xml" value="0.14583333333333334" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/activity_post_page_2.xml" value="0.14583333333333334" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/activity_profile.xml" value="0.14583333333333334" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/activity_setting_page.xml" value="0.14583333333333334" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/fragment_clicked_image_choosed.xml" value="0.25" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/fragment_home.xml" value="0.14583333333333334" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/grid_item_clicked_image_choosed.xml" value="0.14583333333333334" />
+        <entry key="..\:/Hoang/CookingSocialNetwork/app/src/main/res/layout/post_page_2_fragment1.xml" value="0.2" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/drawable/bg_btn_follow.xml" value="0.1395" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/drawable/btn_gradient_next_intro.xml" value="0.1395" />
         <entry key="..\:/IT/CookingSocialNetwork/app/src/main/res/layout/activity_intro_page.xml" value="0.22826086956521738" />
@@ -206,7 +214,7 @@
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_all_search.xml" value="0.25" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_comment.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_information.xml" value="0.2" />
+        <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_information.xml" value="0.125" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_ingredient.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_method.xml" value="0.22826086956521738" />
         <entry key="..\:/Project/CookingSocialNetwork/app/src/main/res/layout/fragment_note.xml" value="0.22826086956521738" />
