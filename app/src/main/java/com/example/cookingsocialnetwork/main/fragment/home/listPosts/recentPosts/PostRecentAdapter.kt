@@ -16,6 +16,7 @@ import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost as RealtimePost1
@@ -47,7 +48,7 @@ class PostRecentAdapter : PagedListAdapter<RealtimePost1, PostRecentAdapter.Post
             val idPostClicked = record?.id
             val context = holder.itemView.context
             if(idPostClicked != ""){
-                val fullPost = Intent(context, ViewFullPost::class.java)
+                val fullPost = Intent(context, ViewPost::class.java)
                 fullPost.putExtra("id_post", idPostClicked)
                 context.startActivity(fullPost)
             }

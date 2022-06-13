@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CookingSocialNetwork">
+        <activity
+            android:name=".newviewpost.ViewPost"
+            android:exported="false" />
         <activity
             android:name=".viewfollow.ViewFollowActivity"
             android:exported="false" />
@@ -54,7 +57,7 @@
             android:screenOrientation="fullSensor" />
         <activity
             android:name=".post2.PostPage2"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".post.ViewPostPage"
             android:exported="false" />
@@ -67,7 +70,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="fullSensor"
@@ -80,7 +82,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

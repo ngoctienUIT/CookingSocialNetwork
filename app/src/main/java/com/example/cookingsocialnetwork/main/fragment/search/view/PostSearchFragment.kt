@@ -14,6 +14,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentPostSearchBinding
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.search.adapter.GridAdapterPost
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class PostSearchFragment : Fragment() {
@@ -39,7 +40,7 @@ class PostSearchFragment : Fragment() {
                     binding.gridViewPost.isClickable = true
                     binding.gridViewPost.adapter = adapter
                     binding.gridViewPost.setOnItemClickListener { _, _, position, _ ->
-                        val fullPost = Intent(activity, ViewFullPost::class.java)
+                        val fullPost = Intent(activity, ViewPost::class.java)
                         fullPost.putExtra("id_post", list[position].id)
                         startActivity(fullPost)
                     }

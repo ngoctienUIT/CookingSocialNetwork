@@ -13,6 +13,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentCommentNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyComment
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class CommentNotifyFragment : Fragment() {
@@ -38,7 +39,7 @@ class CommentNotifyFragment : Fragment() {
                     binding.listComment.isClickable = true
                     binding.listComment.adapter = adapter
                     binding.listComment.setOnItemClickListener { _, _, position, _ ->
-                        val fullPost = Intent(it, ViewFullPost::class.java)
+                        val fullPost = Intent(it, ViewPost::class.java)
                         fullPost.putExtra("id_post", list[position].id)
                         it.startActivity(fullPost)
                     }

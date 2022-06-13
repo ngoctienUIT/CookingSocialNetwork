@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.example.cookingsocialnetwork.profile.ProfileActivity
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
@@ -40,7 +41,7 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
                 holder.comment = listNotify[position]
                 holder.itemView.setOnClickListener()
                 {
-                    val fullPost = Intent(holder.itemView.context, ViewFullPost::class.java)
+                    val fullPost = Intent(holder.itemView.context, ViewPost::class.java)
                     fullPost.putExtra("id_post", listNotify[position].id)
                     holder.itemView.context.startActivity(fullPost)
                 }
@@ -62,7 +63,7 @@ class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerVie
                 holder.favorite = listNotify[position]
                 holder.itemView.setOnClickListener()
                 {
-                    val fullPost = Intent(holder.itemView.context, ViewFullPost::class.java)
+                    val fullPost = Intent(holder.itemView.context, ViewPost::class.java)
                     fullPost.putExtra("id_post", listNotify[position].id)
                     holder.itemView.context.startActivity(fullPost)
                 }

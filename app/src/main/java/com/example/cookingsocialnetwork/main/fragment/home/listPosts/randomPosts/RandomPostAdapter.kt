@@ -16,6 +16,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
@@ -51,7 +52,7 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
             val idPostClicked = post?.id
             val context = holder.itemView.context
             if(idPostClicked != ""){
-                val fullPost = Intent(context, ViewFullPost::class.java)
+                val fullPost = Intent(context, ViewPost::class.java)
                 fullPost.putExtra("id_post", idPostClicked)
                 context.startActivity(fullPost)
             }

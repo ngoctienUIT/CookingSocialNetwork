@@ -15,6 +15,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.MainPage
 import com.example.cookingsocialnetwork.model.data.Notify
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -94,7 +95,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
         }
         else
         {
-            intent = Intent(this, ViewFullPost::class.java)
+            intent = Intent(this, ViewPost::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("id_post", item.id)
         }

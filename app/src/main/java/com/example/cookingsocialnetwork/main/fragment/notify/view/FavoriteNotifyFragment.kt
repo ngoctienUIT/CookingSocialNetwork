@@ -13,6 +13,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentFavoriteNotifyBindin
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyFavorite
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class FavoriteNotifyFragment : Fragment() {
@@ -38,7 +39,7 @@ class FavoriteNotifyFragment : Fragment() {
                     binding.listFavorite.isClickable = true
                     binding.listFavorite.adapter = adapter
                     binding.listFavorite.setOnItemClickListener { _, _, position, _ ->
-                        val fullPost = Intent(it, ViewFullPost::class.java)
+                        val fullPost = Intent(it, ViewPost::class.java)
                         fullPost.putExtra("id_post", list[position].id)
                         it.startActivity(fullPost)
                     }

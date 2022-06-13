@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
+import com.example.cookingsocialnetwork.newviewpost.ViewPost
 import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class PostAdapter(private var listPost: MutableList<Post>): RecyclerView.Adapter<PostViewHolder>() {
@@ -19,7 +20,7 @@ class PostAdapter(private var listPost: MutableList<Post>): RecyclerView.Adapter
         holder.post = listPost[position]
         holder.viewPost?.setOnClickListener()
         {
-            val fullPost = Intent(holder.itemView.context, ViewFullPost::class.java)
+            val fullPost = Intent(holder.itemView.context, ViewPost::class.java)
             fullPost.putExtra("id_post", listPost[position].id)
             holder.itemView.context.startActivity(fullPost)
         }
