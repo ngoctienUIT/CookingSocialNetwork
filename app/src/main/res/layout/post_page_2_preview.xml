@@ -248,6 +248,12 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="30dp"
                     tools:listitem="@layout/post_page_2_step_view"/>
+                <!--                comment ở đây-->
+                <View
+                    android:layout_below="@id/post_page2_preview_steps"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
             </RelativeLayout>
         </FrameLayout>
     </ScrollView>

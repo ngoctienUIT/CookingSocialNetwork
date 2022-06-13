@@ -26,6 +26,7 @@ class  PostPage2 : AppCompatActivity() {
     private lateinit var closeBtn: Button
     private lateinit var previewBtn :Button
     private lateinit var nextBtn: Button
+
     private val postPageAdapter = PostPage2ViewPagerAdapter(supportFragmentManager, lifecycle)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,7 +88,7 @@ class  PostPage2 : AppCompatActivity() {
                 tab?.select()
             }
         }
-        previewBtn.setOnClickListener {  preview()}
+        previewBtn.setOnClickListener {preview()}
     }
     private fun preview(){
         val dialog = Dialog(this)
@@ -97,17 +98,44 @@ class  PostPage2 : AppCompatActivity() {
 
         dialogBinding.postPage2PreviewScroll.setOnScrollChangeListener{ v, scrollX, scrollY, oldScrollX, oldScrollY ->
             dialogBinding.postPage2PreviewTop.alpha = Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/resources.getDimensionPixelSize(R.dimen.contact_photo_height).toFloat()
-            //dialogBinding.postPage2PreviewTopName.alpha = (Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height))/resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()
             dialogBinding.postPage2PreviewFoodImage.translationY=Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)).toFloat()/ 2.5F
-            //println(Math.min(Math.max(scrollY, 0), resources.getDimensionPixelSize(R.dimen.contact_photo_height)))
+        }
+        if(postPageAdapter.fragment1 != null){
+            dialogBinding.postPage2PreviewFoodName.text = postPageAdapter.fragment1.foodName.text
+            // cái image nằm đây
+        }
+//        if(postPageAdapter.fragment2 != null){
+//            dialogBinding.postPage2PreviewFoodPortion.text = postPageAdapter.fragment2.portion.text
+//            dialogBinding.postPage2PreviewFoodDif.rating = postPageAdapter.fragment2.difficult.rating
+//            dialogBinding.postPage2PreviewFoodPrep.text = postPageAdapter.fragment2.prepTime.text
+//        }
+        if(postPageAdapter.fragment1.isInitialized()){
 
         }
+        if(postPageAdapter.fragment2.isInitialized()){
+            dialogBinding.postPage2PreviewFoodPortion.text = postPageAdapter.fragment2.portion.text
+        }
+        if(postPageAdapter.fragment3.isInitialized()){
+
+        }
+        if(postPageAdapter.fragment4.isInitialized()){
+
+        }
+        if(postPageAdapter.fragment5.isInitialized()){
+
+        }
+
+
+
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.BOTTOM)
         dialog.show()
+    }
+    private fun getPostInfo(){
+
     }
 }
 

@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,15 +21,16 @@ import com.google.android.material.button.MaterialButton
 
 class PostPage2Fragment3 : Fragment() {
 
-    private lateinit var addIngredient: MaterialButton
-    private lateinit var unit : Array<String>
-    private lateinit var ingredientRec: RecyclerView
-    private lateinit var ingredientAdapter: IngredientAdapter
+    lateinit var addIngredient: MaterialButton
+    lateinit var unit : Array<String>
+    lateinit var ingredientRec: RecyclerView
+    lateinit var ingredientAdapter: IngredientAdapter
 
+    lateinit var portion: EditText  //lấy cái này
 
-    private var ingredientList: MutableList<Ingredient> = ArrayList() //lấy cái này
+    var ingredientList: MutableList<Ingredient> = ArrayList() //lấy cái này
 
-
+    fun isInitialized() = ::ingredientRec.isInitialized
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

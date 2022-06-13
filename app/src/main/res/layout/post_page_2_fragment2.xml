@@ -79,6 +79,7 @@
             android:textSize="18sp" />
 
         <RatingBar
+            android:id="@+id/post_page2_fragment2_food_difficult"
             style="?android:attr/ratingBarStyleIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

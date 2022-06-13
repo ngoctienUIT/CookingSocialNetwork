@@ -23,7 +23,9 @@ class PostPage2Fragment4 : Fragment() {
     private lateinit var stepRec: RecyclerView
     private lateinit var stepAdapter: StepAdapter
 
-    private var stepList: MutableList<Step> = ArrayList() //lấy cái này
+    fun isInitialized() = ::stepRec.isInitialized
+
+    var stepList: MutableList<Step> = ArrayList() //lấy cái này
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

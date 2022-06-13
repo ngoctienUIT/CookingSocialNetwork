@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.EditText
+import android.widget.RatingBar
 import androidx.fragment.app.Fragment
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.PortionPickerBinding
@@ -14,10 +15,13 @@ import com.example.cookingsocialnetwork.databinding.TimePickerBinding
 
 class PostPage2Fragment2 : Fragment(){
 
-    public lateinit var portion: EditText  //lấy cái này
-    private lateinit var prepTime: EditText //lấy cái này
-    private lateinit var bakingTime :EditText   //lấy cái này
-    private lateinit var restTime : EditText    //lấy cái này
+    lateinit var portion: EditText  //lấy cái này
+    lateinit var difficult: RatingBar // lấy cái này
+    lateinit var prepTime: EditText //lấy cái này
+    lateinit var bakingTime :EditText   //lấy cái này
+    lateinit var restTime : EditText    //lấy cái này
+
+    fun isInitialized() = ::portion.isInitialized
 
     private lateinit var portionType: Array<String>
 
@@ -35,10 +39,13 @@ class PostPage2Fragment2 : Fragment(){
 
         portionType = resources.getStringArray(R.array.portion_type)
 
+
         portion = requireView().findViewById(R.id.post_page2_fragment2_food_portion)
         portion.setOnClickListener{
             portionPicker()
         }
+
+        difficult = requireView().findViewById(R.id.post_page2_fragment2_food_difficult)
 
         prepTime = requireView().findViewById(R.id.post_page2_fragment2_food_prep)
         prepTime.setOnClickListener{
