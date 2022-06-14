@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.AnyRes
 import androidx.annotation.NonNull
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.AddStepBinding
 import com.example.cookingsocialnetwork.post2.model.*
@@ -30,6 +32,7 @@ class PostPage2Fragment4 : Fragment() {
     private lateinit var addStep: MaterialButton
     private lateinit var stepRec: RecyclerView
     private lateinit var stepAdapter: StepAdapter
+    private lateinit var image: ImageView
     private  var uriStep : Uri = Uri.EMPTY
 
     fun isInitialized() = ::stepRec.isInitialized
@@ -60,13 +63,18 @@ class PostPage2Fragment4 : Fragment() {
         val touchHelper = ItemTouchHelper(callBack)
         touchHelper.attachToRecyclerView(stepRec)
 
+
+
     }
+
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     private fun addStep(){
         val dialog = context?.let { Dialog(it) }
         val dialogBinding: AddStepBinding = AddStepBinding.inflate(layoutInflater)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(dialogBinding.root)
+
+        image = dialogBinding.addStepImage
 
         dialogBinding.addStepLb.text = "Bước " + (stepList.size + 1)
 
@@ -75,14 +83,16 @@ class PostPage2Fragment4 : Fragment() {
         }
 
         dialogBinding.pickImageStep.setOnClickListener{
-            imageChooser(dialogBinding)
+            val i = Intent()
+            i.type = "image/*"
+            i.action = Intent.ACTION_GET_CONTENT
+            i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
+
+            imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
             //dialogBinding.addStepImage.load(uriStep)
         }
 
         dialogBinding.addStepDoneBtn.setOnClickListener {
-          //  val imageUri :Uri = Uri.fromFile("  @drawable/food_picker")//"nói chung là URI của cái image m làm nhá"
-           // val uri : Uri = Uri.parse("content://com.android.providers.media.documents/document/image%3A16558")
-
             val uri : Uri = getUriToDrawable(this,R.drawable.food_picker)
              Log.d("hoicham", uri.toString())
             stepList.add(Step( uri ,dialogBinding.addStepStepDes.text.toString()))
@@ -96,29 +106,16 @@ class PostPage2Fragment4 : Fragment() {
         dialog.window?.setGravity(Gravity.BOTTOM)
         dialog.show()
     }
-
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                uriStep = result.data?.data!!
+            val imageUri = result.data?.data
+            image.load(imageUri)
         }
     }
 
-    private fun imageChooser(dialogBinding: AddStepBinding) {
 
-        // create an instance of the
-        // intent of the type image
-        val i = Intent()
-        i.type = "image/*"
-        i.action = Intent.ACTION_GET_CONTENT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            i.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE,true)
-        }
 
-        // pass the constant to compare it
-        // with the returned requestCode
 
-            imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
-    }
     private fun getUriToDrawable(
         @NonNull context: PostPage2Fragment4,
         @AnyRes drawableId: Int
