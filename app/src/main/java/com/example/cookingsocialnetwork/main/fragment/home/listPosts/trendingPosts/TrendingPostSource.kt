@@ -17,7 +17,7 @@ class TrendingPostSource(private val db: FirebaseFirestore) : PagingSource<Query
         return try {
             val currentPage = params.key ?: db.collection("post")
                 .limit(5)
-                .whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
+               // .whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
                 //.orderBy("favourites")
                 .get()
                 .await()

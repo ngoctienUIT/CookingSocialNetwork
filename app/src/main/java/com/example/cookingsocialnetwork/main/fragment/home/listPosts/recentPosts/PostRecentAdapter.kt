@@ -18,6 +18,7 @@ import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.viewpost.ViewPost
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
+import kotlin.math.roundToInt
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost as RealtimePost1
 
 class PostRecentAdapter : PagedListAdapter<RealtimePost1, PostRecentAdapter.PostViewHolder>(
@@ -95,7 +96,7 @@ class PostRecentAdapter : PagedListAdapter<RealtimePost1, PostRecentAdapter.Post
                                 userName.text = user.name
                             }
                         foodImage.load(post.images[0])
-                        rating.numStars = post.level.toInt()
+                        rating.numStars = post.level.toFloat().roundToInt()
                         foodName.text = post.nameFood
                         comment.text = post.comments.size.toString()
                         heart.text = post.favourites.size.toString()

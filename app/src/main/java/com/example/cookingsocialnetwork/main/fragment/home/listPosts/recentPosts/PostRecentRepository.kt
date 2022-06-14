@@ -1,8 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts
 
 import com.example.cookingsocialnetwork.model.data.Post
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Observable
 import kotlinx.coroutines.tasks.await
@@ -19,7 +17,7 @@ class PostRecentRepository @Inject constructor() {
 
         var query = db.collection("post")
             .limit(pageSize.toLong())
-            .whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
+           // .whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
 
 
 

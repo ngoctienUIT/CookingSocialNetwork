@@ -18,6 +18,7 @@ import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.viewpost.ViewPost
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
+import kotlin.math.roundToInt
 
 class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHolder>(
     Companion) {
@@ -99,7 +100,7 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
                     }
                 foodImage.load(post.images[0])
                 foodName.text = post.nameFood
-                rating.numStars = post.level.toInt()
+                rating.numStars = post.level.toFloat().roundToInt()
                 comment.text = post.comments.size.toString()
                 heart.text = post.favourites.size.toString()
             } to viewHolderDisposables

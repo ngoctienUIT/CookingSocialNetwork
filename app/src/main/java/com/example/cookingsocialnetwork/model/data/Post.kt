@@ -64,7 +64,7 @@ data class Post(
             share = document.data?.get("share") as Long
             val time = document.data?.get("timePost") as HashMap<String, Any>
             timePost.getTime(time)
-           // timestamp = document.data?.get("timestamp") as Timestamp
+            timestamp = document.data?.get("timestamp") as Timestamp
         }catch (e : Exception){
             throw e
         }
@@ -74,7 +74,7 @@ data class Post(
             val x = arrIngredientArrFB[i]
             val ingredient = Ingredient(x["amount"].toString(), x["unit"].toString(),x["name"].toString())
             ingredients.add(ingredient)
-            Log.d("ingredient",  "Ingredient(" + ingredient.name + ", " + ingredient.amount + ", " + ingredient.unit + ")" )
+           // Log.d("ingredient",  "Ingredient(" + ingredient.name + ", " + ingredient.amount + ", " + ingredient.unit + ")" )
         }
 
     }
@@ -83,7 +83,7 @@ data class Post(
             val x = arrMethodFB[i]
             val step = StepFireBase(x["image"].toString(), x["step"].toString())
             methods.add(step)
-            Log.d("StepFireBase", step.image + " " + step.step )
+           // Log.d("StepFireBase", step.image + " " + step.step )
         }
 
     }
