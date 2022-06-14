@@ -1,21 +1,13 @@
 package com.example.cookingsocialnetwork.post2
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.PortionPickerBinding
-import com.example.cookingsocialnetwork.databinding.PostPage2PreviewBinding
-import com.example.cookingsocialnetwork.viewfollow.FollowPageAdapter
+import com.example.cookingsocialnetwork.databinding.ActivityPostPage2Binding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -24,15 +16,22 @@ class  PostPage2 : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var backBtn: ImageView
     private lateinit var postBtn: Button
+    private lateinit var viewModel: PostPage2ViewModel
+    private lateinit var binding: ActivityPostPage2Binding
+
 //    private lateinit var previewBtn :Button
 //    private lateinit var nextBtn: Button
 
-    private val postPageAdapter = PostPage2ViewPagerAdapter(supportFragmentManager, lifecycle)
+    private lateinit var postPageAdapter : PostPage2ViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_post_page_2)
+
+        viewModel = ViewModelProvider(this).get(PostPage2ViewModel::class.java)
+        binding =ActivityPostPage2Binding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
 
         tabLayout = findViewById(R.id.post_page_tab)
         backBtn = findViewById(R.id.post_page_btn_back)
@@ -42,43 +41,46 @@ class  PostPage2 : AppCompatActivity() {
 //        nextBtn = findViewById(R.id.post_page_next_button)
 
 
+        postPageAdapter = PostPage2ViewPagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = postPageAdapter
-        viewPager.registerOnPageChangeCallback(
+        binding.postPageViewPager.registerOnPageChangeCallback(
             object: ViewPager2.OnPageChangeCallback(){
                 override fun onPageSelected(position: Int) {
                     when (position) {
                         0 -> {
-                            backBtn.setImageResource(R.drawable.ic_round_close)
-                            backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.red))
+                            binding.postPageBtnBack.setImageResource(R.drawable.ic_round_close)
+                            binding.postPageBtnBack.setColorFilter(ContextCompat.getColor(applicationContext, R.color.red))
                         }
                         4 -> {
 //                            nextBtn.visibility = View.GONE
 //                            previewBtn.text = "Xem lại trước khi đăng"
                         }
                         else -> {
-                            backBtn.setImageResource(R.drawable.ic_back_ios)
-                            backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.green))
+                            binding.postPageBtnBack.setImageResource(R.drawable.ic_back_ios)
+                            binding.postPageBtnBack.setColorFilter(ContextCompat.getColor(applicationContext, R.color.green))
                         }
                     }
                     super.onPageSelected(position)
+
+                    TabLayoutMediator(binding.postPageTab, binding.postPageViewPager){
+                            tabLayoutt, position ->
+                    }.attach()
                 }
+
             }
+
         )
 
-        TabLayoutMediator(tabLayout, viewPager){
-            tabLayoutt, position ->
-        }.attach()
 
-
-        postBtn.setOnClickListener {
+        binding.postPageBtnPost.setOnClickListener {
             post()
         }
 
-        backBtn.setOnClickListener {
-            if(tabLayout.selectedTabPosition == 0){
+        binding.postPageBtnBack.setOnClickListener {
+            if(binding.postPageTab.selectedTabPosition == 0){
                 finish()
             }else {
-                val tab: TabLayout.Tab? = tabLayout.getTabAt(tabLayout.selectedTabPosition - 1)
+                val tab: TabLayout.Tab? = binding.postPageTab.getTabAt(binding.postPageTab.selectedTabPosition - 1)
                 tab?.select()
             }
         }
@@ -109,6 +111,7 @@ class  PostPage2 : AppCompatActivity() {
         }
         finish()
     }
+
 
 }
 

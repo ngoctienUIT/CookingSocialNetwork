@@ -84,11 +84,11 @@ class PostPage2Fragment1: Fragment() {
         adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri)
         {
 
-            val editGridClickedImageFragment = FragmentClickedImageChoosed()
+           /* val editGridClickedImageFragment = FragmentClickedImageChoosed()
             val transaction =  requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragmentGridClickedItem, editGridClickedImageFragment)
             transaction.addToBackStack(null)
-            transaction.commit()
+            transaction.commit()*/
         }
         dataBinding.recyclerViewImage.adapter = adapterImageChoosed
         dataBinding.recyclerViewImage.setHasFixedSize(true)
@@ -124,6 +124,19 @@ class PostPage2Fragment1: Fragment() {
         dataBinding.foodImage.setOnClickListener {
             imageChooser()
         }
+    }
+
+    private fun closedFragment(){
+        val manager = requireActivity().supportFragmentManager
+        manager.beginTransaction().remove(this).commit()
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+      dataBinding.recyclerViewImage.adapter = null
+        gridLayoutManager.removeAllViews()
+        closedFragment()
     }
 }
 
