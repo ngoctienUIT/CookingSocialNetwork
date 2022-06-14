@@ -20,7 +20,6 @@
             android:textSize="18sp" />
 
         <TextView
-            android:textColor="#FF4500"
             android:id="@+id/post_page2_fragment5_food_note_lb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +27,7 @@
             android:layout_marginStart="15sp"
             android:layout_marginTop="30dp"
             android:text="Đôi lời muốn nói"
+            android:textColor="#FF4500"
             android:textSize="20sp"
             android:textStyle="bold" />
 

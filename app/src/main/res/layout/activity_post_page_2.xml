@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <import type="com.example.cookingsocialnetwork.post2.PostPage2ViewModel"/>
-        <variable
-            name="postPage2ViewModel"
-            type="PostPage2ViewModel" />
-    </data>
-
     <RelativeLayout
         android:id="@+id/postPage2_layout"
         android:layout_width="match_parent"

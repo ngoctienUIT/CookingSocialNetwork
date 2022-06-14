@@ -25,8 +25,6 @@ class  PostPage2 : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var backBtn: ImageView
     private lateinit var postBtn: Button
-    private lateinit var viewModel: PostPage2ViewModel
-    private lateinit var binding: ActivityPostPage2Binding
     //fields
     private lateinit var listImageUri : List<Uri>;
     private  var nameFood :String = "";
@@ -43,19 +41,16 @@ class  PostPage2 : AppCompatActivity() {
 
 
 
+
 //    private lateinit var previewBtn :Button
 //    private lateinit var nextBtn: Button
+    private val postPageAdapter = PostPage2ViewPagerAdapter(supportFragmentManager, lifecycle)
 
-    private lateinit var postPageAdapter : PostPage2ViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_post_page_2)
-
-        viewModel = ViewModelProvider(this).get(PostPage2ViewModel::class.java)
-        binding =ActivityPostPage2Binding.inflate(layoutInflater)
-        binding.lifecycleOwner = this
 
         tabLayout = findViewById(R.id.post_page_tab)
         backBtn = findViewById(R.id.post_page_btn_back)
@@ -64,47 +59,46 @@ class  PostPage2 : AppCompatActivity() {
 //        previewBtn = findViewById(R.id.post_page_preview_btn)
 //        nextBtn = findViewById(R.id.post_page_next_button)
 
-
-        postPageAdapter = PostPage2ViewPagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = postPageAdapter
-        binding.postPageViewPager.registerOnPageChangeCallback(
+        viewPager.registerOnPageChangeCallback(
             object: ViewPager2.OnPageChangeCallback(){
                 override fun onPageSelected(position: Int) {
                     when (position) {
                         0 -> {
-                            binding.postPageBtnBack.setImageResource(R.drawable.ic_round_close)
-                            binding.postPageBtnBack.setColorFilter(ContextCompat.getColor(applicationContext, R.color.red))
+                            backBtn.setImageResource(R.drawable.ic_round_close)
+                            backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.red))
                         }
                         4 -> {
 //                            nextBtn.visibility = View.GONE
 //                            previewBtn.text = "Xem lại trước khi đăng"
                         }
                         else -> {
-                            binding.postPageBtnBack.setImageResource(R.drawable.ic_back_ios)
-                            binding.postPageBtnBack.setColorFilter(ContextCompat.getColor(applicationContext, R.color.green))
+                            backBtn.setImageResource(R.drawable.ic_back_ios)
+                            backBtn.setColorFilter(ContextCompat.getColor(applicationContext, R.color.green))
                         }
                     }
                     super.onPageSelected(position)
 
-                    TabLayoutMediator(binding.postPageTab, binding.postPageViewPager){
-                            tabLayoutt, position ->
-                    }.attach()
                 }
 
             }
 
+
         )
+        TabLayoutMediator(tabLayout, viewPager){
+                tabLayoutt, position ->
+        }.attach()
 
 
         postBtn.setOnClickListener {
             post()
         }
 
-        binding.postPageBtnBack.setOnClickListener {
-            if(binding.postPageTab.selectedTabPosition == 0){
+        backBtn.setOnClickListener {
+            if(tabLayout.selectedTabPosition == 0){
                 finish()
             }else {
-                val tab: TabLayout.Tab? = binding.postPageTab.getTabAt(binding.postPageTab.selectedTabPosition - 1)
+                val tab: TabLayout.Tab? = tabLayout.getTabAt(tabLayout.selectedTabPosition - 1)
                 tab?.select()
             }
         }
