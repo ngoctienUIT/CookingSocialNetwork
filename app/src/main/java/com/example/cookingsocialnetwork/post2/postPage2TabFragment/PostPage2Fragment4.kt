@@ -33,7 +33,9 @@ class PostPage2Fragment4 : Fragment() {
     private lateinit var stepRec: RecyclerView
     private lateinit var stepAdapter: StepAdapter
     private lateinit var image: ImageView
-    private  var uriStep : Uri = Uri.EMPTY
+    private lateinit var uri : Uri
+
+    private var checkImage = false
 
     fun isInitialized() = ::stepRec.isInitialized
 
@@ -62,6 +64,8 @@ class PostPage2Fragment4 : Fragment() {
         val callBack: ItemTouchHelper.Callback = StepRowMoveCallBack(stepAdapter)
         val touchHelper = ItemTouchHelper(callBack)
         touchHelper.attachToRecyclerView(stepRec)
+
+        uri = getUriToDrawable(this,R.drawable.food_picker)
 
 
 
@@ -93,8 +97,6 @@ class PostPage2Fragment4 : Fragment() {
         }
 
         dialogBinding.addStepDoneBtn.setOnClickListener {
-            val uri : Uri = getUriToDrawable(this,R.drawable.food_picker)
-             Log.d("hoicham", uri.toString())
             stepList.add(Step( uri ,dialogBinding.addStepStepDes.text.toString()))
             stepAdapter.notifyDataSetChanged()
             dialog.dismiss()
@@ -108,8 +110,8 @@ class PostPage2Fragment4 : Fragment() {
     }
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val imageUri = result.data?.data
-            image.load(imageUri)
+            uri = result.data?.data!!
+            image.load(uri)
         }
     }
 

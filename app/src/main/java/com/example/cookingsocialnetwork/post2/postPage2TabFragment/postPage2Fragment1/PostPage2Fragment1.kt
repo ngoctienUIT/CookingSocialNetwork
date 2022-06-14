@@ -146,8 +146,6 @@ class PostPage2Fragment1: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         foodName = requireView().findViewById(R.id.post_page2_fragment1_food_name)
 
-
-
     }
 
 //    private fun closedFragment(){

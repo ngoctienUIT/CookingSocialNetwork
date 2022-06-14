@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
 import java.util.*
 
@@ -19,7 +20,7 @@ class StepAdapter(private val stepList: MutableList<Step>): RecyclerView.Adapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = stepList[position]
         holder.stepCount.text = "Bước " + (position + 1).toString()
-        //holder.stepImage.load(currentItem.image)
+        holder.stepImage.load(currentItem.image)
         holder.step.text = currentItem.step
 
         holder.delete.setOnClickListener {
