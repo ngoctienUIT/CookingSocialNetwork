@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 import io.reactivex.disposables.CompositeDisposable
 
 
@@ -36,6 +38,16 @@ class TrendingPagingAdapter : PagingDataAdapter<Post, TrendingPagingAdapter.Tren
     override fun onBindViewHolder(holder: TrendingSlideViewHolder, position: Int) {
         val post = getItem(position)
         post?.let { holder.bind(it) }
+        
+        holder.itemView.setOnClickListener{
+            val idPostClicked = post?.id
+            val context = holder.itemView.context
+            if(idPostClicked != ""){
+                val fullPost = Intent(context, ViewPost::class.java)
+                fullPost.putExtra("id_post", idPostClicked)
+                context.startActivity(fullPost)
+            }
+        }
     }
     override fun onViewRecycled(holder: TrendingPagingAdapter.TrendingSlideViewHolder) {
         super.onViewRecycled(holder)
