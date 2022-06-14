@@ -43,11 +43,11 @@
             android:layout_alignTop="@id/post_page2_fragment2_food_portion_lb"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
-            android:text="200 phần"
-            android:textSize="25sp"
+            android:focusable="false"
             android:inputType="none"
+            android:text="2 phần"
             android:textIsSelectable="true"
-            android:focusable="false"/>
+            android:textSize="25sp" />
 
         <View
             android:id="@+id/separate1"
@@ -126,7 +126,7 @@
             android:layout_marginEnd="15dp"
             android:focusable="false"
             android:inputType="none"
-            android:text="200 phần"
+            android:text="10 phút"
             android:textIsSelectable="true"
             android:textSize="25sp" />
 
@@ -157,11 +157,11 @@
             android:layout_alignTop="@id/post_page2_fragment2_food_baking_lb"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
-            android:text="200 phần"
-            android:textSize="25sp"
+            android:focusable="false"
             android:inputType="none"
+            android:text="30 phút"
             android:textIsSelectable="true"
-            android:focusable="false"/>
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/post_page2_fragment2_food_rest_lb"
@@ -190,11 +190,11 @@
             android:layout_alignTop="@id/post_page2_fragment2_food_rest_lb"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
-            android:text="200 phần"
-            android:textSize="25sp"
+            android:focusable="false"
             android:inputType="none"
+            android:text="0 phút"
             android:textIsSelectable="true"
-            android:focusable="false"/>
+            android:textSize="25sp" />
 
 
     </RelativeLayout>
