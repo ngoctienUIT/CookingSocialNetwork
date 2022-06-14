@@ -95,6 +95,7 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
                                     if (it["images"] != null) {
                                         listTrendingSlide.add(
                                             TrendingSlide(
+                                                documentSnapshot.id,
                                                 (it["images"] as MutableList<*>)[0]!! as String,
                                                 it["nameFood"]!! as String,
                                                 (it["favourites"]!!  as MutableList<*>).size.toString()

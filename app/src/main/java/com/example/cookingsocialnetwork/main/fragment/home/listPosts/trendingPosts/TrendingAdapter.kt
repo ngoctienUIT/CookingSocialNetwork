@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
-
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 
 
 class TrendingAdapter(private val trendingSlides: List<TrendingSlide>) :
@@ -37,7 +38,18 @@ class TrendingAdapter(private val trendingSlides: List<TrendingSlide>) :
 
         }
     override fun onBindViewHolder(holder: TrendingSlideViewHolder, position: Int) {
-        holder.bind(trendingSlides[position])
+        val slide = trendingSlides[position]
+        holder.bind(slide)
+
+        holder.itemView.setOnClickListener{
+            val idPostClicked = slide.postID
+            val context = holder.itemView.context
+            if(idPostClicked != ""){
+                val fullPost = Intent(context, ViewPost::class.java)
+                fullPost.putExtra("id_post", idPostClicked)
+                context.startActivity(fullPost)
+            }
+        }
     }
 
     override fun getItemCount(): Int {

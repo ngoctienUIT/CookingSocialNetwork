@@ -65,6 +65,7 @@ data class Post(
             val time = document.data?.get("timePost") as HashMap<String, Any>
             timePost.getTime(time)
             timestamp = document.data?.get("timestamp") as Timestamp
+
         }catch (e : Exception){
             throw e
         }
