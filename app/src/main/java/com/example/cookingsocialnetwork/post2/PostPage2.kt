@@ -83,7 +83,6 @@ class  PostPage2 : AppCompatActivity() {
 
             }
 
-
         )
         TabLayoutMediator(tabLayout, viewPager){
                 tabLayoutt, position ->
@@ -127,8 +126,7 @@ class  PostPage2 : AppCompatActivity() {
             this.foodNote = postPageAdapter.fragment5.foodNote.text.toString()
         }
         upLoadImageFoodToFirebase()
-        finish()
-
+        //finish()
     }
 
 
