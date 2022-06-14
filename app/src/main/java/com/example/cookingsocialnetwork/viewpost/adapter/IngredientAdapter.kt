@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.post2.model.Ingredient
 import java.lang.ref.WeakReference
 
-class IngredientAdapter(private var ingredients: MutableList<String>)
+class IngredientAdapter(private var ingredients: MutableList<Ingredient>)
     : RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -17,8 +18,8 @@ class IngredientAdapter(private var ingredients: MutableList<String>)
     }
 
     override fun onBindViewHolder(holder: IngredientViewHolder, position: Int) {
-        holder.ingredients = ingredients[position]
-        holder.updateView()
+        val ingredient = ingredients[position]
+        holder.updateView(ingredient)
     }
 
     override fun getItemCount(): Int = ingredients.size
@@ -27,7 +28,8 @@ class IngredientAdapter(private var ingredients: MutableList<String>)
         private var view: WeakReference<View> = WeakReference(itemView)
         private var nameIngredient: TextView? = null
         private var amount: TextView? = null
-        var ingredients: String? = null
+        private var unit:TextView? = null
+       // var ingredients: String? = null
 
         init {
             findView()
@@ -36,11 +38,15 @@ class IngredientAdapter(private var ingredients: MutableList<String>)
         private fun findView() {
             nameIngredient = view.get()?.findViewById(R.id.name_ingredient)
             amount = view.get()?.findViewById(R.id.amount)
+            unit = view.get()?.findViewById(R.id.unit)
+
         }
 
-        fun updateView() {
+        fun updateView(ingredient: Ingredient) {
             findView()
-            nameIngredient?.text = ingredients
+            nameIngredient?.text = ingredient.name
+            amount?.text = ingredient.amount
+            unit?.text = ingredient.unit
         }
     }
 }

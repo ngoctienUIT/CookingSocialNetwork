@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.cookingsocialnetwork.R
+import com.example.cookingsocialnetwork.post2.model.Step
 import java.lang.ref.WeakReference
 
-class MethodsAdapter(private var methods: MutableList<String>) :
+class MethodsAdapter(private var methods: MutableList<Step>) :
     RecyclerView.Adapter<MethodsAdapter.MethodsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MethodsViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -18,9 +20,9 @@ class MethodsAdapter(private var methods: MutableList<String>) :
     }
 
     override fun onBindViewHolder(holder: MethodsViewHolder, position: Int) {
-        holder.method = methods[position]
+      //  holder.method = methods[position]
         holder.number = position + 1
-        holder.updateView()
+        holder.updateView(methods[position])
     }
 
     override fun getItemCount(): Int = methods.size
@@ -43,10 +45,11 @@ class MethodsAdapter(private var methods: MutableList<String>) :
             image = view.get()?.findViewById(R.id.image)
         }
 
-        fun updateView() {
+        fun updateView(step: Step) {
             findView()
             order?.text = number.toString()
-            content?.text = method
+            content?.text = step.step
+            image?.load(step.image)
         }
     }
 }

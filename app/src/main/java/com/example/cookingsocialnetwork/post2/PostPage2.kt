@@ -135,7 +135,7 @@ class  PostPage2 : AppCompatActivity() {
     private fun initPost(){
         Log.d("PostPage", "initPost")
 
-        val newPostData = FirebaseFirestore.getInstance().collection("post2").document()
+        val newPostData = FirebaseFirestore.getInstance().collection("post").document()
         val postData = hashMapOf(
             "id" to newPostData.id,
             "owner" to FirebaseAuth.getInstance().currentUser?.email.toString(),

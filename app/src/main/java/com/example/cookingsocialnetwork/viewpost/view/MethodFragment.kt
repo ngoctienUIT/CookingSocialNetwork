@@ -33,7 +33,7 @@ class MethodFragment : Fragment() {
 
         activity?.let {
             viewModel.post.observe(it) { post ->
-                val methodsAdapter = MethodsAdapter(post.ingredients)
+                val methodsAdapter = MethodsAdapter(post.methods)
                 val methodsLayoutManager = LinearLayoutManager(it)
                 binding.method.layoutManager = methodsLayoutManager
                 binding.method.adapter = methodsAdapter
