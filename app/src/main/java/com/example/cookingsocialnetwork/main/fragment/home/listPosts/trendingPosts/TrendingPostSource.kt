@@ -5,10 +5,7 @@ import androidx.paging.PagingState
 import coil.fetch.SourceResult
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.Source
+import com.google.firebase.firestore.*
 import kotlinx.coroutines.tasks.await
 
 class TrendingPostSource(private val db: FirebaseFirestore) : PagingSource<QuerySnapshot, Post>() {
@@ -18,7 +15,7 @@ class TrendingPostSource(private val db: FirebaseFirestore) : PagingSource<Query
             val currentPage = params.key ?: db.collection("post")
                 .limit(5)
                 //.whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
-                .orderBy("favourites")
+                .orderBy("favourites", Query.Direction.DESCENDING)
                 .get()
                 .await()
 

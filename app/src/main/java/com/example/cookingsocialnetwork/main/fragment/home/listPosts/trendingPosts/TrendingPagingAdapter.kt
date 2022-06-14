@@ -38,16 +38,7 @@ class TrendingPagingAdapter : PagingDataAdapter<Post, TrendingPagingAdapter.Tren
     override fun onBindViewHolder(holder: TrendingSlideViewHolder, position: Int) {
         val post = getItem(position)
         post?.let { holder.bind(it) }
-        
-        holder.itemView.setOnClickListener{
-            val idPostClicked = post?.id
-            val context = holder.itemView.context
-            if(idPostClicked != ""){
-                val fullPost = Intent(context, ViewPost::class.java)
-                fullPost.putExtra("id_post", idPostClicked)
-                context.startActivity(fullPost)
-            }
-        }
+
     }
     override fun onViewRecycled(holder: TrendingPagingAdapter.TrendingSlideViewHolder) {
         super.onViewRecycled(holder)

@@ -47,6 +47,15 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
         val  post = getItem(position)
         post?.let { holder.bind(it) }
 
+        holder.itemView.setOnClickListener{
+            val idPostClicked = post?.id
+            val context = holder.itemView.context
+            if(idPostClicked != ""){
+                val fullPost = Intent(context, ViewPost::class.java)
+                fullPost.putExtra("id_post", idPostClicked)
+                context.startActivity(fullPost)
+            }
+        }
     }
 
     override fun onViewRecycled(holder: PostViewHolder) {
