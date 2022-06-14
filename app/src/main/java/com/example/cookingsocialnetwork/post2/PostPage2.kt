@@ -3,6 +3,7 @@ package com.example.cookingsocialnetwork.post2
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -58,6 +59,7 @@ class  PostPage2 : AppCompatActivity() {
         backBtn = findViewById(R.id.post_page_btn_back)
         viewPager  = findViewById(R.id.post_page_viewPager)
         postBtn = findViewById(R.id.post_page_btn_post)
+        postBtn.visibility = View.INVISIBLE
 //        previewBtn = findViewById(R.id.post_page_preview_btn)
 //        nextBtn = findViewById(R.id.post_page_next_button)
 
@@ -73,6 +75,7 @@ class  PostPage2 : AppCompatActivity() {
                         4 -> {
 //                            nextBtn.visibility = View.GONE
 //                            previewBtn.text = "Xem lại trước khi đăng"
+                            postBtn.visibility = View.VISIBLE
                         }
                         else -> {
                             backBtn.setImageResource(R.drawable.ic_back_ios)
@@ -165,6 +168,7 @@ class  PostPage2 : AppCompatActivity() {
             .update("post", FieldValue.arrayUnion(IDNewPost))
 
         Log.d("PostPage", "add ID successful")
+        finish()
 
     }
 
