@@ -23,7 +23,8 @@ class MethodsAdapter(private var methods: MutableList<StepFireBase>) :
     override fun onBindViewHolder(holder: MethodsViewHolder, position: Int) {
       //  holder.method = methods[position]
         holder.number = position + 1
-        holder.updateView(methods[position])
+        val step = methods[position]
+        holder.updateView(step)
     }
 
     override fun getItemCount(): Int = methods.size

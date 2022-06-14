@@ -52,10 +52,11 @@ data class Post(
             convertToIngredientList(arrIngredient)
 
             level =  document.data?.get("level") as String
+
             //get methods
             val arrMethods = document.data?.get("methods") as ArrayList<HashMap<String, Any>>
             convertToMethodList(arrMethods)
-            methods = document.data?.get("methods") as MutableList<StepFireBase>
+
 
             nameFood = document.data?.get("nameFood") as String
             owner = document.data?.get("owner") as String
