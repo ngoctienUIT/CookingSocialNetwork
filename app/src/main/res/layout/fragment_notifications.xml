@@ -16,6 +16,7 @@
             <com.google.android.material.tabs.TabLayout
                 android:elevation="5dp"
                 android:padding="5dp"
+                app:tabMode="scrollable"
                 app:tabTextAppearance="@style/MineCustomTabText"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"

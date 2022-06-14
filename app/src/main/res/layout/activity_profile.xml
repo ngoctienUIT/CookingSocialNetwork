@@ -220,7 +220,14 @@
                     app:tabInlineLabel="true"
                     app:tabMode="fixed"/>
 
+                <View
+                    android:alpha="0.5"
+                    android:background="@drawable/line_hor"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"/>
+
                 <androidx.viewpager2.widget.ViewPager2
+                    android:paddingHorizontal="10dp"
                     android:id="@+id/view_pager_profile"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
