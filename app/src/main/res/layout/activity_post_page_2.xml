@@ -54,6 +54,18 @@
                 android:textSize="16sp" />
 
         </RelativeLayout>
+                <Button
+                    android:id="@+id/post_page_btn_post"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center"
+                    android:minWidth="55dp"
+                    android:text="Đăng"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/post_page_tab"

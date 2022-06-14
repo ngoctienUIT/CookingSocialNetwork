@@ -35,6 +35,7 @@ class PostPage2Fragment1: Fragment() {
     private var listImageUri: MutableList<Uri> = mutableListOf()  // image choose from device
     private var listImageUrlFB : MutableList<String> = mutableListOf() // image url from firebase
 
+
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             if (result.data?.clipData !=null) {
@@ -46,6 +47,7 @@ class PostPage2Fragment1: Fragment() {
 
                     //listImageUri.add(imageUri)
                     viewModel.addUriIntoListUris(imageUri)
+                   // adapterImageChoosed.notifyDataSetChanged()
                 }
                 addListUri()
             }
@@ -74,9 +76,10 @@ class PostPage2Fragment1: Fragment() {
         imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun addListUri(){
 
-        //set RecycleView
+       /* //set RecycleView
         gridLayoutManager = GridLayoutManager(this.context, 3, RecyclerView.VERTICAL, false)
          gridLayoutManager.scrollToPosition(0)
         dataBinding.recyclerViewImage.layoutManager = gridLayoutManager
@@ -91,7 +94,9 @@ class PostPage2Fragment1: Fragment() {
             transaction.commit()*/
         }
         dataBinding.recyclerViewImage.adapter = adapterImageChoosed
-        dataBinding.recyclerViewImage.setHasFixedSize(true)
+        dataBinding.recyclerViewImage.setHasFixedSize(true)*/
+        adapterImageChoosed.notifyDataSetChanged()
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -113,6 +118,17 @@ class PostPage2Fragment1: Fragment() {
         //dataBinding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this).get(PostPage2Fragment1ViewModel::class.java)
 
+        //set RecycleView
+        gridLayoutManager = GridLayoutManager(this.context, 3, RecyclerView.VERTICAL, false)
+        gridLayoutManager.scrollToPosition(0)
+        dataBinding.recyclerViewImage.layoutManager = gridLayoutManager
+        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri){}
+        dataBinding.recyclerViewImage.adapter = adapterImageChoosed
+
+        dataBinding.foodImage.setOnClickListener {
+            imageChooser()
+        }
+
         return dataBinding.root
     }
 
@@ -121,9 +137,7 @@ class PostPage2Fragment1: Fragment() {
         foodName = requireView().findViewById(R.id.post_page2_fragment1_food_name)
 
 
-        dataBinding.foodImage.setOnClickListener {
-            imageChooser()
-        }
+
     }
 
 //    private fun closedFragment(){
