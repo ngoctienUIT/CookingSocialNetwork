@@ -177,7 +177,7 @@ class  PostPage2 : AppCompatActivity() {
         Log.d("PostPage", "Loading...")
 
         val storageRef = FirebaseStorage.getInstance().reference
-        if(listImageUri.count()!= 0){
+        if(listImageUri.isNotEmpty()){
             for (i in 0 until listImageUri.count()) {
 
                 val ref = storageRef.child("post/${listImageUri[i].lastPathSegment}")

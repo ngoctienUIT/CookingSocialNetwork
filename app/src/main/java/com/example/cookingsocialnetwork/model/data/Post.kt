@@ -32,13 +32,14 @@ data class Post(
 ) {
 
     constructor() : this(
-        mutableListOf(),"",   "",0, mutableListOf(), "", mutableListOf(),
+        mutableListOf<Map<String, Any>>(),"",   "",0, mutableListOf(), "", mutableListOf(),
         mutableListOf(),"0", mutableListOf(), "", "", "",
         0, Time(), Timestamp.now()
     )
 
     fun  getData(document: DocumentSnapshot) {
         try {
+
             comments = document.data?.get("comments") as MutableList<Map<String, Any>>
             cookingTime = document.data?.get("cookingTime") as String
             description = document.data?.get("description") as String
@@ -71,21 +72,27 @@ data class Post(
         }
     }
     private fun convertToIngredientList(arrIngredientArrFB :  ArrayList<HashMap<String, Any>>){
-        for( i in 0 until  arrIngredientArrFB.count()){
-            val x = arrIngredientArrFB[i]
-            val ingredient = Ingredient(x["amount"].toString(), x["unit"].toString(),x["name"].toString())
-            ingredients.add(ingredient)
-           // Log.d("ingredient",  "Ingredient(" + ingredient.name + ", " + ingredient.amount + ", " + ingredient.unit + ")" )
+        if (ingredients.size == 0){
+            for( i in 0 until  arrIngredientArrFB.count()){
+                val x = arrIngredientArrFB[i]
+                val ingredient = Ingredient(x["amount"].toString(), x["unit"].toString(),x["name"].toString())
+                ingredients.add(ingredient)
+                // Log.d("ingredient",  "Ingredient(" + ingredient.name + ", " + ingredient.amount + ", " + ingredient.unit + ")" )
+            }
         }
+
 
     }
     private fun convertToMethodList(arrMethodFB :  ArrayList<HashMap<String, Any>>){
-        for( i in 0 until  arrMethodFB.count()){
-            val x = arrMethodFB[i]
-            val step = StepFireBase(x["image"].toString(), x["step"].toString())
-            methods.add(step)
-           // Log.d("StepFireBase", step.image + " " + step.step )
+        if(methods.size  ==  0){
+            for( i in 0 until  arrMethodFB.count()){
+                val x = arrMethodFB[i]
+                val step = StepFireBase(x["image"].toString(), x["step"].toString())
+                methods.add(step)
+                // Log.d("StepFireBase", step.image + " " + step.step )
+            }
         }
+
 
     }
 }

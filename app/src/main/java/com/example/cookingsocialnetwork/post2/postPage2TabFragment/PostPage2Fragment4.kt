@@ -90,7 +90,9 @@ class PostPage2Fragment4 : Fragment() {
             val i = Intent()
             i.type = "image/*"
             i.action = Intent.ACTION_GET_CONTENT
-            i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                i.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE,true)
+            }
 
             imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
             //dialogBinding.addStepImage.load(uriStep)
