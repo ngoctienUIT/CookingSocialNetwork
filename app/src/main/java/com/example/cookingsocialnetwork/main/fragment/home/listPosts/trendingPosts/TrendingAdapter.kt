@@ -1,6 +1,7 @@
 package com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +34,7 @@ class TrendingAdapter(private val trendingSlides: List<TrendingSlide>) :
     override fun onBindViewHolder(holder: TrendingSlideViewHolder, position: Int) {
         val slide = trendingSlides[position]
         holder.bind(slide)
-
-        holder.itemView.setOnClickListener{
+         holder.itemView.setOnClickListener{
             val idPostClicked = slide.postID
             val context = holder.itemView.context
             if(idPostClicked != ""){
@@ -46,17 +46,23 @@ class TrendingAdapter(private val trendingSlides: List<TrendingSlide>) :
     }
 
 
-     inner class TrendingSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+     inner class TrendingSlideViewHolder(view: View) : RecyclerView.ViewHolder(view){
         private val foodImage = view.findViewById<ImageView>(R.id.trendingFoodPicture)!!
         private val foodName = view.findViewById<TextView>(R.id.trendingNameFood)!!
         private val heartPost = view.findViewById<TextView>(R.id.heartTrending)!!
+         init {
+             itemView.setOnClickListener{
+             }
+         }
 
         fun bind(trendingSlide: TrendingSlide) {
             foodImage.load(trendingSlide.foodImage)
             foodName.text = trendingSlide.foodName
             heartPost.text = trendingSlide.heartPost
         }
-    }
+
+
+     }
 }
 
 

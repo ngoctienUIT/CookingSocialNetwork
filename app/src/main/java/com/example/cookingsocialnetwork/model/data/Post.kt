@@ -1,13 +1,12 @@
 package com.example.cookingsocialnetwork.model.data
 
-import android.util.Log
+
 import com.example.cookingsocialnetwork.post2.model.Ingredient
-import com.example.cookingsocialnetwork.post2.model.Step
 import com.example.cookingsocialnetwork.post2.model.StepFireBase
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import java.lang.Exception
-import java.security.Key
+
 
 data class Post(
     @Transient
