@@ -8,7 +8,9 @@
             name="postPage2ViewModel"
             type="PostPage2ViewModel" />
     </data>
-    <FrameLayout
+
+    <RelativeLayout
+        android:id="@+id/postPage2_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
@@ -96,8 +98,21 @@
             <!--                android:text="Tiếp theo" />-->
             <!--        </LinearLayout>-->
         </RelativeLayout>
-    </FrameLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/post_page_tab"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@id/post_page_top"
+            app:tabInlineLabel="true"
+            app:tabMode="fixed" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/post_page_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/post_page_tab" />
 
 
-
+    </RelativeLayout>
 </layout>
