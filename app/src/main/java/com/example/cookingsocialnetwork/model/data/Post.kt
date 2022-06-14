@@ -1,10 +1,13 @@
 package com.example.cookingsocialnetwork.model.data
 
+import android.util.Log
 import com.example.cookingsocialnetwork.post2.model.Ingredient
 import com.example.cookingsocialnetwork.post2.model.Step
+import com.example.cookingsocialnetwork.post2.model.StepFireBase
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import java.lang.Exception
+import java.security.Key
 
 data class Post(
     @Transient
@@ -17,7 +20,7 @@ data class Post(
     var images: MutableList<String>, // danh sách ảnh
     var ingredients: MutableList<Ingredient>, // danh sách nguyên liệu
     var level: String, // độ khó
-    var methods: MutableList<Step>,//danh sách các bước làm món ăn
+    var methods: MutableList<StepFireBase>,//danh sách các bước làm món ăn
     var nameFood: String, // tên món ăn
     var owner: String, // username chủ bài viết
     var servers: String, // số người ăn
@@ -43,18 +46,44 @@ data class Post(
             favouritesCount = favourites.size.toLong()
             id = document.data?.get("id") as String
             images = document.data?.get("images") as MutableList<String>
-            ingredients = document.data?.get("ingredients") as MutableList<Ingredient>
+
+            //get arrIngredient
+            val arrIngredient = document.data?.get("ingredients") as ArrayList<HashMap<String, Any>>
+            convertToIngredientList(arrIngredient)
+
             level =  document.data?.get("level") as String
-            methods = document.data?.get("methods") as MutableList<Step>
+            //get methods
+            val arrMethods = document.data?.get("methods") as ArrayList<HashMap<String, Any>>
+            convertToMethodList(arrMethods)
+            methods = document.data?.get("methods") as MutableList<StepFireBase>
+
             nameFood = document.data?.get("nameFood") as String
             owner = document.data?.get("owner") as String
             servers = document.data?.get("nameFood") as String
             share = document.data?.get("share") as Long
             val time = document.data?.get("timePost") as HashMap<String, Any>
             timePost.getTime(time)
-            timestamp = document.data?.get("timestamp") as Timestamp
+           // timestamp = document.data?.get("timestamp") as Timestamp
         }catch (e : Exception){
             throw e
         }
+    }
+    private fun convertToIngredientList(arrIngredientArrFB :  ArrayList<HashMap<String, Any>>){
+        for( i in 0 until  arrIngredientArrFB.count()){
+            val x = arrIngredientArrFB[i]
+            val ingredient = Ingredient(x["amount"].toString(), x["unit"].toString(),x["name"].toString())
+            ingredients.add(ingredient)
+            Log.d("ingredient",  "Ingredient(" + ingredient.name + ", " + ingredient.amount + ", " + ingredient.unit + ")" )
+        }
+
+    }
+    private fun convertToMethodList(arrMethodFB :  ArrayList<HashMap<String, Any>>){
+        for( i in 0 until  arrMethodFB.count()){
+            val x = arrMethodFB[i]
+            val step = StepFireBase(x["image"].toString(), x["step"].toString())
+            methods.add(step)
+            Log.d("StepFireBase", step.image + " " + step.step )
+        }
+
     }
 }

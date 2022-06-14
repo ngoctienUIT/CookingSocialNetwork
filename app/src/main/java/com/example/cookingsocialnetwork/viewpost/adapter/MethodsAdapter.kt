@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.post2.model.Step
+import com.example.cookingsocialnetwork.post2.model.StepFireBase
 import java.lang.ref.WeakReference
 
-class MethodsAdapter(private var methods: MutableList<Step>) :
+class MethodsAdapter(private var methods: MutableList<StepFireBase>) :
     RecyclerView.Adapter<MethodsAdapter.MethodsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MethodsViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -45,7 +46,7 @@ class MethodsAdapter(private var methods: MutableList<Step>) :
             image = view.get()?.findViewById(R.id.image)
         }
 
-        fun updateView(step: Step) {
+        fun updateView(step: StepFireBase) {
             findView()
             order?.text = number.toString()
             content?.text = step.step
