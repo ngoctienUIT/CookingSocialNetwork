@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
         <import type="com.example.cookingsocialnetwork.post2.PostPage2ViewModel"/>
         <variable
@@ -51,7 +51,7 @@
                 android:gravity="center"
                 android:minWidth="55dp"
                 android:text="Đăng"
-                android:textColor="@color/black"
+                android:textColor="#0000EE"
                 android:textSize="16sp" />
 
         </RelativeLayout>

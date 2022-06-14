@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
     android:layout_height="160dp"
     android:layout_marginEnd="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    android:backgroundTint="#f7f6f2">
+    android:backgroundTint="#90EE90">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="15dp">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/food_image_card_rec"
             android:layout_width="140dp"
             android:layout_height="match_parent"
             app:cardCornerRadius="10dp">
+
             <ImageView
                 android:id="@+id/food_image_random_post"
                 android:layout_width="match_parent"
@@ -24,6 +28,7 @@
                 android:scaleType="centerCrop"
                 android:background="@drawable/round_view"
                 android:src="@drawable/food_picker" />
+
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -33,6 +38,7 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/food_image_card_rec"
             android:text="Food name"
+            android:textColor="@color/red"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -43,6 +49,7 @@
             android:layout_below="@id/food_name_random_post"
             android:layout_alignStart="@id/food_name_random_post"
             android:text="by Ai đó"
+            android:textColor="@color/white"
             android:textStyle="italic" />
 
         <RatingBar
@@ -51,39 +58,73 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/food_name_random_post"
-            android:layout_alignParentBottom="true"
-            android:progressTint="@color/black"
+            android:layout_below="@id/user_random_post"
+            android:progressTint="#FFD700"
             android:rating="3" />
 
-        <TextView
-            android:id="@+id/comment_random_post"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+        <LinearLayout
+            android:layout_alignStart="@id/food_name_random_post"
+            android:id="@+id/box_comment"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/food_diff_random_post"
-            android:drawableLeft="@drawable/ic_chat"
-            android:gravity="right"
-            android:minWidth="30dp"
-            android:text="12"
-            android:textSize="12sp" />
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/icons_comment"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                app:tint="#008000" />
+
+            <TextView
+                android:textColor="#008000"
+                android:id="@+id/comment_random_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:minWidth="30dp"
+                android:text="12"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@id/box_comment"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_favorite_border"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                app:tint="@color/red" />
+
+            <TextView
+                android:textColor="#008000"
+                android:id="@+id/heart_random_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:minWidth="30dp"
+                android:text="12"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/heart_random_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/comment_random_post"
             android:drawableLeft="@drawable/ic_heart"
             android:gravity="right"
             android:minWidth="30dp"
             android:text="12"
             android:textSize="12sp" />
 
-
     </RelativeLayout>
-
-
 
 </androidx.cardview.widget.CardView>
