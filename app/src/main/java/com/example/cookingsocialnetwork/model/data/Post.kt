@@ -60,7 +60,7 @@ data class Post(
 
             nameFood = document.data?.get("nameFood") as String
             owner = document.data?.get("owner") as String
-            servers = document.data?.get("nameFood") as String
+            servers = document.data?.get("servers") as String
             share = document.data?.get("share") as Long
             val time = document.data?.get("timePost") as HashMap<String, Any>
             timePost.getTime(time)
