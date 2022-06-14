@@ -28,7 +28,6 @@ class PostPage2Fragment5 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         foodNote = requireView().findViewById(R.id.post_page2_fragment5_food_note)
 
-
     }
 
 

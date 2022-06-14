@@ -86,21 +86,26 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
                     if (e != null) {
                         return@addSnapshotListener
                     }
-
                     if (snapshot != null) {
                         val documents = snapshot.documents
-                        documents.forEach()
-                        { documentSnapshot ->
+                        if(documents.size > 1){
+                            documents.forEach()
+                            { documentSnapshot ->
+                                documentSnapshot.data!!.let {
+                                    if (it["images"] != null) {
+                                        listTrendingSlide.add(
+                                            TrendingSlide(
+                                                (it["images"] as MutableList<*>)[0]!! as String,
+                                                it["nameFood"]!! as String,
+                                                (it["favourites"]!!  as MutableList<*>).size.toString()
+                                            )
+                                        )
+                                    }
+                                }
+                        }
+                        }
+                        else{
 
-                           documentSnapshot.data?.let {
-                               listTrendingSlide.add(
-                                   TrendingSlide(
-                                       (it["images"] as MutableList<*>)[0] as String,
-                                       it["nameFood"] as String,
-                                       (it["favourites"]  as MutableList<*>).size.toString()
-                                   )
-                               )
-                           }
                         }
                         mutblLiveDataTrendingSlide.value = listTrendingSlide
                     }

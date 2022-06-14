@@ -14,10 +14,12 @@ import com.example.cookingsocialnetwork.post2.model.Ingredient
 import com.example.cookingsocialnetwork.post2.model.Step
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.type.Date
 import java.time.LocalDateTime
 
 class  PostPage2 : AppCompatActivity() {
@@ -151,7 +153,8 @@ class  PostPage2 : AppCompatActivity() {
             "favouritesCount" to 0,
             "timePost" to LocalDateTime.now(),
             "share" to 0,
-            "comments" to mutableListOf<Map<String, Any>>()
+            "comments" to mutableListOf<Map<String, Any>>(),
+            "timestamp"   to  Timestamp.now()
         )
         newPostData.set(postData)
         addIDPostToUser(newPostData.id)
