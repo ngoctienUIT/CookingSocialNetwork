@@ -4,12 +4,18 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +36,8 @@ class PostPage2Fragment1: Fragment() {
     private lateinit var adapterImageChosen: RecyclerAdapterImageChosen
 
     var imageList: MutableList<Uri> = ArrayList() ///
+
+    var check = true
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -57,7 +65,10 @@ class PostPage2Fragment1: Fragment() {
                 val imageUri = result.data?.data
                 //listImageUri.add(imageUri!!)
                 imageList.add(imageUri!!)
+
                 adapterImageChosen.notifyDataSetChanged()
+                check = true
+
 //                viewModel.addUriIntoListUris(imageUri!!)
 //                addListUri()
 //                dataBinding.foodImage.setImageURI(imageUri)
@@ -138,6 +149,30 @@ class PostPage2Fragment1: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         foodName = requireView().findViewById(R.id.post_page2_fragment1_food_name)
+
+        foodName.addTextChangedListener(
+            object : TextWatcher{
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if(foodName.text.length != 0){
+                        check == true
+                    }
+                }
+
+            }
+        )
 
     }
 

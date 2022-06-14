@@ -29,6 +29,7 @@ class PostPage2Fragment3 : Fragment() {
     var ingredientList: MutableList<Ingredient> = ArrayList() //lấy cái này
 
     fun isInitialized() = ::ingredientRec.isInitialized
+    var check = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +72,7 @@ class PostPage2Fragment3 : Fragment() {
         dialogBinding.addIngredientDoneBtn.setOnClickListener {
             ingredientList.add(Ingredient(dialogBinding.addIngredientAmount.text.toString(),dialogBinding.addIngredientUnit.text.toString(),dialogBinding.addIngredientsIngredient.text.toString()))
             ingredientAdapter.notifyDataSetChanged()
+            check = true
             dialog.dismiss()
         }
         dialogBinding.addIngredientUnit.setOnClickListener {

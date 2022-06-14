@@ -14,6 +14,7 @@ import com.example.cookingsocialnetwork.databinding.PortionPickerBinding
 import com.example.cookingsocialnetwork.databinding.TimePickerBinding
 
 class PostPage2Fragment2 : Fragment(){
+    var check = false
 
     lateinit var portion: EditText  //lấy cái này
     lateinit var difficult: RatingBar // lấy cái này
@@ -43,6 +44,7 @@ class PostPage2Fragment2 : Fragment(){
         portion = requireView().findViewById(R.id.post_page2_fragment2_food_portion)
         portion.setOnClickListener{
             portionPicker()
+            check = true
         }
 
         difficult = requireView().findViewById(R.id.post_page2_fragment2_food_difficult)
@@ -50,14 +52,20 @@ class PostPage2Fragment2 : Fragment(){
         prepTime = requireView().findViewById(R.id.post_page2_fragment2_food_prep)
         prepTime.setOnClickListener{
             timePicker(prepTime)
+            check = true
+        }
+        difficult.setOnClickListener{
+            check = true
         }
         bakingTime = requireView().findViewById(R.id.post_page2_fragment2_food_baking)
         bakingTime.setOnClickListener{
             timePicker(bakingTime)
+            check  = true
         }
         restTime = requireView().findViewById(R.id.post_page2_fragment2_food_rest)
         restTime.setOnClickListener{
             timePicker(restTime)
+            check = true
         }
     }
     private fun portionPicker() {

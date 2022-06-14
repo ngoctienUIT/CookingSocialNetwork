@@ -28,6 +28,7 @@ import com.google.android.material.button.MaterialButton
 
 
 class PostPage2Fragment4 : Fragment() {
+    var check = false
 
     private lateinit var addStep: MaterialButton
     private lateinit var stepRec: RecyclerView
@@ -99,6 +100,7 @@ class PostPage2Fragment4 : Fragment() {
         }
 
         dialogBinding.addStepDoneBtn.setOnClickListener {
+            check = true
             stepList.add(Step( uri ,dialogBinding.addStepStepDes.text.toString()))
             stepAdapter.notifyDataSetChanged()
             dialog.dismiss()

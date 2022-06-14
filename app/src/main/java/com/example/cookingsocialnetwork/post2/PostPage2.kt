@@ -95,6 +95,22 @@ class  PostPage2 : AppCompatActivity() {
 
 
         postBtn.setOnClickListener {
+            if(postPageAdapter.fragment1.foodName.text.toString() == "" || postPageAdapter.fragment1.imageList.size ==0){
+                val tab: TabLayout.Tab? = tabLayout.getTabAt(0)
+                tab?.select()
+                return@setOnClickListener
+            }
+            if(!postPageAdapter.fragment3.check){
+                val tab: TabLayout.Tab? = tabLayout.getTabAt(2)
+                tab?.select()
+                return@setOnClickListener
+            }
+            if(!postPageAdapter.fragment4.check){
+                val tab: TabLayout.Tab? = tabLayout.getTabAt(3)
+                tab?.select()
+                return@setOnClickListener
+            }
+
             post()
         }
 
