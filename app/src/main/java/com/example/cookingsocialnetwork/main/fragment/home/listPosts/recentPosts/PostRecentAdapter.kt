@@ -96,7 +96,7 @@ class PostRecentAdapter : PagedListAdapter<RealtimePost1, PostRecentAdapter.Post
                                 userName.text = user.name
                             }
                         foodImage.load(post.images[0])
-                        rating.numStars = post.level.toFloat().roundToInt()
+                        rating.rating = post.level.toFloat()
                         foodName.text = post.nameFood
                         comment.text = post.comments.size.toString()
                         heart.text = post.favourites.size.toString()

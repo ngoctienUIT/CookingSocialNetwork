@@ -100,7 +100,7 @@ class RandomPostAdapter : PagingDataAdapter<Post, RandomPostAdapter.PostViewHold
                     }
                 foodImage.load(post.images[0])
                 foodName.text = post.nameFood
-                rating.numStars = post.level.toFloat().roundToInt()
+                rating.rating = post.level.toFloat()
                 comment.text = post.comments.size.toString()
                 heart.text = post.favourites.size.toString()
             } to viewHolderDisposables
