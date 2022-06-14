@@ -26,8 +26,6 @@ class PostPage2Fragment3 : Fragment() {
     lateinit var ingredientRec: RecyclerView
     lateinit var ingredientAdapter: IngredientAdapter
 
-    lateinit var portion: EditText  //lấy cái này
-
     var ingredientList: MutableList<Ingredient> = ArrayList() //lấy cái này
 
     fun isInitialized() = ::ingredientRec.isInitialized

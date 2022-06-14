@@ -64,13 +64,27 @@
         android:layout_marginHorizontal="15dp"
         android:scaleType="centerCrop"
         android:src="@drawable/food_picker" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pickImageStep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_step_image"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#00FFFFFF"
+        android:stateListAnimator="@null"
+        android:text="Chọn ảnh"
+        android:textColor="#008000"
+        app:cornerRadius="5dp"
+        app:strokeColor="#FF6347"
+        app:strokeWidth="2dp" />
 
     <TextView
         android:id="@+id/add_step_step_des_lb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mô tả bước làm"
-        android:layout_below="@id/add_step_image"
+        android:layout_below="@id/pickImageStep"
         android:layout_alignStart="@id/add_steps_image_lb"
         android:textStyle="bold"
         android:textSize="25sp"
@@ -82,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/add_step_step_des_lb"
         android:layout_marginHorizontal="15dp"
-        android:maxLength="500"/>
+        android:maxLength="500" />
 
     <TextView
         android:id="@+id/add_step_step_des_count"

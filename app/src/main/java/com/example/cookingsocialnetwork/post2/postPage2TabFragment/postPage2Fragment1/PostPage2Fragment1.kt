@@ -39,6 +39,7 @@ class PostPage2Fragment1: Fragment() {
     var imageList: MutableList<Uri> = ArrayList() ///
 
 
+    @SuppressLint("NotifyDataSetChanged")
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             if (result.data?.clipData !=null) {
@@ -49,10 +50,13 @@ class PostPage2Fragment1: Fragment() {
                     val imageUri = result.data!!.clipData!!.getItemAt(i).uri
 
                     //listImageUri.add(imageUri)
-                    viewModel.addUriIntoListUris(imageUri)
+                  //  viewModel.addUriIntoListUris(imageUri)
+                    imageList.add(imageUri)
                    // adapterImageChoosed.notifyDataSetChanged()
                 }
-                addListUri()
+               // addListUri()
+
+                adapterImageChoosed.notifyDataSetChanged()
             }
             else
             {
@@ -100,7 +104,7 @@ class PostPage2Fragment1: Fragment() {
         }
         dataBinding.recyclerViewImage.adapter = adapterImageChoosed
         dataBinding.recyclerViewImage.setHasFixedSize(true)*/
-        adapterImageChoosed.notifyDataSetChanged()
+
 
     }
 

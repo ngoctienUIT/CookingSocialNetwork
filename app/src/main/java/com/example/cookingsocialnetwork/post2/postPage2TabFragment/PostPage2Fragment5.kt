@@ -11,8 +11,8 @@ import com.google.android.material.textview.MaterialTextView
 
 class PostPage2Fragment5 : Fragment() {
 
-    lateinit var foodnote: MaterialTextView
-    fun isInitialized() = ::foodnote.isInitialized
+    lateinit var foodNote: MaterialTextView
+    fun isInitialized() = ::foodNote.isInitialized
 
 
     override fun onCreateView(
@@ -25,7 +25,7 @@ class PostPage2Fragment5 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        foodnote = requireView().findViewById(R.id.post_page2_fragment5_food_note_lb)
+        foodNote = requireView().findViewById(R.id.post_page2_fragment5_food_note_lb)
     }
 
 
