@@ -183,6 +183,7 @@ class  PostPage2 : AppCompatActivity() {
 
                 val ref = storageRef.child("post/${listImageUri[i].lastPathSegment}")
                 val uploadTask = ref.putFile(listImageUri[i])
+                Log.d("testuri", listImageUri[i].toString())
 
                 uploadTask.addOnFailureListener {
 
@@ -216,9 +217,6 @@ class  PostPage2 : AppCompatActivity() {
                     }
                 }
         }
-
-
-
         }
         else{
             uploadImageStepToFireBase()
@@ -274,9 +272,6 @@ class  PostPage2 : AppCompatActivity() {
             initPost()
         }
     }
-
-
-
 }
 
 

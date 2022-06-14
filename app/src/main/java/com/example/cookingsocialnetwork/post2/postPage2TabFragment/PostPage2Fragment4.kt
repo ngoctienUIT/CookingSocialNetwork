@@ -2,14 +2,18 @@ package com.example.cookingsocialnetwork.post2.postPage2TabFragment
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.AnyRes
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -77,9 +81,11 @@ class PostPage2Fragment4 : Fragment() {
 
         dialogBinding.addStepDoneBtn.setOnClickListener {
           //  val imageUri :Uri = Uri.fromFile("  @drawable/food_picker")//"nói chung là URI của cái image m làm nhá"
-            val uri : Uri? = null
+           // val uri : Uri = Uri.parse("content://com.android.providers.media.documents/document/image%3A16558")
 
-            stepList.add(Step( dialogBinding.addStepImage.,dialogBinding.addStepStepDes.text.toString()))
+            val uri : Uri = getUriToDrawable(this,R.drawable.food_picker)
+             Log.d("hoicham", uri.toString())
+            stepList.add(Step( uri ,dialogBinding.addStepStepDes.text.toString()))
             stepAdapter.notifyDataSetChanged()
             dialog.dismiss()
         }
@@ -112,6 +118,17 @@ class PostPage2Fragment4 : Fragment() {
         // with the returned requestCode
 
             imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
+    }
+    private fun getUriToDrawable(
+        @NonNull context: PostPage2Fragment4,
+        @AnyRes drawableId: Int
+    ): Uri {
+        return Uri.parse(
+            ContentResolver.SCHEME_ANDROID_RESOURCE
+                    + "://" + context.resources.getResourcePackageName(drawableId)
+                    + '/' + context.resources.getResourceTypeName(drawableId)
+                    + '/' + context.resources.getResourceEntryName(drawableId)
+        )
     }
 
 }
