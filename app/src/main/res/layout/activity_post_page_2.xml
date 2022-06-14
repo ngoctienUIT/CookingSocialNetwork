@@ -13,10 +13,6 @@
         android:id="@+id/postPage2_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
-            android:id="@+id/postPage2_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:elevation="5dp"
@@ -57,47 +53,6 @@
                     android:textSize="20sp" />
             </RelativeLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/post_page_tab"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_below="@id/post_page_top"
-                app:tabInlineLabel="true"
-                app:tabMode="fixed" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/post_page_viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/post_page_tab" />
-
-            <!--        <LinearLayout-->
-            <!--            android:id="@+id/post_page_end"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="60dp"-->
-            <!--            android:layout_alignParentBottom="true">-->
-
-            <!--            <Button-->
-            <!--                android:id="@+id/post_page_preview_btn"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_alignParentStart="true"-->
-            <!--                android:layout_marginHorizontal="15dp"-->
-            <!--                android:layout_marginVertical="5dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:text="Xem trước" />-->
-
-            <!--            <Button-->
-            <!--                android:id="@+id/post_page_next_button"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_marginHorizontal="15dp"-->
-            <!--                android:layout_marginVertical="5dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:text="Tiếp theo" />-->
-            <!--        </LinearLayout>-->
-        </RelativeLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/post_page_tab"
@@ -112,7 +67,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/post_page_tab" />
-
 
     </RelativeLayout>
 </layout>

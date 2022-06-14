@@ -14,6 +14,7 @@ import com.example.cookingsocialnetwork.main.fragment.home.HomeFragment
 import com.example.cookingsocialnetwork.main.fragment.notify.NotificationsFragment
 import com.example.cookingsocialnetwork.main.fragment.profile.ProfileFragment
 import com.example.cookingsocialnetwork.main.fragment.search.SearchFragment
+import com.example.cookingsocialnetwork.post.PostPage
 import com.example.cookingsocialnetwork.post2.PostPage2
 import kotlin.system.exitProcess
 
@@ -48,7 +49,7 @@ class MainPage : AppCompatActivity() {
 
         binding.floatingButton.setOnClickListener()
         {
-            //val post = Intent(this, PostPage::class.java)
+           // val post = Intent(this, PostPage::class.java)
             val post = Intent(this, PostPage2::class.java)
             startActivity(post)
         }
