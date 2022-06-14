@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CookingSocialNetwork">
         <activity
-            android:name=".newviewpost.ViewPost"
+            android:name=".viewpost.ViewPost"
             android:exported="false" />
         <activity
             android:name=".viewfollow.ViewFollowActivity"

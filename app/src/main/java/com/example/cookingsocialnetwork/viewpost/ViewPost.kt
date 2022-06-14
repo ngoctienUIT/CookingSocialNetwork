@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.newviewpost
+package com.example.cookingsocialnetwork.viewpost
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -16,9 +16,9 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityViewPostBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
 import com.example.cookingsocialnetwork.model.data.User
-import com.example.cookingsocialnetwork.newviewpost.adapter.EventPost
-import com.example.cookingsocialnetwork.newviewpost.adapter.PostPageAdapter
+import com.example.cookingsocialnetwork.viewpost.adapter.EventPost
 import com.example.cookingsocialnetwork.viewpost.adapter.ImageSlideAdapter
+import com.example.cookingsocialnetwork.viewpost.adapter.PostPageAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

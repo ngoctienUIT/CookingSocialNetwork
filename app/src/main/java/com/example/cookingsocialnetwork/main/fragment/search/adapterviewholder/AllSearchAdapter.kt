@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 import com.example.cookingsocialnetwork.profile.ProfileActivity
-import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class AllSearchAdapter(private var listUser: MutableList<User>, private var listPost:MutableList<Post>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

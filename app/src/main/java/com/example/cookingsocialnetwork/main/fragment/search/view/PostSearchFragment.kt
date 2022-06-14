@@ -2,7 +2,6 @@ package com.example.cookingsocialnetwork.main.fragment.search.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentPostSearchBinding
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModel
 import com.example.cookingsocialnetwork.main.fragment.search.SearchViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.search.adapter.GridAdapterPost
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
-import com.example.cookingsocialnetwork.viewpost.ViewFullPost
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 
 class PostSearchFragment : Fragment() {
     lateinit var query: String

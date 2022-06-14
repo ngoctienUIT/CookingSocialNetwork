@@ -13,8 +13,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentCommentNotifyBinding
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyComment
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
-import com.example.cookingsocialnetwork.viewpost.ViewFullPost
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 
 class CommentNotifyFragment : Fragment() {
     lateinit var binding: FragmentCommentNotifyBinding

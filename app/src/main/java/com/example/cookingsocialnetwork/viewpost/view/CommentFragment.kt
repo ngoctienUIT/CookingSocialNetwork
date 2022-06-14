@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.newviewpost.view
+package com.example.cookingsocialnetwork.viewpost.view
 
 import android.app.Dialog
 import android.graphics.Color
@@ -15,10 +15,10 @@ import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentCommentBinding
 import com.example.cookingsocialnetwork.databinding.LayoutDeleteBinding
-import com.example.cookingsocialnetwork.newviewpost.ViewPostViewModel
-import com.example.cookingsocialnetwork.newviewpost.ViewPostViewModelFactory
-import com.example.cookingsocialnetwork.newviewpost.adapter.CommentAdapter
-import com.example.cookingsocialnetwork.newviewpost.adapter.MyListListener
+import com.example.cookingsocialnetwork.viewpost.ViewPostViewModel
+import com.example.cookingsocialnetwork.viewpost.ViewPostViewModelFactory
+import com.example.cookingsocialnetwork.viewpost.adapter.CommentAdapter
+import com.example.cookingsocialnetwork.viewpost.adapter.MyListListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 

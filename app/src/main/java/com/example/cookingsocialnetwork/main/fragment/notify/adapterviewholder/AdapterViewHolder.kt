@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Notify
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 import com.example.cookingsocialnetwork.profile.ProfileActivity
-import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 
 class AdapterViewHolder(private var listNotify: MutableList<Notify>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     enum class ViewHolderType {

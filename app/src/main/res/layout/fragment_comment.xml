@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.cookingsocialnetwork.newviewpost.ViewPostViewModel" />
+            type="com.example.cookingsocialnetwork.viewpost.ViewPostViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".newviewpost.view.CommentFragment">
+        tools:context=".viewpost.view.CommentFragment">
 
         <LinearLayout
             android:orientation="vertical"

@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.marginEnd
 import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
 import com.google.firebase.firestore.FirebaseFirestore
-import com.squareup.picasso.Picasso
 
 class GridAdapterPost(var context: Context, var listPost: MutableList<Post>): BaseAdapter() {
     override fun getCount(): Int = listPost.size

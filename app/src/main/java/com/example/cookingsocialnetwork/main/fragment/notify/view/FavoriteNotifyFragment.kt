@@ -13,8 +13,7 @@ import com.example.cookingsocialnetwork.databinding.FragmentFavoriteNotifyBindin
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModel
 import com.example.cookingsocialnetwork.main.fragment.notify.NotifyViewModelFactory
 import com.example.cookingsocialnetwork.main.fragment.notify.adapter.ListAdapterNotifyFavorite
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
-import com.example.cookingsocialnetwork.viewpost.ViewFullPost
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 
 class FavoriteNotifyFragment : Fragment() {
     lateinit var binding: FragmentFavoriteNotifyBinding

@@ -8,7 +8,6 @@ import coil.api.load
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.firestore.FirebaseFirestore
-import com.squareup.picasso.Picasso
 import java.lang.ref.WeakReference
 
 class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

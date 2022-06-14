@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.viewpost.ViewFullPost
 import com.example.cookingsocialnetwork.model.data.User
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost as RealtimePost1

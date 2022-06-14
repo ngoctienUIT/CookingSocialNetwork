@@ -19,7 +19,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityIntroPageBinding
 import com.example.cookingsocialnetwork.main.MainPage
-import com.example.cookingsocialnetwork.model.service.SendNotify
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -265,7 +264,6 @@ class IntroPage: AppCompatActivity() {
                     msg = "Subscribe failed"
                 }
                 Log.d(TAG, msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
 //                SendNotify.sendMessage("abc","ngoctien.c42019@gmail.com","JIrREV7L50OG8nlz5Vei","comment", "notification")
             }
         // [END subscribe_topics]

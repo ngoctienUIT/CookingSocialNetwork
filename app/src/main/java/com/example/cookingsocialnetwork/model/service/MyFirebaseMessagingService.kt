@@ -15,8 +15,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.MainPage
 import com.example.cookingsocialnetwork.model.data.Notify
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
-import com.example.cookingsocialnetwork.viewpost.ViewFullPost
+import com.example.cookingsocialnetwork.viewpost.ViewPost
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessagingService

@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.newviewpost
+package com.example.cookingsocialnetwork.viewpost
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

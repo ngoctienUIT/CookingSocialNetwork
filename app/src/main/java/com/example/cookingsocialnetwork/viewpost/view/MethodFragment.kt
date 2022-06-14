@@ -1,4 +1,4 @@
-package com.example.cookingsocialnetwork.newviewpost.view
+package com.example.cookingsocialnetwork.viewpost.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,21 +9,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.FragmentIngredientBinding
-import com.example.cookingsocialnetwork.newviewpost.ViewPostViewModel
-import com.example.cookingsocialnetwork.newviewpost.ViewPostViewModelFactory
-import com.example.cookingsocialnetwork.newviewpost.adapter.IngredientAdapter
+import com.example.cookingsocialnetwork.databinding.FragmentMethodBinding
+import com.example.cookingsocialnetwork.viewpost.ViewPostViewModel
+import com.example.cookingsocialnetwork.viewpost.ViewPostViewModelFactory
+import com.example.cookingsocialnetwork.viewpost.adapter.MethodsAdapter
 
-class IngredientFragment : Fragment() {
+class MethodFragment : Fragment() {
     lateinit var viewModel: ViewPostViewModel
-    lateinit var binding: FragmentIngredientBinding
+    lateinit var binding: FragmentMethodBinding
     var id: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ingredient, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_method, container, false)
         val factory = ViewPostViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(ViewPostViewModel::class.java)
         viewModel.id = id
@@ -33,10 +33,10 @@ class IngredientFragment : Fragment() {
 
         activity?.let {
             viewModel.post.observe(it) { post ->
-                val ingredientAdapter = IngredientAdapter(post.ingredients)
-                val ingredientsLayoutManager = LinearLayoutManager(it)
-                binding.ingredient.layoutManager = ingredientsLayoutManager
-                binding.ingredient.adapter = ingredientAdapter
+                val methodsAdapter = MethodsAdapter(post.ingredients)
+                val methodsLayoutManager = LinearLayoutManager(it)
+                binding.method.layoutManager = methodsLayoutManager
+                binding.method.adapter = methodsAdapter
             }
         }
 

@@ -1,12 +1,12 @@
-package com.example.cookingsocialnetwork.newviewpost.adapter
+package com.example.cookingsocialnetwork.viewpost.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.cookingsocialnetwork.newviewpost.ViewPost
-import com.example.cookingsocialnetwork.newviewpost.view.CommentFragment
-import com.example.cookingsocialnetwork.newviewpost.view.InformationFragment
-import com.example.cookingsocialnetwork.newviewpost.view.IngredientFragment
-import com.example.cookingsocialnetwork.newviewpost.view.MethodFragment
+import com.example.cookingsocialnetwork.viewpost.ViewPost
+import com.example.cookingsocialnetwork.viewpost.view.CommentFragment
+import com.example.cookingsocialnetwork.viewpost.view.InformationFragment
+import com.example.cookingsocialnetwork.viewpost.view.IngredientFragment
+import com.example.cookingsocialnetwork.viewpost.view.MethodFragment
 
 class PostPageAdapter(activity: ViewPost): FragmentStateAdapter(activity) {
     var id: String = ""
