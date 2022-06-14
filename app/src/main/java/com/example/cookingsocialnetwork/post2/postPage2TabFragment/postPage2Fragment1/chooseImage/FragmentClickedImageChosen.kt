@@ -12,8 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentClickedImageChoosedBinding
-import com.example.cookingsocialnetwork.post.PostPage
-import com.example.cookingsocialnetwork.post.PostViewModel
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1ViewModel
 

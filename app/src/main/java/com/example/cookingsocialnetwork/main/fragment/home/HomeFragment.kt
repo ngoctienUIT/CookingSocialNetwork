@@ -18,7 +18,6 @@ import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPagingAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,7 +27,6 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
     private lateinit var binding: FragmentHomeBinding
     private val postRecentAdapter by lazy { PostRecentAdapter() }
     private val randomPostAdapter  by lazy { RandomPostAdapter() }
-    private lateinit var trendingAdapter : TrendingAdapter;
     private val trendingPagingAdapter by lazy { TrendingPagingAdapter() }
 
 
