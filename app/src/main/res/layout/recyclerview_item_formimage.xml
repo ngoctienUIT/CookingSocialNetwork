@@ -16,6 +16,7 @@
                     android:text="x"
                     android:textStyle="bold"
                     android:textColor="@color/red"/>
+
                 <ImageView
                     android:id="@+id/item_ImageChoose"
                     android:layout_width="match_parent"

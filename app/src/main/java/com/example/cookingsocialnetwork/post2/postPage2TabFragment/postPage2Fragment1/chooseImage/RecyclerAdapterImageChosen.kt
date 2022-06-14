@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.post2.model.IngredientAdapter
 
 
-class RecyclerAdapterImageChoosed(private var mPhotosUris: MutableList<Uri>) : RecyclerView.Adapter<RecyclerAdapterImageChoosed.ViewHolder>(){
+class RecyclerAdapterImageChosen(private var mPhotosUris: MutableList<Uri>) : RecyclerView.Adapter<RecyclerAdapterImageChosen.ViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

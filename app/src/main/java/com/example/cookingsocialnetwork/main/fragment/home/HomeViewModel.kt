@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
+import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostPagingSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentDataSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentRepository
@@ -88,11 +89,12 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
                     }
                     if (snapshot != null) {
                         val documents = snapshot.documents
-                        if(documents.size > 1){
                             documents.forEach()
                             { documentSnapshot ->
                                 documentSnapshot.data!!.let {
-                                    if (it["images"] != null) {
+                                    val checkData =  (it["images"] as MutableList<*>)
+                                    if(checkData.size > 0){
+                                        Log.d("hoicham", documentSnapshot.id )
                                         listTrendingSlide.add(
                                             TrendingSlide(
                                                 documentSnapshot.id,
@@ -102,12 +104,20 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
                                             )
                                         )
                                     }
-                                }
-                        }
-                        }
-                        else{
+                                    else{
+                                        listTrendingSlide.add(
+                                            TrendingSlide(
+                                                documentSnapshot.id,
+                                                R.drawable.food_picker.toString(),
+                                                it["nameFood"]!! as String,
+                                                (it["favourites"]!!  as MutableList<*>).size.toString()
+                                            )
+                                        )
+                                    }
 
-                        }
+                                    }
+                                }
+
                         mutblLiveDataTrendingSlide.value = listTrendingSlide
                     }
                 }

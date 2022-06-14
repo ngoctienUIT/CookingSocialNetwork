@@ -38,7 +38,7 @@ class TrendingPagingAdapter : PagingDataAdapter<Post, TrendingPagingAdapter.Tren
     override fun onBindViewHolder(holder: TrendingSlideViewHolder, position: Int) {
         val post = getItem(position)
         post?.let { holder.bind(it) }
-        
+
         holder.itemView.setOnClickListener{
             val idPostClicked = post?.id
             val context = holder.itemView.context

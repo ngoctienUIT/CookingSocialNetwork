@@ -20,8 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityPostPageBinding
-import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosed
-import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.RecyclerAdapterImageChoosed
+import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.RecyclerAdapterImageChosen
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -44,7 +43,7 @@ class PostPage : AppCompatActivity() {
     private var arrEditTextMethod:MutableList<String> = mutableListOf() // mảng lưu Text của phương thức nấu
 
     private lateinit var gridLayoutManager: GridLayoutManager
-    private lateinit var adapterImageChoosed: RecyclerAdapterImageChoosed
+    private lateinit var adapterImageChoosed: RecyclerAdapterImageChosen
     private var listImageUri: MutableList<Uri> = mutableListOf()  // image choose from device
     private var listImageUrlFB : MutableList<String> = mutableListOf() // image url from firebase
 
@@ -165,7 +164,7 @@ class PostPage : AppCompatActivity() {
         // gridLayoutManager.scrollToPosition(0)
         databinding.recyclerViewImage.layoutManager = gridLayoutManager
 
-        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri);
+        adapterImageChoosed = RecyclerAdapterImageChosen(viewModel.mListUri);
                 {
                    /* val editGridClickedImageFragment = FragmentClickedImageChoosed()
                     val transaction = supportFragmentManager.beginTransaction()

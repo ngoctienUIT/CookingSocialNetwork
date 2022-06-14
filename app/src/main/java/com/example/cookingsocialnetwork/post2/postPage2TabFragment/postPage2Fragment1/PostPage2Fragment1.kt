@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,12 +16,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.ActivityAboutPageBinding.inflate
 import com.example.cookingsocialnetwork.databinding.PostPage2Fragment1Binding
-import com.example.cookingsocialnetwork.main.fragment.home.HomeViewModel
-import com.example.cookingsocialnetwork.post2.model.Ingredient
-import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosed
-import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.RecyclerAdapterImageChoosed
+import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.RecyclerAdapterImageChosen
 
 class PostPage2Fragment1: Fragment() {
 
@@ -32,9 +27,7 @@ class PostPage2Fragment1: Fragment() {
     //lateinit var foodImage: ImageView  helppppppppppp
 
     private lateinit var gridLayoutManager: GridLayoutManager
-    private lateinit var adapterImageChoosed: RecyclerAdapterImageChoosed
-    private var listImageUri: MutableList<Uri> = mutableListOf()  // image choose from device
-    private var listImageUrlFB : MutableList<String> = mutableListOf() // image url from firebase
+    private lateinit var adapterImageChosen: RecyclerAdapterImageChosen
 
     var imageList: MutableList<Uri> = ArrayList() ///
 
@@ -56,7 +49,7 @@ class PostPage2Fragment1: Fragment() {
                 }
                // addListUri()
 
-                adapterImageChoosed.notifyDataSetChanged()
+                adapterImageChosen.notifyDataSetChanged()
             }
             else
             {
@@ -64,7 +57,7 @@ class PostPage2Fragment1: Fragment() {
                 val imageUri = result.data?.data
                 //listImageUri.add(imageUri!!)
                 imageList.add(imageUri!!)
-                adapterImageChoosed.notifyDataSetChanged()
+                adapterImageChosen.notifyDataSetChanged()
 //                viewModel.addUriIntoListUris(imageUri!!)
 //                addListUri()
 //                dataBinding.foodImage.setImageURI(imageUri)
@@ -110,7 +103,7 @@ class PostPage2Fragment1: Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     internal fun noticeDataChangeToRecyclerAdapterImageChoosed(){
-        adapterImageChoosed.notifyDataSetChanged()
+        adapterImageChosen.notifyDataSetChanged()
     }
 
 
@@ -132,8 +125,8 @@ class PostPage2Fragment1: Fragment() {
         gridLayoutManager.scrollToPosition(0)
         dataBinding.recyclerViewImage.layoutManager = gridLayoutManager
         //adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri){} ///
-        adapterImageChoosed = RecyclerAdapterImageChoosed(imageList)
-        dataBinding.recyclerViewImage.adapter = adapterImageChoosed
+        adapterImageChosen = RecyclerAdapterImageChosen(imageList)
+        dataBinding.recyclerViewImage.adapter = adapterImageChosen
 
         dataBinding.foodImage.setOnClickListener {
             imageChooser()

@@ -17,7 +17,7 @@ import com.example.cookingsocialnetwork.post.PostViewModel
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1ViewModel
 
-class FragmentClickedImageChoosed : Fragment() {
+class FragmentClickedImageChosen : Fragment() {
 
     private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
     private lateinit var adapterImageClicked: RecyclerAdapterImageClicked

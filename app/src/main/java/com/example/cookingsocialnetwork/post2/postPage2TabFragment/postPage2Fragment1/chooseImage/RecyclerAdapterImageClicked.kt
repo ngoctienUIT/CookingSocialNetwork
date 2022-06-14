@@ -24,9 +24,6 @@ private var itemClickListener: ItemClickListener
     ): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.grid_item_clicked_image_choosed, parent, false)
-//        val params = view.layoutParams as StaggeredGridLayoutManager.LayoutParams
-//        params.height = parent.minimumHeight
-//        view.layoutParams = params
         return ViewHolder(view)
     }
 
@@ -50,10 +47,6 @@ private var itemClickListener: ItemClickListener
         var butDelete: Button = itemView.findViewById(R.id.btn_deleteImageChoosed)
 
         fun bindImage(uri: Uri) {
-            /*
-            Picasso.get().load(uri).into(this.itemImage)
-            Glide.with(itemView).load(uri).into(itemImage)
-            */
             itemImage.load(uri)
         }
 

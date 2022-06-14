@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosed">
+    tools:context=".post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChosen">
 
     <data>
-        <import type="com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosedViewModel"/>
+        <import type="com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChosenViewModel"/>
         <variable
             name="viewModelClickedImage"
-            type="FragmentClickedImageChoosedViewModel" />
+            type="FragmentClickedImageChosenViewModel" />
     </data>
 
 
