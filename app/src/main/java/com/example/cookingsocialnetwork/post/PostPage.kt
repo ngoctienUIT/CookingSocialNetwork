@@ -165,14 +165,14 @@ class PostPage : AppCompatActivity() {
         // gridLayoutManager.scrollToPosition(0)
         databinding.recyclerViewImage.layoutManager = gridLayoutManager
 
-        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri)
-            {
-               /* val editGridClickedImageFragment = FragmentClickedImageChoosed()
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_fragmentGridClickedItem, editGridClickedImageFragment)
-                transaction.addToBackStack(null)
-                transaction.commit()*/
-            }
+        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri);
+                {
+                   /* val editGridClickedImageFragment = FragmentClickedImageChoosed()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.container_fragmentGridClickedItem, editGridClickedImageFragment)
+                    transaction.addToBackStack(null)
+                    transaction.commit()*/
+                }
         databinding.recyclerViewImage.adapter = adapterImageChoosed
         databinding.recyclerViewImage.setHasFixedSize(true)
     }

@@ -20,6 +20,7 @@ import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.ActivityAboutPageBinding.inflate
 import com.example.cookingsocialnetwork.databinding.PostPage2Fragment1Binding
 import com.example.cookingsocialnetwork.main.fragment.home.HomeViewModel
+import com.example.cookingsocialnetwork.post2.model.Ingredient
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.FragmentClickedImageChoosed
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.RecyclerAdapterImageChoosed
 
@@ -34,6 +35,8 @@ class PostPage2Fragment1: Fragment() {
     private lateinit var adapterImageChoosed: RecyclerAdapterImageChoosed
     private var listImageUri: MutableList<Uri> = mutableListOf()  // image choose from device
     private var listImageUrlFB : MutableList<String> = mutableListOf() // image url from firebase
+
+    var imageList: MutableList<Uri> = ArrayList() ///
 
 
     private var imagesChooserLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -56,9 +59,11 @@ class PostPage2Fragment1: Fragment() {
                 //chọn 1 ảnh
                 val imageUri = result.data?.data
                 //listImageUri.add(imageUri!!)
-                viewModel.addUriIntoListUris(imageUri!!)
-                addListUri()
-                dataBinding.foodImage.setImageURI(imageUri)
+                imageList.add(imageUri!!)
+                adapterImageChoosed.notifyDataSetChanged()
+//                viewModel.addUriIntoListUris(imageUri!!)
+//                addListUri()
+//                dataBinding.foodImage.setImageURI(imageUri)
             }
         }
     }
@@ -122,7 +127,8 @@ class PostPage2Fragment1: Fragment() {
         gridLayoutManager = GridLayoutManager(this.context, 3, RecyclerView.VERTICAL, false)
         gridLayoutManager.scrollToPosition(0)
         dataBinding.recyclerViewImage.layoutManager = gridLayoutManager
-        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri){}
+        //adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri){} ///
+        adapterImageChoosed = RecyclerAdapterImageChoosed(imageList)
         dataBinding.recyclerViewImage.adapter = adapterImageChoosed
 
         dataBinding.foodImage.setOnClickListener {
