@@ -146,18 +146,18 @@ class PostPage2Fragment1: Fragment() {
 
     }
 
-    private fun closedFragment(){
-        val manager = requireActivity().supportFragmentManager
-        manager.beginTransaction().remove(this).commit()
-
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-      dataBinding.recyclerViewImage.adapter = null
-        gridLayoutManager.removeAllViews()
-        closedFragment()
-    }
+//    private fun closedFragment(){
+//        val manager = requireActivity().supportFragmentManager
+//        manager.beginTransaction().remove(this).commit()
+//
+//    }
+//
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        dataBinding.recyclerViewImage.adapter = null
+//        gridLayoutManager.removeAllViews()
+//        closedFragment()
+//    }
 }
 
 

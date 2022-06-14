@@ -13,11 +13,13 @@
             android:id="@+id/post_page2_fragment3_start_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#f7f6f2"
+            android:background="#FFA07A"
             android:padding="15dp"
             android:text="Món ăn phải có thứ gì trong đó chứ. Nguyên liệu gồm những gì vậy?"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
+
         <TextView
+            android:textColor="#FF4500"
             android:id="@+id/post_page2_fragment3_food_ingredient_lb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +27,7 @@
             android:layout_marginStart="15sp"
             android:layout_marginTop="30dp"
             android:text="Nguyên liệu"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -46,9 +48,9 @@
             android:backgroundTint="#00FFFFFF"
             android:stateListAnimator="@null"
             android:text="+ Thêm một nguyên liệu"
-            android:textColor="@color/black"
+            android:textColor="#008000"
             app:cornerRadius="5dp"
-            app:strokeColor="@color/black"
+            app:strokeColor="#FF6347"
             app:strokeWidth="2dp" />
     </RelativeLayout>
 </ScrollView>

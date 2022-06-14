@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    
     <data>
         <import type="com.example.cookingsocialnetwork.post2.PostPage2ViewModel"/>
         <variable
@@ -14,50 +15,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:elevation="5dp"
-                android:background="@color/white"
-                android:id="@+id/post_page_top"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
+        <RelativeLayout
+            android:elevation="5dp"
+            android:background="@color/white"
+            android:id="@+id/post_page_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
 
-                <ImageView
-                    android:id="@+id/post_page_btn_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_round_close"
-                    android:layout_centerVertical="true"
-                    app:tint="@color/red"
-                    tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:id="@+id/post_page_btn_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_round_close"
+                app:tint="@color/red"
+                tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_toEndOf="@id/post_page_btn_back"
-                    android:gravity="center"
-                    android:text="Tạo công thức"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Tạo công thức"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/post_page_btn_post"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="center"
-                    android:minWidth="55dp"
-                    android:text="Đăng"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </RelativeLayout>
+            <Button
+                android:id="@+id/post_page_btn_post"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:minWidth="55dp"
+                android:text="Đăng"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
+        </RelativeLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/post_page_tab"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="10dp"
             android:layout_below="@id/post_page_top"
             app:tabInlineLabel="true"
             app:tabMode="fixed" />
@@ -69,4 +71,5 @@
             android:layout_below="@id/post_page_tab" />
 
     </RelativeLayout>
+
 </layout>

@@ -4,11 +4,9 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import com.example.cookingsocialnetwork.R
 import java.util.*
 
@@ -36,7 +34,7 @@ class StepAdapter(private val stepList: MutableList<Step>): RecyclerView.Adapter
         val stepCount: TextView = itemView.findViewById(R.id.post_page2_step_count)
         val stepImage: ImageView = itemView.findViewById(R.id.post_page2_step_image)
         val step: TextView = itemView.findViewById(R.id.post_page2_step_text)
-        val delete: Button = itemView.findViewById(R.id.post_page_2_step_child_delete_btn)
+        val delete: ImageView = itemView.findViewById(R.id.post_page_2_step_child_delete_btn)
     }
 
     override fun onRowMove(from: Int, to: Int) {
@@ -51,6 +49,4 @@ class StepAdapter(private val stepList: MutableList<Step>): RecyclerView.Adapter
     override fun onRowClear(stepViewHolder: ViewHolder?) {
         stepViewHolder?.itemView?.setBackgroundColor(Color.WHITE)
     }
-
-
 }

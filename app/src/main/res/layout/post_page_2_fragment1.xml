@@ -12,9 +12,11 @@
         android:id="@+id/container_fragmentGridClickedItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -23,10 +25,10 @@
                         android:id="@+id/post_page2_fragment1_start_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#f7f6f2"
+                        android:background="#FFA07A"
                         android:padding="15dp"
                         android:text="Một công thức mới ư? Hãy bắt đầu nào.."
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/post_page2_fragment1_food_name_lb"
@@ -36,7 +38,8 @@
                         android:layout_marginStart="15sp"
                         android:layout_marginTop="30dp"
                         android:text="Tên món ăn"
-                        android:textSize="25sp"
+                        android:textColor="#FF4500"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -55,11 +58,10 @@
                         android:layout_alignEnd="@id/post_page2_fragment1_food_name"
                         android:layout_marginTop="10dp"
                         android:text="0/30"
-                        android:textSize="15sp" />
-
-
+                        android:textSize="14sp" />
 
                     <TextView
+                        android:textColor="#FF4500"
                         android:id="@+id/post_page2_fragment1_food_image_lb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -67,7 +69,7 @@
                         android:layout_alignStart="@id/post_page2_fragment1_food_name_lb"
                         android:layout_marginTop="30dp"
                         android:text="Hình ảnh món ăn"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <!--        <androidx.cardview.widget.CardView-->
@@ -87,6 +89,7 @@
                     <!--                android:scaleType="centerCrop"-->
                     <!--                android:src="@drawable/food_picker" />-->
                     <!--        </androidx.cardview.widget.CardView>-->
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -135,8 +138,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:text="@string/image_request" />
 
-
                 </RelativeLayout>
+
             </ScrollView>
 
     </FrameLayout>

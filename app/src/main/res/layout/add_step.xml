@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
         android:id="@+id/add_step_top"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <Button
+        <ImageView
             android:id="@+id/add_step_close_btn"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
             android:gravity="center"
             android:minWidth="55dp"
-            android:text="x"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:src="@drawable/ic_round_close"
+            app:tint="@color/red" />
 
         <TextView
             android:id="@+id/add_step_lb"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toEndOf="@id/add_step_close_btn"
+            android:layout_marginStart="20dp"
             android:gravity="center"
             android:text="Bước 1"
             android:textSize="25sp"
@@ -39,6 +42,7 @@
             android:text="Xong"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
     </RelativeLayout>
 
     <TextView
@@ -60,6 +64,7 @@
         android:layout_marginHorizontal="15dp"
         android:scaleType="centerCrop"
         android:src="@drawable/food_picker" />
+
     <TextView
         android:id="@+id/add_step_step_des_lb"
         android:layout_width="wrap_content"
@@ -70,6 +75,7 @@
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_marginTop="30dp"/>
+
     <EditText
         android:id="@+id/add_step_step_des"
         android:layout_width="match_parent"
@@ -77,6 +83,7 @@
         android:layout_below="@id/add_step_step_des_lb"
         android:layout_marginHorizontal="15dp"
         android:maxLength="500"/>
+
     <TextView
         android:id="@+id/add_step_step_des_count"
         android:layout_width="wrap_content"
@@ -85,7 +92,5 @@
         android:textSize="15sp"
         android:layout_alignEnd="@id/add_step_step_des"
         android:layout_below="@id/add_step_step_des" />
-
-
 
 </RelativeLayout>
