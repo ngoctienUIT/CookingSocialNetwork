@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.*
 import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.PostPage2Fragment1
 
-class PostPage2ViewPagerAdapter(fragment: FragmentManager, lifecycle : Lifecycle): FragmentStateAdapter(fragment, lifecycle) {
+class PostPage2ViewPagerAdapter(fragment: FragmentManager, lifecycle: Lifecycle): FragmentStateAdapter(fragment, lifecycle) {
     val fragment1 = PostPage2Fragment1()
     val fragment2 = PostPage2Fragment2()
     val fragment3 = PostPage2Fragment3()
