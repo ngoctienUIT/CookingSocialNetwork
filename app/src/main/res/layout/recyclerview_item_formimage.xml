@@ -5,11 +5,24 @@
     android:layout_margin="1dp"
     android:id="@+id/card_view">
 
-        <ImageView
-            android:id="@+id/item_ImageChoose"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:src="@drawable/food_picker" />
+            android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/item_ImageChoose_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#00FFFFFF"
+                    android:text="x"
+                    android:textStyle="bold"
+                    android:textColor="@color/red"/>
+                <ImageView
+                    android:id="@+id/item_ImageChoose"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/food_picker" />
+        </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

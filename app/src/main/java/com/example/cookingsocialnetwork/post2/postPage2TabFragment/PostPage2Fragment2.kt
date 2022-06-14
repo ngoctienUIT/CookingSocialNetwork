@@ -80,7 +80,7 @@ class PostPage2Fragment2 : Fragment(){
         }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        //dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.BOTTOM)
         dialog.show()
@@ -104,7 +104,7 @@ class PostPage2Fragment2 : Fragment(){
         }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        //dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         dialog.window?.setGravity(Gravity.BOTTOM)
         dialog.show()

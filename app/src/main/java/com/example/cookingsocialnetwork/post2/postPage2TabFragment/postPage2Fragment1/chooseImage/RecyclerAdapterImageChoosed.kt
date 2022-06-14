@@ -3,6 +3,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 
 
@@ -23,6 +24,11 @@ class RecyclerAdapterImageChoosed(private var mPhotosUris: MutableList<Uri>) : R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemImageUri = mPhotosUris[position]
+
+        holder.button.setOnClickListener {
+            mPhotosUris.remove(itemImageUri)
+            notifyDataSetChanged()
+        }
         holder.bindImage(itemImageUri)
     }
 
@@ -32,16 +38,17 @@ class RecyclerAdapterImageChoosed(private var mPhotosUris: MutableList<Uri>) : R
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
-       private var itemImage: ImageView = itemView.findViewById(R.id.item_ImageChoose)
+        val itemImage: ImageView = itemView.findViewById(R.id.item_ImageChoose)
+        val button: Button = itemView.findViewById(R.id.item_ImageChoose_btn)
 
 
         fun bindImage(uri: Uri) {
-            // Picasso.get().load(uri).into(this.itemImage)
-          //  Glide.with(itemView.context).load(uri).into(itemImage)
-          itemImage.load(uri){
-              crossfade(300)
-              scale(coil.size.Scale.FILL)
-          }
+                // Picasso.get().load(uri).into(this.itemImage)
+              //  Glide.with(itemView.context).load(uri).into(itemImage)
+              itemImage.load(uri){
+                  crossfade(300)
+                  scale(coil.size.Scale.FILL)
+              }
 
         }
     }
