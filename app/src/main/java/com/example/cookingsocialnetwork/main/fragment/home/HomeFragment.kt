@@ -1,6 +1,5 @@
 package com.example.cookingsocialnetwork.main.fragment.home
 
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -22,7 +21,6 @@ import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPagingAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 class HomeFragment : Fragment() {
@@ -32,9 +30,6 @@ class HomeFragment : Fragment() {
     private val randomPostAdapter  by lazy { RandomPostAdapter() }
     private val trendingPagingAdapter by lazy { TrendingPagingAdapter() }
 
-
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
     lateinit var viewModel: HomeViewModel
 
 
@@ -45,11 +40,7 @@ class HomeFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-
-        //Inject here
-        DaggerHomeComponent.create().inject(this)
-
-        viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
@@ -89,25 +80,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //recent
-        /*binding.recRecentPosts.adapter = postRecentAdapter
-        binding.recRecentPosts.layoutManager =
-            GridLayoutManager(requireContext(), 2,LinearLayoutManager.VERTICAL, false)
-
-        viewModel.listPosts.observe(viewLifecycleOwner) {
-            binding.swpRecords.isRefreshing = false;
-            postRecentAdapter.submitList(it)
-        }*/
-
-        //trending
-
-      /*  viewModel.mutblLiveDataTrendingSlide.observe(viewLifecycleOwner) {
-            //slider trendingSlide
-            it!!.let { listTrendingSlide ->
-                trendingAdapter = TrendingAdapter(listTrendingSlide)
-                binding.trendingViewPaper.adapter = trendingAdapter
-            }
-        }*/
         //trending
         binding.trendingViewPaper.adapter = trendingPagingAdapter
         setAnimationTrending(binding)
@@ -116,11 +88,6 @@ class HomeFragment : Fragment() {
                 trendingPagingAdapter.submitData(it)
             }
         }
-
-            //binding.trendingViewPaper.adapter = trendingSliderAdapter
-            // binding.trendingViewPaper.adapter = trendingSliderAdapter
-            /*binding.trending.adapter = trendingSliderAdapter
-        setAnimationTrending(binding)*/
             return binding.root
 
         }
@@ -152,39 +119,13 @@ class HomeFragment : Fragment() {
             }
         })
     }
-   internal fun recreate() {
-       val ft: FragmentTransaction = this.requireFragmentManager().beginTransaction()
-       ft.detach(this)
-       ft.attach(this)
-       ft.commit()
-   }
 
     internal fun reLoad(){
         val ft: FragmentTransaction = this.parentFragmentManager.beginTransaction()
         ft.setReorderingAllowed(false)
         ft.detach(this).attach(this).commit()
     }
-   /* private val trendingSliderAdapter
-        get() = TrendingAdapter(
-            listOf(
-                TrendingSlide(
-                    R.drawable.food_picker.toString(),
-                    "1",
-                "34"
-                ),
-                TrendingSlide(
-                    R.drawable.food_picker.toString(),
-                    "2",
-                    "23"
 
-                ),
-                TrendingSlide(
-                    R.drawable.food_picker.toString(),
-                    "3",
-                    "85"
-                )
-            )
-        )*/
 }
 
 

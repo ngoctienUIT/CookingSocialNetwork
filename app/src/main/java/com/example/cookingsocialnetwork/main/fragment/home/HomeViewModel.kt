@@ -1,16 +1,12 @@
 package com.example.cookingsocialnetwork.main.fragment.home
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostPagingSource
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentDataSource
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentRepository
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RecentPostsPagingSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPostSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingSlide
@@ -18,12 +14,8 @@ import com.example.cookingsocialnetwork.model.data.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(postRecentRepository : PostRecentRepository): ViewModel() {
+class HomeViewModel: ViewModel() {
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var posts:MutableList<Post> = mutableListOf()
     private var _posts: MutableLiveData<MutableList<Post>> = MutableLiveData()

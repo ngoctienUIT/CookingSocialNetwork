@@ -7,7 +7,6 @@ import android.os.Bundle
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -23,14 +21,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.PostPage2Fragment1Binding
-import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.chooseImage.RecyclerAdapterImageChosen
+import com.example.cookingsocialnetwork.post2.postPage2TabFragment.postPage2Fragment1.adapter.RecyclerAdapterImageChosen
 
 class PostPage2Fragment1: Fragment() {
 
     private lateinit var viewModel: PostPage2Fragment1ViewModel
     private lateinit var dataBinding: PostPage2Fragment1Binding
     lateinit var foodName :EditText
-    //lateinit var foodImage: ImageView  helppppppppppp
 
     private lateinit var gridLayoutManager: GridLayoutManager
     private lateinit var adapterImageChosen: RecyclerAdapterImageChosen
@@ -49,13 +46,10 @@ class PostPage2Fragment1: Fragment() {
                 for (i in 0 until count)
                 {
                     val imageUri = result.data!!.clipData!!.getItemAt(i).uri
-
-                    //listImageUri.add(imageUri)
-                  //  viewModel.addUriIntoListUris(imageUri)
                     imageList.add(imageUri)
-                   // adapterImageChoosed.notifyDataSetChanged()
+
                 }
-               // addListUri()
+
 
                 adapterImageChosen.notifyDataSetChanged()
             }
@@ -63,15 +57,11 @@ class PostPage2Fragment1: Fragment() {
             {
                 //chọn 1 ảnh
                 val imageUri = result.data?.data
-                //listImageUri.add(imageUri!!)
+
                 imageList.add(imageUri!!)
 
                 adapterImageChosen.notifyDataSetChanged()
                 check = true
-
-//                viewModel.addUriIntoListUris(imageUri!!)
-//                addListUri()
-//                dataBinding.foodImage.setImageURI(imageUri)
             }
         }
     }
@@ -87,29 +77,6 @@ class PostPage2Fragment1: Fragment() {
         // pass the constant to compare it
         // with the returned requestCode
         imagesChooserLauncher.launch(Intent.createChooser(i, "Select Picture"))
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun addListUri(){
-
-       /* //set RecycleView
-        gridLayoutManager = GridLayoutManager(this.context, 3, RecyclerView.VERTICAL, false)
-         gridLayoutManager.scrollToPosition(0)
-        dataBinding.recyclerViewImage.layoutManager = gridLayoutManager
-
-        adapterImageChoosed = RecyclerAdapterImageChoosed(viewModel.mListUri)
-        {
-
-           /* val editGridClickedImageFragment = FragmentClickedImageChoosed()
-            val transaction =  requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container_fragmentGridClickedItem, editGridClickedImageFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()*/
-        }
-        dataBinding.recyclerViewImage.adapter = adapterImageChoosed
-        dataBinding.recyclerViewImage.setHasFixedSize(true)*/
-
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -166,8 +133,8 @@ class PostPage2Fragment1: Fragment() {
                 }
 
                 override fun afterTextChanged(s: Editable?) {
-                    if(foodName.text.length != 0){
-                        check == true
+                    if(foodName.text.isNotEmpty()){
+                        check
                     }
                 }
 
@@ -175,19 +142,6 @@ class PostPage2Fragment1: Fragment() {
         )
 
     }
-
-//    private fun closedFragment(){
-//        val manager = requireActivity().supportFragmentManager
-//        manager.beginTransaction().remove(this).commit()
-//
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        dataBinding.recyclerViewImage.adapter = null
-//        gridLayoutManager.removeAllViews()
-//        closedFragment()
-//    }
 }
 
 

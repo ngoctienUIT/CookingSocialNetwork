@@ -15,14 +15,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostAdapter
 import com.example.cookingsocialnetwork.model.data.Post
 import com.example.cookingsocialnetwork.model.data.User
 import com.example.cookingsocialnetwork.viewpost.ViewPost
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.disposables.CompositeDisposable
-import kotlin.math.roundToInt
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost as RealtimePost1
 
 class PostRecentAdapter : PagingDataAdapter<Post, PostRecentAdapter.PostViewHolder>(
     Companion) {
