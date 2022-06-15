@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
     private var _posts: MutableLiveData<MutableList<Post>> = MutableLiveData()
     private var post: MutableLiveData<Post> = MutableLiveData()
     private var listTrendingSlide: MutableList<TrendingSlide> = mutableListOf()
-    var mutblLiveDataTrendingSlide : MutableLiveData<MutableList<TrendingSlide>> = MutableLiveData()
+    private var mutableLiveDataTrendingSlide : MutableLiveData<MutableList<TrendingSlide>> = MutableLiveData()
 
     init {
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
@@ -45,6 +45,7 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
         .build()
 
     // data recent posts
+   // val x = postRecentRepository.
     val listPosts: LiveData<PagedList<RealtimePost>> =
         LivePagedListBuilder<String, RealtimePost>(
             PostRecentDataSource.Factory(postRecentRepository, uiScope),
@@ -118,7 +119,7 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
                                     }
                                 }
 
-                        mutblLiveDataTrendingSlide.value = listTrendingSlide
+                        mutableLiveDataTrendingSlide.value = listTrendingSlide
                     }
                 }
     }

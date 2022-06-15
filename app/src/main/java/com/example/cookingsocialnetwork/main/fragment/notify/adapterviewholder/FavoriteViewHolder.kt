@@ -43,13 +43,16 @@ class FavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .get()
             .addOnSuccessListener {
                 val data = it.data
-                val info = data?.get("info") as Map<String, Any>
-                nameView?.text = info["name"].toString()
-                val avatar = info["avatar"].toString()
-                avatarView?.let { image ->
-                    image.load(avatar)
+                if(data != null){
+                    val info = data?.get("info") as Map<String, Any>
+                    nameView?.text = info["name"].toString()
+                    val avatar = info["avatar"].toString()
+                    avatarView?.let { image ->
+                        image.load(avatar)
 //                    Picasso.get().load(avatar).into(image)
+                    }
                 }
+
             }
 
         FirebaseFirestore.getInstance()
@@ -57,10 +60,13 @@ class FavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .document(favorite!!.id)
             .get()
             .addOnSuccessListener {
-                val post = Post()
-                post.getData(it)
-                postView?.load(post.images[0])
+                if(it.data != null){
+                    val post = Post()
+                    post.getData(it)
+                    postView?.load(post.images[0])
 //                Picasso.get().load(post.images[0]).into(postView)
+                }
+
             }
     }
 }

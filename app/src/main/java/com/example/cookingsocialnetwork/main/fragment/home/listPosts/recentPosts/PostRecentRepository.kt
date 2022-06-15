@@ -38,18 +38,39 @@ class PostRecentRepository @Inject constructor() {
             query = query.startAfter(item)
         }
 
-        val listRealtimePost = query.get()
+
+        val listRealtimePost : MutableList<RealtimePost> = mutableListOf()
+        query.get()
+            .await()
+            .forEach { queryDocumentSnapshot ->
+                db.collection("post")
+                    .document(queryDocumentSnapshot.id)
+                    .get().addOnSuccessListener {
+                        if(it.data != null){
+                            val post = Post()
+                            post.getData(it)
+                            listRealtimePost.add(
+                                RealtimePost(
+                                    queryDocumentSnapshot.id,
+                                    getPost(queryDocumentSnapshot.id)
+                                )
+                            )
+                        }
+                    }
+
+            }
+       /* val listRealtimePost = query.get()
             .await()
             .map {
                 RealtimePost(
                     it.id,
                     getPost(it.id)
                 )
-
-            }
+            }*/
 
         return listRealtimePost
     }
+
 
     private fun getPost(itemId: String): Observable<Post> {
         return Observable.create<Post> { emitter ->
