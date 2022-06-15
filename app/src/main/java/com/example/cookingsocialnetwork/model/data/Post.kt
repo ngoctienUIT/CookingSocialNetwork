@@ -1,6 +1,5 @@
 package com.example.cookingsocialnetwork.model.data
 
-
 import com.example.cookingsocialnetwork.post2.model.Ingredient
 import com.example.cookingsocialnetwork.post2.model.StepFireBase
 import com.google.firebase.Timestamp
