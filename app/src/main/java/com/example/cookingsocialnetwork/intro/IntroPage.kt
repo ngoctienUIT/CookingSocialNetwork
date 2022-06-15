@@ -206,7 +206,7 @@ class IntroPage: AppCompatActivity() {
     private fun initUser() {
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern("dd - MM - yyyy")
         val formatted = current.format(formatter)
 
         val info = hashMapOf(

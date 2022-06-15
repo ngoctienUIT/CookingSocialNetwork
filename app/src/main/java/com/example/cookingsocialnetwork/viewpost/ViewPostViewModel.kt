@@ -85,6 +85,11 @@ class ViewPostViewModel: ViewModel() {
             .document(post.value!!.id)
             .update("favourites", favouritesPost)
 
+        FirebaseFirestore.getInstance()
+            .collection("post")
+            .document(post.value!!.id)
+            .update("favouritesCount", favouritesPost.size)
+
         var favouritesUser: MutableList<String>
 
         FirebaseFirestore.getInstance()
@@ -107,10 +112,6 @@ class ViewPostViewModel: ViewModel() {
                         .collection("user")
                         .document(FirebaseAuth.getInstance().currentUser?.email.toString())
                         .update("favourites", favouritesUser)
-                    FirebaseFirestore.getInstance()
-                        .collection("user")
-                        .document(FirebaseAuth.getInstance().currentUser?.email.toString())
-                        .update("favouritesCount", favouritesUser.size)
                 }
             }
     }

@@ -25,10 +25,7 @@ data class Post(
     var share: Long,
     var timePost: Time,
     var timestamp : Timestamp
-
-
 ) {
-
     constructor() : this(
         mutableListOf<Map<String, Any>>(),"",   "",0, mutableListOf(), "", mutableListOf(),
         mutableListOf(),"0", mutableListOf(), "", "", "",
@@ -68,6 +65,7 @@ data class Post(
             throw e
         }
     }
+
     private fun convertToIngredientList(arrIngredientArrFB :  ArrayList<HashMap<String, Any>>){
         if (ingredients.size == 0){
             for( i in 0 until  arrIngredientArrFB.count()){
@@ -77,9 +75,8 @@ data class Post(
                 // Log.d("ingredient",  "Ingredient(" + ingredient.name + ", " + ingredient.amount + ", " + ingredient.unit + ")" )
             }
         }
-
-
     }
+
     private fun convertToMethodList(arrMethodFB :  ArrayList<HashMap<String, Any>>){
         if(methods.size  ==  0){
             for( i in 0 until  arrMethodFB.count()){
@@ -89,7 +86,5 @@ data class Post(
                 // Log.d("StepFireBase", step.image + " " + step.step )
             }
         }
-
-
     }
 }
