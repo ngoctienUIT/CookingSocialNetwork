@@ -6,7 +6,7 @@
     android:layout_marginEnd="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    android:backgroundTint="#90EE90">
+    android:backgroundTint="@color/intro">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/food_image_card_rec"
             android:text="Food name"
-            android:textColor="@color/red"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/food_name_random_post"
             android:layout_below="@id/user_random_post"
-            android:progressTint="#FFD700"
+            android:progressTint="@color/white"
             android:rating="3" />
 
         <LinearLayout
@@ -76,10 +76,10 @@
                 android:src="@drawable/icons_comment"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                app:tint="#008000" />
+                app:tint="@color/white" />
 
             <TextView
-                android:textColor="#008000"
+                android:textColor="@color/white"
                 android:id="@+id/comment_random_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,10 +102,10 @@
                 android:src="@drawable/ic_favorite_border"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                app:tint="@color/red" />
+                app:tint="@color/white" />
 
             <TextView
-                android:textColor="#008000"
+                android:textColor="@color/white"
                 android:id="@+id/heart_random_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

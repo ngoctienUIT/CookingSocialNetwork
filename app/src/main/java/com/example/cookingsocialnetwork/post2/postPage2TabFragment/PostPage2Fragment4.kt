@@ -106,6 +106,8 @@ class PostPage2Fragment4 : Fragment() {
             dialog.dismiss()
         }
 
+
+
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
