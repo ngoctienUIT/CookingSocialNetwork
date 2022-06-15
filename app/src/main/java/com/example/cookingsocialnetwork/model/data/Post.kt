@@ -7,7 +7,6 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import java.lang.Exception
 
-
 data class Post(
     @Transient
     var comments: MutableList<Map<String, Any>>, // danh sách commment
@@ -38,7 +37,6 @@ data class Post(
 
     fun  getData(document: DocumentSnapshot) {
         try {
-
             comments = document.data?.get("comments") as MutableList<Map<String, Any>>
             cookingTime = document.data?.get("cookingTime") as String
             description = document.data?.get("description") as String

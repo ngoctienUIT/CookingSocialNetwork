@@ -51,31 +51,23 @@ class PostRecentRepository @Inject constructor() {
         return listRealtimePost
     }
 
-
     private fun getPost(itemId: String): Observable<Post> {
+        return Observable.create<Post> { emitter ->
+            db.collection("post")
+                .document(itemId)
+                .addSnapshotListener { snapshot, exception ->
+                    if (exception != null) {
+                        emitter.onError(exception)
+                    } else if (snapshot != null && snapshot.exists()) {
+                        val post = Post();
+                        post.getData(snapshot)
+                        emitter.onNext(post)
 
-        return  Observable.create<Post> {
-            emitter ->
-              db.collection("post")
-                  .document(itemId)
-                  .addSnapshotListener { snapshot, exception ->
-                      if (exception != null) {
-                          emitter.onError(exception)
-                      } else if (snapshot != null && snapshot.exists()) {
-
-                          val post = Post();
-                              post.getData(snapshot)
-                              emitter.onNext(post)
-
-                      } else {
-                          emitter.onError(Throwable("Post does not exist"))
-
-                      }
-
-                  }
+                    } else {
+                        emitter.onError(Throwable("Post does not exist"))
+                    }
+                }
         }
     }
-
-
 }
 

@@ -43,9 +43,14 @@ class InformationFragment : Fragment() {
 
             viewModel.post.observe(it)
             { post ->
-                if (post.favourites.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString()) > -1)
-                    binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
-                else binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
+                try {
+                    if (post.favourites.indexOf(FirebaseAuth.getInstance().currentUser?.email.toString()) > -1)
+                        binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null))
+                    else binding.icoFavourite.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null))
+                }
+                catch (e : Exception) {
+                    e.printStackTrace()
+                }
             }
         }
 

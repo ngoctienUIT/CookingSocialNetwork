@@ -1,6 +1,5 @@
 package com.example.cookingsocialnetwork.main.fragment.profile.view
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cookingsocialnetwork.model.data.Post
@@ -43,10 +42,12 @@ class PostViewModel: ViewModel() {
                                 .document(item)
                                 .get()
                                 .addOnSuccessListener { dataPost ->
-                                    val myPost = Post()
-                                    myPost.getData(dataPost)
-                                    post.add(myPost)
-                                    postData.value = post
+                                    if (dataPost.data != null) {
+                                        val myPost = Post()
+                                        myPost.getData(dataPost)
+                                        post.add(myPost)
+                                        postData.value = post
+                                    }
                                 }
                         }
 

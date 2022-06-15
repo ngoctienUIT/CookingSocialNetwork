@@ -56,6 +56,7 @@ class ViewPostViewModel: ViewModel() {
                 }
 
                 if (snapshot != null && snapshot.exists()) {
+                    _post = Post()
                     _post.getData(snapshot)
                     post.value = _post
                     FirebaseFirestore.getInstance()
@@ -99,12 +100,17 @@ class ViewPostViewModel: ViewModel() {
                             NotifyControl.addNotify(_user.username, "", _post.id, "favorite")
                     } else {
                         favouritesUser.remove(post.value!!.id)
-                        NotifyControl.removeNotify(_user.username, "", _post.id, "favorite")
+                        if (_post.owner != _myData.username)
+                            NotifyControl.removeNotify(_user.username, "", _post.id, "favorite")
                     }
                     FirebaseFirestore.getInstance()
                         .collection("user")
                         .document(FirebaseAuth.getInstance().currentUser?.email.toString())
                         .update("favourites", favouritesUser)
+                    FirebaseFirestore.getInstance()
+                        .collection("user")
+                        .document(FirebaseAuth.getInstance().currentUser?.email.toString())
+                        .update("favouritesCount", favouritesUser.size)
                 }
             }
     }

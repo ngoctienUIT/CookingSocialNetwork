@@ -137,17 +137,19 @@ class ViewPost : AppCompatActivity(), EventPost {
                 val httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(url)
                 storageRef.child("post/${httpsReference.name}").delete()
             }
-            FirebaseFirestore.getInstance()
-                .collection("post")
-                .document(id)
-                .delete()
             val postList = viewModel.myData.value?.post
             postList?.remove(id)
             FirebaseFirestore.getInstance()
                 .collection("user")
                 .document(FirebaseAuth.getInstance().currentUser?.email.toString())
                 .update("post", postList)
-
+                .addOnSuccessListener {
+                    FirebaseFirestore.getInstance()
+                        .collection("post")
+                        .document(id)
+                        .delete()
+                }
+            dialog.dismiss()
             finish()
         }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -11,33 +12,29 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="5dp"
         android:maxWidth="280dp"
-        android:padding="5dp"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
         android:text="Không phải trứng"
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/amount"
+        android:paddingEnd="5dp"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="5dp"
-        android:layout_marginEnd="184dp"
-        android:padding="5dp"
+        android:layout_toStartOf="@+id/unit"
         android:text="4"
-        android:textStyle="bold" />
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/unit"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="5dp"
-        android:layout_marginEnd="108dp"
-        android:padding="5dp"
+        android:paddingEnd="20dp"
         android:text="quả"
-        android:textStyle="bold" />
-
+        tools:ignore="RtlSymmetry" />
 
 </RelativeLayout>
