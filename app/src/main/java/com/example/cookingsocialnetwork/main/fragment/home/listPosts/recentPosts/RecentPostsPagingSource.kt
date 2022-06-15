@@ -3,9 +3,8 @@ package com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPost
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.cookingsocialnetwork.model.data.Post
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.tasks.await
 
@@ -16,6 +15,7 @@ class RecentPostsPagingSource(private val db: FirebaseFirestore) : PagingSource<
             val currentPage = params.key ?: db.collection("post")
                 .limit(10)
                 //.whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .await()
 
@@ -24,6 +24,7 @@ class RecentPostsPagingSource(private val db: FirebaseFirestore) : PagingSource<
             val nextPage = db.collection("post")
                 .limit(10)
                 //.whereNotEqualTo("owner", FirebaseAuth.getInstance().currentUser?.email)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .startAfter(lastDocumentSnapshot)
                 .get()
                 .await()
