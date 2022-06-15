@@ -94,20 +94,6 @@
             android:textSize="18sp"
             android:text="Trần Trọng Hoàng" />
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Nguyễn Chí Cường" />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Vũ Xuân Hoàng Lâm" />
-
     </LinearLayout>
 
 </LinearLayout>
