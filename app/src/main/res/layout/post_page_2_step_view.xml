@@ -12,13 +12,14 @@
         android:padding="15dp"
         android:background="#f7f6f2"
         />
+
     <ImageView
         android:id="@+id/post_page2_step_view_image"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:layout_below="@id/post_page2_step_view_count"
         android:scaleType="centerCrop"
-        android:src="@drawable/food_picker"
-        android:layout_below="@id/post_page2_step_view_count"/>
+        android:src="@drawable/food_picker" />
     <TextView
         android:id="@+id/post_page2_step_view_des"
         android:layout_width="match_parent"

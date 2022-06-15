@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
@@ -46,7 +47,7 @@ class HomeFragment : Fragment() {
 
         //recent
         binding.recRecentPosts.adapter = postRecentAdapter
-        binding.recRecentPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recRecentPosts.layoutManager = GridLayoutManager(requireContext(),2, LinearLayoutManager.VERTICAL, false)
 
         lifecycleScope.launch {
             viewModel.flowRecentPosts.collect {

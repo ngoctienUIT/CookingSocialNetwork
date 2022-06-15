@@ -99,17 +99,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/add_step_step_des_lb"
-            android:layout_marginHorizontal="15dp"
-            android:maxLength="500" />
+            android:layout_marginHorizontal="15dp" />
 
-        <TextView
-            android:id="@+id/add_step_step_des_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0/500"
-            android:textSize="15sp"
-            android:layout_alignEnd="@id/add_step_step_des"
-            android:layout_below="@id/add_step_step_des" />
+         />
 
     </RelativeLayout>
 

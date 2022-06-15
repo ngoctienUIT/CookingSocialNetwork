@@ -48,17 +48,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/post_page2_fragment1_food_name_lb"
                         android:layout_marginHorizontal="15sp"
-                        android:maxLength="30" />
+                         />
 
-                    <TextView
-                        android:id="@+id/post_page2_fragment1_food_name_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/post_page2_fragment1_food_name"
-                        android:layout_alignEnd="@id/post_page2_fragment1_food_name"
-                        android:layout_marginTop="10dp"
-                        android:text="0/30"
-                        android:textSize="14sp" />
+
 
                     <TextView
                         android:textColor="#FF4500"

@@ -135,73 +135,7 @@
             android:textIsSelectable="true"
             android:textSize="16sp" />
 
-        <TextView
-            android:textColor="#FF4500"
-            android:id="@+id/post_page2_fragment2_food_baking_lb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment2_food_prep_detail"
-            android:layout_marginStart="15sp"
-            android:layout_marginTop="30dp"
-            android:text="Thời gian nấu"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/post_page2_fragment2_food_baking_detail"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment2_food_baking_lb"
-            android:layout_alignStart="@id/post_page2_fragment2_food_portion_lb"
-            android:text="Thời gian món ăn được nấu là?"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/post_page2_fragment2_food_baking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/post_page2_fragment2_food_baking_lb"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp"
-            android:focusable="false"
-            android:inputType="none"
-            android:text="30 phút"
-            android:textIsSelectable="true"
-            android:textSize="16sp" />
-
-        <TextView
-            android:textColor="#FF4500"
-            android:id="@+id/post_page2_fragment2_food_rest_lb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment2_food_baking_detail"
-            android:layout_marginStart="15sp"
-            android:layout_marginTop="30dp"
-            android:text="Thời gian chờ"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/post_page2_fragment2_food_rest_detail"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/post_page2_fragment2_food_rest_lb"
-            android:layout_alignStart="@id/post_page2_fragment2_food_portion_lb"
-            android:text="Món ăn này có cần thời gian chờ không?"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/post_page2_fragment2_food_rest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/post_page2_fragment2_food_rest_lb"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp"
-            android:focusable="false"
-            android:inputType="none"
-            android:text="0 phút"
-            android:textIsSelectable="true"
-            android:textSize="16sp" />
 
     </RelativeLayout>
 

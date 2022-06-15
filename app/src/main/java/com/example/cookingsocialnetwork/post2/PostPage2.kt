@@ -133,8 +133,6 @@ class  PostPage2 : AppCompatActivity() {
             this.portion = postPageAdapter.fragment2.portion.text.toString()
             this.difficult = postPageAdapter.fragment2.difficult.rating.toString()
             this.prepTime =  postPageAdapter.fragment2.prepTime.text.toString()
-            this.bakingTime = postPageAdapter.fragment2.bakingTime.text.toString()
-            this.restTime = postPageAdapter.fragment2.restTime.text.toString()
         }
         if(postPageAdapter.fragment3.isInitialized()){
             this.ingredientList = postPageAdapter.fragment3.ingredientList

@@ -19,8 +19,7 @@ class PostPage2Fragment2 : Fragment(){
     lateinit var portion: EditText  //lấy cái này
     lateinit var difficult: RatingBar // lấy cái này
     lateinit var prepTime: EditText //lấy cái này
-    lateinit var bakingTime :EditText   //lấy cái này
-    lateinit var restTime : EditText    //lấy cái này
+        //lấy cái này
 
     fun isInitialized() = ::portion.isInitialized
 
@@ -57,16 +56,8 @@ class PostPage2Fragment2 : Fragment(){
         difficult.setOnClickListener{
             check = true
         }
-        bakingTime = requireView().findViewById(R.id.post_page2_fragment2_food_baking)
-        bakingTime.setOnClickListener{
-            timePicker(bakingTime)
-            check  = true
-        }
-        restTime = requireView().findViewById(R.id.post_page2_fragment2_food_rest)
-        restTime.setOnClickListener{
-            timePicker(restTime)
-            check = true
-        }
+
+
     }
     private fun portionPicker() {
         val dialog = context?.let { Dialog(it) }
