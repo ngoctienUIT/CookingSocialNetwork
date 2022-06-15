@@ -11,6 +11,7 @@ import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentDataSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentRepository
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RealtimePost
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.RecentPostsPagingSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPostSource
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingSlide
 import com.example.cookingsocialnetwork.model.data.Post
@@ -36,7 +37,7 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
         takeTrendingPosts()
     }
 
-    private val viewModelJob =  SupervisorJob()
+    /*private val viewModelJob =  SupervisorJob()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val config = PagedList.Config.Builder()
         .setEnablePlaceholders(false)
@@ -50,7 +51,11 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
         LivePagedListBuilder<String, RealtimePost>(
             PostRecentDataSource.Factory(postRecentRepository, uiScope),
             config
-        ).build()
+        ).build()*/
+    //data recen posts
+    val flowRecentPosts = Pager(PagingConfig(20)) {
+        RecentPostsPagingSource(FirebaseFirestore.getInstance())
+    }.flow.cachedIn(viewModelScope)
 
     //data random posts
     val flowRandomPosts = Pager(PagingConfig(20)) {
@@ -66,10 +71,10 @@ class HomeViewModel @Inject constructor(postRecentRepository : PostRecentReposit
 
 
 
-    override fun onCleared() {
+   /* override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-    }
+    }*/
 
 
     var getPosts: MutableLiveData<MutableList<Post>>

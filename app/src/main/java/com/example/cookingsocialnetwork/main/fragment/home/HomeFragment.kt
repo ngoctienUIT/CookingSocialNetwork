@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
+class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val postRecentAdapter by lazy { PostRecentAdapter() }
@@ -51,6 +51,24 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+        //recent
+        binding.recRecentPosts.adapter = postRecentAdapter
+        binding.recRecentPosts.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        lifecycleScope.launch {
+            viewModel.flowRecentPosts.collect {
+                postRecentAdapter.submitData(it)
+            }
+        }
+
+        lifecycleScope.launch {
+            postRecentAdapter.loadStateFlow.collectLatest { loadStates ->
+                binding.progressBarRecent.isVisible = loadStates.refresh is LoadState.Loading
+                binding.progressBarRecentLoadMore.isVisible = loadStates.append is LoadState.Loading
+            }
+        }
+
+
         //random
         binding.recPosts.adapter = randomPostAdapter
         binding.recPosts.layoutManager =
@@ -64,20 +82,21 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
 
         lifecycleScope.launch {
             randomPostAdapter.loadStateFlow.collectLatest { loadStates ->
-                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
-                binding.progressBarLoadMore.isVisible = loadStates.append is LoadState.Loading
+                binding.progressBarRandom.isVisible = loadStates.refresh is LoadState.Loading
+                binding.progressBarRandomLoadMore.isVisible = loadStates.append is LoadState.Loading
             }
         }
 
         //recent
-        binding.recRecentPosts.adapter = postRecentAdapter
+        /*binding.recRecentPosts.adapter = postRecentAdapter
         binding.recRecentPosts.layoutManager =
             GridLayoutManager(requireContext(), 2,LinearLayoutManager.VERTICAL, false)
 
         viewModel.listPosts.observe(viewLifecycleOwner) {
             binding.swpRecords.isRefreshing = false;
             postRecentAdapter.submitList(it)
-        }
+        }*/
+
         //trending
 
       /*  viewModel.mutblLiveDataTrendingSlide.observe(viewLifecycleOwner) {
@@ -87,7 +106,7 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
                 binding.trendingViewPaper.adapter = trendingAdapter
             }
         }*/
-
+        //trending
         binding.trendingViewPaper.adapter = trendingPagingAdapter
         setAnimationTrending(binding)
         lifecycleScope.launch {
@@ -154,9 +173,6 @@ class HomeFragment : Fragment(), PostRecentAdapter.OnClickListener {
                 )
             )
         )*/
-    override fun onCommentClick(view: View, position: Int) {
-        TODO("Not yet implemented")
-    }
 }
 
 

@@ -60,7 +60,7 @@
 
                 <ProgressBar
                         android:visibility="gone"
-                        android:id="@+id/progressBar"
+                        android:id="@+id/progressBarRandom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -74,7 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginHorizontal="20dp"
-                        app:layout_constraintBottom_toTopOf="@+id/progressBarLoadMore"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarRandomLoadMore"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -84,7 +84,7 @@
                 <ProgressBar
                         android:visibility="gone"
                         android:padding="10dp"
-                        android:id="@+id/progressBarLoadMore"
+                        android:id="@+id/progressBarRandomLoadMore"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,12 +101,22 @@
                     android:layout_marginStart="20dp"
                     android:padding="3dp"/>
 
-                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                    android:id="@+id/swp_records"
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:layout_marginHorizontal="20dp"
-                    tools:layout_behavior="@string/appbar_scrolling_view_behavior">
+<!--                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--                    android:id="@+id/swp_records"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="280dp"-->
+<!--                    android:layout_marginHorizontal="20dp"-->
+<!--                    tools:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progressBarRecent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/rec_recent_posts"
+                    app:layout_constraintEnd_toEndOf="@+id/rec_recent_posts"
+                    app:layout_constraintStart_toStartOf="@+id/rec_recent_posts"
+                    app:layout_constraintTop_toTopOf="@+id/rec_recent_posts" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rec_recent_posts"
@@ -117,8 +127,17 @@
                     tools:listitem="@layout/recyclerview_item_form_2"
                     app:spanCount="2"/>
 
-                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-                <!--spacing-->
+                <ProgressBar
+                    android:visibility="gone"
+                    android:padding="10dp"
+                    android:id="@+id/progressBarRecentLoadMore"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+<!--                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+<!--                &lt;!&ndash;spacing&ndash;&gt;-->
 
                 <View
                     android:layout_width="match_parent"
