@@ -55,6 +55,7 @@ class FragmentClickedImageChosen : Fragment() {
                     }
                 }
             })
+
         dataBiding.recyclerClickView.adapter = adapterImageClicked
 
         dataBiding.lifecycleOwner = this

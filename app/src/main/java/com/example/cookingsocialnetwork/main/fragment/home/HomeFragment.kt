@@ -1,5 +1,6 @@
 package com.example.cookingsocialnetwork.main.fragment.home
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -8,20 +9,21 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
 import com.example.cookingsocialnetwork.databinding.FragmentHomeBinding
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.randomPosts.RandomPostAdapter
-import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPagingAdapter
 import com.example.cookingsocialnetwork.main.fragment.home.listPosts.recentPosts.PostRecentAdapter
+import com.example.cookingsocialnetwork.main.fragment.home.listPosts.trendingPosts.TrendingPagingAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 class HomeFragment : Fragment() {
 
@@ -119,7 +121,6 @@ class HomeFragment : Fragment() {
             // binding.trendingViewPaper.adapter = trendingSliderAdapter
             /*binding.trending.adapter = trendingSliderAdapter
         setAnimationTrending(binding)*/
-
             return binding.root
 
         }
@@ -151,7 +152,18 @@ class HomeFragment : Fragment() {
             }
         })
     }
+   internal fun recreate() {
+       val ft: FragmentTransaction = this.requireFragmentManager().beginTransaction()
+       ft.detach(this)
+       ft.attach(this)
+       ft.commit()
+   }
 
+    internal fun reLoad(){
+        val ft: FragmentTransaction = this.parentFragmentManager.beginTransaction()
+        ft.setReorderingAllowed(false)
+        ft.detach(this).attach(this).commit()
+    }
    /* private val trendingSliderAdapter
         get() = TrendingAdapter(
             listOf(

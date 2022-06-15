@@ -1,16 +1,16 @@
 package com.example.cookingsocialnetwork.post2
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cookingsocialnetwork.R
-import com.example.cookingsocialnetwork.databinding.ActivityPostPage2Binding
 import com.example.cookingsocialnetwork.post2.model.Ingredient
 import com.example.cookingsocialnetwork.post2.model.Step
 import com.google.android.material.tabs.TabLayout
@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.type.Date
 import java.time.LocalDateTime
 
 class  PostPage2 : AppCompatActivity() {
@@ -147,8 +146,10 @@ class  PostPage2 : AppCompatActivity() {
             this.foodNote = postPageAdapter.fragment5.foodNote.text.toString()
         }
         upLoadImageFoodToFirebase()
+
         //finish()
     }
+
 
 
     private fun initPost(){
@@ -177,6 +178,7 @@ class  PostPage2 : AppCompatActivity() {
         addIDPostToUser(newPostData.id)
     }
 
+    @SuppressLint("ResourceType")
     private fun addIDPostToUser(IDNewPost: String){
         val updater = FirebaseFirestore.getInstance()
         updater.collection("user")
@@ -187,6 +189,7 @@ class  PostPage2 : AppCompatActivity() {
         finish()
 
     }
+
 
     private fun upLoadImageFoodToFirebase() {
 
