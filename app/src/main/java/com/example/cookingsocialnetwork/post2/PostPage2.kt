@@ -177,7 +177,7 @@ class  PostPage2 : AppCompatActivity() {
     }
 
     @SuppressLint("ResourceType")
-    private fun addIDPostToUser(IDNewPost: String){
+        private fun addIDPostToUser(IDNewPost: String){
         val updater = FirebaseFirestore.getInstance()
         updater.collection("user")
             .document("${FirebaseAuth.getInstance().currentUser?.email}")
